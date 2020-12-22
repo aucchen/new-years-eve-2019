@@ -1,0 +1,230 @@
+title: Introspect
+subtitle: Who are you, really?
+view-if: phase = 0
+new-page: true
+on-arrival: first_name = "Karen"; phase = 1; time = 0; courage = 2; energy = 10; despair = 5; hunger = 10; thirst = 10; bathroom_need = 2; p1_time = 12; p2_time = 36
+tags: start, top
+signal: {! console.log("introspect"); !}
+
+Every social gathering is horrific in its own way. Over the years you have learned to adapt, to cope, to survive. The one in which you are currently attending, however, threatens to ruin you.
+
+- @back_up: Back up for a minute...
+
+@back_up
+
+You are Qiuyi Zhao, or "Karen Zhao" in English, or 赵秋怡 in Chinese. You are 22 years old, a senior in college, and back home for winter break.
+
+- @name_wrong: Actually, your name isn't Karen...
+- @name_dislike: You're starting to dislike "Karen", but it's stuck...
+- @name_chinese: You prefer to use Qiuyi, but...
+
+@name_wrong
+
+You go back in time to 15 years ago, to that fateful day in elementary school English class in Changchun, Jilin Province, PRC. You take a peek at the box from which you drew your assigned English names. Which name was involuntarily assigned to you on that day?
+
+- @still_karen: It is Karen, actually.
+- @amy: Amy
+- @christina: Christina
+- @erica: Erica
+- @grace: Grace
+- @jenny: Jenny
+- @rachel: Rachel
+- @sarah: Sarah
+- @stephanie: Stephanie
+- @vivian: Vivian
+
+@still_karen
+go-to: name
+
+@amy
+go-to: name
+on-arrival: first_name = "Amy"
+
+@christina
+go-to: name
+on-arrival: first_name = "Christina"
+
+@erica
+go-to: name
+on-arrival: first_name = "Erica"
+
+@grace
+go-to: name
+on-arrival: first_name = "Grace"
+
+@jenny
+go-to: name
+on-arrival: first_name = "Jenny"
+
+@rachel
+go-to: name
+on-arrival: first_name = "Rachel"
+
+@sarah
+go-to: name
+on-arrival: first_name = "Sarah"
+
+@stephanie
+go-to: name
+on-arrival: first_name = "Stephanie"
+
+@vivian
+go-to: name
+on-arrival: first_name = "Vivian"
+
+@name
+go-to: lesbian
+
+[? if first_name != "Karen" : Right, your English name is [+ first_name : +]. ?]
+[? if first_name = "Karen" : Right, despite everything your English name is still Karen. ?]
+
+@name_dislike
+go-to: lesbian
+
+With the recent rise of various connotations, Karen is becoming less tenable as an assigned name. Nevertheless, you have stuck with it for the sake of stability, if nothing else.
+
+@name_chinese
+go-to: lesbian
+
+Most people pronounce Qiuyi like "Chewy", which is emphatically not a correct pronounciation; the actual sounds do not exist in English. Thus, Karen is still your most commonly used name among English-speaking acquaintances, despite its recently acquired connotations.
+
+@lesbian
+
+- @by_the_way: And by the way, you're a lesbian.
+
+@by_the_way
+go-to: kids
+
+Or something like that.
+
+It is New Year's Eve, which means that it is time for a Chinese people party, as there is every year. The party is occurring at the Gao household, who have recently moved into a larger house in a more suburban and affluent town. Their family has been friends with your family for the past ten years at least.
+
+Which brings you to the truly agonizing part of this party. Everyone you grew up with between the ages of 10 and 18 are here. Your old friends and acquaintances, and their parents and siblings and everyone else. People you thought you had left behind, or had left you behind. It's as if your past has come back.
+
+@kids
+
+- @aubrey: There is Aubrey Gao.
+- @children: There are the younger children.
+- @goals: Now, what do you want to do here?
+
+@aubrey
+subtitle: The eldest daughter of the household, talking with her boyfriend.
+go-to: kids
+max-visits: 1
+
+Aubrey stands around a table with her boyfriend (you think) and a few other adults, talking and smiling.
+
+Mom had kept you up to date on the gossip. Her boyfriend is a Chinese Ivy League boy. He's nice. Dressed in a sweater that matches colors with Aubrey. Conventionally attractive or something like that. They're leaning on each other; any more visible displays of affection would probably seem gauche here.
+
+As noted previously, she is a member of the family who owns the house. She was something of your unknown rival in high school; she was the girl with whom you always compared test scores and grades (she always won).
+
+Unfortunately, you also had a crush on her. How did that turn out?
+
+- @aubrey_dated: I went on at least one date with Aubrey.
+
+
+@aubrey_dated
+
+TODO
+
+
+@emily
+subtitle: Sitting alone with her laptop on a couch, generally ignored.
+max-visits: 1
+
+Emily Chen sits alone on a couch in an alcove, her face illuminated by a laptop's faint glow. Her face seems to have softened in the years since you last saw her.
+
+You were friends five years ago.
+
+You feel like you're special for knowing one of Emily deepest secrets. Namely, that she's, well, "she". For various reasons she does not have a positive relationship with her parents, especially with her father. But they must have made some attempt at reconciliation for her to be here. She's apparently in "boymode" or something like that, but some people still comment on how she looks like a girl. Well then.
+
+- @emily_date: I liked her, and she said that we could date after she goes to college, but nothing came of that.
+- @emily_friends: We became good friends, but fell out of touch.
+- @emily_none: We didn't know each other very well.
+
+@emily_date
+on-arrival: prev_emily = "date"
+
+You made a something like a contract with her that you could start dating after leaving home for college. However, you never acted upon said contract. Why?
+
+- @em_too_far: Too far away. Too long distance.
+- @em_anxiety: I wanted to confess but my anxiety paralyzed me.
+- @em_no_feelings: I stopped having feelings for her.
+
+@em_too_far
+go-to: kids
+
+She was too far away, physically.
+
+@em_anxiety
+go-to: kids
+
+You had thought about confessing your feelings for her.
+
+@em_no_feelings
+go-to: kids
+
+As time passed, you found yourself thinking of her less and less.
+
+
+@emily_friends
+on-arrival: prev_emily = "friends"
+go-to: kids
+
+You first met her while attempting to prepare for a beauty pageant that your parents forced you to enter. But from then on you viewed her as some sort of kindred spirit. You became friends, and shared many deep secrets.
+
+But all that melted away as you went off to colleges across the country.
+
+
+@emily_none
+on-arrival: prev_emily = "none"
+go-to: kids
+
+Well, you did know that she was a trans girl. But outside of some chance encounters, you never became close.
+
+
+@miri
+subtitle: Somewhat of an interloper here, but somewhat of a celebrity.
+max-visits: 1
+
+Miri stands in the living room in the center of a small semicircle of moms. She is beaming as she converses in mostly fluent Mandarin.
+
+Miri was your best friend in high school but you had drifted apart in the intervening years. She contacted you out of the blue today, saying that there was trouble in her household and she had to get away. Of course you accepted her request. She is the only person here who is not Chinese in any way (she's half Black, half Vietnamese).
+
+- @miri_dating: We dated for a while, but...
+- @miri_friends: We were good friends, but...
+- @miri_breakup: We had something like a friend breakup...
+
+@miri_dating
+go-to: kids
+on-arrival: prev_miri = "date"
+
+TODO
+
+@miri_friends
+go-to: kids
+on-arrival: prev_miri = "friends"
+
+TODO
+
+@miri_breakup
+go-to: kids
+on-arrival: prev_miri = "none"
+
+TODO
+
+
+
+@children
+subtitle: Kevin Zhao, Rose Gao, others
+go-to: kids
+max-visits: 1
+
+Your di-di Kevin is here. He's in fourth grade. Aubrey's mei-mei, Rose, is here as well, just starting middle school.
+
+They are out of sight currently, in the game room downstairs, watching something or another on TV. Probably a Marvel movie.
+
+
+@goals
+
+And what do you want out of this party? In an ideal world, you would...

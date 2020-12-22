@@ -1,0 +1,21 @@
+title: Aubrey - Memories
+new-page: false
+on-arrival: aub_seen = 1
+
+Aubrey is a member of the family who owns the house. She was something of your unknown rival in high school; she was the girl with whom you always compared test scores and grades (she always won).
+
+Unfortunately, you also had a crush on her. How did that turn out?
+
+- @aub_friends: You were friends, sort of.
+- @aub_dated: You went on at least one date with Aubrey.
+- @aub_nothing: You had no relationship with her whatsoever.
+
+
+@aub_friends
+
+
+@aub_dated
+
+TODO
+
+@aub_nothing

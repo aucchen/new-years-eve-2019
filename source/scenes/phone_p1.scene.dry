@@ -1,0 +1,39 @@
+title: Use your cellphone
+subtitle: Enter cyberspace...
+view-if: phase = 1 and time <= p1_time
+
+You have a four-year-old Android with about two hours of battery life left. But it works great for what you do.
+
+What do you want to do?
+
+- @games: Play games.
+- @media: Check social media.
+- @papers: Read papers for your research.
+- @net: Browse random internet sites.
+- @text: Text your friends.
+
+
+@text
+
+Lol.
+
+- @games: Play games.
+- @papers: Read papers for your research.
+- @media: Check social media.
+- @net: Browse random internet sites.
+
+
+@games
+
+
+@media
+
+
+@papers
+
+It might be a bad idea to try to do work at a party, but you have to try anyways.
+
+
+@net
+
+In practice, "browsing the web" usually means Wikipedia for you.

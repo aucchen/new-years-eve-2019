@@ -1,0 +1,192 @@
+title: Food
+subtitle: The ever-inviting lure of snacks...
+unavailable-subtitle: There's something else going on...
+new-page: true
+on-arrival: food_seen += 1; time += 1
+view-if: phase = 1 and food_seen <= 1 and time < p1_time
+choose-if: has_interruption = 0
+go-to: food_choices
+tags: phase1, food
+
+One of the highlights of these social gatherings is the cornucopia of foodstuffs present. Currently, the "meal" has not started yet, but the snacks are out in a tantalizing display.
+
+
+@food_choices
+
+- @snacks: Check out the table of snacks.
+- @drinks: Look at the drinks.
+- @root: On second though, you don't want to eat or drink anything.
+
+
+@snacks
+unavailable-subtitle: You're not really hungry.
+view-if: snack_consumption_count <= 5
+choose-if: hunger > 3
+go-to: snack_choice
+
+There are plenty of snacks for you to consume, all arranged neatly on a table.
+
+
+@snack_choice
+choose-if: snack_consumption_count <= 5 and hunger > 3
+unavailable-subtitle: You're not that hungry anymore.
+on-arrival: {!
+if (Q['snack_consumption_count'] >= 2) {
+    Q['time'] += 1;
+}
+!}
+
+- @haw_flakes: Haw flakes.
+- @shrimp_chips: Shrimp chips.
+- @dried_squid: Dried squid.
+- @seeds: Melon and sunflower seeds.
+- @peas: Wasabi peas.
+- @potato_chips: Potato chips.
+
+
+@snack_choices_end
+
+- @snack_choice: Look for more snacks
+- @drinks: Look at the drinks.
+- @root: Do something else.
+
+
+@haw_flakes
+on-arrival: hunger -= 1; snack_consumption_count += 1
+go-to: snack_choices_end
+
+Haw flakes are crumbly reddish discs about the diameter of your thumb, made from the "haw", or 山楂, which is some kind of tree fruit. You've never actually found out what a "haw" is, or even if these things contain actual fruit (there's no ingredients list). But it tastes good. Sweet, a little tart.
+
+
+@shrimp_chips
+on-arrival: hunger -= 1; snack_consumption_count += 1
+go-to: snack_choices_end
+
+Shrimp chips are basically potato chips with some vaguely shrimp flavoring. Actually according to the ingredients list, they're made from tapioca flour. What is tapioca flour, anyways? It's apparently some root vegetable.
+
+Anyway, you eat some shrimp chips. They're good.
+
+
+@dried_squid
+on-arrival: hunger -= 1; snack_consumption_count += 1
+go-to: snack_choices_end
+
+Dried squid pieces chewy, salty, white stringy things. They're hard to chew, but infused with the salty flavors of the sea. You eat some. Bits get stuck to your teeth.
+
+
+@seeds
+on-arrival: hunger -= 1; snack_consumption_count += 1
+go-to: snack_choices_end
+
+At these parties, all the Chinese adults seem to be constantly 嗑瓜子-ing (cracking melon seed shells) all the time when they're not talking or eating. A lot of people have dents in their front teeth from 嗑瓜子.
+
+You're not nearly as much of an afficionado of 嗑瓜子. But you eat some anyway.
+
+
+@peas
+on-arrival: hunger -= 1; snack_consumption_count += 1
+go-to: snack_choices_end
+
+Wasabi peas are pretty popular around these parts.
+
+
+@potato_chips
+on-arrival: hunger -= 2; snack_consumption_count += 1
+go-to: snack_choices_end
+
+Just straight-up regular Lay's potato chips, produced by the Frito-Lay Corporation, based in Plano, Texas, which is an upper-class suburb of the Dallas-Fort Worth Metroplex, with a very strong public school system and a high Asian population. You know this because at least one of your classmates from university is from said suburb. And because you read Wikipedia for fun.
+
+Anyway, these chips are for the kids, that is, you. Because the parents decided that ABC kids need their American snacks, or something like that. And well, you eat a bag full. Yeah.
+
+
+######################################
+
+@drinks
+choose-if: thirst > 5
+unavailable-subtitle: You don't really want to drink anything anymore.
+on-arrival: time += 1
+
+- @carbonated_beverages: Carbonated beverages.
+- @fruity_beverages: Fruit-based beverages.
+- @alcoholic_beverages: Alcoholic beverages.
+- @water: Water.
+- @root: Do something else.
+
+
+@carbonated_beverages
+on-arrival: thirst -= 2
+
+There's Coke, Diet Coke, Sprite, stuff like that.
+
+You are not a habitual consumer of carbonated beverages. But you consume a can of Sprite anyway. It's alright. So yeah.
+
+- @food_choices: Look at other snacks or drinks.
+- @root: Do something else.
+
+
+@fruity_beverages
+on-arrival: thirst -= 3
+
+There's apple juice, orange juice, sparkling apple cider.
+
+You drink half a cup of apple juice.
+
+- @food_choices: Look at other snacks or drinks.
+- @root: Do something else.
+
+
+@alcoholic_beverages
+unavailable-subtitle: You already have a drink.
+choose-if: carrying_beer = 0 and carrying_wine = 0 and carrying_baijiu = 0
+
+Right, you're over 21. You can legally drink alcoholic beverages now. Which you would be more inclined to do if they didn't taste so bad.
+
+They have some beer, wine, 白酒 (baijiu, Chinese liquor). At least one man has already started to drink a beer.
+
+- @beer: Get a beer.
+- @wine: Get some wine.
+- @baijiu: Get some baijiu.
+- @food_choices: On second thought, no.
+
+
+@beer
+unavailable-subtitle: You're already carrying something.
+view-if: carrying_beer = 0 and carrying_wine = 0 and carrying_baijiu = 0
+on-arrival: carrying_beer = 1; thirst -= 1; alcohol_consumption += 1
+
+You open a bottle of Harbin beer and take a sip. It tastes... bad. You don't know how people can unironically enjoy drinking this stuff. You aren't going to finish this, but you take the bottle with you.
+
+- @food_choices: Look at other snacks or drinks.
+- @root: Do something else.
+
+
+@wine
+unavailable-subtitle: You're already carrying something.
+view-if: carrying_beer = 0 and carrying_wine = 0 and carrying_baijiu = 0
+on-arrival: carrying_wine = 1; thirst -= 1; alcohol_consumption += 1
+
+Red wine is supposed to be healthy, right? You pour a small bit. It tastes...bad. Isn't wine supposed to taste good? You aren't going to finish this, but you take the glass with you.
+
+- @food_choices: Look at other snacks or drinks.
+- @root: Do something else.
+
+
+@baijiu
+unavailable-subtitle: You don't want that stuff.
+choose-if: want_baijiu > 0
+
+The baijiu smells like rubbing alcohol. And it probably tastes about as good.
+
+- @food_choices: Look at other snacks or drinks.
+- @root: Do something else.
+
+
+@water
+on-arrival: thirst -= 4
+
+It's rare that you drink any beverage besides water. Because that's the kind of bland, boring person that you are.
+
+You drink a cup of water. So yeah. You're less thirsty now.
+
+- @food_choices: Look at other snacks or drinks.
+- @root: Do something else.

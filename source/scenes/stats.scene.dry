@@ -1,0 +1,21 @@
+title: Stats
+new-page: true
+is-special: true
+on-arrival: {! Q['display_hours'] = 6 + Math.floor((5*(Q['time'] || 0))/60);
+Q['display_minutes'] =((5*(Q['time'] || 0)) % 60);
+if(Q['display_minutes'] < 10) { Q['display_minutes'] = '0' + Q['display_minutes']};
+Q['phase_2_start'] = ((Q['time'] || 0) == 20 && (Q['phase'] || 0) <= 1);
+!}
+
+
+Time: [+ display_hours : +]:[+ display_minutes : +]
+
+[? if hunger >= 9 : You are quite hungry. ?][? if hunger < 9 and hunger >= 7 : You are somewhat hungry. ?][? if hunger < 7 and hunger >= 5 : You are a little hungry. ?][? if hunger < 5 and hunger >= 3 : You are not really hungry. ?][? if hunger < 3 : You are feeling full. ?]
+
+[? if thirst >= 9 : You are quite thirsty. ?][? if thirst < 9 and thirst >= 7 : You are somewhat thirsty. ?][? if thirst < 7 and thirst >= 5 : You are a little thirsty. ?][? if thirst < 5 and thirst >= 3 : You are not really thirsty. ?][? if thirst < 3 : You are not thirsty at all. ?]
+
+You are currently feeling...
+
+# TODO: mood based on stats - what's your highest stat?
+
+- @backSpecialScene: Back

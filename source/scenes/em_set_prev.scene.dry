@@ -1,0 +1,68 @@
+title: Emily - Memories
+new-page: false
+on-arrival: em_seen = 1
+
+# IN THIS SCENE: set your previous relationship with Em!
+
+You first encountered her while you were attempting to prepare for a beauty pageant that your parents signed you up for in the junior year of high school. She was at the first meeting for the pageant, not as a contestant but as a social experiment. Or something like that. She offered to help you prepare; she was much more amenable to such things. Thus, the two of you became steadily acquainted.
+
+Emily's parents were also part of your parents' social circle. Emily's dad, Song Chen, was several levels of academic hierarchy above your mom at their university department. You used to see her at parties much like this one, but not once since high school, until today.
+
+By the way, she's trans. And you don't even know if she's out yet.
+
+- @emily_date: I liked her, and she said that we could date after she goes to college, but nothing came of that.
+- @emily_friends: We became good friends, but fell out of touch.
+- @emily_none: We didn't know each other very well.
+
+
+@emily_date
+on-arrival: prev_emily = "date"
+
+You, well, you *like* liked her. As usual, you never understood why; just some ineffable, irrational feeling deep within you. But she seemed like a decent person. And apparently, she liked you back enough, but wasn't so sure about dating back then, with the whole "trans and not out as a woman" thing.
+
+You made a contract with her, or something like that, saying you could start dating after leaving home. However, you never acted upon said contract. Why?
+
+- @em_too_far: Too far away. Too long distance. It couldn't work.
+- @em_anxiety: I wanted to confess but my anxiety paralyzed me.
+- @em_no_feelings: I stopped having feelings for her.
+
+
+@em_too_far
+go-to: jumpScene
+
+Every time you thought about confessing to her for real, doubts crept into your mind. She was too far away, physically. It couldn't work out, you told yourself. You would never see each other in person, so how could you even maintain a relationship?
+
+She never contacted you, either. So maybe she didn't like you, you convinced yourself.
+
+
+@em_anxiety
+go-to: jumpScene
+
+You had thought about confessing your feelings for her. Too often. Every time you would consider doing so, you could not bring yourself to press the send button. You drafted messages, agonized over every word, but it all seemed wrong. Every wrong word felt like it would ruin your relationship forever.
+
+
+@em_no_feelings
+go-to: jumpScene
+
+As time passed, you found yourself thinking of her less and less. You had more pressing worries, so you pushed the topic of Emily Chen to the back of your mind. Sometimes, you considered confessing to her, but you found that your feelings for her had faded with time and distance.
+
+She never contacted you, either. So maybe she stopped liking you, you convinced yourself.
+
+
+@emily_friends
+on-arrival: prev_emily = "friends"
+go-to: jumpScene
+
+You became friends while she helped you prepare for the beauty pageant. She was *good* at it, too; you couldn't have walked up onto the stage without her moral assistance. Thus initiated your friendship; deep confessions and meaningful conversations followed. She said that you saved her life; you aren't so sure.
+
+But all that melted away as you went off to colleges across the country. You had more immediate concerns. The thoughts of Emily Chen slowly melted away and flowed into the abcesses of your mind.
+
+
+@emily_none
+on-arrival: prev_emily = "none"
+go-to: jumpScene
+
+Well, you did know that she was a trans girl; she came out to you at a party much like this one, in a moment you never forgot. But outside of some chance encounters, you never became close. After graduation, you never spoke to her again.
+
+But now, she's here.
+

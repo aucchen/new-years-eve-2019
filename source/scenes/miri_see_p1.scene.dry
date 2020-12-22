@@ -1,0 +1,59 @@
+title: Miri Brooks
+subtitle: An old friend...
+unavailable-subtitle: There's something else going on...
+new-page: true
+on-arrival: time += 1; energy -= 1; miri_int += 1
+view-if: phase = 1 and miri_seen = 0 and energy > 0 and time < p1_time
+choose-if: has_interruption = 0
+tags: phase1, miri, initiation
+
+
+Miri stands in the living room in the center of a small semicircle of moms, beaming as she converses in fluent Mandarin and basking in the adulation of the adults.   
+
+"你的中文多帮啊! 是大学学得吗?" *Your Chinese is so good! Did you study it at university?*", someone asks.
+
+"谢谢阿姨! 我在大学上了汉语课。" *Thank you auntie! I took a Chinese class at university.*" She's really good.
+
+- @stare_at_miri: Stare at Miri.
+
+
+@stare_at_miri
+go-to: miri_set_prev
+set-jump: miri_see_p1.miri_notice
+
+She has a very casual style, wearing a college sweatshirt and jeans with a scarf. Her curly black hair is cut shorter than you remembered. She is animated as she talks, gesticulating with her arms and hands.
+
+
+#############################################
+
+
+@miri_notice
+
+She turns to face you and waves; she must have noticed you staring at her.
+
+"秋怡大姐! *Big sister Qiuyi!*" She laughs as she walks over, leaving the adults to laugh along. "I was looking for you! You just disappeared!"
+
+- @right_here: "...I was standing right here."
+- @you_disappeared: "...It was you who disappeared."
+- @oh_hi: "...Oh. Hello."
+
+
+@right_here
+
+"...I was standing right here."
+
+"Oh. I guess I didn't notice you."
+
+"Yeah. That happens."
+
+
+@you_disappeared
+
+"...It was you who disappeared."
+
+"Really?"
+
+
+@oh_hi
+
+"...Oh. Hello."

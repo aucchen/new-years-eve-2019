@@ -1,0 +1,58 @@
+title: Miri - Memories
+new-page: false
+on-arrival: miri_seen = 1
+
+# IN THIS SCENE: set your previous relationship with Miri!
+
+Miri was probably your best friend in high school. But until today, it had been at least one year since your last perfunctory messages. She contacted you out of the blue , saying that there was trouble in her household and she had to get away. Of course you accepted her request. She is the only person here who is not Chinese in any way (she's half Black, half Vietnamese).
+
+- @miri_dating: We dated for a while, but...
+- @miri_friends: We were good friends, but...
+- @miri_breakup: We had a falling out...
+
+@miri_dating
+on-arrival: prev_miri = "date"
+
+It was junior year of high school when she admitted that she had feelings for you. And you *liked* her too. She was cute, and nice, and all that you ever wanted.
+
+How did it all fall apart?
+
+- @miri_broke_up: We couldn't keep up a long-distance relationship anymore, so we broke up.
+- @miri_never: We never broke up, just started talking to each other less and...
+
+
+@miri_broke_up
+go-to: jumpScene
+
+It was an extremely amicable breakup, as far as these things go (you don't have other experiences with breakups but compared to media representation of such events, it seemed rather amicable). 
+
+In fact, it hardly entitled a change in your de fact relationship at all. You had never experienced anything overtly *sexual* with her (probably?), even after two years of officially dating, and she rarely discussed such matters with you. The two of you were friends still, even as the frequency of your interactions decreased, and eventually stopped altogether.
+
+You *are* still friends, right?
+
+
+@miri_never
+go-to: jumpScene
+
+There was never a real breakup. Your already occasional conversations simply became ever less frequent. Maybe you were too nervous, or she was too busy, or there was simply not much to talk about, not much you had in common. Soon you simply fell out of touch, the gaps growing so long that neither you nor her wanted to initiate contact.
+
+Perhaps, since you never officially broke up, you're still dating, still girlfriends or something like that. You shudder.
+
+But at least you *are* still friends, right?
+
+
+@miri_friends
+go-to: jumpScene
+on-arrival: prev_miri = "friends"
+
+The two of you gradually grew apart after starting college. With the physical distance and the continuous grind of college work, the frequency of your interactions decreased. You went from messaging every day, to once a week, to once a month, to nothing.
+
+You *are* still friends, right?
+
+
+@miri_breakup
+go-to: jumpScene
+on-arrival: prev_miri = "none"
+
+It was a careless moment. She tried to help you. But then you said something that made her hate you forever. Well, perhaps not forever. But still, you're surprised that she would still choose to initiate contact with you after all this time.
+

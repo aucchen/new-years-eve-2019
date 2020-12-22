@@ -1,0 +1,408 @@
+title: Emily Chen
+subtitle: Sitting alone in an alcove...
+unavailable-subtitle: There's something else going on...
+new-page: true
+on-arrival: em_seen += 1; time += 1; energy -= 1; em_int += 1;
+view-if: phase = 1 and em_seen = 0 and energy > 0 and time < p1_time
+choose-if: has_interruption = 0
+tags: phase1, emily, initiation
+
+Emily is sitting by herself on a couch in a darkened alcove, her face faintly illuminated by the glow of the laptop screen. 
+
+- @stare: Stare at Emily.
+
+
+@stare
+go-to: em_set_prev
+set-jump: em_see_p1.em_talk
+
+She somehow seems softer than when you last met. Her hair is tied up in a ponytail, her face framed by bangs with thick black-framed glasses. She's wearing a black and white striped sweater and formal-ish black pants.
+
+############################################
+
+
+@em_talk
+
+She glances up at you, and waves.
+
+"Are you going to sit down or just stand there?" Her voice is barely more than a whisper.
+
+- @sit_next: Sit next to her.
+- @stand: Stand there awkwardly.
+
+
+@sit_next
+
+"Um, sure..."
+
+You sit down on the couch next to her.
+
+- @what_reading: "What are you reading?"
+- @how_are_you: "How have you been?"
+- @sit_silence: Just sit there.
+
+
+@sit_silence
+
+You sit in silence. Emily is silent as she reads a long article on her computer.
+
+- @what_reading: "What are you reading?"
+- @how_are_you: "How have you been?"
+- @sit_silence: Just sit there.
+- @leave_emily: Leave her be.
+
+
+@stand
+
+"Um, I'll stand here awkwardly..."
+
+Emily shrugs. "Okay. Suit yourself."
+
+- @what_reading: "What are you reading?"
+- @how_are_you: "How have you been?"
+- @stand_silence: Just stand there.
+
+
+@stand_silence
+
+You stand there next to Emily, who is silent as she reads a long article on her computer.
+
+- @what_reading: "What are you reading?"
+- @how_are_you: "How have you been?"
+- @stand_silence: Just stand there.
+- @leave_emily: Leave her be.
+
+
+
+@what_reading
+
+"Um, what are you reading?"
+
+"Oh, um, this is a short book by Karl Marx. It's called The 18th Brumaire of Louis Bonaparte."
+
+Silence. She isn't going to talk if you aren't.
+
+- @what_about: "What is it about?"
+- @how_are_you: "How have you been?"
+- @stay_silent: Don't say anything.
+- @leave_emily: Just leave.
+
+
+@what_about
+
+"So, um, what is it about?"
+
+"It's a history and analysis of the French Revolution. The one in 1848." A pause. She glances at you. You turn away. "It's kind of interesting. Weirdly relevant for what's happening today with politics and stuff."
+
+"Oh. Okay."
+
+More silence.
+
+- @how_are_you: "How have you been?"
+- @stay_silent: Don't say anything.
+- @leave_emily: Just leave.
+
+
+@how_are_you
+on-arrival: time += 1; courage += 1
+go-to: em_not_okay if (prev_emily = "date" or prev_emily = "friends"); em_dodging if prev_emily = "none"
+
+You're going to have to initiate this conversation. It's hard, as if there is a physical block placed upon your brain, but you can do it, right?
+
+"So, um, how have you been?"
+
+She gives you a quick glance. "I'm doing fine."
+
+
+@em_not_okay
+on-arrival: em_int += 1
+
+# if you were friends with em, she's more likely to open up
+
+"Oh... really?"
+
+She sighs, and closes her laptop. "No. Of course not."
+
+- @sorry_about_everything: "Sorry about everything..."
+
+
+@sorry_about_everything
+
+"Um, sorry..."
+
+"It's not your fault. Well, mostly not your fault. So like, how are you doing?" 
+
+- @doing_great: "I'm doing great!"
+- @doing_alright: "I've been doing alright..."
+- @doing_no_idea: "Um..."
+
+
+@em_dodging
+
+# if starting relationship with em is bad
+
+"Oh..." You aren't sure whether to prompt for more. She isn't exactly forthcoming. Thus, the silence resumes.
+
+A long pause ensues, before Emily asks, "So, how are you doing?"
+
+"Oh, um..." It takes a moment to get your bearings.
+
+- @doing_great: "I'm doing great!"
+- @doing_alright: "I've been doing alright..."
+- @doing_no_idea: "Um..."
+
+
+
+@stay_silent
+go-to: em_asks if (prev_emily = "date" or prev_emily = "friends"); em_waiting if prev_emily = "none"
+
+You don't know what to say, and apparently Emily isn't in the mood for casual interaction. You try not to glance over at her screen too much, but she's not making any effort to hide it.
+
+
+#############################################################
+# tell me about yourself...
+
+@em_asks
+on-arrival: em_int += 1; time += 1
+
+# if you were friends with em, she starts conversation with you
+
+"So, how are you doing?", Emily asks, interrupting the silence.
+
+"Oh, um..." It takes a moment to get your bearings.
+
+- @doing_great: "I'm doing great!"
+- @doing_alright: "I've been doing alright..."
+- @doing_no_idea: "Um..."
+
+
+@doing_great
+
+"Um, I've been doing great!"
+
+"Oh? How so?"
+
+- @lots_of_friends: (lie) "I've made lots of friends!"
+- @doing_well_in_class: (lie) "I'm doing well in my classes!"
+- @doing_research: "I've been doing research..."
+- @grad_school: "I've applied to grad school!"
+- @missed_you: "I've really missed you..."
+
+
+@doing_alright
+
+"Um, I've been doing alright..."
+
+"Oh? What's been happening?"
+
+- @tough: "It's been tough..."
+- @doing_research: "I've been doing research..."
+- @grad_school: "I've applied to grad school!"
+- @missed_you: "I've really missed you..."
+
+
+@doing_no_idea
+
+"Um..." You aren't sure what to say. You never know what to say.
+
+- @tough: "It's been tough..."
+- @doing_research: "I've been doing research..."
+- @grad_school: "I've applied to grad school!"
+- @missed_you: "I've really missed you..."
+
+
+@lots_of_friends
+view-if: prev_emily = "date" or prev_emily = "friends"
+on-arrival: despair += 1
+
+Are you really going to lie like that? What's the point? What would you be trying to prove? You're not doing great, and Emily can probably tell.
+
+"Um, I'm making a lot of friends! Haha."
+
+"Oh. Haha."
+
+"That was a joke."
+
+"Yeah?"
+
+"Yeah."
+
+"Oh. Sorry."
+
+"No, it's not your fault... well, mostly not your fault."
+
+- @doing_research: "I've been doing research..."
+- @grad_school: "I've applied to grad school!"
+- @missed_you: "I've really missed you..."
+
+
+@doing_well_in_class
+view-if: prev_emily = "date" or prev_emily = "friends"
+on-arrival: despair += 1
+
+"Um, I'm doing well in class! I mean, sort of, not really."
+
+"Oh. Sorry."
+
+"No, it's not your fault... well, mostly not your fault."
+
+- @doing_research: "I've been doing research..."
+- @grad_school: "I've applied to grad school!"
+- @missed_you: "I've really missed you..."
+
+
+@doing_research
+
+"Um, I've been doing research..."
+
+"Yeah? What about?"
+
+"Um, it's in the biology department, about using genome-I mean epigenome-sequencing to assess development."
+
+"Oh. That's cool. I've been kind of involved in climate science research at my college, but it's such a small school so it's kind of hard."
+
+"That's great..."
+
+A lull in the conversation. Emily is quiet, and you don't know what to say next.
+
+- @leave_emily: "I'll be going..."
+- @missed_you: "I've missed you..."
+
+
+@tough
+
+"Um, it's been tough..."
+
+"Yeah? How so?"
+
+"Um, just like... classes and everything, not enough time to do everything you want, being away from everyone I know, having to make every decision by yourself, being alone,..." 
+
+"Oh. Sorry. Yeah, I kind of get that."
+
+"Thanks..."
+
+A lull in the conversation. Emily is quiet, and you don't know what to say next.
+
+- @leave_emily: "I'll be going..."
+- @missed_you: "I've missed you..."
+
+
+@grad_school
+
+"Um, I've applied to grad schools..."
+
+"Yeah? What for? Where to?"
+
+"Um, molecular biology and genomics and stuff. And it's a whole bunch of schools..."
+
+"Oh. That's cool. I'm applying to grad schools to, in climate science."
+
+"That's great..."
+
+A lull in the conversation. Emily is quiet, and you don't know what to say next.
+
+- @leave_emily: "I'll be going..."
+- @missed_you: "I've missed you..."
+
+
+@missed_you
+view-if: prev_emily = "date" or prev_emily = "friends"
+on-arrival: em_int += 1; energy -= 1
+
+"Um, I've missed you a lot... sorry..."
+
+"No, it's my fault too." Emily glances at you. "I've missed you too."
+
+Okay. Was your statement supposed to have *romantic* undertones?
+
+- @yes_romantic: Yes...
+- @hope_romantic: Hopefully?...
+- @no_romantic: No...
+- @idk_romantic: I don't know...
+
+
+@yes_romantic
+go-to: hope_romantic
+
+@hope_romantic
+on-arrival: em_rom += 1
+
+In a movie, this would be the moment where you hugged, kissed, or something like that. But that will never happen. The conversation has suddenly acquired an awkward quality. 
+
+- @exit_moment: You're going to have to exit this moment.
+- @stay_with_emily: Actually, you'd rather stay here.
+
+
+@no_romantic
+go-to: idk_romantic
+
+@idk_romantic
+
+Okay then.
+
+Anyway, regardless of your *feelings* or lack of thereof, the conversation has suddenly acquired an awkward quality. As much as you would like to stay...
+
+- @exit_moment: You're going to have to exit this moment.
+- @stay_with_emily: Actually, you'd rather stay here.
+
+
+@exit_moment
+on-arrival: time += 1; energy -= 1; despair += 1
+
+"Um, I'm going to...", you begin, before getting up. Something doesn't feel right.
+
+"See you later?"
+
+She waves as you return to the living room. You feel just a little bit more lonely.
+
+
+@stay_with_emily
+view-if: em_int >= 2
+on-arrival: time += 1; courage += 1; em_int += 1
+
+You feel as if you are overstepping things a little by sitting here on the couch with her. But she seems fine with it. Or does she?
+
+Neither of you talk at all. But it's fine; it's a comfortable silence, right? Is that what they call it?
+
+- @stay_more: Stay more.
+- @go_back: Do something else.
+- @phase_2
+
+
+@stay_more
+view-if: time < 15
+on-arrival: time += 3
+
+For some reason you enjoy staying here.
+
+- @stay_more: Stay here.
+- @go_back: Do something else.
+- @phase_2
+
+
+@go_back
+view-if: time < 15
+
+"Um, I kind of want to do something else..."
+
+"Sure, go ahead," Emily says. "See you later."
+
+You make your way back to the living room.
+
+
+@em_waiting
+
+Emily is not going to initiate the conversation. Do you want to say something, or just go?
+
+- @how_are_you: "How are you?"
+- @leave_emily: Just leave.
+
+
+@leave_emily
+on-arrival: energy -= 1; despair += 1; courage -= 1
+
+Somehow, you sense that you are a little unwelcome here, as if you have overstayed the bounds of acceptable social discourse given your previous relationship or lack of thereof.
+
+"Um, see you later..." You wave at her and make your way back to the living room. She waves back.
+
+You feel just a little bit more lonely.
