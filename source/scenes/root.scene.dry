@@ -1,12 +1,14 @@
 title: Root Scene
-on-arrival: {! Q['display_hours'] = 6 + Math.floor((5*(Q['time'] || 0))/60);
+on-arrival: {!
+Q['display_hours'] = 6 + Math.floor((5*(Q['time'] || 0))/60);
 Q['display_minutes'] =((5*(Q['time'] || 0)) % 60);
 if(Q['display_minutes'] < 10) { Q['display_minutes'] = '0' + Q['display_minutes']};
-Q['phase_2_start'] = ((Q['time'] || 0) == 20 && (Q['phase'] || 0) <= 1) !}
-go-to: phase_2 if phase_2_start
-on-display: abc = 0;
+Q['phase_2_start'] = ((Q['time'] || 0) >= (Q['p1_time'] || 12) && (Q['phase'] || 0) <= 1);
+!}
+go-to: phase_2 if phase_2_start != 0; init if initialized = 0
 new-page: true
 max-choices: 10
+set-bg: backgrounds/room_1_filtered.jpg
 
 Time: [+ display_hours : +]:[+ display_minutes : +]
 
@@ -15,15 +17,29 @@ Time: [+ display_hours : +]:[+ display_minutes : +]
 [? if time = 0 : Mom has disappeared among the coterie of Chinese adults. Kevin has disappeared downstairs with all the other kids. And you're standing by yourself, with only your backpack for company, surveying the people gathered here on this New Year's Eve that's not so different from all your previous New Year's Eves. ?]
 
 [? if time = 0 : At least your friends are here. Or are they your friends still? It's been so long... ?]
-[? if time > 0 and time <= 2 : The party is just beginning. Guests are still trickling in. ?]
-[? if time >= 3 and time < 6 : The house is busy. Introductions are made. Food is displayed. ?]
-[? if time >= 13 and time <= 20 : It is dinnertime. People are gathered in their own small groups. ?]
+[? if time > 0 and time <= 2 : The party is just beginning. Guests are still trickling in. But you don't recognize any of the recent arrivals. Maybe you should remember? ?]
+[? if time >= 3 and time < 8 : The house is busy. Introductions are made. Food is displayed. Handshakes and hugs. ?]
+
+[? if time >= 3 and time < 8 : Some of the adults notice you, and make greetings. 小姑娘长大了! The girl's grown big! 上大学怎么样? How was university? 你饿了吗? Are you hungry? You try to smile and make perfunctory responses, which seem to satisfy them. ?]
+[? if time >= 8 and time < p1_time : Most of the guests have arrived; there must be at least thirty people in this house. People are gathering in clumps, talking. The lights are bright. The odor is fragrant. The sounds are cacaphonous. ?]
+
+[? if time >= 8 and time < p1_time : You pace around the various regions of the house, head down, tossing your phone from one hand to another. You successfully avoid attention. ?]
+
+[? if time > p1_time and time < p2_time and phase = 2 : It is dinnertime. People are gathered in their own small groups, the adults at the main dinner tables, the kids in the basement. The food is all displayed in the kitchen. ?]
+
+[? if time > p1_time and time < p2_time and phase = 2 : It is dinnertime. People are gathered in their own small groups, the adults at the main dinner tables, the kids in the basement. The food is all displayed in the kitchen. ?]
+
+[? if anxiety >= 7 : **< Your actions will always have consequences. >** ?]
+
+[? if anxiety >= 10 : **< Your actions have already had consequences, and they have been uniformly harmful. You have already committed grave, irrevocable errors. >** ?]
 
 - #start
 - #phase1
+#- #phase2
+#- #phase3
 
 @start
 
-== New Year's Eve, 2020
+= New Year's Eve, 2020
 
 

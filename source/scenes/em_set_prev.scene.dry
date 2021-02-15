@@ -10,15 +10,16 @@ Emily's parents were also part of your parents' social circle. Emily's dad, Song
 
 By the way, she's trans. And you don't even know if she's out yet.
 
+#- @remember: Remember Emily...
 - @emily_date: I liked her, and she said that we could date after she goes to college, but nothing came of that.
 - @emily_friends: We became good friends, but fell out of touch.
 - @emily_none: We didn't know each other very well.
 
 
 @emily_date
-on-arrival: prev_emily = "date"
+on-arrival: prev_em = "date"
 
-You, well, you *like* liked her. As usual, you never understood why; just some ineffable, irrational feeling deep within you. But she seemed like a decent person. And apparently, she liked you back enough, but wasn't so sure about dating back then, with the whole "trans and not out as a woman" thing.
+You, well, you *like* liked her. As usual, you never understood why; just some ineffable, irrational feeling deep within you. Well, she was very smart and talented and beautiful. And a kind person once you got past the initial awkwardness. And apparently, she liked you back enough, but wasn't so sure about dating back then, with the whole "trans and not out as a woman" thing.
 
 You made a contract with her, or something like that, saying you could start dating after leaving home. However, you never acted upon said contract. Why?
 
@@ -50,7 +51,7 @@ She never contacted you, either. So maybe she stopped liking you, you convinced 
 
 
 @emily_friends
-on-arrival: prev_emily = "friends"
+on-arrival: prev_em = "friends"
 go-to: jumpScene
 
 You became friends while she helped you prepare for the beauty pageant. She was *good* at it, too; you couldn't have walked up onto the stage without her moral assistance. Thus initiated your friendship; deep confessions and meaningful conversations followed. She said that you saved her life; you aren't so sure.
@@ -59,7 +60,7 @@ But all that melted away as you went off to colleges across the country. You had
 
 
 @emily_none
-on-arrival: prev_emily = "none"
+on-arrival: prev_em = "none"
 go-to: jumpScene
 
 Well, you did know that she was a trans girl; she came out to you at a party much like this one, in a moment you never forgot. But outside of some chance encounters, you never became close. After graduation, you never spoke to her again.

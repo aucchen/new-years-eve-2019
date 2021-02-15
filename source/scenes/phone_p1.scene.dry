@@ -1,19 +1,29 @@
 title: Use your cellphone
-subtitle: Enter cyberspace...
-view-if: phase = 1 and time <= p1_time
+subtitle: First finding a safe alcove.
+view-if: phase = 1 and time < p1_time
+new-page: true
+go-to: options
+tags: phase1, alone
 
-You have a four-year-old Android with about two hours of battery life left. But it works great for what you do.
+You have a four-year-old Android with about two hours of battery life left. But it is perfectly capable for your purposes.
 
 What do you want to do?
+
+
+@options
+
+[? if anxiety >= 10 : **< Your actions will have consequences. >** ?]
 
 - @games: Play games.
 - @media: Check social media.
 - @papers: Read papers for your research.
 - @net: Browse random internet sites.
 - @text: Text your friends.
+- @root: Actually, do something else.
 
 
 @text
+max-visits: 1
 
 Lol.
 
@@ -24,16 +34,147 @@ Lol.
 
 
 @games
+view-if: time < p1_time
+
+There are a bunch of different games on your phone.
+
+- @word_game: Word puzzles.
+- @cif: Choice-based interactive fiction.
+- @pif: Parser-based interactive fiction.
+- @pageant_game: A dating sim.
+- @pageant_game_2: Keep playing the pageant dating sim.
+
+
+@word_game
+go-to: game_opts
+on-arrival: time += 1
+
+You spend a few minutes on a word find game.
+
+@game_opts
+
+- @games: Play more games.
+- @options: Keep using your phone.
+- @root: Do something else.
+
+
+@cif
+on-arrival: time += 1; cif_seen += 1
+go-to: cif_a1; cif_a2; cif_a3
+
+# randomly choose a game to play
+
+
+@cif_a1
+go-to: game_opts
+
+In this game you play as a scientist who makes a robotic companion. You can't date the robot, but later you can create a different robot that you can date. Because it's that kind of game.
+
+
+@cif_a2
+go-to: game_opts
+
+This is a romance game taking place in a fantasy-European upper-class boarding school. There might or might not be magic going on, but there are dark non-magical secrets. As usual there is a variety of romantic options, but they are hard to keep track of; the names are too uniformly European.
+
+
+@cif_a3
+go-to: game_opts
+
+This is another fantasy choice-based game where you play as a deposed royal heir and attempt to regain power. There is a variety of romance options, of course, which all require a complicated set of stat checks to complete.
+
+
+@pageant_game
+on-arrival: pageant_seen = 1; time += 1; anxiety += 1
+view-if: pageant_seen = 0
+go-to: game_opts
+
+This game is a lesbian beauty pageant simulator, which is surprisingly resonant with your past experiences. At is heart is a time management game; you have to decide how you spend your time preparing for the pageant, whether to focus on outfits or makeup or talent or the interview. There are multiple endings, most of which are abject failures.
+
+And then there's the social optimization component, which takes the outward form of a dating sim but is actually a ruthless puzzle, where selecting the wrong dialogue choices or weekly activities could destroy your relationships forever.
+
+It's a rather interesting game.
+
+
+@pageant_game_2
+on-arrival: pageant_seen += 1; time += 1
+view-if: pageant_seen >= 1
+go-to: game_opts
+
+You've already done a few failed playthroughs of this game, "failed" meaning you both failed to win the pageant and get with your preferred romantic interests. You've kept notes, but it's been difficult since there are no visible stats. Maybe another try wouldn't hurt.
+
+
+
+@pif
+on-arrival: time += 1
+
+You've been playing this game for a while without getting very far. It's an old-fashioned text adventure about a spy infiltrating a research base, and it is very difficult. You stop playing after dying a few times.
+
+- @games: Play more games.
+- @options: Keep using your phone.
+- @root: Do something else.
+
 
 
 @media
+on-arrival: time += 1; despair += 1; anxiety += 1
+max-visits: 1
+view-if: time < p1_time
+
+You're basically a lurker on every social media platform you have an account on. It's the anxiety. The "mortifying ordeal of being known" or something like that.
+
+You spend a few minutes checking the latest updates from around the world. It's not very interesting, but it makes you feel more connected to the rest of humanity, at least for a little while. You check your five email accounts too. It's not interesting, but it's something to do.
+
+- @options: Keep using your phone.
+- @root: Do something else.
 
 
 @papers
+on-arrival: time += 1
+max-visits: 1
+view-if: time < p1_time
 
-It might be a bad idea to try to do work at a party, but you have to try anyways.
+It might be a bad idea to try to do work at a party, but you have to try anyways. You open up the mobile-optimized pubmed central website and loop up the papers your professor assigned, something about T-cell differentiation.
+
+It's a fool's errand, as usual. You can't concentrate on the paper, not when the entire internet is there to distract you, not when the sounds of the party are going off all around you.
+
+Ugh. Maybe it's time to do something else.
+
+- @options: Keep using your phone.
+- @root: Do something else.
+
 
 
 @net
+on-arrival: time += 2
+go-to: wiki_1; wiki_2; wiki_3
+view-if: time < p1_time
 
-In practice, "browsing the web" usually means Wikipedia for you.
+In practice, "browsing the web" usually means Wikipedia for you. Why not go on Wikipedia for an hour or two, when you have work to do?
+
+
+@wiki_1
+
+You end up at the Wikipedia pages for various suburban localities of major metropolitan areas in the United States. Did you know about the populaion density of Overland Park, KS before? Yes, you did in fact. You've read all of these things before.
+
+- @options: Keep using your phone.
+- @root: Do something else.
+
+
+@wiki_2
+on-arrival: despair += 1
+
+From the front page, you somehow navigate to pages for various life-threatening diseases. *Are you* having a pulmonary thromboembolism or an intracranial hemmorage right now? How do you know you're not? You have a headache. Is it cancer? It's probably not something *that* bad, but what do you know? There are so many ways to die. That's why you're studying biology, to help people not die as much, right? Right?
+
+- @options: Keep using your phone.
+- @root: Do something else.
+
+
+@wiki_3
+on-arrival: despair += 1
+
+You quasi-randomly navigate to the pages for various small geographical localities. The Pacific Islands are particularly interesting for some reason. Pitcairn Island, partially populated by descendants of naval mutineers. The Society Islands, upon which we live whether we like it or not. Nauru, site of massive phosphate mining and environmental collapse. It's all rather sad.
+
+- @options: Keep using your phone.
+- @root: Do something else.
+
+

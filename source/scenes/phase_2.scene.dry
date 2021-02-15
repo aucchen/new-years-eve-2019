@@ -1,2 +1,198 @@
 title: Dinnertime...
 view-if: time >= p1_time
+go-to: late if time >= p1_time + 2
+on-arrival: {! Q['phase'] = 2; Q['food_left'] = 6; Q['food'] = [];
+// TODO: add more food descriptions.
+Q['food_descs'] = {
+'rice': ['fine', 'perfectly ordinary', 'exactly as it should'],
+'dumplings': ['fine', 'a bit salty', 'kind of delicious'],
+'baozi': ['fine', 'good', 'juicy', 'flavorful'],
+'string beans': ['fine', 'a little salty', 'good'],
+'tofu': ['fine', 'good', 'decent', 'flavorful'],
+'chicken and cauliflower': ['fine', 'bland', 'neutral', 'good'],
+'shrimp and bok choy': ['fine', '...vegetable-like', 'oily'],
+'lotus root': ['fine', 'starchy', 'crunchy'],
+'tomato and eggs': ['fine', 'exactly as it should', 'sweet-ish'],
+'lamb noodle': ['fine', '...meaty', 'kind of spicy', 'like home, somehow'],
+'soup': ['fine', 'flavorful', 'savory', 'nostalgic'],
+'porridge': ['fine', 'plain', 'familiar']
+};
+!}
+set-bg: backgrounds/food_1_filtered.jpg
+new-page: true
+
+The call for dinner comes. "开饭了！", voices shout in turn.
+
+- @join: You join the crowd.
+
+
+@join
+
+You join the rest of the crowd in the living room/dining room/kitchen. There must be at least 30 people packed in here. Everyone is standing around, heads bowed, hands clasped, eyes closed.
+
+This is a Christian household, so there is a prayer said before dinner. It is led by the unofficial pastor of this congregation, Wang Laoshi (Teacher Wang). His bushy hair is whiter since you last saw him, but his demeanor is as serious as ever.
+
+"今天，这新年，我们感谢主... *Today, this new year, we give thanks to God...*"
+
+[? if anxiety >= 7 : **< This action will have consequences, in this life and the next. >** ?]
+
+- @close_eyes: Close your eyes and clasp your hands.
+- @dont_close: Don't close your eyes.
+
+
+@close_eyes
+
+You close your eyes. Wang Laoshi says the prayer. You let the words wash over you. His prayer resembles the ones you grew up hearing; talk of the corruption and sickness of the world, wishes for peace for the brothers and sisters in the abode of the Lord, for the children and parents to be healthy and successful. You aren't sure if you understood everything; it feels like your Chinese is degenerating.
+
+The prayer is over with an "Amen" from the gathered. Now it's time for dinner to start. The children get their food first. And then the young adults; that's you.
+
+- @get_food
+
+
+@dont_close
+
+You glance around, and catch Emily's eyes. She stares at you. You stare back. Emily's dad is glaring at Emily, and then staring at you. You look away.
+
+Wang Laoshi finishes the prayer. Now it's time for dinner to start. The children get their food first. And then the young adults; that's you.
+
+- @get_food
+
+
+#####################################
+# late for dinner
+
+@late
+
+Upon your entrance to the dining room, mom greets you. She already has a plate of food.
+
+"我们没有等你吃。饭都要凉了。*We didn't wait for you. The food is almost cold now.*" Mom says.
+
+- @get_food
+
+
+########################################
+# picking food
+
+@get_food
+title: Get food.
+on-arrival: time += 2
+go-to: foods
+
+The meal is a potluck, with each household bringing their own dishes. It is a dazzling geometric arrangement, full of colors and smells.
+
+[? if anxiety >= 8 : **< Your food choices will have consequences for your future. >** ?]
+
+@foods
+go-to: end_food if food_left = 0
+
+You can still get [+ food_left : +] thing[? if food_left > 1 : s?].
+
+- @rice: Steamed rice.
+- @jiaozi: 饺子 - dumplings.
+- @baozi: 包子 - baozi
+- @stir: Various meat and vegetable stir fries.
+- @tomato: 西红柿炒鸡蛋 - tomato stir-fried with eggs.
+- @lamb: 孜然羊肉面 - cumin lamb noodles.
+- @donggua: Winter melon and meatball soup.
+- @porridge: 米饭粥 - Rice porridge.
+
+
+@rice
+on-arrival: {! Q['food'].push('rice'); Q['food_left'] -= 1; !}
+go-to: foods
+
+You shovel some rice on your plate.
+
+@jiaozi
+on-arrival: {! Q['food'].push('dumplings'); Q['food_left'] -= 1; !}
+go-to: foods
+
+You take a few dumplings.
+
+@baozi
+on-arrival: {! Q['food'].push('baozi'); Q['food_left'] -= 1; !}
+go-to: foods
+
+You take a big bao.
+
+
+@stir
+
+- @beans: Stir-fried string beans.
+- @tofu: Tofu stuffed with meat paste.
+- @cauli: Chicken and cauliflower.
+- @shrimp: Shrimp and bok choy.
+- @lotus: Lotus roots and pork.
+
+@beans
+on-arrival: {! Q['food'].push('string beans'); Q['food_left'] -= 1; !}
+go-to: foods
+
+You use chopsticks to grab a few stir-fried string beans. They're dripping in oil.
+
+
+@tofu
+on-arrival: {! Q['food'].push('tofu'); Q['food_left'] -= 1; !}
+go-to: foods
+
+These are tofu cubes with a meatball stuffed inside. You take a few.
+
+
+@cauli
+on-arrival: {! Q['food'].push('chicken and cauliflower'); Q['food_left'] -= 1; !}
+go-to: foods
+
+You take some of the cauliflower and chicken.
+
+
+@shrimp
+on-arrival: {! Q['food'].push('shrimp and bok choy'); Q['food_left'] -= 1; !}
+go-to: foods
+
+You take some of the shrimp and bok choy.
+
+
+@lotus
+on-arrival: {! Q['food'].push('lotus root'); Q['food_left'] -= 1; !}
+go-to: foods
+
+You take some of the lotus root and pork.
+
+
+@tomato
+on-arrival: {! Q['food'].push('tomato and eggs'); Q['food_left'] -= 1; !}
+go-to: foods
+
+One of the most common Chinese dishes. You spoon some of the tomato-egg stir fry onto your plate.
+
+
+@lamb
+on-arrival: {! Q['food'].push('lamb noodles'); Q['food_left'] -= 1; !}
+go-to: foods
+
+This was mom's dish, a specialty of her home province of Shaanxi. The spicy noodes with fried lamb are always popular.
+
+
+@donggua
+on-arrival: {! Q['food'].push('soup'); Q['food_left'] -= 1; !}
+go-to: foods
+max-visits: 1
+
+You spoon some of the winter melon soup into a small plastic bowl.
+
+
+@porridge
+on-arrival: {! Q['food'].push('porridge'); Q['food_left'] -= 1; !}
+go-to: foods
+max-visits: 1
+
+You spoon some of the porridge into a bowl.
+
+
+@end_food
+
+Your plate is filled. You see Emily, Miri, Aubrey, and William sit together in one of the dining tables. There's an open seat for you.
+
+"你跟你朋友们坐吧 *You should sit with your friends*," mom says, pointing you in the direction of their table. Kevin has already gone into the basement with some of the younger kids.
+
+- @p2_convos: Join the table.

@@ -1,0 +1,64 @@
+title: Mom
+subtitle: She's hanging around somewhere...
+view-if: phase = 1 and time < p1_time and mom_int = 0
+new-page: true
+max-visits: 1
+on-arrival: mom_int += 1; time += 1
+tags: phase1, top
+
+"秋怡！过来！ *Qiuyi! Come here!*", mom shouts.
+
+You walk over to join the group. Mom stands with a group of Chinese adults, mostly moms. She introduces you to the group. You say your requisite greetings, and they say theirs.
+
+"你的头发长出来了。 *Your hair is longer*," someone says. It's true that you've gone a year without a haircut.
+
+"女孩子头发应该长一点。 这样更好看。 *Girls should have longer hair. It looks better this way*," someone else says. Ugh.
+
+"你快毕业了，要做什么？ *You're graduating soon, what are you going to do?*"
+
+- @everyone: Why is everyone asking that?
+- @grad: "我要上研究生 I'm going to grad school."
+
+
+@everyone
+
+"所有人都问这个。 *Everyone is asking this.*"
+
+Laughter. Why are they always like this?
+
+"这是你一辈子最重要的时间。*This is the most important time in your life*," one of the adults says. The others agree.
+
+"告诉阿姨你要去哪儿。 *Tell auntie what you're going to do*," mom says.
+
+- @grad: "我要上研究生 I'm going to grad school."
+
+
+@grad
+
+"我要上研究生。 I'm going to graduate school."
+
+"好棒啊！你姑娘真好啊！ *How great! Your daughter is great!*", one of the adults says to mom and not you.
+
+"你学什么？ *What are you studying?*", another person asks you.
+
+"Um, molecular and cell biology," you respond in English.
+
+"这项目不好找工作。 *This field is hard to find a job*," someone says.
+
+"Oh."
+
+- @converse: The conversation continues.
+
+
+@converse
+
+The conversation continues, with more detailed questions and comments. You smile and answer. Mom doesn't say much. It's as if she's presenting you to her friends, as if you're a project.
+
+- @love: You love her...
+- @wish: But you wish she wouldn't be like this.
+
+
+@love
+
+
+@wish

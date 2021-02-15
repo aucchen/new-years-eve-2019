@@ -1,0 +1,474 @@
+title: Sit with your friends.
+tags: phase2
+on-arrival: time += 1; food_consumption = 0; hunger += 4
+view-if: phase = 2 and time >= p1_time and time < p2_time
+new-page: true
+set-bg: backgrounds/food_1_filtered.jpg
+set-jump: p2_convos.intros_2
+
+
+# TODO: list of topics: going-around-the-table introduction, college, post-grad plans, anime, video games, homestuck, current events, gay stuff, high school nostalgia,...
+
+# You sit with
+
+Aubrey waves at you as you sit down.
+
+{!<span class="ga">!}AUBREY: Hey, [+ first_name : +]! Everyone's here! Do we all know each other?{!</span>!} 
+
+{!<span class="dw">!}WILLIAM [? if aub_int = 0 : (Aubrey's boyfriend)?]: No, we don't. Does everyone else already know each other?{!</span>!} 
+
+Miri shakes her head. 
+
+{!<span class="bm">!}MIRI: It's my first time at one of these things. I came with [+ first_name : +], and I saw Aubrey around in high school, but that's it.{!</span>!} 
+
+Emily shrugs, but doesn't say anything.
+
+- @eat: Start eating.
+- @intros_2: Listen.
+
+
+@stare_emily
+view-if: em_seen = 0
+go-to: em_set_prev
+
+She somehow seems softer than when you last met. Her hair is tied up in a ponytail, her face framed by bangs with thick black-framed glasses. She's wearing a black and white striped sweater, like a zebra trying to blend in among horses. Or something like that.
+
+
+@stare_miri
+view-if: miri_seen = 0
+go-to: miri_set_prev
+
+She has a very casual style, wearing a college sweatshirt and jeans with a scarf. Her curly black hair is cut shorter than you remembered. She is animated as she talks, gesticulating with her arms and hands.
+
+
+
+@stare_aubrey
+view-if: aub_seen = 0
+go-to: aub_set_prev
+
+Mom had kept you up on the gossip; Aubrey's boyfriend William is apparently another Harvard student, like her.
+
+Aubrey and her boyfriend are dressed in matching colors, her wearing a green dress and white cardigan, him in a sweater and khakis. They're sitting next to each other.
+
+
+@intros_2
+go-to: stare_aubrey if aub_seen = 0; intros_3 if aub_seen > 0
+set-jump: intros_3
+
+{!<span class="ga">!}AUBREY: So should we go around in a circle and talk about ourselves?{!</span>!}
+
+{!<span class="bm">!}MIRI: Can we please talk like normal people? Instead of doing team building exercises?{!</span>!}
+
+{!<span class="ce">!}EMILY (looking around): None of us can act like normal people.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Okay, I'll go first. My name's Aubrey and this is my house.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: I'm William. I'm Aubrey's boyfriend.{!</span>!} (He chuckles to himself.)
+
+
+@intros_3
+set-jump: intros_4
+
+{!<span class="ga">!}AUBREY: Miri, your turn.{!</span>!}
+
+- @intros_4: Listen.
+- @eat: Eat.
+
+
+@intros_4
+go-to: stare_miri if miri_seen = 0; intros_5 if miri_seen > 0
+set-jump: intros_5
+
+{!<span class="bm">!}MIRI: You already know me though.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: I don't.{!</span>!}
+
+{!<span class="ce">!}EMILY: I don't either.{!</span>!}
+
+{!<span class="bm">!}MIRI: Alright, fine. If you insist.{!</span>!}
+
+{!<span class="bm">!}MIRI: I'm Miri. I went to high school with these people and I came here with [+ first_name +].{!</span>!}
+
+{!<span class="ga">!}AUBREY: Thank you for your time.{!</span>!} 
+
+
+@intros_5
+set-jump: intros_6
+
+William looks at Emily.
+
+{!<span class="dw">!}WILLIAM: I don't think I've met you before. What's your name?{!</span>!}
+
+- @intros_6: Listen.
+- @eat: Eat.
+
+
+@intros_6
+go-to: stare_emily if em_seen = 0; intros_7 if em_seen > 0
+on-arrival: em_dinner_intro_seen = 1
+set-jump: intros_7
+
+Emily inhales, and glances around the dining table.
+
+{!<span class="ce">!}EMILY: I'm Emily.{!</span>!}
+
+Aubrey stares at her for a moment.
+
+{!<span class="ga">!}AUBREY: Do your parents know?{!</span>!}
+
+{!<span class="ce">!}EMILY: Sort of. It's complicated.{!</span>!}
+
+She takes a big bite of rice.
+
+{!<span class="dw">!}WILLIAM: What?{!</span>!} (He looks confused.)
+
+Emily sighs.
+
+{!<span class="ce">!}EMILY: So, I'm trans, you know? Yeah?{!</span>!}
+
+Miri smiles widely at Emily. The latter is implacable, but glances back.
+
+{!<span class="bm">!}MIRI: Oh, that's awesome!{!</span>!} 
+
+{!<span class="bm">!}MIRI: That's like, really cool.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: Oh. That's cool.{!</span>!}
+
+
+@intros_7
+
+{!<span class="ga">!}AUBREY: And what about you, [+ first_name +]?{!</span>!}
+
+- @intros_8_know: "Everyone knows me already..."
+- @intros_8: Okay, just say your name.
+
+
+@intros_8_know
+view-if: em_int > 0 and miri_int > 0 and aub_int > 0
+go-to: intros_9
+
+{!<span class="zq">!}YOU: Um, doesn't everyone know me already?{!</span>!}
+
+Glances around the table.
+
+{!<span class="ga">!}AUBREY: I guess, but you should still at least say your name just so we're all even.{!</span>!} 
+
+{!<span class="zq">!}YOU: Alright, fine, um, I'm [+ first_name +].{!</span>!} 
+
+
+@intros_8
+view-if: em_int = 0 or miri_int = 0 or aub_int = 0
+go-to: intros_9
+
+You're going to have to do this eventually, right?
+
+{!<span class="zq">!}YOU: Alright, um, I'm [+ first_name +].{!</span>!} 
+
+
+@intros_9
+on-arrival: anxiety += 1
+
+{!<span class="ga">!}AUBREY: And what's one cool fact about yourself?{!</span>!}
+
+{!<span class="zq">!}YOU: Um... uh, ...{!</span>!}
+
+- @intros_9_f1: "I'm gay."
+- @intros_9_f2: "Um, I have a lot of anxiety right now and I don't want to be here but I don't want to be alone either so I don't know what to do..."
+- @intros_9_f4: "I was in a beauty pageant once?"
+- @intros_9_f3: "Nothing's cool about me."
+
+
+@intros_9_f1
+go-to: intros_9_f1_2 if miri_date < 1; intros_9_miri if miri_date = 1
+
+{!<span class="zq">!}YOU: I'm gay. Sorry.{!</span>!}
+
+Awkward laughter all around.
+
+
+@intros_9_f1_2
+go-to: intros_end
+
+{!<span class="bm">!}MIRI: As are we all. Most of us, anyway.{!</span>!}
+
+Emily is smiling to herself.
+
+
+@intros_9_miri
+go-to: intros_9_miri_2 if prev_em != "date"; intros_9_emily if prev_em = "date"
+on-arrival: anxiety += 1
+
+{!<span class="bm">!}MIRI: Another fun fact: we happen to be dating. Or are we, [+ first_name +]?{!</span>!}
+
+Oh God.
+
+{!<span class="zq">!}YOU: Yeah. That's right.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Wow, still? How many years is that now? Congrats!{!</span>!}
+
+
+@intros_9_miri_2
+go-to: intros_end
+
+Emily chuckles to herself. You wish she wouldn't.
+
+
+@intros_9_emily
+on-arrival: anxiety += 1
+
+{!<span class="ce">!}EMILY: Hmm. She also told me that she liked me.{!</span>!}
+
+Oh God.
+
+{!<span class="ga">!}AUBREY: Wow, [+ first_name +], what a player!{!</span>!}
+
+TODO
+
+
+@intros_9_f2
+
+You aren't really going to say something like that.
+
+- @intros_9_f4: "I was in a beauty pageant once?"
+- @intros_9_f3: "Nothing's cool about me."
+
+
+@intros_9_f4
+go-to: intros_end
+
+{!<span class="zq">!}YOU: Um, I... uh... I was in a beauty pageant once?{!</span>!}
+
+{!<span class="ga">!}AUBREY: Yeah, I remember that! That was back in high school, right? How did it go?{!</span>!}
+
+{!<span class="zq">!}YOU: Um, it could have gone better.{!</span>!}
+
+
+@intros_9_f3
+go-to: intros_end
+
+{!<span class="zq">!}YOU: Um... I don't know. There's nothing cool about me. Nothing at all.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Aw, that's not true! There's a lot of cool things about you!{!</span>!}
+
+Miri smiles at you.
+
+{!<span class="bm">!}MIRI: Yeah! You don't have to be so self-deprecating all the time.{!</span>!}
+
+
+
+@intros_end
+go-to: next_topic
+
+{!<span class="ga">!}AUBREY: So, um, anyway...{!</span>!}
+
+There is a lull in the conversation. People take the moment to eat.
+
+
+#########################################################
+# Utility scenes
+#########################################################
+
+
+@next_topic
+view-if: time < p2_time
+on-arrival: time += 1
+max-choices: 1
+
+- #topic_start
+- @anxiety_attack
+
+
+@eat
+title: Eat.
+unavailable-subtitle: You aren't really hungry at all.
+choose-if: hunger > 0
+on-arrival: {!
+// randomly select a food to eat...
+var food_id = Math.floor(Math.random()*(Q['food'].length));
+Q['food_item'] = Q['food'][food_id];
+Q['food_consumption'] += 1;
+Q['hunger'] -= 0.5;
+var descs = Q['food_descs'][Q['food_item']];
+var food_desc_id = Math.floor(Math.random()*(descs.length));
+Q['food_desc'] = descs[food_desc_id];
+!}
+go-to: jumpScene
+
+# TODO: change/describe your mood and how it's affected by the food.
+
+You take a bite of the [+ food_item +]. It tastes [+ food_desc +].
+
+
+@anxiety_attack
+title: You have to get away.
+view-if: anxiety > 12
+
+You can't deal with this anymore. You have to get away.
+
+
+###############################################################
+# topic: college
+###############################################################
+
+@college_1
+title: Aubrey talks about college.
+tags: topic_college, phase2, topic_start
+view-if: phase = 2 and topic_college = 0
+on-arrival: topic_college = 1; time += 1
+set-jump: college_2
+
+{!<span class="ga">!}AUBREY: So, how's college going? We're all seniors now, right? How are you feeling that it's almost over?{!</span>!}
+
+Shrugs all around.
+
+
+@college_1_interject
+
+{!<span class="zq">!}YOU: Um, I'm feeling... {!</span>!} 
+
+{!<span class="ga">!}AUBREY: [+ first_name +], what are you feeling?{!</span>!}
+
+- @college_2_f1: Fine?
+- @college_2_f2: ???
+- @college_2_f3: ???
+
+
+@college_2
+
+{!<span class="bm">!}MIRI: I'm probably taking an extra year. So I'll be graduating in 2021.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Oh, really? Why?{!</span>!}
+
+{!<span class="bm">!}MIRI: I had to work.{!</span>!} 
+
+
+
+@college_2_f1
+
+
+@college_2_f2
+
+
+@college_2_f3
+
+
+
+###############################################################
+# topic: future
+###############################################################
+
+
+
+###############################################################
+# topic: nostalgia for high school stuff (Aubrey delivers drama on the teachers and science olympiad)
+###############################################################
+
+
+
+###############################################################
+# topic: food
+###############################################################
+
+@food_1
+title: Miri talks about the food.
+tags: topic_start, phase2
+view-if: phase = 2 and topic_food = 0
+on-arrival: time += 1; topic_food = 1
+set-jump: food_2
+
+{!<span class="bm">!}MIRI: The food here is great!{!</span>!}
+
+
+@food_2
+
+
+###############################################################
+# topic: politics
+###############################################################
+
+@politics_1
+title: William talks about politics.
+tags: topic_start, phase2, topic_politics
+view-if: phase = 2 and topic_politics = 0
+on-arrival: time += 1; topic_politics = 1
+set-jump: politics_2
+
+{!<span class="dw">!}WILLIAM: So, how about that election?{!</span>!}
+
+The table is silent. No one wants to be the first person to respond.
+
+- @eat
+- @politics_2: Listen.
+- @politics_1_interject: Interject.
+
+
+@politics_1_interject
+go-to: politics_2
+
+You're not going to be the one to open this discussion.
+
+
+@politics_2
+set-jump: politics_3
+
+{!<span class="bm">!}MIRI: Everyone's voting for Bernie, right?{!</span>!}
+
+Emily smiles.
+
+{!<span class="dw">!}WILLIAM: I dunno, I'm more of a Warren guy myself.{!</span>!}
+
+{!<span class="bm">!}MIRI: Oh, really? Why?{!</span>!}
+
+{!<span class="dw">!}WILLIAM: I just think that she has the best policy plans.{!</span>!}
+
+{!<span class="bm">!}MIRI: What do you think about the racefaking?{!</span>!}
+
+{!<span class="dw">!}WILLIAM: Why is that the only thing anyone ever talks about? She apologized!{!</span>!}
+
+- @eat
+- @politics_3: Listen.
+- @politics_2_interject: Interject.
+
+
+@politics_2_interject
+go-to: politics_3
+
+There is nothing for you to say. Nothing at all.
+
+
+@politics_3
+set-jump: politics_4
+
+{!<span class="bm">!}MIRI: Maybe it was bad that she doubled down in the first place? Like, the whole DNA test thing was horrible.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: Okay, I admit that was bad, but what about her policies?{!</span>!}
+
+{!<span class="ce">!}EMILY: They have similar policies but I think Bernie would be much better at building up the working class.{!</span>!}
+
+{!<span class="bm">!}MIRI: Yeah! Only overeducated middle-class types like Warren. Bernie is way more popular among actual working class people.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: Okay, but we haven't even gotten close to the nomination yet so things could change.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Can we talk about something else? Please?{!</span>!}
+
+- @eat
+- @politics_4: Listen.
+- @politics_3_interject: Interject.
+
+
+@politics_3_interject
+go-to: politics_4
+
+You nod, but you aren't sure if anyone notices.
+
+
+@politics_4
+go-to: next_topic
+on-arrival: anxiety += 1
+
+{!<span class="dw">!}WILLIAM: Yeah, sorry. I got carried away.{!</span>!}
+
+There is an awkward moment. In the greater party, people are shuffling about, talking, laughing. The table is silent. You can almost see the tension in the air.
+
+
+########################################

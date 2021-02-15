@@ -2,20 +2,46 @@ title: Aubrey - Memories
 new-page: false
 on-arrival: aub_seen = 1
 
-Aubrey is a member of the family who owns the house. She was something of your unknown rival in high school; she was the girl with whom you always compared test scores and grades (she always won).
 
-Unfortunately, you also had a crush on her. How did that turn out?
+Aubrey is a daughter of the family who owns the house. She was something of your unknown rival in high school. Mom would always compare your grades and test scores and extracurriculars to hers, and she would always compare superior. She's an artist, a musician, and an aspiring scientist-physician.
 
-- @aub_friends: You were friends, sort of.
+But she was also your friend, of sorts. Your parents often attended various community gatherings together, naturally creating the opportunity for you two to incidently interact.
+
+Unfortunately, you also had a crush on her. Another symptom of your irrationality. How did that turn out?
+
+- @aub_friends: You remained friends until college.
 - @aub_dated: You went on at least one date with Aubrey.
-- @aub_nothing: You had no relationship with her whatsoever.
+- @aub_nothing: You started avoiding her.
 
 
 @aub_friends
+on-arrival: prev_aub = "friends"
+
+Yes, you managed to remain friends until graduation. You had a lot in common: you were both in Science Olympiad, you had a bunch of AP classes together, and you went to the same church group. She had other friends that she was closer to, but you felt like your relationship could be called "friends" and not just "acquaintances." For a while, at least.
+
+- @but_last: But it didn't last.
+
+
+@but_last
+go-to: jumpScene
+
+Of course your friendship did not last after graduation. The vicissitudes of time, distance, and anxiety took their toll. At first, you sometimes messaged each other, but the frequency of these messages declined, until they ceased. You only ever see her at parties such as these, and she didn't even attend last year.
+
+It has been approximately two years since your previous conversation.
 
 
 @aub_dated
+on-arrival: prev_aub = "dated"
 
-TODO
+Alas, she is totally straight, as far as you know. However, you confessed to her in a moment of weakness, and for some strange reason, she wanted to go on a date with you. You accepted and went on the date. Even more surprisingly, it was not to be your last. Your "friend dates" became a thing, for a while, until it stopped without a final resolution.
+
+- @but_last: Of course it didn't last.
+
 
 @aub_nothing
+on-arrival: prev_aub = "none"
+go-to: jumpScene
+
+You're not sure why you did it, or if it was ever a conscious choice. But at some point you stopped doing the same things she did, stopped discussing homework solutions after class, stopped doing the same events in Science Olympiad, even stopped talking to her at gatherings such as these. And the worst part of all, she didn't seem to notice.
+
+You have not spoken to her in four years. Perhaps you'll start now.

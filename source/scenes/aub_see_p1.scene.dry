@@ -1,5 +1,226 @@
-title: Aubrey Gao interrupts...
-view-if: aub_intro_seen = 0
-tags: interrupt
+title: Aubrey Gao
+subtitle: Talking around the dinner table...
+on-arrival: aub_int += 1; time += 1; energy -= 1
+view-if: aub_intro_seen = 0 and phase = 1 and energy > 0 and time < p1_time
+new-page: true
+tags: phase1, aub
 
-# TODO: Aubrey interrupts you while hanging out with Em...
+
+Aubrey stands around a table with her boyfriend and a few other adults, talking and smiling.
+
+- @stare: Stare at Aubrey.
+
+
+@stare
+go-to: aub_set_prev
+set-jump: aub_see_p1.aub_notice
+
+Mom had kept you up on the gossip; Aubrey's boyfriend William is apparently another Harvard student, like her.
+
+Aubrey and her boyfriend are dressed in matching colors, her wearing a green dress and white cardigan, him in a sweater and khakis. They're leaning on each other; any more visible displays of affection would probably seem gauche here.
+
+
+
+@aub_notice
+
+"Oh, hey [+ first_name : +]! I haven't seen you in such a long time!" Aubrey waves at you. "How've you been?"
+
+This is not an actual question, but a social lubricant, probably.
+
+[? if anxiety >= 10 : **< Maybe Aubrey will remember this. >** ?]
+
+- @um: "Um..."
+- @alright: "I've been alright."
+- @great: "Great!"
+
+
+@um
+go-to: anyway
+
+"Um..."
+
+
+@alright
+go-to: anyway
+
+"Um, I've been alright..."
+
+
+@great
+go-to: anyway
+
+"Um, I've been great..."
+
+
+@anyway
+
+"Anyway," Aubrey continues, "This is my boyfriend William. William, this is [+ first_name : +]"
+
+You already knew all about him from mom's gossip.
+
+"Hi," William says. "Aubrey's said a lot about you."
+
+"Oh. Really?"
+
+"Yeah! She says you were really good at Science Olympiad back in high school."
+
+"Um, not exactly..." This man goes to Harvard, so he probably has at least a few college application ranks on you.
+
+"So, how's college going?", Aubrey asks. "What are you majoring in again?"
+
+[? if anxiety >= 10 : **< Maybe Aubrey will remember this. >** ?]
+
+- @bio: "Molecular and Cell Biology."
+- @college_good: "It's going okay."
+- @um_2: "Um..."
+
+
+@bio
+go-to: after_grad
+
+"Um, I'm majoring in MCB. Molecular and cell biology."
+
+"Oh, cool! I'm a biochem major so that's like, the same thing?", Aubrey replies.
+
+"I'm a CS major," William says, awkwardly smiling.
+
+
+@college_good
+go-to: after_grad
+
+"Um, college is going... okay, I guess."
+
+"Really? How so?", Aubrey asks.
+
+"Um... I'm majoring in molecular and cell biology."
+
+
+@um_2
+go-to: after_grad
+
+"Um... I don't really know..."
+
+"Yeah, tell me about it." William laughs.
+
+
+##############################################################
+# conversation about post-grad plans
+
+
+@after_grad
+on-arrival: time += 1
+
+"So what are you doing after graduation?", Aubrey asks.
+
+[? if anxiety >= 10 : **< Aubrey will remember this. >** ?]
+
+- @everyone: "Everyone's been asking that."
+- @grad_school: "Grad school."
+- @you: "What about you?"
+
+
+@everyone
+
+"Everyone's been asking that..."
+
+Aubrey laughs. "Hey, it's an important question! It's your entire future! The rest of your life is on the line!"
+
+"Yeah, but, it's just... kind of..."
+
+"What is it? What's wrong?"
+
+[? if anxiety >= 10 : **< Your words will have consequences, believe it or not. >** ?]
+
+- @boring: "It's such a boring question..."
+- @feels: "It just feels wrong..."
+- @idk: "I don't know..."
+
+
+@boring
+
+"It's just kind of a boring question."
+
+"Then do you have any more interesting questions? Anything you would rather talk about?"
+
+- @idk_2: "I don't know...
+
+
+@idk_2
+
+Before you can say anything, someone approaches, an adult. An older adult; you keep forgetting that you're technically an adult too. He greets Aubrey.
+
+- @hang_around: Just hang around?
+- @leave: exit this area.
+
+
+@feels
+
+"It just feels kind of wrong..."
+
+"What do you mean? How is it wrong?"
+
+- @idk_2: "I don't know..."
+
+
+@idk
+
+"Um, I don't know. I just... don't want to talk about it."
+
+"Oh. Why? What's wrong?"
+
+- @idk_2: "Um..."
+
+
+
+@grad_school
+on-arrival: aub_knows_grad = 1
+
+"Grad school, probably? In molecular biology I guess."
+
+"Oh. Have you already applied?"
+
+"Yeah..."
+
+"Oh, that's great! Where did you apply?"
+
+You list all the universities.
+
+"Those are all really great places!"
+
+- @you2: "What about you?"
+
+
+@you
+on-arrival: kar_knows_aub_grad = 1
+
+"Um, what about you?"
+
+"I'm going to med school. I've already applied, so it's all a matter of waiting now. Haha. Now it's your turn. Are you going to grad school, med school, working? Something else?"
+
+- @everyone: "Everyone's been asking that."
+- @grad_school: "Grad school."
+
+
+@you2
+
+"Um, what about you?"
+
+"I'm going to med school. I've already applied, so it's all a matter of waiting now. Haha."
+
+"Oh. Congratulations."
+
+
+#################################
+# exit
+
+@hang_around
+on-arrival: despair += 1; time += 1
+
+There's really nothing for you to do around here. You stand around aimlessly for a while before moving away.
+
+
+
+@leave
+on-arrival: despair += 1
+
+No one is paying you much attention. You move away from Aubrey; she doesn't seem to notice.

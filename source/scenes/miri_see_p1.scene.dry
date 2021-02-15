@@ -1,5 +1,5 @@
 title: Miri Brooks
-subtitle: An old friend...
+subtitle: Standing amidst a circle of adults...
 unavailable-subtitle: There's something else going on...
 new-page: true
 on-arrival: time += 1; energy -= 1; miri_int += 1
@@ -33,12 +33,15 @@ She turns to face you and waves; she must have noticed you staring at her.
 
 "秋怡大姐! *Big sister Qiuyi!*" She laughs as she walks over, leaving the adults to laugh along. "I was looking for you! You just disappeared!"
 
+[? if anxiety >= 10 : **< Miri will remember this, unfortunately. >** ?]
+
 - @right_here: "...I was standing right here."
 - @you_disappeared: "...It was you who disappeared."
 - @oh_hi: "...Oh. Hello."
 
 
 @right_here
+go-to: how_are_you if prev_miri = "friends" or prev_miri = "broken"; date if prev_miri = "date"; reconcile if prev_miri = "none"
 
 "...I was standing right here."
 
@@ -46,14 +49,566 @@ She turns to face you and waves; she must have noticed you staring at her.
 
 "Yeah. That happens."
 
+"Anyway, it's been such a long time! I haven't even asked how you've been?"
+
+A pause.
+
 
 @you_disappeared
+go-to: how_are_you if prev_miri = "friends" or prev_miri = "broken"; date if prev_miri = "date"; reconcile if prev_miri = "none"
 
-"...It was you who disappeared."
+"...I thought you had disappeared."
 
-"Really?"
+"Really? I've been right here this whole time!"
+
+"Oh..."
+
+A pause.
 
 
 @oh_hi
+go-to: how_are_you if prev_miri = "friends" or prev_miri = "broken"; date if prev_miri = "date"; reconcile if prev_miri = "none"
 
 "...Oh. Hello."
+
+"Hey."
+
+A pause.
+
+
+@how_are_you
+
+"Anyway, why haven't you replied to my messages for so long?," she asks. "And why did you do so today? God, I wish you would stop ghosting me so much."
+
+"Oh, um..."
+
+[? if anxiety >= 7 : **< Miri will remember this, probably. >** ?]
+
+- @anxiety: "I have anxiety..."
+- @busy: "I've been busy..."
+- @no_reason: "I don't know..."
+
+
+@anxiety
+go-to: thats_okay
+
+Are you supposed to just admit your mental illnesses like that? Your greatest weakness, revealed?
+
+Sure, why not? "Um, I kind of have anxiety, and it's been getting worse lately, sorry..."
+
+
+@busy
+go-to: thats_okay
+
+"Um, I've been really busy with college and stuff, sorry..."
+
+
+@no_reason
+go-to: thats_okay
+
+"Um, I don't really know, sorry..."
+
+
+@thats_okay
+
+Miri sighs. "That's okay. I just hope things haven't been getting worse, you know. Hey, it'll be fine. Wanna hug it out?"
+
+- @friend_hug: Let her hug you.
+- @hug_kiss: Hug her.
+- @no_hug: "No hugs, sorry..."
+
+
+@friend_hug
+on-arrival: miri_relationship += 1
+view-if: miri_date <= 0
+
+She pulls you into a gentle hug. You reach around her shoulders, as if you've forgotten how to make human contact.
+
+"Hey, do you want to just hang out for a bit?"
+
+[? if anxiety >= 7: **< This seemingly minor action will have dire consequences. >** ?]
+
+- @sit_down: Follow her.
+- @leave: Leave and do something else.
+
+
+@no_hug
+
+"Um, no hugs right now, sorry..."
+
+"Oh. That's okay. Well, let's go sit down. Do you want to just hang out for a bit?"
+
+[? if anxiety >= 7: **< This seemingly minor action will have dire consequences. >** ?]
+
+- @sit_down: Follow her.
+- @leave: Leave and do something else.
+
+
+@leave
+on-arrival: despair += 1
+
+"Um, I was going to go..."
+
+"Alright. Don't let me keep you."
+
+You wander back towards the rest of the party. Miri is left alone.
+
+
+#########################################################
+# scene for when you previously dated Miri
+#########################################################
+
+@date
+on-arrival: time += 1; anxiety += 1
+
+"Anyway, why haven't you replied to my messages for so long?," she asks. "This is what they call ghosting, right? Like, do we still have a thing?"
+
+"Oh, um..."
+
+Well? What do you think? You close your eyes for a moment. It doesn't help. The world swirls around you. All your failures and fuckups are coming into clarity.
+
+Miri is waiting. Your brain is in agony.
+
+**< Miri will remember this. >**
+
+- @yes_date: I still want this. "Yeah..."
+- @no_date: It's over. "No, sorry..."
+- @um_date: I have no idea what's happening anymore. "Um..."
+
+
+@yes_date
+on-arrival: miri_date = 1
+
+"Um, yeah, I still, um,... like you." You wonder if you're blushing as you avert her gaze.
+
+"Really? Hmm. Then why didn't you keep in touch? It didn't use to be this bad."
+
+[? if anxiety >= 5: **< Miri will probably remember this. >** ?]
+
+- @anxiety: "I have anxiety..."
+- @busy: "I've been busy..."
+- @no_reason: "I don't know..."
+
+
+@no_date
+on-arrival: miri_date = -1; despair += 1
+
+"No, um, sorry..."
+
+"That's what I thought." She sighs. "Well, at least that confirms it. You could have given me some warning, you know? Instead of ghosting?"
+
+[? if anxiety >= 7: **< Miri will remember this? >** ?]
+
+- @sorry: "Sorry..."
+- @you_too: "You could have talked to me first..."
+- @actually: "Actually, I still..."
+
+
+@um_date
+on-arrival: miri_date = -1; despair += 1
+
+"Um... I don't know..."
+
+"I'll take that as a no, unless you disagree?"
+
+"Sorry..."
+
+She sighs. "That's what I thought. You could have given me some warning, you know? Instead of ghosting on me? God."
+
+[? if anxiety >= 7: **< Miri will remember this? >** ?]
+
+- @sorry: "Sorry..."
+- @you_too: "You could have talked to me first..."
+- @actually: "Actually, I still..."
+
+
+@you_too
+on-arrival: miri_int += 1
+
+"Um, you could have talked to me first..."
+
+"Look, I tried, but you just didn't respond! What was I supposed to do? Spam you with messages? I didn't want to be the clingy type."
+
+"Maybe that would have worked."
+
+"Ugh." Miri throws her hands up. "Nevermind. Want some, uh, haw flakes?"
+
+"Sure." She hands one from her plate. You eat it.
+
+There is a quiet moment. Miri looks as if she's about to get up.
+
+- @talk_more: Just say something?
+- @leave: Leave, before she does.
+- @quiet_2: Wait around.
+
+
+@sorry
+
+"Sorry..."
+
+"Look, you keep saying sorry but... Do you still want to talk to me? Like, do you actually enjoy interacting with me?"
+
+"Yes, of course..."
+
+"Well, if that's true, you're kind of terrible at showing it."
+
+"Oh. Sorry..."
+
+"God, can you stop saying sorry? Next time, can you at least try to do a little better?"
+
+- @sorry_2: "Sorry..."
+
+
+@sorry_2
+on-arrival: miri_int += 1
+
+"Sorry..."
+
+Miri laughs. "Are you doing that on purpose now?"
+
+"Have I ever done anything on purpose?"
+
+"Yeah..."
+
+There is a quiet moment. Miri looks as if she's about to get up.
+
+- @talk_more: Just say something?
+- @leave: Leave, before she does.
+- @quiet_2: Wait around.
+
+
+@actually
+
+"Um, actually, I still..."
+
+"Still what?"
+
+**< Miri will obviously remember this. >**
+
+- @still_like: "I still like you."
+- @still_want_friends: "I still want to be friends."
+
+
+@still_like
+
+Can you actually say something like that? Are you allowed to?
+
+- @still_like_2: Just say it.
+- @still_want_friends: "I still want to be friends."
+
+
+@still_like_2
+go-to: still_want_friends
+
+No. You aren't going to say it.
+
+
+
+@still_want_friends
+
+"Um, I still want to be friends."
+
+"Yeah, sure. Why wouldn't we be?"
+
+- @terrible: "Because I'm a terrible person?"
+- @idk_friends: "I don't know?"
+
+
+@terrible
+
+"Because I'm kind of a terrible person?"
+
+"You're not, though! You might do some really dumb things, but you're not a terrible person."
+
+"What's the difference?"
+
+Miri sighs.
+
+There is a quiet moment. Miri looks as if she's about to get up.
+
+- @talk_more: Just say something?
+- @leave: Leave, before she does.
+- @quiet_2: Wait around.
+
+
+@idk_friends
+
+"Um, I don't know."
+
+"See? There's nothing wrong. We can still be friends."
+
+"Yeah. Thanks..."
+
+There is a quiet moment. Miri looks as if she's about to get up.
+
+- @talk_more: Just say something?
+- @leave: Leave, before she does.
+- @quiet_2: Wait around.
+
+
+
+@hug_kiss
+view-if: miri_date = 1
+
+You reach over to hug her. It feels nice, her arms wrapped around your body. Your hands are cold. She's warm.
+
+She lets go before you do. "Anyway, let's go sit over here. Catch up."
+
+[? if anxiety >= 7: **< This seemingly minor action will have consequences. >** ?]
+
+- @sit_down: Follow her.
+- @leave: Leave and do something else.
+
+
+
+####################################################
+# goto this scene if your previous relationship is bad
+
+
+@reconcile
+
+"Anyway, I'm sorry we haven't talked in such a long time," she says. "It's my fault too."
+
+"Oh, um, that's okay..."
+
+"And I was kind of surprised that you even responded. Like, you were kind of a jerk the last time we talked."
+
+"Oh. Sorry... I'm kind of a terrible person, huh?"
+
+"Yeah, I mean, I wasn't like, the best either." She makes a brief smile at you.
+
+[? if anxiety >= 7: **< Your words (or lack of thereof) will have consequences. >** ?]
+
+- @sorry_again_bad: "Sorry again..."
+- @why_me: "Why did you contact me and not anyone else?"
+- @stay_quiet: Stay quiet.
+
+
+@sorry_again_bad
+go-to: post_grad
+
+"Um, sorry again... sorry about everything."
+
+"No, it's okay! You don't need to apologize anymore! You've done enough apologizing for the both of us!"
+
+Miri continues, "You know what? Forget about that. Let's move on. Do you know what you're doing after graduating?"
+
+
+@why_me
+
+"Why did you contact me in the first place? Why not anyone else?"
+
+"Well..." She sucks in a breath. "You were the only person I could think of."
+
+"Um, I thought you had a bunch of other friends? Like, better friends than me?"
+
+"Why would you think that?"
+
+Oh God.
+
+- @idk_why: "I don't know..."
+
+
+@idk_why
+
+"Um, I don't know, I just thought that you were, you know, popular?"
+
+Miri laughs. "You are full of misconceptions. I don't think either of us really understood anything about each other."
+
+"Yeah..."
+
+It's quiet for a moment.
+
+- @stay_quiet: Silence.
+
+
+
+########################################################
+# sitting down - common scene
+
+@sit_down
+on-arrival: time += 1; miri_int += 1
+
+You follow her to an empty couch, away from the circle of adults.
+
+"This food is great," she says, taking some haw flakes from her plate. "Man, I should go to Asian stores more often."
+
+"I think this was from Costco," you say.
+
+"Oh. Well. I guess I just don't know what to look for."
+
+Miri eats more snacks. A silence falls between you, a silence that desires to be filled.
+
+[? if anxiety >= 7: **< Your words (or lack of thereof) will have consequences. >** ?]
+
+- @still_like_me: "Do you still like me?"
+- @still_friends: "Can we still be friends?"
+- @sorry_again_2: "Sorry again..."
+- @why_me: "Why did you contact me and not anyone else?"
+- @stay_quiet: Just stay quiet.
+
+
+@still_like_me
+view-if: miri_date = 1
+go-to: stay_quiet
+
+Can you ask that? Are you really just allowed to say something like that? You decide better of it, and let the silence continue.
+
+
+@still_friends
+view-if: miri_date = 0
+on-arrival: anxiety += 1
+go-to: post_grad
+
+"Um... can we still be friends?"
+
+Miri looks at you with a strange expression. You immediately regret making such a banal remark.
+
+"Yeah, I guess?", she replies. "We would have to be better at staying in touch, though."
+
+"Sorry again..."
+
+"Anyway, let's move on. Forget about that. Do you know what you're doing after graduating?"
+
+
+
+@sorry_again_2
+go-to: post_grad
+
+"Um, sorry again... sorry about everything."
+
+"No, it's okay! It's not just your fault. Maybe I could have been more, I don't know, proactive? I should have spammed more messages at you, I guess?"
+
+"Um, maybe? Maybe that would have worked."
+
+"You know what? Forget about that. Let's move on. Do you know what you're doing after graduating?"
+
+
+
+@stay_quiet
+go-to: post_grad
+
+It is Miri who breaks the silence first. "So, you're graduating soon, right? Do you know what you're doing afterwards?", she asks.
+
+
+@post_grad
+
+- @everyone: "Everyone's been asking that today."
+- @grad: "Grad school."
+- @idk: "What about you?"
+
+
+@everyone
+on-arrival: miri_small_talk = 1
+
+"Everyone's been asking that today."
+
+"Yeah? Sorry about that. God, it's been so long. I don't know what to talk about anymore. Like, what do people talk about if they don't know what to talk about? They find the most generic topics they can. It's why people talk about the weather."
+
+- @knew: "I thought we knew each other..."
+- @small: "I'm not good with small talk..."
+
+
+@knew
+
+"Um, I thought we knew each other pretty well..."
+
+"It's been a year at least." She shrugs. "We have a lot to catch up on. So what are your plans after college?"
+
+- @grad_guess: "Grad school..."
+
+
+@small
+
+"Sorry, I'm not good at this sort of thing..."
+
+"Yeah. I know. Guess that hasn't changed." Miri stretches. "I'm just trying to initiate conversation in any way I can. So what are your graduation plans?"
+
+- @grad_guess: "Grad school..."
+
+
+@grad_guess
+
+"Grad school, I guess," you finally answer.
+
+"Yeah? That's great! What are you studying?"
+
+"Um, molecular and cell biology."
+
+"So you're still into science research?"
+
+"Yeah..."
+
+Miri glances around. Is she bored of you already?
+
+- @talk_more: Just talk?
+- @leave: Leave, before she does.
+- @quiet_2: Wait around.
+
+
+
+@grad
+on-arrival: miri_knows_grad = 1
+
+"Um, I'm applying to grad school."
+
+"Yeah? That's great! What are you studying?"
+
+"Um, molecular and cell biology."
+
+"So you're still into science research?"
+
+"Yeah..."
+
+"Oh. That's cool."
+
+Miri glances around. Is she bored of you already?
+
+- @talk_more: Just talk?
+- @leave: Leave, before she does.
+- @quiet_2: Wait around.
+
+
+@idk
+on-arrival: miri_knows_grad = 1
+
+"Um, what are you doing?"
+
+"I have to take an extra semester before graduating. So I still have some time to think. What about you?"
+
+- @grad: "Grad school."
+- @everyone: "Everyone's been asking that today."
+
+
+@talk_more
+on-arrival: time += 1; anxiety += 1
+
+What would you ever talk about? You can't think of anything to say. It's as if your brain's vocalization system is frozen in place, not an unfamiliar feeling, but never a pleasant one.
+
+"So, the party's just getting started. I'm going to wander around a bit more." Miri gets up. "See you later?"
+
+[? if anxiety >= 10 : **< Your actions had consequences. >** ?]
+
+- @root: Bye...
+
+
+@quiet_2
+on-arrival: time += 1; anxiety += 1
+
+"So, the party's just getting started. I'm going to wander around a bit more." Miri gets up. "See you later?"
+
+[? if anxiety >= 10 : **< Your actions had consequences. >** ?]
+
+- @root: Bye...
+
+####################################
+# scene if Karen and Miri are dating? or not...
+
+@gay
+
+"So, how's the gay scene at your school?", Miri asks, breaking the silence.
+
+- @why: "Why are you asking?"
+
+
+@why

@@ -1,0 +1,133 @@
+title: Kevin Zhao
+subtitle: In the basement with the other kids.
+view-if: phase = 1 and time < p1_time and kevin_int = 0
+tags: phase1
+on-arrival: time += 1
+new-page: true
+set-bg: backgrounds/basement_3_filtered_cropped.jpg
+max-visits: 1
+
+
+The children are sitting around the unfinished basement, some hunched over their tablets, others watching the TV. There's a Marvel movie playing, one of the recent ones that you've never seen. You actually haven't seen any of the Marvel movies save snippets in parties such as these.
+
+Kevin is on a couch, watching Aubrey's sister Rose play some game on the ipad. He doesn't notice you.
+
+- @greet: Approach Kevin.
+- @tv: Watch TV.
+- @stand: Stand around awkwardly.
+
+
+@greet
+on-arrival: greet_kevin = 1
+view-if: greet_kevin = 0
+
+"Um, hi, Kevin..."
+
+He doesn't seem to hear you.
+
+- #tv
+- @greet2: Talk to him again.
+- @stand: Stand around awkwardly.
+- @root: Go back upstairs.
+
+
+@greet2
+on-arrival: kevin_int += 1; greet_kevin += 1
+view-if: greet_kevin = 1
+
+You tap him on the shoulder. "Hey, Kevin?"
+
+He looks up at you, seemingly annoyed. "Yeah? What?"
+
+- @um: "Um..."
+- @so: "So, how's the party going?"
+- @no_idea: You have no idea why you're here.
+
+
+@um
+go-to: no_idea
+
+"So, um..."
+
+
+@so
+
+"So, um, how's it going?"
+
+"Oh. It's going alright," he says, and looks back down to the ipad, ignoring you.
+
+Why did you bother talking to him again?
+
+- #tv
+- @root: Go back upstairs.
+
+
+@no_idea
+on-arrival: anxiety += 1
+
+You have no idea why you're here, both in the general sense and the more specific sense of 'why are you talking to Kevin at this moment'.
+
+"Um... I just wanted to see you," you say.
+
+"Oh. Okay," he says, and looks back down to the ipad, ignoring you.
+
+Why did you bother talking to him again?
+
+[? if anxiety >= 5 : **< You have committed CRINGE. Kevin may not remember this, but you will. >** ?]
+
+- #tv
+- @root: Go back upstairs.
+
+
+@tv
+title: Watch TV.
+view-if: tv_prog = 0 and phase = 1
+on-arrival: tv_prog = 1
+tags: tv
+
+There are a bunch of dudes fighting a bunch of other dudes. Some of them are the good guys and some of them are the bad guys. There's this also giant gray dude. That's Thanos from the internet memes, right?
+
+You are not exactly plugged in to popular media.
+
+- #tv
+- @greet: Approach Kevin.
+- @greet2: Talk to Kevin again.
+- @root: Go back upstairs.
+
+
+@stand
+
+You pace slowly around the basement, tossing your cell phone from one hand to another. No one pays you any attention.
+
+- #tv
+- @greet: Approach Kevin.
+- @greet2: Talk to Kevin again.
+- @root: Go back upstairs.
+
+
+@tv2
+title: Keep watching the movie.
+view-if: tv_prog = 1 and phase = 1
+on-arrival: time += 1; tv_prog += 1
+tags: tv
+
+The fights in the movie have grown bigger. There's this giant fight on Earth between a human army and an alien army, and a smaller fight on another planet. Thanos (that's Thanos, right?) smashes some dudes around. There's fancy light effects.
+
+- #tv
+- @greet: Approach Kevin.
+- @greet2: Talk to Kevin again.
+- @root: Go back upstairs.
+
+
+@tv3
+title: Keep watching the movie.
+view-if: tv_prob = 2 and phase = 1
+tags: tv
+
+It's kind of confusing trying to follow the battles going on, given that you haven't seen any of the previous installments in this series. The evil dudes appear to be winning, overpowering the good guys' army. Thanos (you still don't know if that's him) kills some people.
+
+- #tv
+- @greet: Approach Kevin.
+- @greet2: Talk to Kevin again.
+- @root: Go back upstairs.
+
