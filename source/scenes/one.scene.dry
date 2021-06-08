@@ -14,11 +14,13 @@ Every social gathering is horrific in its own way. Over the years you have learn
 
 You are Qiuyi Zhao, or "Karen Zhao" in English, or 赵秋怡 in Chinese. You are 22 years old, a senior in college, a one-time honors student, and back home for winter break.
 
-- @name_wrong: Actually, your name isn't Karen...
 - @name_dislike: You're starting to dislike "Karen", but it's stuck...
 - @name_chinese: You prefer to use Qiuyi as a name, but...
+- @name_wrong: Actually, your name isn't Karen...
 
 @name_wrong
+
+Your name is not Karen. It was never Karen. Why would you think that was your name?
 
 You go back in time to 15 years ago, to that fateful day in elementary school English class in Changchun, Jilin Province, PRC. You take a peek at the box from which you drew your assigned English names. Which name was involuntarily assigned to you on that day?
 
@@ -99,19 +101,21 @@ Most people pronounce Qiuyi like "Chewy", which is emphatically not a correct pr
 
 Or something like that.
 
-It is New Year's Eve, which means that it is time for a Chinese family party, as there is every year. Mom and her friends are the instigators, and you're always along for the ride. The party is occurring at the Gao household, who have recently moved into a larger house in a more suburban and affluent town. Their family has been friends with your family for the past ten years at least.
+It is New Year's Eve, which means that it is time for a Chinese family party, as there is every year. Mom and her friends are the instigators, and you're always along for the ride. The party is occurring at the Gao household, whose upward mobility brought them into a larger house in a more suburban and affluent town. Their family has been friends with your family for the past ten years at least.
 
-Which brings you to the truly agonizing part of this party. Everyone you grew up with between the ages of 10 and 18 are here. Your old friends and acquaintances, and their parents and siblings and everyone else. People you thought you had left behind, or had left you behind. It's as if your past has come back.
+Which brings you to the truly agonizing part of this party. Everyone you grew up with between the ages of 10 and 18 are here. Your old friends and acquaintances, and their parents and siblings and everyone else. People you thought you had left behind, or had left you behind. It's as if every loose plot thread of your life has come together in this moment.
 
-- @stand: And you can't stand it.
-- @goals: But, it could be alright?
-- @opt: You're looking forward to it.
+What are you even going to do here?
+
+- @stand: Just maintain homeostasis?
+- @goals: Interact with your fellow humans?
+- @opt: Interact with your fellow humans in a... positive manner?
 
 
 @stand
 on-arrival: intro_flag = "pessimistic"
 
-You didn't want to come here. But it was necessary, mom said. Why didn't you want to meet your friends, mom said. You don't have many opportunities to visit anymore, mom said. So, now you're here. And you're supposed to... hang out? Or something like that.
+You didn't want to come here. But it was necessary, mom said. Why didn't you want to meet your friends, mom said. You don't have many opportunities to visit anymore, mom said. So, now you're here. And you're supposed to... hang out? Or something like that. Perhaps the best you can do is maintain homeostasis.
 
 - @non_opt_1
 - @non_opt_2
@@ -140,7 +144,6 @@ You have been socially deficient for far too long. This is an opportunity. But f
 
 @non_opt_1
 title: Parties aren't really your thing...
-on-arrival: optimizing = 0
 
 You've never done well at these parties in the past, and there's no reason to believe that you'd do better this time. They say that there's no worse place to be alone than in a crowd...
 
@@ -149,7 +152,6 @@ But at least the food will be good, right?
 
 @non_opt_2
 title: Or any social gatherings, for that matter...
-on-arrival: optimizing = 0
 
 They said that college would be a time for making friends. But do you really have any friends at college?
 
@@ -158,7 +160,9 @@ Well that was depressing. At least the food here will be good, right?
 
 @optimizing
 title: But after all, aren't social interactions just another optimization problem?
-on-arrival: optimizing = 1
+on-arrival: optimizing_callback = 1; game_count += 1
+
+# let's set up some callbacks!!!
 
 You can approach these gatherings mechanistically, orchestrating a series of events that will achieve all of your goals in an optimal fashion, while minimizing your exposure to awkwardness and food poisoning.
 

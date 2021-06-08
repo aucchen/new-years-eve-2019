@@ -1,7 +1,7 @@
 title: Aubrey Gao
-subtitle: Talking around the dinner table...
-on-arrival: aub_int += 1; time += 1; energy -= 1
-view-if: aub_intro_seen = 0 and phase = 1 and energy > 0 and time < p1_time
+subtitle: Talking around a table...
+on-arrival: aub_int += 1; time += 1; energy -= 1; aubrey_relationship += 1
+view-if: aub_int = 0 and phase = 1 and energy > 0 and time < p1_time
 new-page: true
 tags: phase1, aub
 
@@ -27,7 +27,6 @@ Aubrey and her boyfriend are dressed in matching colors, her wearing a green dre
 
 This is not an actual question, but a social lubricant, probably.
 
-[? if anxiety >= 10 : **< Maybe Aubrey will remember this. >** ?]
 
 - @um: "Um..."
 - @alright: "I've been alright."
@@ -68,7 +67,6 @@ You already knew all about him from mom's gossip.
 
 "So, how's college going?", Aubrey asks. "What are you majoring in again?"
 
-[? if anxiety >= 10 : **< Maybe Aubrey will remember this. >** ?]
 
 - @bio: "Molecular and Cell Biology."
 - @college_good: "It's going okay."
@@ -112,7 +110,6 @@ on-arrival: time += 1
 
 "So what are you doing after graduation?", Aubrey asks.
 
-[? if anxiety >= 10 : **< Aubrey will remember this. >** ?]
 
 - @everyone: "Everyone's been asking that."
 - @grad_school: "Grad school."
@@ -129,7 +126,6 @@ Aubrey laughs. "Hey, it's an important question! It's your entire future! The re
 
 "What is it? What's wrong?"
 
-[? if anxiety >= 10 : **< Your words will have consequences, believe it or not. >** ?]
 
 - @boring: "It's such a boring question..."
 - @feels: "It just feels wrong..."
@@ -150,7 +146,7 @@ Aubrey laughs. "Hey, it's an important question! It's your entire future! The re
 Before you can say anything, someone approaches, an adult. An older adult; you keep forgetting that you're technically an adult too. He greets Aubrey.
 
 - @hang_around: Just hang around?
-- @leave: exit this area.
+- @leave: Exit this area.
 
 
 @feels
@@ -185,13 +181,17 @@ on-arrival: aub_knows_grad = 1
 
 You list all the universities.
 
-"Those are all really great places!"
+"Those are all really great places! I'm sure you can get in!"
 
+"Oh, um, thanks."
+
+- @hang_around: Aubrey goes back to her other conversation.
 - @you2: "What about you?"
 
 
 @you
 on-arrival: kar_knows_aub_grad = 1
+view-if: kar_knows_aub_grad = 0
 
 "Um, what about you?"
 
@@ -202,6 +202,8 @@ on-arrival: kar_knows_aub_grad = 1
 
 
 @you2
+on-arrival: kar_knows_aub_grad = 1
+view-if: kar_knows_aub_grad = 0
 
 "Um, what about you?"
 
@@ -209,6 +211,12 @@ on-arrival: kar_knows_aub_grad = 1
 
 "Oh. Congratulations."
 
+Someone approaches, an adult. An older adult; you keep forgetting that you're technically an adult too. He greets Aubrey.
+
+This is when you're socially obligated to exit, right?
+
+- @hang_around: Just hang around?
+- @leave: Exit this area.
 
 #################################
 # exit

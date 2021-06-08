@@ -2,20 +2,35 @@ title: Dinnertime...
 view-if: time >= p1_time
 go-to: late if time >= p1_time + 2
 on-arrival: {! Q['phase'] = 2; Q['food_left'] = 6; Q['food'] = [];
+Q['phase_2_start'] = 0;
 // TODO: add more food descriptions.
 Q['food_descs'] = {
 'rice': ['fine', 'perfectly ordinary', 'exactly as it should'],
 'dumplings': ['fine', 'a bit salty', 'kind of delicious'],
-'baozi': ['fine', 'good', 'juicy', 'flavorful'],
+'baozi': ['rather good', 'juicy', 'flavorful'],
 'string beans': ['fine', 'a little salty', 'good'],
-'tofu': ['fine', 'good', 'decent', 'flavorful'],
+'tofu': ['...fine', 'good', 'decent', 'flavorful'],
 'chicken and cauliflower': ['fine', 'bland', 'neutral', 'good'],
 'shrimp and bok choy': ['fine', '...vegetable-like', 'oily'],
 'lotus root': ['fine', 'starchy', 'crunchy'],
 'tomato and eggs': ['fine', 'exactly as it should', 'sweet-ish'],
-'lamb noodle': ['fine', '...meaty', 'kind of spicy', 'like home, somehow'],
+'lamb noodles': ['fine', '...meaty', 'kind of spicy', 'like home, somehow'],
 'soup': ['fine', 'flavorful', 'savory', 'nostalgic'],
 'porridge': ['fine', 'plain', 'familiar']
+};
+Q['food_additional'] = {
+'rice': [' ', "It's white rice. It's what you expect from white rice."],
+'dumplings': [' ', "These dumplings are pretty good, with homemade wrappers and fillings."],
+'baozi': [' ', "Unlike the jiaozi, the steamed baozi are bigger and have thicker wrappers."],
+'string beans': ["This might be the one purely vegetarian dish besides the rice and porridge. That's a bit sad.", ' '],
+'tofu': ["It's a rather delicate and interesting construction, the meat stuffed inside cutouts of tofu.", ' '],
+'chicken and cauliflower': ["This is a pretty typical dish, although usually in your household the meat would be pork instead of chicken.", ' '],
+'shrimp and bok choy': [' ', ' '],
+'lotus root': [' ', "The lotus root slices are crispy circles with holes in them. Now that you think about it, they look kind of weird.", ' ', ' '],
+'tomato and eggs': [' ', "This is one of the most common Chinese dishes, one of the few that you're somewhat adept at making."],
+'lamb noodles': [' ', "It's your parents' old favorite dish."],
+'soup': ["This soup is really good. The meatballs taste good, and the water is infused with flavor. Or something like that.", ' '],
+'porridge': [' ', "It's a pretty basic food, just rice made with a lot more water."]
 };
 !}
 set-bg: backgrounds/food_1_filtered.jpg
@@ -34,7 +49,6 @@ This is a Christian household, so there is a prayer said before dinner. It is le
 
 "今天，这新年，我们感谢主... *Today, this new year, we give thanks to God...*"
 
-[? if anxiety >= 7 : **< This action will have consequences, in this life and the next. >** ?]
 
 - @close_eyes: Close your eyes and clasp your hands.
 - @dont_close: Don't close your eyes.
@@ -80,20 +94,22 @@ go-to: foods
 
 The meal is a potluck, with each household bringing their own dishes. It is a dazzling geometric arrangement, full of colors and smells.
 
-[? if anxiety >= 8 : **< Your food choices will have consequences for your future. >** ?]
+#[? if anxiety >= 8 : **Your food choices will have consequences for your future.** ?]
 
 @foods
-go-to: end_food if food_left = 0
+go-to: end_food if food_left = 0; get_food_2 if food_left > 0
+
+@get_food_2
 
 You can still get [+ food_left : +] thing[? if food_left > 1 : s?].
 
-- @rice: Steamed rice.
-- @jiaozi: 饺子 - dumplings.
-- @baozi: 包子 - baozi
+- @rice: 米饭 - Steamed rice.
+- @jiaozi: 饺子 - dumplings, filled with pork and cabbage.
+- @baozi: 包子 - steamed baozi, filled with pork and various vegetables.
 - @stir: Various meat and vegetable stir fries.
 - @tomato: 西红柿炒鸡蛋 - tomato stir-fried with eggs.
 - @lamb: 孜然羊肉面 - cumin lamb noodles.
-- @donggua: Winter melon and meatball soup.
+- @donggua: 冬瓜汤 - Winter melon and meatball soup.
 - @porridge: 米饭粥 - Rice porridge.
 
 
@@ -101,7 +117,7 @@ You can still get [+ food_left : +] thing[? if food_left > 1 : s?].
 on-arrival: {! Q['food'].push('rice'); Q['food_left'] -= 1; !}
 go-to: foods
 
-You shovel some rice on your plate.
+You shovel some rice onto your plate.
 
 @jiaozi
 on-arrival: {! Q['food'].push('dumplings'); Q['food_left'] -= 1; !}
@@ -178,7 +194,7 @@ on-arrival: {! Q['food'].push('soup'); Q['food_left'] -= 1; !}
 go-to: foods
 max-visits: 1
 
-You spoon some of the winter melon soup into a small plastic bowl.
+You spoon some of the winter melon soup into a small plastic bowl. It's hot, and it smells good.
 
 
 @porridge

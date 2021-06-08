@@ -73,7 +73,7 @@ You have no idea why you're here, both in the general sense and the more specifi
 
 Why did you bother talking to him again?
 
-[? if anxiety >= 5 : **< You have committed CRINGE. Kevin may not remember this, but you will. >** ?]
+[? if anxiety >= 5 : **You have committed CRINGE. Kevin may not remember this, but you will.** ?]
 
 - #tv
 - @root: Go back upstairs.
@@ -85,7 +85,7 @@ view-if: tv_prog = 0 and phase = 1
 on-arrival: tv_prog = 1
 tags: tv
 
-There are a bunch of dudes fighting a bunch of other dudes. Some of them are the good guys and some of them are the bad guys. There's this also giant gray dude. That's Thanos from the internet memes, right?
+There are a bunch of dudes fighting a bunch of other dudes. Some of them are the good guys and some of them are the bad guys. There's also this giant gray dude. That's Thanos from the internet memes, right?
 
 You are not exactly plugged in to popular media.
 
@@ -121,7 +121,8 @@ The fights in the movie have grown bigger. There's this giant fight on Earth bet
 
 @tv3
 title: Keep watching the movie.
-view-if: tv_prob = 2 and phase = 1
+view-if: tv_prog = 2 and phase = 1
+on-arrival: time += 1; tv_prog += 1
 tags: tv
 
 It's kind of confusing trying to follow the battles going on, given that you haven't seen any of the previous installments in this series. The evil dudes appear to be winning, overpowering the good guys' army. Thanos (you still don't know if that's him) kills some people.

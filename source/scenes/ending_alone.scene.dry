@@ -1,0 +1,88 @@
+title: The new year is soon.
+subtitle: Happy 2020?
+view-if: time >= p3_time and time <= p3_time + 1 and is_alone = 1
+on-arrival: phase = 3
+max-visits: 1
+new-page: true
+tags: phase3
+
+"快点！快过年了！ *Quickly! New Year's is soon!*"
+
+Shouts in Chinese. Footsteps reverberating through the halls, gathering at the living room TV. The kids are forced up from the basement. Aubrey and William come from their room upstairs. Emily and Miri are rounded up from... somewhere. They wave at you. You wave back.
+
+- @youre_there: And you're there too.
+
+
+@youre_there
+
+And you're there, too. Mom waves at you, pulls you over along with Kevin. She gives you a hug. You can't move. There's shouting. Some confusion; it's still 30 minutes to midnight so why are people being gathered here.
+
+"咱们照相吧！ *Let's take pictures!*" Someone shouts. People assent. Movement, the shuffle of footsteps. You're pulled along in some direction. Someone brings out a tripod. Someone cleans up the plates. Tables are moved. Chairs are rearranged.
+
+- @photo: The living room becomes a photo studio.
+
+
+@photo
+
+The living room becomes a photo studio. Families take their turns next to the Christmas tree. Times Square is playing on one of the big TVs. Some musicians you've never heard of are playing. To be fair you haven't heard of most musicians.
+
+Soon it's your turn for photos. Mom grabs your hand. She's in the center, sitting down on a chair, with you and Kevin standing to either side of her. Flashes. "你闭眼睛了 *You closed your eyes*," the photographer says. More photos. You force your eyes open. "你怎么没有笑？ *Why aren't you smiling?*" He's talking about you. "1, 2, 3, 茄子！" 
+
+- @smile: Smile.
+
+@smile
+
+You smile. But then your eyes are closed again and you have to redo the photo. Then it's over. Flashes are seared into your retina. You move away.
+
+# TODO
+
+- @wait: Keep waiting.
+
+@wait
+
+Someone takes a picture of Emily and Miri, smiling and hugging. You didn't know they got along but somehow it makes you a little sad. Emily stops smiling for the photo with her parents. They don't force her to smile. [? if meet_chen = 0 : Come to think of it, you haven't spoken to her dad all night, even though you worked with him before. Oh well. ?]
+
+- @miri_talk: Miri approaches you to talk.
+
+@miri_talk
+view-if: with_em = 0 and with_miri = 0
+
+"Hey," Miri says. "What have you been up to?"
+
+- @not_much: "Not much..."
+- @a_lot: "A lot, actually..."
+
+
+@not_much
+
+"Um, not much..."
+
+"Oh, well, "
+
+TODO
+
+- @ball_drop: The ball is about to drop.
+
+
+@a_lot
+
+"Um, a lot, actually..."
+
+TODO
+
+- @ball_drop: The ball is about to drop.
+
+@ball_drop
+on-arrival: ending = "alone_1"
+
+The countdown starts. 10... 9... People watch. Some kids count along. 7... 6... "快点来！快点来！" 3... 2... 1...
+
+The ball drops. Mom kisses you on the cheek. You don't know what to do so you flail your arms about in an attempt at a hug. Somehow it connects and you're pulled into a group hug with mom and Kevin.
+
+Other people are already preparing to leave.
+
+"Can we go home now?", Kevin says.
+
+# TODO: go to an ending
+
+- @early_ending: An ending?

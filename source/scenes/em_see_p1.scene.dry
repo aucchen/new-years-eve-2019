@@ -27,7 +27,6 @@ She glances up at you, and slowly waves.
 
 "Are you going to sit down or just stand there?" Her voice is barely more than a whisper.
 
-[? if anxiety >= 10 : **< This action will have consequences, whether you believe it or not. >** ?]
 
 - @sit_next: Sit next to her.
 - @stand: Stand there awkwardly.
@@ -39,7 +38,6 @@ She glances up at you, and slowly waves.
 
 You sit down on the couch next to her.
 
-[? if anxiety >= 10 : **< This action (or inaction) will have consequences. >** ?]
 
 - @what_reading: "What are you reading?"
 - @how_are_you: "How have you been?"
@@ -50,7 +48,6 @@ You sit down on the couch next to her.
 
 You just sit there. Emily scrolls through a long article on her computer, eyes seemingly focused on the screen.
 
-[? if anxiety >= 7 : **< This action (or inaction) will have consequences. >** ?]
 
 - @what_reading: "What are you reading?"
 - @how_are_you: "How have you been?"
@@ -64,7 +61,6 @@ You just sit there. Emily scrolls through a long article on her computer, eyes s
 
 Emily shrugs. "Okay. Suit yourself."
 
-[? if anxiety >= 10 : **< Your words (or lack of thereof) will have consequences. >** ?]
 
 - @what_reading: "What are you reading?"
 - @how_are_you: "How have you been?"
@@ -75,7 +71,6 @@ Emily shrugs. "Okay. Suit yourself."
 
 You stand there next to Emily, who is silent as her eyes are focused on the article on her computer screen.
 
-[? if anxiety >= 10 : **< Your words (or lack of thereof) will have consequences. >** ?]
 
 - @what_reading: "What are you reading?"
 - @how_are_you: "How have you been?"
@@ -94,7 +89,6 @@ You stand there next to Emily, who is silent as her eyes are focused on the arti
 
 [? if anxiety >= 6 : Silence. She isn't going to talk if you aren't. ?]
 
-[? if anxiety >= 10 : **< Your words (or lack of thereof) will have consequences. >** ?]
 
 - @what_about: "What is it about?"
 - @how_are_you: "How have you been?"
@@ -113,7 +107,6 @@ on-arrival: anxiety += 1; em_relationship += 1
 
 More silence. She's still staring at the screen, but isn't scrolling anymore.
 
-[? if anxiety >= 7 : **< This action will have consequences. >** ?]
 
 - @how_are_you: "How have you been?"
 - @stay_silent: Don't say anything.
@@ -123,8 +116,6 @@ More silence. She's still staring at the screen, but isn't scrolling anymore.
 @how_are_you
 
 You're going to have to initiate this conversation. You hate initiating conversations. It's as if there is a physical block placed upon your brain, halting you from uttering a single word. But you can do it, right?
-
-[? if anxiety >= 7 : **< This action will have consequences. >** ?]
 
 - @just_say_it: Just say "how are you" or something like that.
 - @stay_silent: Actually, just stay quiet.
@@ -162,7 +153,6 @@ She sighs, and closes her laptop. "No. Of course not."
 
 "No, it's not your fault at all." Emily shakes her head. "So, enough about myself. How are you doing?"
 
-[? if anxiety >= 7 : **< Emily will remember this. >** ?]
 
 - @doing_great: "I'm doing great!"
 - @doing_alright: "I've been doing alright..."
@@ -175,7 +165,6 @@ She sighs, and closes her laptop. "No. Of course not."
 
 "It's not your fault. Well, mostly not your fault. Actually, totally not your fault at all." She smiles(?) to herself. "So, enough about myself. How are you doing?" 
 
-[? if anxiety >= 7 : **< Emily will remember this. >** ?]
 
 - @doing_great: "I'm doing great!"
 - @doing_alright: "I've been doing alright..."
@@ -192,7 +181,6 @@ A long pause ensues, before Emily asks, "So, how are you doing?"
 
 "Oh, um..." It takes a moment to get your bearings.
 
-[? if anxiety >= 7 : **< Emily will remember this. >** ?]
 
 - @doing_great: "I'm doing great!"
 - @doing_alright: "I've been doing alright..."
@@ -218,7 +206,6 @@ on-arrival: em_int += 1; time += 1
 
 "Oh, um..." It takes a moment to get your bearings.
 
-[? if anxiety >= 7 : **< Emily will remember this. >** ?]
 
 - @doing_great: "I'm doing great!"
 - @doing_alright: "I've been doing alright..."
@@ -231,7 +218,6 @@ on-arrival: em_int += 1; time += 1
 
 "Oh? How so?"
 
-[? if anxiety >= 10 : **< Emily will remember this. >** ?]
 
 - @lots_of_friends: (lie) "I've made lots of friends!"
 - @doing_well_in_class: (lie) "I'm doing well in my classes!"
@@ -246,7 +232,6 @@ on-arrival: em_int += 1; time += 1
 
 "Oh? What's been happening?"
 
-[? if anxiety >= 10 : **< Emily will remember this. >** ?]
 
 - @tough: "It's been tough..."
 - @doing_research: "I've been doing research..."
@@ -258,7 +243,6 @@ on-arrival: em_int += 1; time += 1
 
 "Um..." You aren't sure what to say. You never know what to say.
 
-[? if anxiety >= 10 : **< Emily will remember this. >** ?]
 
 - @tough: "It's been tough..."
 - @doing_research: "I've been doing research..."
@@ -286,7 +270,6 @@ Are you really going to lie like that? What's the point? What would you be tryin
 
 "No, it's not your fault... well, mostly not your fault."
 
-[? if anxiety >= 10 : **< Emily will remember this. >** ?]
 
 - @doing_research: "I've been doing research..."
 - @grad_school: "I've applied to grad school!"
@@ -303,7 +286,6 @@ on-arrival: despair += 1
 
 "No, it's not your fault... well, mostly not your fault."
 
-[? if anxiety >= 10 : **< Emily will remember this. >** ?]
 
 - @doing_research: "I've been doing research..."
 - @grad_school: "I've applied to grad school!"
@@ -358,7 +340,6 @@ go-to: lull
 
 A lull in the conversation. Emily is quiet, and you don't know what to say next.
 
-[? if anxiety >= 5 : **< Emily will remember this. >** ?]
 
 - @leave_emily: "I'll be going..."
 - @missed_you: "I've missed you..."
@@ -374,7 +355,6 @@ on-arrival: em_int += 1; energy -= 1; em_relationship += 1
 
 Okay. Was your statement supposed to have *romantic* undertones?
 
-[? if anxiety >= 5 : **< You will probably think about this in the future. >** ?]
 
 - @yes_romantic: Yes...
 - @hope_romantic: Hopefully?...
@@ -390,7 +370,26 @@ on-arrival: em_rom += 1
 
 In a movie, this would be the moment where you hugged, kissed, or something like that. But that will never happen. The conversation has suddenly acquired an awkward quality. 
 
-[? if anxiety >= 10 : **< Emily will remember this. >** ?]
+
+- @romanticize: Romanticize.
+- @exit_moment: You're going to have to exit this moment.
+- @stay_with_emily: Actually, you'd rather stay here.
+
+
+@romanticize
+on-arrival: em_romanticize += 1; em_rom += 1
+
+Emily gazes at her computer screen with a downcast look, through unfocused half-open eyes and thick black-framed glasses. Her mouth is slightly open, her expression as if she's deep in thought. Her long and slender fingers move slowly across the keyboard.
+
+There's something about her you can't ignore. Something that makes you want to imagine a future with her that stretches out forever.
+
+# You like Emily because she has never asked anything of you. Because she has never told you to do anything.
+
+"Are you staring at me?", she says, glancing at you. You turn away.
+
+"No, I mean... sorry."
+
+"It's fine."
 
 - @exit_moment: You're going to have to exit this moment.
 - @stay_with_emily: Actually, you'd rather stay here.
@@ -403,14 +402,27 @@ go-to: idk_romantic
 
 Okay then.
 
-Anyway, regardless of your *feelings* or lack of thereof, the conversation has suddenly acquired an awkward quality. As much as you would like to stay...
+Anyway, regardless of your *feelings* or lack thereof, the conversation has suddenly acquired an awkward quality. As much as you would like to stay...
 
-# TODO: add other options? just say something?
-
-[? if anxiety >= 5 : **< This action will have consequences. >** ?]
 
 - @exit_moment: You're going to have to exit this moment.
 - @stay_with_emily: Actually, you'd rather stay here.
+- @say_something_2: Say something?
+
+
+@say_something_2
+
+What are you going to say?
+
+- @mind_empty: Your mind blanks.
+
+
+@mind_empty
+
+Ugh. You can't think of anything to say, as usual.
+
+- @exit_moment: Leave.
+- @stay_with_emily: Stay here, silent.
 
 
 @exit_moment
@@ -429,24 +441,92 @@ You feel as if you are overstepping things a little by sitting here on the couch
 
 Neither of you talk at all. But it's fine; it's a comfortable silence, right? Is that what they call it?
 
-- @stay_more: Stay more.
+- @stay_more: Just sit here.
+- @em_hw: Do homework?
 - @go_back: Do something else.
 - @phase_2
 
 
 @stay_more
-view-if: time < 15
-on-arrival: time += 3
+view-if: time < p1_time
+on-arrival: time += 1
 
 For some reason you enjoy staying here. Emily taps on her keyboard, her eyes glued to the screen. She doesn't bother you, and you don't bother her. Meanwhile you observe the dynamics of the party.
 
-- @stay_more: Stay here.
+- @stay_more: Just sit here.
+- @em_hw: Do homework?
 - @go_back: Do something else.
 - @phase_2
 
 
+@em_hw
+view-if: time < p1_time
+on-arrival: time += 1
+
+Technically it's not homework. It's just a bunch of readings for your research project, some books your supervisor suggested that might or might not be actually helpful for the next phase of your project.
+
+You take out your biological sequence analysis textbook and attempt to read.
+
+- @em_hw_2: It's hard to concentrate.
+
+@em_hw_2
+
+Somehow, the words and diagrams and equations fail to reach your brain. You see each word individually, each sentence even, but only as scribbles on the page, not as any signifiers of meaning. Still, you attempt to skim over each page, gleaning whatever semblance of meaning you can.
+
+"It looks interesting," Emily says. She's staring at your textbook.
+
+- @em_hw_int: "Yeah, it is."
+- @em_hw_not_int: "Not really."
+
+
+@em_hw_int
+
+"Um, yeah, it sure is. It's interesting."
+
+- @em_hw_3: Keep trying to read.
+- @go_back: Do something else.
+- @phase_2
+
+
+@em_hw_not_int
+
+"Um, not really. It's not that interesting."
+
+"Oh, that's too bad."
+
+- @em_hw_3: Keep trying to read.
+- @go_back: Do something else.
+- @phase_2
+
+
+@em_hw_3
+on-arrival: time += 1
+
+You do not succeed in reading more.
+
+"Can you tell me about, uh, probabilistic motif detection algorithms?", Emily asks. She's still intently staring at your book (why is she so interested in this?).
+
+- @um_no: "Um, no..."
+
+
+@um_no
+
+"Um, no. I can't. I actually, um... don't know anything."
+
+Emily smiles. "Yeah, it's hard to do work at a social gathering. I've barely read anything at all."
+
+She closes her laptop. "Alright, I'm gonna walk around a bit." She glances at you, and walks away.
+
+- @follow: Follow her?
+- @root: Do something else.
+
+
+@follow
+
+That would be awkward, wouldn't it? You should just... do whatever it is you were going to do at the party.
+
+
 @go_back
-view-if: time < 15
 
 "Um, I kind of want to do something else..."
 

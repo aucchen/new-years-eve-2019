@@ -1,0 +1,526 @@
+title: Leave the house.
+subtitle: It's feeling bad in here.
+tags: phase2
+view-if: (despair >= 10 or anxiety >= 10) and (with_em = 0 and with_aub = 0 and with_miri = 0) and time < p3_time
+new-page: true
+on-arrival: cold = 0; segue = " "; is_alone = 1
+max-visits: 1
+set-bg: backgrounds/outdoors_1_filtered.jpg
+go-to: thoughts
+
+You put on your jacket and your shoes. No one is watching you open the door. You leave. You're free.
+
+It's quiet. Snowflakes glisten in the air, shining under the streetlights. Your footprints defile the fresh snow.
+
+@thoughts
+max-choices: 3
+
+- #alone_thought
+
+# TODO: be analytical for once - train your hyper-analytical eye upon your situation.
+
+
+@walking_thought
+tags: alone_thought
+title: Walk. Just walk.
+view-if: cold <= 4 and time < p3_time
+on-arrival: cold += 1; time += 1; anxiety -= 0.5
+max-visits: 2
+go-to: thoughts
+
+Just keep on walking. Place one foot in front of the other. Look down carefully. Watch the footprints form in the thin snow. There's nothing else in the world save your feet and the path in front of you.
+
+
+@nice_thought
+tags: alone_thought
+title: It's nice and cool.
+view-if: cold <= 2 and time < p3_time
+on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5
+max-visits: 2
+go-to: thoughts
+
+It's nice out here, in the cold. Better than the warm and stuffy house, with so many people. The cold feels nice; it makes you feel alive.
+
+
+@empty_thought
+tags: alone_thought
+title: It's empty.
+view-if: cold <= 6 and time < p3_time and has_loneliness_segue = 0
+on-arrival: cold += 1; time += 1; anxiety -= 0.5; has_loneliness_segue = 1
+max-visits: 2
+go-to: thoughts
+
+The sidewalks are empty. You're alone. Does it make you feel better? Do you feel better if you're alone?
+
+A little bit better, it seems.
+
+
+@murder_thought
+tags: alone_thought
+title: What's the chance that you'll get murdered?
+view-if: cold <= 6 and time < p3_time
+on-arrival: cold += 1; time += 1; anxiety -= 0.5
+max-visits: 2
+go-to: thoughts
+
+This is not the kind of suburb where people randomly get assaulted on the streets at night. Not like your old neighborhood. Actually, statistically that didn't really happen in your old neighborhood either, not that it ever assuaged your parents.
+
+
+@cold_thought
+tags: alone_thought
+title: It's cold.
+view-if: cold > 2 and cold <= 5 and time < p3_time
+on-arrival: cold += 1; time += 1;
+max-visits: 2
+go-to: thoughts
+
+You're getting a little cold. You should have worn leggings inside your pants. You should have worn a thicker jacket. What this means is that you feel more aware of your physical manifestation than usual.
+
+But it's fine. It's not too bad, not yet, anyway. And walking makes you warmer.
+
+
+@cold_2_thought
+tags: alone_thought
+title: It's really cold.
+view-if: cold > 5 and time < p3_time
+on-arrival: cold += 1; time += 1;
+max-visits: 2
+
+It's really cold. You move quickly enough to keep your body warm but your extremities are feeling kind of numb. Your feet and face and hands are freezing.
+
+Maybe it's time to go back home?
+
+- @go_back: Go back.
+- @thoughts: No. Just wander about some more.
+
+
+@snow_thought
+tags: alone_thought
+title: The snow is increasingly noticeable.
+view-if: cold > 2 and time < p3_time
+on-arrival: cold += 1; time += 1;
+max-visits: 2
+go-to: thoughts
+
+The snow seems to be getting heavier by the minute. Your footprints are getting deeper. Shaking your head loosens a flurry from your hat.
+
+
+
+@christmas_light_thought
+tags: alone_thought
+title: The Christmas lights are nice.
+view-if: cold > 2 and time < p3_time
+on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5
+max-visits: 1
+go-to: thoughts
+
+Every other house is strung up with Christmas lights. Many have more elaborate decorations: inflatable snowmen, santa statues, rotating projectors that shine blue and green and red lights every which way. Some of the lights are so bright that they're blinding.
+
+It's rather beautiful.
+
+
+@failure_thought
+tags: alone_thought
+title: You're a failure who won't amount to anything.
+view-if: cold > 2 and time < p3_time
+on-arrival: cold += 1; time += 1
+max-visits: 1
+go-to: thoughts
+
+Sure, you're a failure who won't ever amount to anything, but somehow that doesn't matter right now. You've left that world behind back at the house. You're fine now. You're alive, you're living, and there is nothing else that feels real.
+
+@screw_up_thought
+tags: alone_thought
+title: You really screwed up at the party tonight, huh?
+view-if: cold > 3 and time < p3_time
+on-arrival: cold += 1; time += 1
+max-visits: 1
+go-to: thoughts
+
+Yeah. You really did screw up at the party. What did you want to do here? Re-acquaint yourself with your old friends? Have positive and meaningful social interactions? Anything besides wandering about aimlessly after dark?
+
+You really failed to do anything right, huh?
+
+Whatever. It doesn't matter. Just keep on walking. You'll be fine.
+
+
+@imagine_future_thought_1
+tags: alone_thought
+title: Imagine the future.
+view-if: cold > 2 and time < p3_time and has_imagine = 0
+on-arrival: cold += 1; time += 1; has_imagine_segue = 1; has_imagine = 1
+max-visits: 2
+
+You imagine the future.
+
+- @imagine_children: Imagine your future family.
+- @imagine_science: Imagine your scientific career.
+- @imagine_fantasy: Imagine a fantasy scenario.
+- @imagine_space: Imagine yourself in the far future.
+
+@imagine_children
+max-visits: 1
+
+Why do you keep on imagining yourself with a family, when it is highly unlikely that you'll ever be able to have such a thing? You have to *meet* people. You have to *talk* to them.
+
+And the idea of having children? You almost have to shudder at the thought. "When two girls love each other very much, they visit the sperm bank..."
+
+This is embarrassing to even think about. Why do you want children, anyway?
+
+- @better_parent: To do better than your parents did.
+- @not_alone: So you won't be alone.
+- @need_to: Because it just feels necessary.
+- @no_reason: Do you need a reason?
+
+@better_parent
+go-to: thoughts
+
+You can treat your hypothetical children better than your parents treated you. It won't undo your upbringing, but you can do better than them, right?
+
+@not_alone
+go-to: thoughts
+
+You don't want to die alone. That's reason enough, right?
+
+@need_to
+go-to: thoughts
+
+Something something biological clock ticking. Ugh. You kick a pile of snow.
+
+@no_reason
+go-to: thoughts
+
+It doesn't really matter why.
+
+
+@imagine_science
+max-visits: 1
+
+You still have fantasies of winning the Nobel Prize. More realistically, you probably won't even become tenured faculty, given the likelihoods of such things. But you can dream, can't you? You'll always have your fantasies, even when you have nothing else. You can write yourself as a hero of science, the one who discovers the secret to curing death...
+
+This is embarrassing to even think about. Why do you care so much about science, anyway?
+
+- @its_fun: Because it's... fun?
+- @good_at_it: Because you're good at it?
+- @no_reason: Do you need a reason?
+
+@its_fun
+go-to: thoughts
+
+Science is one of your hobbies, insofar that you have hobbies. Research is... at least slightly enjoyable. So why not make it your entire future?
+
+@good_at_it
+go-to: thoughts
+
+Well, you're somewhat good at science. Not extraordinary, but decent. Sort of.
+
+@imagine_fantasy
+max-visits: 1
+go-to: thoughts
+
+You imagine a scenario in which you and your acquaintances are the heroes of a science fantasy epic. The world is ending. Asteroids are falling. And a few people scattered throughout the world have the power to rebuild the world by entering a video game world and restructuring the nature of universal reproduction...
+
+This is embarrassing to even think about.
+
+
+@imagine_space
+max-visits: 1
+go-to: thoughts
+
+You imagine a scenario in which you are an itinerant cosmonaut in a far future where space travel is ubiquitous. Somehow you're still alive then, and you look exactly the same; technology had really advanced. Your job is an agent for the futuristic Commonwealth that administers the cosmos, and you travel around the planets and space stations, helping people with science. You see an image of yourself floating in zero gravity, holding the one you love...
+
+This is embarrassing to even think about.
+
+
+@go_back_thought
+tags: alone_thought
+title: Maybe you should go back home?
+view-if: cold > 4 and time < p3_time
+on-arrival: cold += 1; time += 1
+max-visits: 3
+
+Should you go back home right now?
+
+- @go_back: Go back.
+- @thoughts: No. Just wander about some more.
+
+@go_back
+
+Really go back home?
+
+- @go_back_2: Yeah.
+- @thoughts: No. Just wander about some more.
+
+@go_back_2
+on-arrival: time += 3
+
+You manage to remember your way back to the house. It's a winding walk. No one seems to have missed you when you open the door.
+
+
+
+@mom_worried_thought
+tags: alone_thought
+title: Mom is probably worried sick. 
+view-if: cold > 4 and time < p3_time
+on-arrival: cold += 1; time += 1; has_mom_segue = 1
+max-visits: 2
+go-to: thoughts
+
+How long has it been? Has mom noticed that you've been gone, that you've disappeared, vanished without a trace? Is she worried right now?
+
+She probably hasn't noticed. It's fine.
+
+
+@dreams_thought
+tags: alone_thought
+title: You've had dreams like this. 
+view-if: cold > 2 and time < p3_time
+on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5
+max-visits: 1
+go-to: thoughts
+
+You once had a dream in which you were walking down a snowy sidewalk. In your dream it was a night much like this one, snow falling, lighted houses, but no Christmas decorations. You were alone. There was something chasing you and you had to get away. In the dream you started running, but a shadow crept up on you, keeping pace with you, until you were stabbed in the back, which is when you would wake up.
+
+It wasn't a very interesting dream, but it does make you want to walk faster.
+
+
+@mom_terrible_thought
+tags: alone_thought
+title: You've been terrible to mom. 
+view-if: time < p3_time and has_mom_segue = 1
+on-arrival: cold += 1; time += 1; segue = " "
+max-visits: 1
+go-to: thoughts
+
+You've really treated mom terribly, haven't you? Every time she calls you, she asks why you haven't called in so long. You don't have a good answer. Why do you ignore her? When she asks you what's wrong, why do you say that you're fine? When she asks you if you have any friends, why do you say that you do? Why do you lie to her so?
+
+But it doesn't matter now, does it? It's already a thing of the past.
+
+
+@cant_see_thought
+tags: alone_thought
+title: You can't see anything. 
+view-if: cold > 3 and time < p3_time
+on-arrival: cold += 1; time += 1
+max-visits: 1
+go-to: thoughts
+
+The snow, plus the fog from your breaths, have rendered your glasses almost opaque. You wipe them on your jacket. They're still wet, but at least you can see now.
+
+
+@nostalgia_thought
+tags: alone_thought
+title: You've been here before?
+view-if: cold > 4 and time < p3_time
+on-arrival: cold += 1; time += 1
+max-visits: 1
+go-to: thoughts
+
+You suddenly have a feeling of nostalgia. Or is it deja vu? It's as if you've been on these streets before, in this moment, years ago, except you haven't, you've never been here before. Is your brain becoming senile already? Depression is somewhat correlated with dementia and brain degeneration. You're seeing things.
+
+Anyway, it doesn't matter. You don't know where you're going, but you still have a ways to go. Keep on walking.
+
+
+@road_thought
+tags: alone_thought
+title: You're nearing a major road.
+view-if: cold > 4 and time < p3_time
+on-arrival: cold += 1; time += 1
+max-visits: 1
+go-to: thoughts
+
+It's a major road. Cars and trucks barrel down the slushy road, too fast and too close to the sidewalk for comfort, their headlights blinding you as they approach.
+
+You turn back. Is it dangerous? Potentially. Chances of dismemberment are slightly elevated if you walk too close to the highway at night on a night when drunk driving levels are likely elevated. Or something like that.
+
+
+@immediate_future_thought
+tags: alone_thought
+title: Think about the immediate future.
+view-if: time < p3_time and has_imagine_segue = 1
+on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5; has_imagine_segue = 2
+max-visits: 1
+go-to: thoughts
+
+Maybe now it's time to think about the very near-term future.
+
+Okay. You've sent out your grad school applications. You're entering your last semester of undergrad and you'll graduate with honors. You have at least one publication with your name buried in the authors list, and perhaps one more coming up. Your research advisor still talks to you unprompted.
+
+Objectively speaking, your situation is not so bad. Grades and publications are permanent. Friends are temporary. Were it not for the cursed phenomenon known as "networking" you'd basically be set for your career, not as a world-changing, exceptional scientist, but an ordinary academic. That's not so bad, is it?
+
+Of course, you're a terrible person for moping and hating yourself so much when you're actually doing rather well, objectively speaking.
+
+
+@loneliness_thought
+tags: alone_thought
+title: You really are alone, aren't you?
+view-if: cold > 2 and time < p3_time and has_loneliness_segue = 1
+on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5
+max-visits: 1
+go-to: thoughts
+
+Yes, you're really alone here; you haven't seen a single human being on the roads tonight. Just as well; you're used to being alone. You've gone days, perhaps weeks without a real conversation. You don't really talk to people anymore. You're barely human anymore; you are an invisible robotic observer sent to catalogue the habits of the inhabitants of the planet. And you're doing a terrible job at it, but what else is new.
+
+But it's not so bad being an alien observer.
+
+
+@no_one_will_save_you_thought
+tags: alone_thought
+title: No one will save you.
+view-if: cold > 4 and time < p3_time and has_loneliness_segue = 1 and has_imagine = 1
+on-arrival: cold += 1; time += 1
+max-visits: 1
+
+Part of you is waiting for someone to run up to you, to shout your name, to grab ahold of your arm and pull you back. For someone to miss you. For someone to want you.
+
+Who?
+
+- @emily_save: Emily?
+- @aubrey_save: Aubrey?
+- @miri_save: Miri?
+- @mom_save: Mom?
+- @no_one_save: No one.
+
+
+@emily_save
+
+Emily?
+
+You imagine her running towards you, like some romantic movie scene except without the romance part, probably. She wouldn't shout; she would wait until you're close enough and then you would turn around and she would whisper your name and...
+
+- @no_one_save: But no one is coming.
+
+
+@aubrey_save
+
+Aubrey?
+
+You imagine her running towards you, like some romantic movie scene except without the romance part. She would shout your name, and you would turn around, and you would wave and hug and...
+
+- @no_one_save: But no one is coming.
+
+
+@miri_save
+
+Miri?
+
+You imagine her running towards you, like some romantic movie scene except without the romance part, probably. She would be shouting your name, and you would turn around, and she would say that she's been so worried, and you would hug and...
+
+- @no_one_save: But no one is coming.
+
+
+@mom_save
+go-to: thoughts
+
+Yes, mom might actually come. Maybe she's noticed that you're gone. There's a nonzero probability that she's worried about you right now.
+
+But is she worried about *you*, or is she worried about her daughter?
+
+
+@no_one_save
+
+But no one is coming. No one will save you.
+
+- @no_one_save_alone: You're all alone here.
+- @no_one_save_fine: You didn't expect any different.
+
+
+@no_one_save_alone
+
+You're all alone out here. You'll spend the rest of your life alone and then you'll die alone. Why would you expect any different?
+
+- @no_one_snow: A gust of snow hits your face.
+
+
+@no_one_save_fine
+
+You didn't expect any different. You'll always be alone until you die.
+
+- @no_one_snow: A gust of snow hits your face.
+
+
+@no_one_snow
+on-arrival: has_loneliness_segue = 2
+
+Just then, a gust of snow hits your face. For a moment you're blinded. You turn around. Wipe your glaces. Clear the snow from your hair. Headlights rush towards you, then pass by.
+
+- @no_one_stopped: You had stopped.
+
+
+@no_one_stopped
+go-to: thoughts
+
+You had stopped. You start walking again.
+
+
+@alone_thought_3
+tags: alone_thought
+title: You wish you could be the protagonist of your own story.
+view-if: cold > 4 and time < p3_time and has_loneliness_segue = 2
+on-arrival: cold += 1; time += 1
+max-visits: 1
+
+You wish you could be the protagonist of your own story, be the focus around which everything else revolves. You wish you could be important, be someone who matters in the narrative arc of the universe.
+
+But you are not a protagonist, because you are not a literary construct, because there are no such things as narrative arcs in this universe. You are a product of physics and biochemistry. You are a body moving through time and space. You won't get a character arc, because people don't have character arcs, save the physical process of growth and decay and death.
+
+It's rather harrowing to conceptualize yourself in such a way. Devoid of all higher meaning.
+
+- @does_god_exist: Does God exist?
+- @alone_thoughts_3_end: The lights are dazzling.
+
+@does_god_exist
+
+Does God exist? Does heaven exist?
+
+- @alone_thoughts_3_end: The lights are dazzling.
+
+@alone_thoughts_3_end
+go-to: thoughts
+
+The lights are dazzling. The snow is pretty. Your eyes are watering. You hope your tears won't freeze. That would be inconvenient.
+
+You keep walking, because what else are you supposed to do.
+
+
+@global_warming_thought
+tags: alone_thought
+title: Global warming is real.
+view-if: cold > 2 and time < p3_time
+on-arrival: cold += 1; time += 1
+max-visits: 1
+go-to: thoughts
+
+Global warming has resulted in a mean global temperature increase of somwhere between 0.5 and 1 degree celsius up to today since pre-industrial times, last you heard. But of course there are local fluctuations; climate and weather describe different phenomena. Under some projections, events such as the one you're currently experiencing would become even more likely in the Northeastern US.
+
+
+@analytical_thought
+tags: alone_thought
+title: Train your analytical eye upon your present situation.
+view-if: cold > 2 and time < p3_time
+on-arrival: cold += 1; time += 1
+max-visits: 1
+
+What are you supposed to do? What were you supposed to have done? Somewhere along the way, you did something wrong. Somewhere along the way, you made a sequence of choices that led to the present state, that led to you wandering alone in the middle of a snowstorm on New Year's Eve.
+
+What is that choice? Where did it go wrong?
+
+- @no_answers: You don't have any answers.
+
+
+@no_answers
+go-to: thoughts
+
+As if answering your thoughts, a gust of snow hits your face. For a moment you can't see, until you wipe your glasses on your coat. You lose your train of thought, probably for the better.
+
+
+@go_home_final_thought
+tags: alone_thought
+title: Go back. It's late.
+view-if: cold > 6 and time >= p3_time - 3
+on-arrival: time += 3
+
+You're freezing. You've been gone for who knows how long. It's time to go back.
+
+Do you still remember the way back? Yes, you do.
+

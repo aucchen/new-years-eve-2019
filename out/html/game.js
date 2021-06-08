@@ -9,20 +9,105 @@
     // Add your custom code here.
   };
 
-  var save = function() {
+  window.quickSave = function() {
       var saveString = JSON.stringify(window.dendryUI.dendryEngine.getExportableState());
-      localStorage['nye2019_save_1'] = saveString;
+      localStorage['nye2019_save_q'] = saveString;
       window.alert("Saved.");
   };
 
-  var load = function() {
-      if (localStorage['nye2019_save_1']) {
-          var saveString = localStorage['nye2019_save_1'];
+  window.saveSlot = function(slot) {
+      var saveString = JSON.stringify(window.dendryUI.dendryEngine.getExportableState());
+      localStorage['nye2019_save_' + slot] = saveString;
+      var date = new Date(Date.now());
+      localStorage['nye2019_save_timestamp_' + slot] = date;
+      window.populateSaveSlots(slot + 1);
+  };
+
+  window.quickLoad = function() {
+      if (localStorage['nye2019_save_q']) {
+          var saveString = localStorage['nye2019_save_q'];
           window.dendryUI.dendryEngine.setState(JSON.parse(saveString));
           window.alert("Loaded.");
       } else {
           window.alert("No save available.");
       }
+  };
+
+  window.loadSlot = function(slot) {
+      if (localStorage['nye2019_save_' + slot]) {
+          var saveString = localStorage['nye2019_save_' + slot];
+          window.dendryUI.dendryEngine.setState(JSON.parse(saveString));
+          window.hideSaveSlots();
+          window.alert("Loaded.");
+      } else {
+          window.alert("No save available.");
+      }
+  };
+
+  window.deleteSlot = function(slot) {
+      if (localStorage['nye2019_save_' + slot]) {
+          localStorage['nye2019_save_' + slot] = '';
+          localStorage['nye2019_save_timestamp_' + slot] = '';
+          window.populateSaveSlots(slot + 1);
+      } else {
+          window.alert("No save available.");
+      }
+  };
+
+  window.populateSaveSlots = function(max_slots) {
+      // this fills in the save information
+      function createLoadListener(i) {
+          return function(evt) {
+                window.loadSlot(i);
+          };
+      }
+      function createSaveListener(i) {
+          return function(evt) {
+                window.saveSlot(i);
+          };
+      }
+      function createDeleteListener(i) {
+          return function(evt) {
+                window.deleteSlot(i);
+          };
+      }
+      for (var i = 0; i < max_slots; i++) {
+          var save_element = document.getElementById('save_info_' + i);
+          var save_button = document.getElementById('save_button_' + i);
+          var delete_button = document.getElementById('delete_button_' + i);
+          if (localStorage['nye2019_save_' + i]) {
+              var timestamp = localStorage['nye2019_save_timestamp_' + i];
+              save_element.textContent = timestamp;
+              save_button.textContent = "Load";
+              save_button.onclick = createLoadListener(i);
+              delete_button.onclick = createDeleteListener(i);
+          } else {
+              save_button.textContent = "Save";
+              save_element.textContent = "Empty";
+              save_button.onclick = createSaveListener(i);
+          }
+      }
+  };
+
+  window.showSaveSlots = function() {
+      var save_element = document.getElementById('save');
+      save_element.style.display = "block";
+      // magic number lol
+      window.populateSaveSlots(8);
+      if (!save_element.onclick) {
+          save_element.onclick = function(evt) {
+              var target = evt.target;
+              var save_element = document.getElementById('save');
+              if (target == save_element) {
+                  window.hideSaveSlots();
+              }
+          };
+      }
+  };
+
+  window.hideSaveSlots = function() {
+      var save_element = document.getElementById('save');
+      save_element.style.display = "none";
   };
 
   var showStats = function() {
@@ -34,7 +119,6 @@
   };
 
   window.dendryModifyUI = main;
-  window.dendrySave = save;
-  window.dendryLoad = load;
   window.showStats = showStats;
+  console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");
 }());

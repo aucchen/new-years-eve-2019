@@ -1,0 +1,70 @@
+title: Kevin
+subtitle: The kids are still in the basement...
+unavailable-subtitle: You can't do this.
+view-if: phase = 2 and time < p2_time
+choose-if: anxiety <= 15
+max-visits: 1
+new-page: true
+tags: phase2
+
+The basement is cool and damp. The kids have brought their food down, eating slowly while watching yet another Marvel movie.
+
+- #kevin2
+- #movie2
+
+
+@kevin_talk
+title: Talk to Kevin?
+tags: kevin2
+view-if: kevin_p2_prog = 0
+on-arrival: kevin_p2_prog += 1
+max-visits: 1
+
+Kevin is playing some game on the ipad with Rose. He's so engrossed in the game, he isn't watching the movie, and he certainly has not noticed you.
+
+Do you really want to talk to him?
+
+- #kevin2
+- #movie2
+
+
+@kevin_talk_2
+title: Yes, disturb Kevin.
+tags: kevin2
+view-if: kevin_p2_prog = 1
+on-arrival: kevin_p2_prog += 1
+max-visits: 1
+
+Okay. Here goes.
+
+"Um, hi, Zhao Chunyi."
+
+TODO
+
+
+@movie_1
+title: Watch the movie.
+view-if: movie_p2_prog = 0
+on-arrival: movie_p2_prog += 1; time += 1
+tags: movie2
+
+The movie is another Marvel superhero film, probably. It's got to be the latest one, right? You have no idea what's going on except that there are some people fighting some other people and some people are copies or clones? Or maybe it's time travel or something.
+
+You recall a meme that says the MCU ripped off Homestuck. This excerpt does not challenge that idea.
+
+- #kevin2
+- #movie2
+
+
+@movie_2
+title: Keep watching the movie.
+view-if: movie_p2_prog = 1
+on-arrival: movie_p2_prog += 1; time += 1
+tags: movie2
+
+So the movie is about going back in time to the settings of the previous movies in order to acquire the set of chaos emeralds which are necessary in order to undo the villain's actions at the end of the previous movie. There are a lot of moments that seem like references to previous movies in the series, references that you do not understand. Nevertheless, you can appreciate the spectacle. The hand lasers going pew-pew. The fistfights that inflict no long-term damage on any of the participants. The villanous monologues.
+
+In fact, you're almost enjoying it.
+
+- #kevin2
+- #movie2

@@ -1,0 +1,41 @@
+title: Use the bathroom
+subtitle: It's physiologically necessary...
+view-if: phase = 2 and time < p3_time
+on-arrival: time += 1
+tags: phase2
+new-page: true
+max-visits: 1
+
+# TODO: the background image is weirdly cropped.
+#set-bg: backgrounds/bathroom_1_filtered.jpg
+
+Okay. Yeah. You commit your biologically necessary functions and all that. But maybe you could stay in here for longer.
+
+- @selfie: Take a selfie.
+- @phone: Sit on the toilet and use your phone.
+- @root: Just leave.
+
+
+@selfie
+set-bg: backgrounds/bathroom_1_filtered_cropped.jpg
+max-visits: 1
+on-arrival: anxiety += 1
+
+For some reason you remember that one Margaret Atwood quote about male fantasies, male fantasies. Even pretending that you aren't catering to male fantasies is a male fantasy. Why are you even taking a selfie? Why did you participate in the pageant back in high school? Is it for yourself, or is it for the hypothetical viewer whose view you have internalized?
+
+Whatever. You snap some not particularly flattering photos. Not that any of your photos are particularly flattering.
+
+- @phone: Sit on the toilet and use your phone.
+- @root: Just leave.
+
+
+@phone
+on-arrival: time += 1
+max-visits: 1
+
+You probably shouldn't spend too much time in the bathroom in case other people need to use it. So you just open your phone to discover that it has less than 10% battery left. Good job.
+
+- @selfie: Take a selfie.
+- @root: Just leave.
+
+

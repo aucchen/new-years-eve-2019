@@ -5,16 +5,21 @@ new-page: true
 max-visits: 1
 on-arrival: mom_int += 1; time += 1
 tags: phase1, top
+go-to: stand
 
 "秋怡！过来！ *Qiuyi! Come here!*", mom shouts.
 
-You walk over to join the group. Mom stands with a group of Chinese adults, mostly moms. She introduces you to the group. You say your requisite greetings, and they say theirs.
 
-"你的头发长出来了。 *Your hair is longer*," someone says. It's true that you've gone a year without a haircut.
+@stand
+on-arrival: mom_int += 1
+
+You walk over to join the group. Mom is with a group of Chinese adults, mostly moms. She introduces you to the group. You say your requisite greetings, and they say theirs.
+
+"你的头发长了。 *Your hair is longer*," someone says. It's true that you've gone a year without a haircut.
 
 "女孩子头发应该长一点。 这样更好看。 *Girls should have longer hair. It looks better this way*," someone else says. Ugh.
 
-"你快毕业了，要做什么？ *You're graduating soon, what are you going to do?*"
+"你快毕业了，打算做什么呢？ *You're graduating soon, what are you planning to do?*"
 
 - @everyone: Why is everyone asking that?
 - @grad: "我要上研究生 I'm going to grad school."
@@ -39,11 +44,11 @@ Laughter. Why are they always like this?
 
 "好棒啊！你姑娘真好啊！ *How great! Your daughter is great!*", one of the adults says to mom and not you.
 
-"你学什么？ *What are you studying?*", another person asks you.
+"你学什么专业呢？ *What field are you studying?*", another person asks you.
 
 "Um, molecular and cell biology," you respond in English.
 
-"这项目不好找工作。 *This field is hard to find a job*," someone says.
+"这专业不好找工作。 *This field is hard to find a job*," someone says.
 
 "Oh."
 
@@ -59,6 +64,9 @@ The conversation continues, with more detailed questions and comments. You smile
 
 
 @love
-
+go-to: wish
 
 @wish
+
+After the semi-official separation, mom seemed to become a little calmer, but she's still basically the same, still wielding hospitality and love like a cudgel. But this is just how she shows that she cares. Right?
+

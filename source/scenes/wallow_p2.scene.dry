@@ -1,0 +1,177 @@
+title: Wallow in your despair.
+subtitle: Within a suitable alcove...
+view-if: phase = 2 and time < p3_time and (despair >= 10 and anxiety >= 10)
+tags: phase2
+max-visits: 1
+on-arrival: despair += 1; anxiety += 1
+
+This is your natural habitat, an uninhabited alcove in the basement of an acquaintance's house during a social gathering. This is your pigsty, your pool of mud. And you are going to roll in it like... well, whatever a pig is like when it rolls in a pool of mud.
+
+Sounds of Marvel movies in the distance. Kids talking. Adults laughing and shouting. Your acquaintances and allies nowhere in sight. This is your perfect place.
+
+Can you sit down? Yes, you can sit down. The floor is carpet. It's soft.
+
+- @friends_1: Your friends should be looking for you, right?
+
+
+@friends_1
+max-visits: 1
+
+Your friends should be looking for you, right?
+
+No. Of course they won't be looking for you. Why would they deliberately seek you out? Why would anyone deliberately seek you out when all you've done is push them away and abandon them? Moreover, how would they know that you want them right now, when all the signs that you've exhibited have been hostile. 
+
+Why would anyone want to be friends with you when you're such a terrible friend yourself? You're exactly the toxic friend that all the blogs are telling people to excise.
+
+- @interesting: You're not even interesting.
+- @loneliness: You'll always be alone.
+
+
+@interesting
+max-visits: 1
+on-arrival: despair += 1
+
+You are most likely among the least interesting people in the world. The truth is, you don't have any interests, any hobbies, any talents. You consist of nothing except a bag of undiagnosed and untreated mental illnesses packaged in an ambiguously human form.
+
+- @loneliness: You'll always be alone.
+- @cry: Cry.
+
+
+@loneliness
+max-visits: 1
+on-arrival: despair += 1
+
+You're alone. You've always been alone. For the rest of your life, you will always be alone, until you die alone. What is life but a constant progression towards death?
+
+God, you're so boring and cliched that you can't even make your angst sound interesting.
+
+- @cry: Cry.
+
+
+@cry
+max-visits: 1
+on-arrival: despair += 1
+
+It would be nice if you could cry. But tears don't even come out (what a fucking loser). Probably a result of a hormone imbalance.
+
+Yes. You would probably not be feeling this way if you had just kept up with your vitamin D and iron supplements. Your angst is not the product of some deep existential quandary, but a product of your neural chemistry.
+
+You are not a disembodied being of pure thought, or a narrative construction. You are a creature of biochemistry. You are a sac of flesh moving through a physical world.
+
+For some reason, that does not make you feel any better.
+
+- @get_up: Get up.
+- @wallowing: Keep wallowing.
+
+
+@wallowing
+
+
+- #wallow
+
+
+@hypocrite
+title: "Hypocrite that you are..."
+view-if: time < p3_time
+tags: wallow
+on-arrival: wallow_count += 1
+priority: 3
+max-visits: 1
+
+You remember that one meme with Goofy and Mickey talking, and you almost smile to yourself. Is there intrinsic value in the universe? "Will you fight? Or will you perish like a dog?"
+
+- @get_up: Fight.
+- @sit_more: Perish like a dog.
+
+
+@get_up
+go-to: get_up_real if wallow_count >= 3; get_up_fake if wallow_count < 3
+
+
+@get_up_fake
+on-arrival: time += 1
+go-to: wallowing
+
+You try to get up. It shouldn't be so difficult. Just command your muscles. Just move.
+
+What is it that you feel? Is it a psychosomatic paralysis? Unreconstructed laziness? How are you supposed to help yourself? How are you supposed to pull yourself up? 
+
+
+@get_up_real
+
+You're tired of sitting. Your legs hurt. You're uncomfortable. Your phone battery is dead.
+
+There's nothing to do but get up and walk around.
+
+- @root
+
+
+@time_out
+view-if: time >= p3_time
+
+Someone approaches you. It's your brother, Kevin.
+
+"Hey jiejie, mom said we're going to take pictures now."
+
+"Oh. Okay."
+
+TODO: go to a new ending scene
+
+
+@sit_more
+max-visits: 1
+on-arrival: despair += 1; time += 1
+go-to: wallowing 
+
+You hear your brother, talking with Rose Gao in the other room. You can't distinguish their words.
+
+
+@whats_wrong
+title: What's wrong with you?
+view-if: time < p3_time
+max-visits: 1
+tags: wallow
+on-arrival: wallow_count += 1; whats_wrong_seen = 1
+
+What the hell is wrong with you?
+
+- @mentally_ill: Well, you're mentally ill.
+- @nothing_wrong: There's literally nothing wrong with you.
+
+
+@mentally_ill
+go-to: wallowing 
+
+Yes. That you are.
+
+TODO
+
+
+@nothing_wrong
+go-to: wallowing
+
+TODO
+
+
+@why_are_you
+title: Why are you like this? 
+view-if: whats_wrong_seen = 1 and time < p3_time
+max-visits: 1
+on-arrival: wallow_count += 1; time += 1
+tags: wallow
+
+Why are you like this? What happened to make you so messed up?
+
+Is it your Chinese Confucian upbringing? Your immigrant Asian-American upbringing? Growing up poor? Growing up gay? Growing up in an unstable household?
+
+Or is there no reason, just the stochastic factors that happened to align in just the right way to activate your neural circuits in such a way that you ended up here?
+
+- @there_is_no_reason: There is no reason.
+
+
+@there_is_no_reason
+go-to: wallowing 
+
+There really isn't a reason for anything, is there?
+
+That's hardly an original thought. Just warmed-over existentialism filtered through a wikipedia-level understanding of philosophy. You've never really had an original thought, have you? They were right when they said that you people were all academic machines.

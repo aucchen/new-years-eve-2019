@@ -5,14 +5,11 @@ new-page: true
 go-to: options
 tags: phase1, alone
 
-You have a four-year-old Android with about two hours of battery life left. But it is perfectly capable for your purposes.
+You haven't upgraded your Android since the end of high school; it's more than four years old with about two hours of battery life total. But it is perfectly capable for your purposes.
 
 What do you want to do?
 
-
 @options
-
-[? if anxiety >= 10 : **< Your actions will have consequences. >** ?]
 
 - @games: Play games.
 - @media: Check social media.
@@ -49,7 +46,7 @@ There are a bunch of different games on your phone.
 go-to: game_opts
 on-arrival: time += 1
 
-You spend a few minutes on a word find game.
+You spend a few minutes on a word find game. It's kind of addicting.
 
 @game_opts
 
@@ -59,8 +56,8 @@ You spend a few minutes on a word find game.
 
 
 @cif
-on-arrival: time += 1; cif_seen += 1
-go-to: cif_a1; cif_a2; cif_a3
+on-arrival: time += 1; cif_seen += 1; game_count += 1
+go-to: cif_a1; cif_a2; cif_a3; cif_a4
 
 # randomly choose a game to play
 
@@ -74,7 +71,7 @@ In this game you play as a scientist who makes a robotic companion. You can't da
 @cif_a2
 go-to: game_opts
 
-This is a romance game taking place in a fantasy-European upper-class boarding school. There might or might not be magic going on, but there are dark non-magical secrets. As usual there is a variety of romantic options, but they are hard to keep track of; the names are too uniformly European.
+This is a romance game taking place in a fantasy-European upper-class boarding school. There might or might not be magic going on, but there are dark non-magical secrets. As usual there is a variety of romantic options, but they are hard to keep track of; the names are too uniformly European and gender-neutral.
 
 
 @cif_a3
@@ -83,8 +80,15 @@ go-to: game_opts
 This is another fantasy choice-based game where you play as a deposed royal heir and attempt to regain power. There is a variety of romance options, of course, which all require a complicated set of stat checks to complete.
 
 
+@cif_a4
+go-to: game_opts
+
+This game is about playing as some famous character from Greek mythology (except they can be a woman or nonbinary now). It's about failure and not being able to solve every problem that the gods throw your way. Or maybe you just failed to min-max your stats.
+
+
+
 @pageant_game
-on-arrival: pageant_seen = 1; time += 1; anxiety += 1
+on-arrival: pageant_seen = 1; time += 1; anxiety += 1; game_count += 1
 view-if: pageant_seen = 0
 go-to: game_opts
 
@@ -154,7 +158,7 @@ In practice, "browsing the web" usually means Wikipedia for you. Why not go on W
 
 @wiki_1
 
-You end up at the Wikipedia pages for various suburban localities of major metropolitan areas in the United States. Did you know about the populaion density of Overland Park, KS before? Yes, you did in fact. You've read all of these things before.
+You end up at the Wikipedia pages for various suburban localities of major metropolitan areas in the United States. Did you know about the population density of Overland Park, KS before? Yes, you did in fact. You've read all of these things before.
 
 - @options: Keep using your phone.
 - @root: Do something else.
@@ -172,7 +176,7 @@ From the front page, you somehow navigate to pages for various life-threatening 
 @wiki_3
 on-arrival: despair += 1
 
-You quasi-randomly navigate to the pages for various small geographical localities. The Pacific Islands are particularly interesting for some reason. Pitcairn Island, partially populated by descendants of naval mutineers. The Society Islands, upon which we live whether we like it or not. Nauru, site of massive phosphate mining and environmental collapse. It's all rather sad.
+You quasi-randomly navigate to the pages for various small geographical localities. The Pacific Islands are particularly interesting for some reason. Pitcairn Island, partially populated by descendants of naval mutineers. The Society Islands, upon which we all live. Nauru, site of massive phosphate mining and environmental collapse. It's all rather sad.
 
 - @options: Keep using your phone.
 - @root: Do something else.

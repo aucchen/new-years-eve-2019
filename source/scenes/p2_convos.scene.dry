@@ -1,19 +1,17 @@
 title: Sit with your friends.
-tags: phase2
-on-arrival: time += 1; food_consumption = 0; hunger += 4
+on-arrival: time += 1; food_consumption = 0; hunger += 4; food_remaining = 12
 view-if: phase = 2 and time >= p1_time and time < p2_time
 new-page: true
 set-bg: backgrounds/food_1_filtered.jpg
 set-jump: p2_convos.intros_2
 
 
-# TODO: list of topics: going-around-the-table introduction, college, post-grad plans, anime, video games, homestuck, current events, gay stuff, high school nostalgia,...
+# list of existing topics: introduction, topic_college, topic_hs, topic_miri (Aubrey asks Miri why she's here), topic_food, topic_politics, topic_weather, topic_em (William asks about Em's name), topic_em_veg, topic_party (you ask how the party's going), topic_media,
 
-# You sit with
 
 Aubrey waves at you as you sit down.
 
-{!<span class="ga">!}AUBREY: Hey, [+ first_name : +]! Everyone's here! Do we all know each other?{!</span>!} 
+{!<span class="ga">!}AUBREY: Hey, [+ first_name +]! Everyone's here! Do we all know each other?{!</span>!} 
 
 {!<span class="dw">!}WILLIAM [? if aub_int = 0 : (Aubrey's boyfriend)?]: No, we don't. Does everyone else already know each other?{!</span>!} 
 
@@ -105,7 +103,7 @@ William looks at Emily.
 
 @intros_6
 go-to: stare_emily if em_seen = 0; intros_7 if em_seen > 0
-on-arrival: em_dinner_intro_seen = 1
+on-arrival: em_dinner_intro_seen = 1; miri_em += 1
 set-jump: intros_7
 
 Emily inhales, and glances around the dining table.
@@ -196,11 +194,11 @@ Emily is smiling to herself.
 
 @intros_9_miri
 go-to: intros_9_miri_2 if prev_em != "date"; intros_9_emily if prev_em = "date"
-on-arrival: anxiety += 1
+on-arrival: anxiety += 1; miri_int += 1
 
 {!<span class="bm">!}MIRI: Another fun fact: we happen to be dating. Or are we, [+ first_name +]?{!</span>!}
 
-Oh God.
+Oh God. You glance away, before forcing yourself to glance back at Miri.
 
 {!<span class="zq">!}YOU: Yeah. That's right.{!</span>!}
 
@@ -214,15 +212,66 @@ Emily chuckles to herself. You wish she wouldn't.
 
 
 @intros_9_emily
-on-arrival: anxiety += 1
+on-arrival: anxiety += 1; miri_em += 1; em_int += 1; em_know_miri_date_callback = 1
 
-{!<span class="ce">!}EMILY: Hmm. She also told me that she liked me.{!</span>!}
+# tag for potential future callbacks
+
+Emily stares at you and then Miri, narrowly smiling.
+
+{!<span class="ce">!}EMILY: Hmm. I thought we had an understanding between us.{!</span>!}
+
+Miri smirks.
+
+{!<span class="bm">!}MIRI: What kind of understanding?{!</span>!}
+
+{!<span class="ce">!}EMILY: I don't know if I should talk about it. Is the agreement void?{!</span>!}
+
+Emily turns to you.
 
 Oh God.
 
-{!<span class="ga">!}AUBREY: Wow, [+ first_name +], what a player!{!</span>!}
+- @intros_9_emily_1: (lie) "Um, I forgot..."
+- @intros_9_emily_2: "Um... I thought it was nonbinding?"
+- @intros_9_emily_3: "Do we have to talk about that now?"
 
-TODO
+
+@intros_9_emily_1
+go-to: intros_9_emily_end
+
+{!<span class="zq">!}YOU: Um, I forgot... Sorry.{!</span>!}
+
+{!<span class="ce">!}EMILY: That's rather surprising.{!</span>!}
+
+
+
+@intros_9_emily_2
+go-to: intros_9_emily_end
+
+{!<span class="zq">!}YOU: Um, I thought it was nonbinding?{!</span>!}
+
+You try to appear as if you were joking. Emily chuckles a little. 
+
+{!<span class="ce">!}EMILY: I mean, I guess. We never did decide that, did we?{!</span>!}
+
+
+@intros_9_emily_3
+go-to: intros_9_emily_end
+
+{!<span class="zq">!}YOU: Um, do we have to talk about that now?{!</span>!}
+
+{!<span class="ce">!}EMILY: I guess we don't.{!</span>!}
+
+
+
+@intros_9_emily_end
+go-to: intros_end
+on-arrival: anxiety += 1; despair += 1
+
+{!<span class="ga">!}AUBREY: What are you talking about?{!</span>!}
+
+{!<span class="ce">!}EMILY: It's unimportant. Never mind.{!</span>!}
+
+Anyway, you're worse than dirt and you deserve to die.
 
 
 @intros_9_f2
@@ -240,20 +289,25 @@ go-to: intros_end
 
 {!<span class="ga">!}AUBREY: Yeah, I remember that! That was back in high school, right? How did it go?{!</span>!}
 
-{!<span class="zq">!}YOU: Um, it could have gone better.{!</span>!}
+{!<span class="zq">!}YOU: Um, it could have gone better. Like most things, I guess.{!</span>!}
 
 
 @intros_9_f3
-go-to: intros_end
+go-to: intros_9_f3_2 if miri_date < 1; intros_9_miri if miri_date = 1
 
 {!<span class="zq">!}YOU: Um... I don't know. There's nothing cool about me. Nothing at all.{!</span>!}
 
 {!<span class="ga">!}AUBREY: Aw, that's not true! There's a lot of cool things about you!{!</span>!}
 
+
+@intros_9_f3_2
+go-to: intros_end
+
+{!<span class="zq">!}YOU: Actually I'm kind of the antithesis of cool.{!</span>!}
+
 Miri smiles at you.
 
-{!<span class="bm">!}MIRI: Yeah! You don't have to be so self-deprecating all the time.{!</span>!}
-
+{!<span class="bm">!}MIRI: Come on! You don't have to be so self-deprecating all the time.{!</span>!}
 
 
 @intros_end
@@ -270,40 +324,194 @@ There is a lull in the conversation. People take the moment to eat.
 
 
 @next_topic
-view-if: time < p2_time
 on-arrival: time += 1
+
+[? if anxiety >= 7 and anxiety < 10 : Below the table, you toss your cell phone back and forth from one hand to the other. ?][? if anxiety >= 8 and anxiety < 12 : For some reason (actually fairly obvious reasons) you feel kind of nervous right now. Deep breaths. ?][? if anxiety >= 12 : Your heart is pounding. Your leg is shaking. ?][? if anxiety >= 14 : It's getting hard to keep on dealing with this. ?]
+
+- @listen: Listen.
+- @something_else: Say something.
+- @anxiety_attack
+- @break_up
+
+
+@listen
+view-if: anxiety <= 14 and time < p2_time
 max-choices: 1
 
 - #topic_start
-- @anxiety_attack
 
 
 @eat
 title: Eat.
 unavailable-subtitle: You aren't really hungry at all.
 choose-if: hunger > 0
+view-if: food_remaining > 0
 on-arrival: {!
 // randomly select a food to eat...
 var food_id = Math.floor(Math.random()*(Q['food'].length));
-Q['food_item'] = Q['food'][food_id];
+var food_item = Q['food'][food_id];
+Q['food_item'] = food_item;
 Q['food_consumption'] += 1;
-Q['hunger'] -= 0.5;
-var descs = Q['food_descs'][Q['food_item']];
+Q['food_remaining'] -= 1;
+Q['hunger'] -= 1;
+var descs = Q['food_descs'][food_item];
 var food_desc_id = Math.floor(Math.random()*(descs.length));
 Q['food_desc'] = descs[food_desc_id];
+
+var adds = Q['food_additional'][food_item];
+var food_add_id = Math.floor(Math.random()*(adds.length));
+Q['food_add'] = adds[food_add_id];
 !}
 go-to: jumpScene
 
-# TODO: change/describe your mood and how it's affected by the food.
+You take a bite of the [+ food_item +]. It tastes [+ food_desc +]. [+ food_add +]
 
-You take a bite of the [+ food_item +]. It tastes [+ food_desc +].
+[? if food_remaining = 0 : There's no more food left on your plate. ?]
+
+
+@something_else
+view-if: anxiety <= 14 and time < p2_time
+max-choices: 3
+
+What do you want to talk about?
+
+- @listen: Actually, I'd rather not say anything.
+- #set_topic
+
+
+@interject_null
+title: Interject?
+unavailable-subtitle: You have nothing to say.
+go-to: jumpScene
+view-if: 0 = 1
 
 
 @anxiety_attack
-title: You have to get away.
-view-if: anxiety > 12
+title: Leave and walk around.
+view-if: anxiety >= 10 and time < p2_time
 
 You can't deal with this anymore. You have to get away.
+
+{!<span class="zq">!}YOU: Um, I'm done eating... I'm going to go now.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Are you sure? You could still just sit here and hang out, if you want to.{!</span>!}
+
+- @anxiety_attack_stay: "I'll stay..."
+- @anxiety_attack_go: "Um, I have to go..."
+
+
+@anxiety_attack_stay
+go-to: listen
+
+{!<span class="zq">!}YOU: Alright, I'll stay here...{!</span>!}
+
+{!<span class="ga">!}AUBREY: Great!{!</span>!}
+
+
+@anxiety_attack_go
+go-to: anxiety_attack_go_em if em_int >= 2 or em_rom > 0 or prev_em = "date"; anxiety_attack_go_miri if miri_int >= 2 and em_rom = 0; anxiety_attack_go_aub if aub_int >= 2 and em_rom = 0; anxiety_attack_go_2 if em_int < 2 and miri_int < 2 and aub_int < 2 and em_rom = 0
+
+{!<span class="zq">!}YOU: Um, I have to go..."{!</span>!}
+
+
+@anxiety_attack_go_2
+
+{!<span class="ga">!}AUBREY: Alright, suit yourself.{!</span>!}
+
+{!<span class="bm">!}MIRI: See you later I guess?{!</span>!}
+
+Emily gives a slight wave.
+
+
+@anxiety_attack_go_em
+on-arrival: anxiety += 1
+
+{!<span class="ce">!}EMILY: Um, [+ first_name +]? Where are you going?{!</span>!}
+
+{!<span class="zq">!}YOU: Oh, um... I don't know.{!</span>!}
+
+{!<span class="ce">!}EMILY: Um, do you mind if I follow?{!</span>!}
+
+- @anxiety_attack_go_em_okay: "Okay..."
+- @anxiety_attack_go_em_no: "I want to be alone..."
+
+
+@anxiety_attack_go_em_okay
+on-arrival: with_em = 1
+
+{!<span class="zq">!}YOU: Oh, um... okay.{!</span>!}
+
+You leave, and she follows.
+
+- @em_p2: Go...
+
+
+@anxiety_attack_go_em_no
+
+{!<span class="zq">!}YOU: Oh, um... no, sorry. I want to be alone.{!</span>!}
+
+{!<span class="ce">!}EMILY: Oh, sorry, then...{!</span>!}
+
+She seems a little hurt. And you're alone now.
+
+- @root: Go...
+
+
+@anxiety_attack_go_miri
+on-arrival: anxiety += 1; with_miri = 1
+
+{!<span class="bm">!}MIRI: Hey, [+ first_name +]? Do you just wanna hang out for a bit?{!</span>!}
+
+- @anxiety_attack_go_miri_okay: "Okay..."
+- @anxiety_attack_go_miri_no: "I want to be alone..."
+
+
+@anxiety_attack_go_miri_okay
+on-arrival: with_miri = 1
+
+{!<span class="zq">!}YOU: Oh, um... sure?{!</span>!}
+
+{!<span class="bm">!}MIRI: Alright, let's go.{!</span>!}
+
+- @miri_p2: Go...
+
+
+@anxiety_attack_go_miri_no
+
+{!<span class="zq">!}YOU: Oh, um... no, sorry. I want to be alone.{!</span>!}
+
+{!<span class="bm">!}Miri: Oh, sorry, I guess.{!</span>!}
+
+She shrugs. And you're alone now.
+
+- @root: Go...
+
+
+@anxiety_attack_go_aub
+on-arrival: anxiety += 1; with_aub = 1
+
+TODO
+
+
+@break_up
+title: Dinner is over.
+view-if: time >= p2_time
+
+The dinner is over. Emily gets up first.
+
+{!<span class="ce">!}EMILY: Everyone's done eating, right? Can we disperse?{!</span>!}
+
+{!<span class="bm">!}MIRI: Or we could just, like, sit around here and talk some more. What else is there to do?{!</span>!}
+
+{!<span class="ga">!}AUBREY: Well, at least we could get desserts?{!</span>!}
+
+{!<span class="dw">!}WILLIAM: Yeah, I need to stretch after eating so much...{!</span>!}
+
+Aubrey and William get up and leave. And so do Emily and Miri.
+
+- @root: Go.
+
+# TODO: let 
 
 
 ###############################################################
@@ -312,8 +520,8 @@ You can't deal with this anymore. You have to get away.
 
 @college_1
 title: Aubrey talks about college.
-tags: topic_college, phase2, topic_start
-view-if: phase = 2 and topic_college = 0
+tags: topic_college, topic_start
+view-if: phase = 2 and topic_college = 0 and anxiety <= 14
 on-arrival: topic_college = 1; time += 1
 set-jump: college_2
 
@@ -321,65 +529,531 @@ set-jump: college_2
 
 Shrugs all around.
 
+- @eat
+- @college_2: Listen.
+- @college_1_think: Think.
+- @college_1_interject: Interject: I'm feeling...
+
+
+@college_1_think
+go-to: college_2
+
+You don't think much about your impending graduation. Perhaps the passage of time hasn't dawned on you yet.
+
 
 @college_1_interject
+on-arrival: anxiety += 1; talk_count += 1
 
 {!<span class="zq">!}YOU: Um, I'm feeling... {!</span>!} 
 
 {!<span class="ga">!}AUBREY: [+ first_name +], what are you feeling?{!</span>!}
 
 - @college_2_f1: Fine?
-- @college_2_f2: ???
-- @college_2_f3: ???
+- @college_2_f2: Bad?
+- @college_2_f3: Nervous?
 
 
 @college_2
+set-jump: college_3
+on-arrival: miri_em += 1
 
 {!<span class="bm">!}MIRI: I'm probably taking an extra year. So I'll be graduating in 2021.{!</span>!}
 
 {!<span class="ga">!}AUBREY: Oh, really? Why?{!</span>!}
 
-{!<span class="bm">!}MIRI: I had to work.{!</span>!} 
+{!<span class="bm">!}MIRI: I had to work. You know, getting a job, to pay for tuition and room and board. Guess none of you did?{!</span>!} 
 
+- @eat
+- @college_3: Listen.
+- @college_2_think: Think.
+- @college_2_interject: Interject: talk about your experiences?
+
+
+@college_2_think
+go-to: college_3
+
+Your mom was also poor and dad wasn't going to help pay after leaving the country, but your university gave you a full-tuition need-based scholarship. So are you allowed to commiserate here? Most likely not.
 
 
 @college_2_f1
+go-to: college_2_feelings
+
+{!<span class="zq">!}YOU: I'm feeling... fine, I guess.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Oh? Just fine? Is something wrong?{!</span>!}
+
+You shrug.
 
 
 @college_2_f2
+go-to: college_2_feelings
+
+{!<span class="zq">!}YOU: I'm feeling... not very good, I guess?{!</span>!}
+
+{!<span class="ga">!}AUBREY: Oh? Why?{!</span>!}
 
 
 @college_2_f3
+go-to: college_2_feelings
 
+{!<span class="zq">!}YOU: I'm feeling... kind of nervous I guess?{!</span>!}
+
+{!<span class="ga">!}AUBREY: Oh? Why?{!</span>!}
+
+
+@college_2_feelings
+
+- @college_3_idk: "I don't know?"
+- @college_3_sucks: "Everything sucks."
+- @college_3_waste: "I feel like I've wasted my whole time at college and I didn't make any friends and I didn't even get good grades."
+
+
+@college_3_idk
+
+{!<span class="zq">!}YOU: Um, I don't really know. It's just a weird feeling, I guess.{!</span>!}
+
+{!<span class="ga">!}AUBREY: It's okay! Everyone feels that way sometimes.{!</span>!}
+
+- @college_4_aub: "You seem to be doing well..."
+
+
+@college_3_sucks
+
+{!<span class="zq">!}YOU: Everything is just... not going well I guess.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Really? Aren't you going to like, a top grad school? You're doing better than most people your age.{!</span>!}
+
+{!<span class="zq">!}YOU: Maybe? I don't know. It's like, I'm not doing well compared to so many other people I know.{!</span>!}
+
+{!<span class="ga">!}AUBREY: It's okay! Everyone feels that way sometimes.{!</span>!}
+
+- @college_4_aub: "You seem to be doing well..."
+
+
+
+@college_3_waste
+
+{!<span class="zq">!}YOU: I just feel like I've wasted so much time. I haven't, um, done anything really worthwhile, I guess.{!</span>!}
+
+{!<span class="ga">!}AUBREY: It's okay! Everyone feels that way sometimes.{!</span>!}
+
+- @college_4_aub: "You seem to be doing well..."
+
+
+@college_4_aub
+go-to: next_topic
+
+{!<span class="zq">!}YOU: Um, you seem like you're doing well...{!</span>!}
+
+{!<span class="ga">!}AUBREY: Haha, really? I promise I'm not doing half as well as you might think I am.{!</span>!}
+
+{!<span class="zq">!}YOU: Oh... um, really?{!</span>!}
+
+{!<span class="ga">!}AUBREY: Hey, compared to my classmates I feel like I'm doing nothing! I know people who are like, literally going to rule the world.{!</span>!}
+
+Miri looks as if she's rolling her eyes. Emily shakes her head. Aubrey probably doesn't notice.
+
+{!<span class="zq">!}YOU: Um... okay.{!</span>!}
+
+{!<span class="ga">!}AUBREY: So anyway. You're doing fine.{!</span>!}
+
+You don't really have anything else to say.
+
+
+@college_2_interject
+on-arrival: anxiety += 1
+go-to: college_3
+
+Your mom was also poor and dad wasn't going to help pay after leaving the country, but your university gave you a full-tuition need-based scholarship. So are you allowed to commiserate here?
+
+What else are you supposed to say? Sorry for your economic circumstances? Is expressing sympathy the correct thing to do here? Anyway, there's no opening where anything you say would be helpful.
+
+
+@college_3
+set-jump: college_4
+
+{!<span class="ce">!}EMILY: I did. The FAFSA doesn't account for parents refusing to pay for tuition.{!</span>!}
+
+{!<span class="bm">!}MIRI: Oh. Was it because of your, um-{!</span>!}
+
+{!<span class="ce">!}EMILY: Yeah, it was.{!</span>!}
+
+{!<span class="bm">!}MIRI: Wow, sorry about that. For me it was just 'cause of my siblings and stuff. I'm the youngest.{!</span>!} (She shrugs.)
+
+{!<span class="ce">!}EMILY: Oh, I'm sorry.{!</span>!}
+
+{!<span class="bm">!}MIRI: Yeah, it's fine. A lot of people don't even get to go to college, so we're all lucky here.{!</span>!} 
+
+{!<span class="ce">!}EMILY: Right.{!</span>!}
+
+- @eat
+- @college_4: Listen.
+- @interject_null
+
+
+@college_4
+go-to: next_topic
+
+It seems as if no one wants to talk about this anymore.
 
 
 ###############################################################
-# topic: future
+# topic: party
 ###############################################################
 
+@party_1
+title: "So, uh, how's the party going?"
+tags: set_topic
+view-if: phase = 2 and topic_party = 0 and anxiety <= 14
+on-arrival: time += 1; topic_party = 1; anxiety += 1
+
+{!<span class="zq">!}YOU: So, uh, how's the party going? Are you, um, enjoying it?{!</span>!}
+
+{!<span class="ga">!}AUBREY: I mean, it's an Asian parents party. Haha. But it's really not that bad. I'm actually kind of enjoying it here. What do you guys think?{!</span>!}
+
+Miri and Emily shrug.
+
+{!<span class="bm">!}MIRI: Beats staying with my parents, at least.{!</span>!}
+
+{!<span class="ce">!}EMILY: I'm functioning, I suppose.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Haha. Wow. You guys don't need to be so negative. Come on! It can't be that bad! What do you think, [+ first_name +]?{!</span>!}
+
+Oh. She's talking to you.
+
+- @party_1_think: Think.
+- @party_1_good: "It's going great! Really!"
+- @party_1_okay: "It's okay?"
+- @party_1_bad: "I'm a few moments away from a mental breakdown right now."
+
+
+@party_1_think
+
+You weigh the positives and negatives of the party together and attempt to form a rational answer. It does not come.
+
+- @party_1_good: "It's going great! Really!"
+- @party_1_okay: "It's okay?"
+- @party_1_bad: "I'm a few moments away from a mental breakdown right now."
+
+
+@party_1_good
+go-to: party_2
+
+{!<span class="zq">!}YOU: Um, it's going great!{!</span>!}
+
+{!<span class="ga">!}AUBREY: Well, it's nice that at least there are a few... members of our generation here. A lot of times that doesn't happen.{!</span>!}
+
+
+@party_1_okay
+go-to: party_2
+
+{!<span class="zq">!}YOU: It's, um, okay?{!</span>!}
+
+{!<span class="ga">!}AUBREY: Yeah? I get that. These parties aren't really for us. They're for our parents.{!</span>!}
+
+
+@party_1_bad
+go-to: next_topic
+on-arrival: anxiety += 1
+
+You probably shouldn't say something so straightforward. Or can you? Are you allowed to?
+
+{!<span class="zq">!}YOU: I'm, um, kind of having, like, an anxiety attack.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Oh, I'm so sorry!{!</span>!}
+
+{!<span class="zq">!}YOU: No, it's okay... um, sorry.{!</span>!}
+
+{!<span class="ga">!}AUBREY: No, what do you have to be sorry for? Do you need anything right now?{!</span>!}
+
+{!<span class="zq">!}YOU: No, I'm okay. I was just kidding. I'm fine.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Oh, well. Okay.{!</span>!}
+
+Narrator voice: you are not fine. You were never fine.
+
+
+
+@party_2
+go-to: next_topic
+
+{!<span class="dw">!}WILLIAM: Hey, I'm just happy to be here with you.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Aww... I love you.{!</span>!}
+
+{!<span class="bm">!}MIRI: Wow, that's, uh, sick.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: In a good way or bad way?{!</span>!}
+
+{!<span class="bm">!}MIRI: I don't know.{!</span>!}
 
 
 ###############################################################
 # topic: nostalgia for high school stuff (Aubrey delivers drama on the teachers and science olympiad)
 ###############################################################
 
+@hs_1
+title: Aubrey talks about high school.
+tags: topic_start 
+view-if: phase = 2 and topic_hs = 0 and anxiety <= 14
+on-arrival: time += 1; topic_hs = 1; anxiety += 1; aub_int += 1
+set-jump: hs_2
+
+{!<span class="ga">!}AUBREY: So, [+ first_name +], did you ever get back in touch with anyone from high school? Besides, like, the people here?{!</span>!}
+
+- @hs_2: "No, not really."
+
+
+@hs_2
+
+{!<span class="zq">!}YOU: Um, no, not really.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Oh. I heard that the Science Olympiad team is doing a lot better than when we were there. They got third in state!{!</span>!}
+
+{!<span class="zq">!}YOU: Oh, well, good for them.{!</span>!} 
+
+{!<span class="ga">!}AUBREY: I heard that Mr. Goldberg retired and moved to Costa Rica.{!</span>!}
+
+{!<span class="zq">!}YOU: Oh, well, good for him.{!</span>!}
+
+{!<span class="ga">!}AUBREY: A lot of people from our year are doing really well, besides us haha. Ashley is a published author now. Krishna from Science Olympiad graduated early and already started his PhD. I think David did too. He's in California now. Diana is also applying to med school.{!</span>!}
+
+{!<span class="zq">!}YOU: Oh, well, good for them.{!</span>!}
+
+{!<span class="ga">!}AUBREY: You sound kind of bored, haha.{!</span>!}
+
+- @hs_3_no: "No, I'm really interested."
+- @hs_3_yes: "Yeah..."
+- @hs_3_miri: "Miri, what about you?"
+
+
+@hs_3_no
+go-to: next_topic
+
+{!<span class="zq">!}YOU: Um, no, I am interested. I am fascinated by hearing all the hot gossip.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Okay, that was like the least enthusiastic thing I've heard.{!</span>!}
+
+{!<span class="zq">!}YOU: It's true though. I love vicarious social experiences.{!</span>!}
+
+And it is true, unfortunately, not that anyone would believe you. Not that Aubrey wants to continue talking about this.
+
+
+
+@hs_3_yes
+go-to: next_topic
+
+{!<span class="zq">!}YOU: Um, a little?{!</span>!}
+
+{!<span class="ga">!}AUBREY: Oh, sorry. Did you have anyone you were close to in high school, besides, like, us?{!</span>!}
+
+{!<span class="zq">!}YOU: I guess not...{!</span>!}
+
+{!<span class="ga">!}AUBREY: Not even on a facebook-stalking level?{!</span>!}
+
+{!<span class="zq">!}YOU: Um... sorry.{!</span>!}
+
+{!<span class="ga">!}AUBREY: That's okay! Let's talk about something else, then.{!</span>!}
+
+
+@hs_3_miri
+on-arrival: miri_int += 1
+go-to: next_topic
+
+{!<span class="zq">!}YOU: Um, Miri? What do you think?{!</span>!}
+
+{!<span class="bm">!}MIRI: What do I think about what?{!</span>!}
+
+{!<span class="zq">!}YOU: Um, high school stuff?{!</span>!}
+
+{!<span class="bm">!}MIRI: Honestly I'm just glad it's all over. I don't really have any desire to, like, go back to that world.{!</span>!}
+
+{!<span class="zq">!}YOU: I thought you were friends with like...{!</span>!}
+
+{!<span class="bm">!}MIRI: Our relationships were purely a product of the circumstances.{!</span>!} (She sighs.)
+
+{!<span class="ga">!}AUBREY: What about you, Emily? Any fond memories of high school?{!</span>!}
+
+{!<span class="ce">!}EMILY: Take a wild guess.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Aww, that's too bad.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Alright, since no one wants to go on a nostalgic memory trip, let's talk about something else, then.{!</span>!}
+
+
+##############################################################
+# topic: Aubrey asks why Miri is here
+##############################################################
+
+@miri_1
+title: Aubrey asks why Miri is here
+tags: topic_start
+view-if: phase = 2 and topic_miri = 0 and anxiety <= 14
+on-arrival: time += 1; topic_miri = 1
+
+{!<span class="ga">!}AUBREY: Hey Miri, sorry if this is a weird question, but why did you decide to come here? I don't think I've seen you at one of these Chinese people parties before.{!</span>!}
+
+Miri shrugs and shakes her head.
+
+{!<span class="bm">!}MIRI: It wasn't really a choice. I didn't have anyplace else to go.{!</span>!}
+
+- @miri_1_introspect: So she didn't actually want to hang out with you.
+
+
+@miri_1_introspect
+on-arrival: anxiety += 1; despair += 1
+
+You try to not be disappointed at having been her last choice. Or at least not make it outwardly visible.
+
+{!<span class="bm">!}MIRI: There was some shit going on at home. My brother and my dad were having this fight.{!</span>!}
+
+{!<span class="ga">!}AUBREY: But why here, of all places?{!</span>!}
+
+{!<span class="bm">!}MIRI: Because I feel like [+ first_name +] is the one person I know I can count on right now.{!</span>!}
+
+She smiles at you, for some reason.
+
+- @miri_2_think: Think.
+- @miri_2_thanks: "Thanks...?"
+- @miri_2_really: "Really...?"
+- @miri_2_even: "Even though we haven't spoken...?"
+- @miri_3_silent: Just listen.
+
+
+@miri_2_think
+
+You abandoned Miri, ghosted her. You feel a strangling sense of guilt, somewhat worse than usual.
+
+- @miri_2_thanks: "Thanks...?"
+- @miri_2_really: "Really...?"
+- @miri_2_even: "Even though we haven't spoken...?"
+- @miri_3_silent: Just listen.
+
+
+@miri_2_thanks
+go-to: miri_3_best_friend if prev_miri != "none"; miri_3_past if prev_miri = "none"
+
+{!<span class="zq">!}YOU: Um, thanks?{!</span>!}
+
+{!<span class="bm">!}MIRI: Sure, no problem.{!</span>!}
+
+
+
+@miri_2_really
+go-to: miri_3_best_friend if prev_miri != "none"; miri_3_past if prev_miri = "none"
+
+{!<span class="zq">!}YOU: Um, really?{!</span>!}
+
+{!<span class="bm">!}MIRI: Yeah!{!</span>!}
+
+
+@miri_2_even
+go-to: miri_3_best_friend if prev_miri != "none"; miri_3_past if prev_miri = "none"
+
+{!<span class="zq">!}YOU: Um, even though we haven't spoken in forever?{!</span>!}
+
+Miri shrugs.
+
+{!<span class="bm">!}MIRI: I mean, same goes for everyone else in high school, tbh.{!</span>!}
+
+
+@miri_3_past
+go-to: next_topic
+
+{!<span class="bm">!}MIRI: I wish things had been better, [+ first_name +].{!</span>!}
+
+{!<span class="zq">!}YOU: Yeah...{!</span>!}
+
+Things have suddenly gotten more awkward. Or perhaps that's your perception once again playing tricks on you.
+
+
+@miri_3_best_friend
+on-arrival: miri_best_friend = 1
+
+{!<span class="bm">!}MIRI: You know you were my best friend in high school, [+ first_name +], right?{!</span>!}
+
+- @miri_4_best_friend: "Oh, I thought..."
+
+
+@miri_4_best_friend
+go-to: next_topic
+on-arrival: miri_relationship += 1; miri_int += 1; miri_best_friend_callback = 1; anxiety += 1
+
+{!<span class="zq">!}YOU: Oh, um... I thought you were better friends with a bunch of other people, like, uh...{!</span>!}
+
+{!<span class="bm">!}MIRI: Nah. They were just loud and like, really affectionate. They're into the whole PDA thing, like, platonic PDA. You were extremely not into that, so.{!</span>!}
+
+{!<span class="bm">!}MIRI: I wish we stayed in touch better.{!</span>!}
+
+{!<span class="zq">!}YOU: Yeah... Sorry.{!</span>!}
+
+Things have suddenly gotten more awkward. Or perhaps that's your perception once again playing tricks on you.
+
+
+@miri_3_silent
+go-to: next_topic
+
+{!<span class="ga">!}AUBREY: Well, I'm glad you're here now!{!</span>!}
+
+{!<span class="bm">!}MIRI: Yeah. Me too.{!</span>!}
+
+Miri is glancing at you for some reason. You don't know why.
 
 
 ###############################################################
 # topic: food
 ###############################################################
 
+@food_1_k
+title: "The food is good..."
+tags: set_topic
+view-if: phase = 2 and topic_food = 0 and anxiety <= 14
+on-arrival: time += 1; topic_food = 1; anxiety += 1; aub_int += 1; talk_count += 1
+go-to: food_2
+
+{!<span class="zq">!}YOU: Um, the food is really good...{!</span>!}
+
+{!<span class="ga">!}AUBREY: Yeah! It really is! Your mom's noodles are still the same. They're still super good.{!</span>!}
+
+{!<span class="zq">!}YOU: Um, thanks... for my mom, not for me. I guess I helped a little.{!</span>!}
+
+
 @food_1
 title: Miri talks about the food.
-tags: topic_start, phase2
-view-if: phase = 2 and topic_food = 0
+tags: topic_start 
+view-if: phase = 2 and topic_food = 0 and anxiety <= 14
 on-arrival: time += 1; topic_food = 1
 set-jump: food_2
 
-{!<span class="bm">!}MIRI: The food here is great!{!</span>!}
+{!<span class="bm">!}MIRI: The food here is great! I really like the steamed buns, I think? It's not really something that you get at restaurants.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Yeah! This is northeastern Chinese food. There's not a lot of northeast-style restaurants here.{!</span>!} 
+
+- @eat
+- @food_2: Listen.
+- @food_1_think: Think.
+- @food_1_interject: Interject: Agree with Miri.
+
+
+@food_1_interject
+go-to: next_topic
+on-arrival: anxiety += 1; talk_count += 1
+
+{!<span class="zq">!}YOU: Yeah, this is really good. My mom made the lamb noodles.{!</span>!}
+
+No one responds. Or no one heard you. You've killed whatever was left of the conversation. You suck at this.
+
+
+@food_1_think
+go-to: food_2
+
+The food at these parties is typically the sole reason to not dread your attendence. Every family is supposed to bring one dish, and they usually bring out their best.
 
 
 @food_2
+go-to: next_topic
+
+Nods all around. Everyone seems content.
 
 
 ###############################################################
@@ -388,9 +1062,9 @@ set-jump: food_2
 
 @politics_1
 title: William talks about politics.
-tags: topic_start, phase2, topic_politics
-view-if: phase = 2 and topic_politics = 0
-on-arrival: time += 1; topic_politics = 1
+tags: topic_start, topic_politics
+view-if: phase = 2 and topic_politics = 0 and anxiety <= 14
+on-arrival: time += 1; topic_politics = 1; anxiety += 1
 set-jump: politics_2
 
 {!<span class="dw">!}WILLIAM: So, how about that election?{!</span>!}
@@ -399,13 +1073,14 @@ The table is silent. No one wants to be the first person to respond.
 
 - @eat
 - @politics_2: Listen.
-- @politics_1_interject: Interject.
+- @politics_1_think: Think.
+- @interject_null
 
 
-@politics_1_interject
+@politics_1_think
 go-to: politics_2
 
-You're not going to be the one to open this discussion.
+You only acquired US citizenship a year ago, and haven't voted in an election yet. But with your social media consumption you have mainlined years worth of political discourse, mostly of the radical left sort. You are not particularly inclined to enter into IRL discourse at this moment.
 
 
 @politics_2
@@ -427,13 +1102,14 @@ Emily smiles.
 
 - @eat
 - @politics_3: Listen.
-- @politics_2_interject: Interject.
+- @politics_2_think: Think.
+- @interject_null
 
 
-@politics_2_interject
+@politics_2_think
 go-to: politics_3
 
-There is nothing for you to say. Nothing at all.
+There is nothing you can contribute to this discussion that has not already been discoursed to hell and back, with arguments going around in circles. Insofar that you would ever discuss politics, you would prefer to discuss ideologies rather than personalities. Nerd. But either way, your anxiety just gets worse.
 
 
 @politics_3
@@ -447,13 +1123,24 @@ set-jump: politics_4
 
 {!<span class="bm">!}MIRI: Yeah! Only overeducated middle-class types like Warren. Bernie is way more popular among actual working class people.{!</span>!}
 
-{!<span class="dw">!}WILLIAM: Okay, but we haven't even gotten close to the nomination yet so things could change.{!</span>!}
+{!<span class="dw">!}WILLIAM: Okay, but we haven't even gotten close to the nomination yet so things could change. People from all classes support her.{!</span>!}
+
+{!<span class="ce">!}EMILY: That is objectively not true in terms of her support base, proportionally speaking.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: She can pass policies that can actually help people instead of posturing with meaningless gestures!{!</span>!}
 
 {!<span class="ga">!}AUBREY: Can we talk about something else? Please?{!</span>!}
 
 - @eat
 - @politics_4: Listen.
-- @politics_3_interject: Interject.
+- @politics_3_think: Think.
+- @politics_3_interject: Interject: Just nod or something.
+
+
+@politics_3_think
+go-to: politics_4
+
+You think back to all the surveys and statistics and papers and discourse you read, all in an attempt to procrastinate from conducting the research that is your actual job. It was all useless. Worse than useless, probably. All it does is increase your anxiety.
 
 
 @politics_3_interject
@@ -471,4 +1158,452 @@ on-arrival: anxiety += 1
 There is an awkward moment. In the greater party, people are shuffling about, talking, laughing. The table is silent. You can almost see the tension in the air.
 
 
-########################################
+#############################################
+# topic: how's the weather?
+#############################################
+
+@weather_1
+title: "So... how about the weather?"
+tags: set_topic
+view-if: phase = 2 and topic_weather = 0 and anxiety <= 14
+on-arrival: time += 1; topic_weather = 1; anxiety += 1
+go-to: weather_2_miri if miri_small_talk = 1; weather_2 if miri_small_talk = 0
+
+{!<span class="zq">!}YOU: So, um, it's really cold out right now. And snowy. There's a lot of snow.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Yeah, it is, isn't it.{!</span>!}
+
+
+@weather_2_miri
+on-arrival: anxiety += 1; em_environmental_science_callback = 1 
+go-to: weather_2_climate
+
+{!<span class="bm">!}MIRI: Wow, congratulations on learning how to initiate small talk.{!</span>!}
+
+{!<span class="ce">!}EMILY: The weather is objectively an interesting topic though. It ties into so many other things, like climate change and physics and computational modeling.{!</span>!}
+
+{!<span class="ce">!}EMILY: Like, a lot of models predict that extreme weather events of all types will get more likely, even cold events in some areas.{!</span>!}
+
+{!<span class="ce">!}EMILY: I'm an environmental science major. Sorry.{!</span>!}
+
+
+@weather_2
+go-to: weather_2_climate
+
+{!<span class="bm">!}MIRI: Wow, we're really gonna talk like boomers now.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: It really is cold though! It's a lot colder than usual!{!</span>!}
+
+{!<span class="ce">!}EMILY: Which is a side effect of climate change even if it doesn't seem like it.{!</span>!}
+
+{!<span class="ce">!}EMILY: I'm an environmental science major. Sorry.{!</span>!}
+
+
+@weather_2_climate
+go-to: next_topic
+
+{!<span class="ga">!}AUBREY: Is everything about climate change?{!</span>!}
+
+{!<span class="ce">!}EMILY: Yeah. It kind of encompasses everything in the world.{!</span>!}
+
+Emily looks as if she's gazing into the distance. The table is quiet, the silence filled by the sounds of the party all around you.
+
+
+
+#############################################
+# topic: em's name
+#############################################
+
+@em_name_1
+title: William asks about Emily's name.
+tags: topic_start
+view-if: phase = 2 and topic_em = 0 and anxiety <= 14
+on-arrival: time += 1; topic_em = 1
+set-jump: em_name_2
+
+{!<span class="dw">!}WILLIAM: So, Emily, I'm really curious, how did you choose your name?{!</span>!}
+
+{!<span class="bm">!}MIRI: Wow, that is an inappropriate question.{!</span>!}
+
+{!<span class="ce">!}EMILY: No, it's okay. It's a fun question!{!</span>!}
+
+{!<span class="ce">!}EMILY: Basically I was trying to pick the most generic name possible.{!</span>!}
+
+{!<span class="ce">!}EMILY: Do you know how many cis women named Emily Chen there are? Thousands at least; I personally know a couple. The result is that I can't be googled. It's like an invisibility field.{!</span>!}
+
+{!<span class="ce">!}EMILY: Why? What name would you pick?{!</span>!}
+
+{!<span class="dw">!}WILLIAM: If I had to, I'd probably pick something more unique? Haha. William is kind of boring.{!</span>!}
+
+{!<span class="ce">!}EMILY: Oh? Like what?{!</span>!} (She makes a strange half-smile.)
+
+{!<span class="dw">!}WILLIAM: I haven't really thought about it.{!</span>!} (He laughs.)
+
+{!<span class="dw">!}WILLIAM: It's kind of like, when my parents came to America they picked new English names for themselves somehow.{!</span>!}
+
+- @eat
+- @em_name_2: Listen.
+- @em_name_1_think: Think.
+- @em_name_1_interject: Interject: "My name was chosen randomly..."
+
+
+@em_name_1_think
+go-to: em_name_2
+
+[? if prev_em != "none" : You feel a little jealous that other people are making acquantances with Emily, that they are developing a rapport. There is a part of you that feels like she is *yours* somehow. That's a toxic idea, so you try to suppress these feelings. It doesn't work.  ?] 
+[? if prev_em = "none" : You feel a little jealous that other people are making acquantances with Emily, that they are developing a rapport. You wish you could emulate their social ease. You obviously cannot. ?] 
+
+
+@em_name_1_interject
+view-if: first_name = "Karen"
+go-to: next_topic
+on-arrival: anxiety += 1; em_int += 1; talk_count += 1
+
+{!<span class="zq">!}YOU: I got my name by picking from a box in first grade English class. I wouldn't have named myself Karen.{!</span>!}
+
+{!<span class="ce">!}EMILY: Too bad it's gotten memed recently. It sounds like a good name.{!</span>!}
+
+{!<span class="zq">!}YOU: Um, really?{!</span>!}
+
+{!<span class="ce">!}EMILY: Like, in the abstract it contains pleasant phonemes. Sorry if that sounds weird.{!</span>!}
+
+{!<span class="zq">!}YOU: No, I mean, thanks...{!</span>!}
+
+As usual, you killed the conversation. You murderer.
+
+
+@em_name_2
+go-to: next_topic
+
+{!<span class="ga">!}AUBREY: My parents said that I was supposed to be called Audrey but they misspelled it. Did you know that Aubrey was supposed to be a boy's name once?{!</span>!}
+
+{!<span class="ce">!}EMILY: Yeah, a lot of names have gotten force feminized.{!</span>!}
+
+Miri stifles a laugh.
+
+{!<span class="bm">!}MIRI: Miriam is like, the OG woman's name. It's like the cis-est name.{!</span>!}
+
+{!<span class="ce">!}EMILY: Wouldn't that be Eve? Or Zoe which is the same thing. Which actually isn't a cis name.{!</span>!}
+
+{!<span class="ga">!}AUBREY: I officially don't know what you're talking about anymore.{!</span>!}
+
+{!<span class="ce">!}EMILY: Zoe is just Eve in Greek, which was the original woman according to the Bible. There's a stereotype that a lot of trans women are named Zoe.{!</span>!}
+
+{!<span class="ce">!}EMILY: Sorry. It was an extremely unfunny joke, wasn't it?{!</span>!}
+
+The conversation dies.
+
+
+
+############################################
+# topic: em's vegetarianism
+############################################
+
+@em_veg_1
+title: Miri asks about Emily's diet.
+tags: topic_start
+view-if: phase = 2 and topic_em_veg = 0 and anxiety <= 14
+on-arrival: time += 1; topic_em_veg = 1
+set-jump: em_veg_2
+
+{!<span class="bm">!}MIRI: Hey, Emily, sorry if this is weird but are you a vegetarian?{!</span>!}
+
+You just notice that she doesn't have any meat on her plate. Not even the dumplings or baozi.
+
+{!<span class="ce">!}EMILY: Oh. Yeah, I am. It's a climate change thing mostly.{!</span>!}
+
+{!<span class="ga">!}AUBREY: How does that work?{!</span>!} 
+
+Emily gives Aubrey a perplexed look.
+
+{!<span class="ce">!}EMILY: The carbon emissions from basically any kind of animal product are higher than the carbon emissions from most plant products. I did a research project on this.{!</span>!}
+
+{!<span class="bm">!}MIRI: Aren't a lot of plant products really bad for the environment though? Like almonds and stuff?{!</span>!}
+
+{!<span class="ce">!}EMILY: Yeah, almonds uses a shitton of water. But the CO2 emissions are still way lower than the average American beef for the same calories. And like, a ton of water is used to grow animal feed. It's a messed up system.{!</span>!}
+
+- @eat
+- @em_veg_2: Listen.
+- @em_veg_1_think: Think.
+- @em_veg_1_interject: Interject: Talk about cow farts.
+
+
+@em_veg_1_think
+go-to: em_veg_2
+
+You've read some of the studies too, because of various internet arguments and discourse around veganism. Emily is mostly correct, from what you've read. Not that it matters to anyone.
+
+
+@em_veg_1_interject
+on-arrival: anxiety += 1; em_int += 1; talk_count += 1
+go-to: next_topic
+
+{!<span class="zq">!}YOU: Um, apparently a lot of the greenhouse gas emissions from cows come from methane. From their farts.{!</span>!}
+
+{!<span class="ce">!}EMILY: That and manure. Ideally we could capture cow farts for fuel, but I guess it's not efficient enough. And land use changes and feedstock are also pretty large slices of emissions so it won't be enough.{!</span>!}
+
+The conversation dies, and you have killed it.
+
+
+@em_veg_2
+go-to: next_topic
+
+{!<span class="ga">!}AUBREY: Wow, I'm feeling kind of bad about all this meat now.{!</span>!} (Her plate is full of animal parts you wouldn't even consider eating.)
+
+{!<span class="ce">!}EMILY: Eh. Don't be.{!</span>!}
+
+The conversation dies.
+
+
+
+###########################################
+# topic: media
+###########################################
+
+@media_1
+title: William asks about popular media.
+tags: topic_start
+view-if: phase = 2 and topic_media = 0 and anxiety <= 14
+on-arrival: time += 1; topic_media = 1
+set-jump: media_2
+
+{!<span class="dw">!}WILLIAM: So, have you guys seen any good movies lately? How about that star war?{!</span>!} 
+
+{!<span class="bm">!}MIRI: Do people still watch movies?{!</span>!}
+
+{!<span class="ga">!}AUBREY: Um, yeah? Why wouldn't they?{!</span>!}
+
+{!<span class="bm">!}MIRI: Everything's monopolized by Disney these days, and they just do sequels and remakes. There's nothing that's like, actually original.{!</span>!}
+
+{!<span class="dw">!}WILLIAM (smirking): Okay, boomer.{!</span>!}
+
+{!<span class="bm">!}MIRI: Fuck you. But okay, like, the real problem is the late capitalist consolidation of the media industry.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: Sure, but that doesn't mean you can't enjoy the products.{!</span>!}
+
+{!<span class="bm">!}MIRI: I can't fucking enjoy imperialist propaganda.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Okay, guys, come on. We don't need to start a war here.{!</span>!}
+
+- @eat
+- @media_2: Listen.
+- @media_1_think: Think.
+- @media_1_interject: Interject: So, does anyone here read books?.
+
+
+@media_1_think
+go-to: media_2
+
+All these arguments go in circles. There is no effect except to raise your anxiety.
+
+
+@media_1_interject
+go-to: media_2
+
+To be honest, you haven't been the best about reading as a hobby lately. You've only read a few non-university-related books last year. So, you'll just be telling on yourself, in addition to sounding like a pretentious jerk.
+
+
+@media_2
+set-jump: media_3
+
+{!<span class="ce">!}EMILY: So, does anyone here play videogames?{!</span>!}
+
+William laughs.
+
+{!<span class="dw">!}WILLIAM: Boy, do I!{!</span>!}
+
+{!<span class="bm">!}MIRI: Do you play LoL?{!</span>!}
+
+{!<span class="dw">!}WILLIAM: How did you know?{!</span>!}
+
+{!<span class="bm">!}MIRI: You just give off the rancid vibes of a LoL player.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: Wow, I'm really wounded.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Hey, guys, could you chill out?{!</span>!}
+
+- @eat
+- @media_3: Listen
+- @media_2_think: Think.
+- @media_2_interject: Interject: I've been playing...
+
+
+@media_2_think
+go-to: media_3
+
+You think about video games. Most of the video games that you play are visual novels or dating sims or RPGs that effectively function as dating sims. These games obviously function substitute for your paucity of real-world social interactions. You try to not dwell on that.
+
+
+@media_2_interject
+go-to: media_3
+
+You've been playing that one mobile text-based dating sim, but can you really admit that here? Is it really a thing that's appropriate to bring up in polite conversation? Not that this conversation has been particularly polite, but there are still standards.
+
+
+@media_3
+
+{!<span class="ce">!}EMILY (to Miri): Did you ever read Homestuck?{!</span>!}
+
+{!<span class="bm">!}MIRI: Yes, unfortunately. How would you know?{!</span>!}
+
+{!<span class="ce">!}EMILY: You just give off those vibes.{!</span>!}
+
+{!<span class="dw">!}WILLIAM: And you called my vibes rancid.{!</span>!}
+
+{!<span class="bm">!}MIRI: Hey, I'm not proud of it.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Okay, guys, I have no idea what you're talking about right now.{!</span>!}
+
+- @next_topic: This conversation stops, thankfully.
+- @media_3_think: Think.
+- @media_3_interject: Interject: I have also read said webcomic.
+
+
+@media_3_think
+
+
+You also have read the entirety of said webcomic. It dominated your life for a time and was part of your process of self-discovery, or something like that.
+
+Thus, you can connect with Emily and Miri by virtue of your shared interests, which is how human bonds oft form. Right? You're allowed to talk about it now, right?
+
+- @next_topic: The conversation moves on.
+- @media_3_interject: Interject: I have also read said webcomic.
+
+
+@media_3_interject
+on-arrival: hs_callback = 1; talk_count += 1
+go-to: media_3_hs_em_friends if prev_em != "none"; media_3_hs_em_none if prev_em = "none"
+
+{!<span class="zq">!}YOU: Um, I've read it too...{!</span>!}
+
+{!<span class="bm">!}MIRI: Yeah, I remember that! We used to talk about it so much! Did you end up finishing it?{!</span>!}
+
+{!<span class="zq">!}YOU: Yeah, I did...{!</span>!}
+
+[? if prev_miri = "none" : Come to think of it, Miri dropping the webcomic was probably the point at which your relationship started to break down. ?]
+[? if prev_miri = "date" or prev_miri = "broken" : Maybe Miri dropping the webcomic was a premonition that your interests would diverge, and that you would grow apart. ?]
+[? if prev_miri = "friend" : Come to think of it, maybe the time Miri dropped the webcomic was the time the two of you started to grow more distant. ?]
+
+@media_3_hs_em_friends
+on-arrival: em_int += 1; miri_int += 1
+go-to: media_3_hs_ending
+
+{!<span class="ce">!}EMILY: I really should have known back then. We could have, like, talked about stuff.{!</span>!}
+
+{!<span class="zq">!}YOU: Yeah... Sorry.{!</span>!}
+
+{!<span class="ce">!}EMILY: No, I mean, it wasn't something I would've talked about irl. Cringe and all that.{!</span>!}
+
+{!<span class="zq">!}YOU: Oh...{!</span>!}
+
+
+@media_3_hs_em_none
+go-to: media_3_hs_ending
+
+{!<span class="ce">!}EMILY: That's nice.{!</span>!}
+
+
+@media_3_hs_ending
+on-arrival: anxiety += 1
+go-to: next_topic
+
+{!<span class="bm">!}MIRI: So what happened with the ending?{!</span>!}
+
+{!<span class="zq">!}YOU: Um, I don't know. It was... kind of confusing.{!</span>!}
+
+{!<span class="bm">!}MIRI: God, no kidding. I heard it sucked.{!</span>!}
+
+{!<span class="zq">!}YOU: It was okay...{!</span>!}
+
+No one is picking up this thread of conversation. You must have killed it.
+
+
+#####################################
+# topic: Aubrey calls out Karen for not talking
+#####################################
+
+@no_talk_1
+title: Aubrey asks why you aren't saying anything.
+view-if: topic_no_talk = 0 and talk_count = 0 and time > t2_time + 6
+on-arrival: topic_no_talk = 1; time += 1; anxiety += 2
+tags: topic_start
+
+{!<span class="ga">!}AUBREY: Hey [+ first_name +]?{!</span>!}
+
+{!<span class="zq">!}YOU: Umm... yeah?{!</span>!}
+
+{!<span class="ga">!}AUBREY: You've been really quiet today. Is everything all right?{!</span>!}
+
+You freeze. You close your eyes. You start to think. It's always this question, isn't it?
+
+- @no_talk_know_better: Think: she should know better.
+- @no_talk_say: Just say something.
+- @no_talk_stare: Stare at Aubrey.
+
+
+@no_talk_know_better
+on-arrival: despair += 1
+
+She should know better than to ask something like this. She knows you. She should know you.
+
+But that's an awfully self-centered line of thinking. Why would she be obligated to know anything about you? After all, you haven't had a real conversation in years. It's probably innocent. She's probably just a normal human being who wants to communicate in normal human ways with you. Why is that so difficult?
+
+- @no_talk_say: Just say something.
+- @no_talk_stare: Stare at Aubrey.
+
+
+@no_talk_say
+
+- @no_talk_always: "I'm always like this..."
+- @no_talk_fine: "I'm fine..."
+- @no_talk_sorry: "Sorry..."
+
+
+@no_talk_always
+
+{!<span class="zq">!}YOU: Um, I'm always like this...{!</span>!}
+
+{!<span class="bm">!}MIRI: Yeah, don't worry about it. [+ first_name +] is fine.{!</span>!}
+
+{!<span class="ga">!}AUBREY: Actually, I was just wondering... sorry, forget it then.{!</span>!}
+
+- @no_talk_im_okay: "I'm okay. There's nothing wrong with me."
+
+
+@no_talk_fine
+
+{!<span class="zq">!}YOU: Um, I'm fine...{!</span>!}
+
+{!<span class="ga">!}AUBREY: Okay, forget it then.{!</span>!}
+
+- @no_talk_im_okay: "I'm okay. There's nothing wrong with me."
+
+
+@no_talk_sorry
+
+{!<span class="zq">!}YOU: Um, sorry...{!</span>!}
+
+{!<span class="ga">!}AUBREY: No, don't be! I was just wondering... you know, forget it. It's fine.{!</span>!}
+
+- @no_talk_im_okay: "I'm okay. There's nothing wrong with me."
+
+
+@no_talk_stare
+
+You imagine that your glare contains a hidden power, a commanding force, or else that it is capable of telepathically communicating your innermost thoughts and finally getting them to understand. Obviously, it is neither of these things.
+
+{!<span class="ga">!}AUBREY: Um, [+ first_name +], are you okay? Is something wrong?{!</span>!}
+
+- @no_talk_sorry: "Sorry..."
+
+
+@no_talk_im_okay
+go-to: next_topic
+
+{!<span class="zq">!}YOU: Um, I'm okay. There's probably nothing wrong with me.
+
+{!<span class="ga">!}AUBREY: Yeah, I know. Can we talk about something else now?
+
+{!<span class="zq">!}YOU: Yeah...{!</span>!}
+
+You manage a few breaths. You are fine, right?

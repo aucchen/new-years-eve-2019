@@ -13,10 +13,10 @@ def test(output_path='output.txt', dump_stats=1, script_path='transcript.txt', d
     script = []
     transcript = ''
     current_paragraphs = set()
-    #options = Options()
-    #options.headless = True
-    #driver = webdriver.Firefox(options=options)
-    driver = webdriver.PhantomJS()
+    options = Options()
+    options.headless = True
+    driver = webdriver.Firefox(options=options)
+    #driver = webdriver.PhantomJS()
     driver.get('file://' + file_path)
     link_divs = driver.find_elements_by_xpath('//ul[@class="choices"]//li')
     data = driver.execute_script('return JSON.stringify(window.dendryUI.dendryEngine.getExportableState(), null, 2);');
@@ -24,7 +24,7 @@ def test(output_path='output.txt', dump_stats=1, script_path='transcript.txt', d
     while len(link_divs) > 0:
         link_divs = driver.find_elements_by_xpath('//ul[@class="choices"]//li')
         # find main text: find all text elements under <div id="content"> 
-        content_text = driver.find_elements_by_xpath('//div[@id="read-marker"]/following-sibling::p')
+        content_text = driver.find_elements_by_xpath('//hr[@id="read-marker"]/following-sibling::p')
         if len(content_text) == 0:
             if len(driver.find_elements_by_id('read-marker')) == 0:
                 content_text = driver.find_elements_by_xpath('//div[@id="content"]/p')
@@ -178,4 +178,4 @@ if __name__ == '__main__':
     print(file_path)
     #random_n_tests(20, starting_index=51)
     #test_with_script('standard_runs/emily.txt', output_path='standard_runs/emily_output.txt', data_path='standard_runs/emily_data.txt')
-    random_n_script_tests(10, 'standard_runs/basic_script.txt')
+    random_n_tests(10)

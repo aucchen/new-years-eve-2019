@@ -11,8 +11,6 @@ set-bg: backgrounds/food_2_filtered.jpg
 
 One of the highlights of these social gatherings is the cornucopia of foodstuffs present. Currently, dinner has not yet started, but the snacks and beverages are out in a tantalizing display.
 
-[? if anxiety >= 8 : **< Your food choices will have consequences. >** ?]
-
 
 @food_choices
 
@@ -39,7 +37,7 @@ if (Q['snack_consumption_count'] >= 2) {
 }
 !}
 
-- @haw_flakes: Haw flakes.
+- @haw_flakes: Haw flakes (山楂片).
 - @shrimp_chips: Shrimp chips.
 - @dried_squid: Dried squid.
 - @seeds: Melon and sunflower seeds.
@@ -55,14 +53,14 @@ if (Q['snack_consumption_count'] >= 2) {
 
 
 @haw_flakes
-on-arrival: hunger -= 1; snack_consumption_count += 1
+on-arrival: hunger -= 0.5; snack_consumption_count += 1
 go-to: snack_choices_end
 
 Haw flakes are crumbly reddish discs about the diameter of your thumb, made from the "haw", or 山楂, which is some kind of tree fruit. You've never actually found out what a "haw" is, or even if these things contain actual fruit (there's no ingredients list). But it tastes good. Sweet, a little tart.
 
 
 @shrimp_chips
-on-arrival: hunger -= 1; snack_consumption_count += 1
+on-arrival: hunger -= 0.5; snack_consumption_count += 1
 go-to: snack_choices_end
 
 Shrimp chips are basically potato chips with some artificial and/or "natural" flavor compounds to give it a taste that vaguely resembles shrimp. According to the ingredients list, they're made from tapioca flour. What is tapioca flour, anyways? It's apparently some root vegetable.
@@ -71,14 +69,14 @@ Anyway, you eat some shrimp chips. They're good.
 
 
 @dried_squid
-on-arrival: hunger -= 1; snack_consumption_count += 1
+on-arrival: hunger -= 0.5; snack_consumption_count += 1
 go-to: snack_choices_end
 
 Dried squid pieces chewy, salty, white stringy things. They're hard to chew, but infused with the salty and savory flavors of the sea. You eat some. Bits get stuck to your teeth.
 
 
 @seeds
-on-arrival: hunger -= 1; snack_consumption_count += 1
+on-arrival: hunger -= 0.5; snack_consumption_count += 1
 go-to: snack_choices_end
 
 At these parties, all the Chinese adults seem to be constantly 嗑瓜子-ing (cracking melon seed shells) all the time when they're not talking or eating. A lot of people have dents in their front teeth from 嗑瓜子.
@@ -87,14 +85,14 @@ You're not nearly as much of an afficionado of 嗑瓜子. But you eat some anywa
 
 
 @peas
-on-arrival: hunger -= 1; snack_consumption_count += 1
+on-arrival: hunger -= 0.5; snack_consumption_count += 1
 go-to: snack_choices_end
 
 Wasabi peas are pretty popular around these parts. They're spicy and savory.
 
 
 @potato_chips
-on-arrival: hunger -= 2; snack_consumption_count += 1
+on-arrival: hunger -= 1; snack_consumption_count += 1
 go-to: snack_choices_end
 
 Just straight-up regular Lay's potato chips, produced by the Frito-Lay Corporation, based in Plano, Texas, which is an upper-class suburb of the Dallas-Fort Worth Metroplex, with a very strong public school system and a high Asian population. You know this because you read Wikipedia for fun.

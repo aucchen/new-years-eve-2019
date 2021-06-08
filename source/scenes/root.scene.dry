@@ -1,45 +1,50 @@
 title: Root Scene
-on-arrival: {!
-Q['display_hours'] = 6 + Math.floor((5*(Q['time'] || 0))/60);
-Q['display_minutes'] =((5*(Q['time'] || 0)) % 60);
-if(Q['display_minutes'] < 10) { Q['display_minutes'] = '0' + Q['display_minutes']};
-Q['phase_2_start'] = ((Q['time'] || 0) >= (Q['p1_time'] || 12) && (Q['phase'] || 0) <= 1);
-!}
-go-to: phase_2 if phase_2_start != 0; init if initialized = 0
+go-to: phase_2 if phase_2_start != 0 and phase < 2; init if initialized = 0 and recalculated_stats = 0; utils if initialized = 1 and recalculated_stats = 0 and (phase_2_start = 0 or phase >= 2) 
+on-departure: recalculated_stats = 0; cold = 0
 new-page: true
 max-choices: 10
 set-bg: backgrounds/room_1_filtered.jpg
 
 Time: [+ display_hours : +]:[+ display_minutes : +]
 
+[? if anxiety >= 7 : You are feeling [+ mood2 +].?]
+
+[? if cold > 1 : It doesn't seem like you've been missed in the time in which you've been gone. ?]
+
+[? if time > 0 and time < 4 : It feels as if every light in the house is on. Lamps. Chandeliers. Christmas lights. All bathing your eyes in a blinding yellow haze. ?]
+[? if time >= 4 and time < 8 : It feels as if every other Chinese person in the city is arriving here tonight. Introductions are made. Food is displayed. Loud voices echo through the maze of hallways. ?]
+
 [? if time = 0 : It has been 10 minutes since you arrived at the party. ?]
 
 [? if time = 0 : Mom has disappeared among the coterie of Chinese adults. Kevin has disappeared downstairs with all the other kids. And you're standing by yourself, with only your backpack for company, surveying the people gathered here on this New Year's Eve that's not so different from all your previous New Year's Eves. ?]
 
 [? if time = 0 : At least your friends are here. Or are they your friends still? It's been so long... ?]
-[? if time > 0 and time <= 2 : The party is just beginning. Guests are still trickling in. But you don't recognize any of the recent arrivals. Maybe you should remember? ?]
-[? if time >= 3 and time < 8 : The house is busy. Introductions are made. Food is displayed. Handshakes and hugs. ?]
+[? if time > 0 and time <= 3 : The party is just beginning. Guests are still trickling in. But you don't recognize any of the recent arrivals. Maybe you should remember more of them? Or maybe you've never met them before. ?]
 
-[? if time >= 3 and time < 8 : Some of the adults notice you, and make greetings. 小姑娘长大了! The girl's grown big! 上大学怎么样? How was university? 你饿了吗? Are you hungry? You try to smile and make perfunctory responses, which seem to satisfy them. ?]
-[? if time >= 8 and time < p1_time : Most of the guests have arrived; there must be at least thirty people in this house. People are gathering in clumps, talking. The lights are bright. The odor is fragrant. The sounds are cacaphonous. ?]
+[? if time >= 4 and time < 8 : Some of the adults notice you, and make greetings. 小姑娘长大了! The girl's grown big! 上大学怎么样? How was university? 你饿了吗? Are you hungry? You try to smile and make perfunctory responses, which seem to satisfy them. ?]
+[? if time >= 8 and time < p1_time : Most of the guests have arrived; there must be at least thirty people in this house. People are gathering in clumps, talking. The lights are blinding. The odor is fragrant. The sounds are cacaphonous. ?]
 
-[? if time >= 8 and time < p1_time : You pace around the various regions of the house, head down, tossing your phone from one hand to another. You successfully avoid attention. ?]
+[? if time >= 8 and time < p1_time : You pace around the various regions of the house, head down, tossing your phone from one hand to another, in a mostly successful attempt to avoid attention. ?]
 
-[? if time > p1_time and time < p2_time and phase = 2 : It is dinnertime. People are gathered in their own small groups, the adults at the main dinner tables, the kids in the basement. The food is all displayed in the kitchen. ?]
+[? if time > p1_time and time < p2_time - 8 and phase = 2 : It is dinnertime. People are gathered in their own small groups, the adults at the main dinner tables, the kids in the basement. The food is all displayed in the kitchen. ?]
+[? if time >= p2_time - 8 and time < p2_time and phase = 2 : Dinner is coming to a close. The adults are segregating into groups; as often happens all the men are in one area and all the women are in another area. This says a lot about the society in which you find yourself. ?]
 
-[? if time > p1_time and time < p2_time and phase = 2 : It is dinnertime. People are gathered in their own small groups, the adults at the main dinner tables, the kids in the basement. The food is all displayed in the kitchen. ?]
+[? if time >= p2_time and time < p3_time : The adult (real adult) partygoers have naturally partitioned themselves into smaller groups. Watching TV. Playing mahjong. Talking. Eating desserts and snacks. They mostly ignore you, thankfully. ?]
 
-[? if anxiety >= 7 : **< Your actions will always have consequences. >** ?]
+[? if anxiety >= 7 and anxiety <= 10 and time < p3_time : You have so many choices, an ocean of choice and possibility laid out before you. Which choice leads to life and which choice leads to death? Which choice leads to love and which choice leads to hate? ?]
+[? if anxiety > 10 and time < p3_time : You see the landscape of choice laid before you. An ocean of choice and possibility, concealing swirling eddies and whirlpools, mines, traps. Which choice will lead to life and which choice will lead to death? Trick question; they all lead to death, just sooner or later. Which choice leads to love and which choice leads to hate? ?]
 
-[? if anxiety >= 10 : **< Your actions have already had consequences, and they have been uniformly harmful. You have already committed grave, irrevocable errors. >** ?]
+[? if anxiety > 10 and time < p3_time : It's all a trick. Whichever choices you pick, you know that it's going to be the wrong choice. ?]
+
+[? if with_emily = 1 : Emily is here, leaning against a wall and being unobstrusive. ?]
+[? if with_miri = 1 : Miri is here, somewhere in the general vicinity, engaging in brief conversations with passersby. ?]
 
 - #start
 - #phase1
-#- #phase2
-#- #phase3
+- #phase2
+- #phase3
 
 @start
 
-= New Year's Eve, 2020
-
+= New Year's Eve, 2019
 

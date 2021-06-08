@@ -1,0 +1,108 @@
+title: Use your cellphone
+subtitle: Finding a safe location.
+view-if: phase = 2 and time < p3_time and phone_time < 5 and anxiety < 15
+new-page: true
+go-to: options
+tags: phase2, alone
+
+Your phone doesn't have a lot of battery left. In moments like these you usually turn on airplane mode to save power. It's not like anyone will ever call or text you.
+
+You can still play some games, though.
+
+@options
+unavailable-subtitle: Your phone's out of battery.
+choose-if: phone_time < 5
+
+- @games: Play games.
+- @root: Actually, do something else.
+
+
+@games
+unavailable-subtitle: Your phone's out of battery.
+choose-if: phone_time < 5
+view-if: time < p2_time
+
+There are a bunch of different games on your phone.
+
+- @word_game: Word puzzles.
+- @cif: Choice-based interactive fiction.
+- @pif: Parser-based interactive fiction.
+- @pageant_game: A dating sim.
+- @pageant_game_2: Keep playing the pageant dating sim.
+
+
+@word_game
+go-to: game_opts
+on-arrival: time += 1; phone_time += 1
+
+You spend a few minutes on a word find game. It's kind of addicting.
+
+@game_opts
+
+- @games: Play more games.
+- @options: Keep using your phone.
+- @root: Do something else.
+
+
+@cif
+on-arrival: time += 1; cif_seen += 1; game_count += 1; phone_time += 1
+go-to: cif_a1; cif_a2; cif_a3; cif_a4
+
+# randomly choose a game to play
+
+
+@cif_a1
+go-to: game_opts
+
+In this game you play as a scientist who makes a robotic companion. You can't date the robot, but later you can create a different robot that you can date. Because it's that kind of game.
+
+
+@cif_a2
+go-to: game_opts
+
+This is a romance game taking place in a fantasy-European upper-class boarding school. There might or might not be magic going on, but there are dark non-magical secrets. As usual there is a variety of romantic options, but they are hard to keep track of; the names are too uniformly European and gender-neutral.
+
+
+@cif_a3
+go-to: game_opts
+
+This is another fantasy choice-based game where you play as a deposed royal heir and attempt to regain power. There is a variety of romance options, of course, which all require a complicated set of stat checks to complete.
+
+
+@cif_a4
+go-to: game_opts
+
+This game is about playing as some famous character from Greek mythology (except they can be a woman or nonbinary now). It's about failure and not being able to solve every problem that the gods throw your way. Or maybe you just failed to min-max your stats.
+
+
+
+@pageant_game
+on-arrival: pageant_seen = 1; time += 1; anxiety += 1; game_count += 1; phone_time += 1
+view-if: pageant_seen = 0
+go-to: game_opts
+
+This game is a lesbian beauty pageant simulator, which is surprisingly resonant with your past experiences. At is heart is a time management game; you have to decide how you spend your time preparing for the pageant, whether to focus on outfits or makeup or talent or the interview. There are multiple endings, most of which are abject failures.
+
+And then there's the social optimization component, which takes the outward form of a dating sim but is actually a ruthless puzzle, where selecting the wrong dialogue choices or weekly activities could destroy your relationships forever.
+
+It's a rather interesting game.
+
+
+@pageant_game_2
+on-arrival: pageant_seen += 1; time += 1; phone_time += 1
+view-if: pageant_seen >= 1
+go-to: game_opts
+
+You've already done a few failed playthroughs of this game, "failed" meaning you both failed to win the pageant and get with your preferred romantic interests. You've kept notes, but it's been difficult since there are no visible stats. Maybe another try wouldn't hurt.
+
+
+
+@pif
+on-arrival: time += 1; phone_time += 1
+
+You've been playing this game for a while without getting very far. It's an old-fashioned text adventure about a spy infiltrating a research base, and it is very difficult. You stop playing after dying a few times.
+
+- @games: Play more games.
+- @options: Keep using your phone.
+- @root: Do something else.
+

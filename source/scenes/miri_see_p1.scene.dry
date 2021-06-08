@@ -2,7 +2,7 @@ title: Miri Brooks
 subtitle: Standing amidst a circle of adults...
 unavailable-subtitle: There's something else going on...
 new-page: true
-on-arrival: time += 1; energy -= 1; miri_int += 1
+on-arrival: time += 1; energy -= 1; miri_int += 1; miri_relationship += 1
 view-if: phase = 1 and miri_seen = 0 and energy > 0 and time < p1_time
 choose-if: has_interruption = 0
 tags: phase1, miri, initiation
@@ -10,7 +10,7 @@ tags: phase1, miri, initiation
 
 Miri stands in the living room in the center of a small semicircle of moms, beaming as she converses in fluent Mandarin and basking in the adulation of the adults.   
 
-"你的中文多帮啊! 是大学学得吗?" *Your Chinese is so good! Did you study it at university?*", someone asks.
+"你的中文多棒啊! 是大学学的吗?" *Your Chinese is so good! Did you study it at university?*", someone asks.
 
 "谢谢阿姨! 我在大学上了汉语课。" *Thank you auntie! I took a Chinese class at university.*" She's really good.
 
@@ -33,7 +33,6 @@ She turns to face you and waves; she must have noticed you staring at her.
 
 "秋怡大姐! *Big sister Qiuyi!*" She laughs as she walks over, leaving the adults to laugh along. "I was looking for you! You just disappeared!"
 
-[? if anxiety >= 10 : **< Miri will remember this, unfortunately. >** ?]
 
 - @right_here: "...I was standing right here."
 - @you_disappeared: "...It was you who disappeared."
@@ -78,11 +77,10 @@ A pause.
 
 @how_are_you
 
-"Anyway, why haven't you replied to my messages for so long?," she asks. "And why did you do so today? God, I wish you would stop ghosting me so much."
+"Anyway, dude, why haven't you replied to my messages for so long?", she asks. "And why did you do so today? God, I wish you would stop ghosting me so much."
 
 "Oh, um..."
 
-[? if anxiety >= 7 : **< Miri will remember this, probably. >** ?]
 
 - @anxiety: "I have anxiety..."
 - @busy: "I've been busy..."
@@ -126,7 +124,6 @@ She pulls you into a gentle hug. You reach around her shoulders, as if you've fo
 
 "Hey, do you want to just hang out for a bit?"
 
-[? if anxiety >= 7: **< This seemingly minor action will have dire consequences. >** ?]
 
 - @sit_down: Follow her.
 - @leave: Leave and do something else.
@@ -138,7 +135,6 @@ She pulls you into a gentle hug. You reach around her shoulders, as if you've fo
 
 "Oh. That's okay. Well, let's go sit down. Do you want to just hang out for a bit?"
 
-[? if anxiety >= 7: **< This seemingly minor action will have dire consequences. >** ?]
 
 - @sit_down: Follow her.
 - @leave: Leave and do something else.
@@ -161,15 +157,13 @@ You wander back towards the rest of the party. Miri is left alone.
 @date
 on-arrival: time += 1; anxiety += 1
 
-"Anyway, why haven't you replied to my messages for so long?," she asks. "This is what they call ghosting, right? Like, do we still have a thing?"
+"So like, babe, why haven't you replied to my messages for so long?", she asks. "This is what they call ghosting, right? Like, do we still have a thing?"
 
 "Oh, um..."
 
 Well? What do you think? You close your eyes for a moment. It doesn't help. The world swirls around you. All your failures and fuckups are coming into clarity.
 
 Miri is waiting. Your brain is in agony.
-
-**< Miri will remember this. >**
 
 - @yes_date: I still want this. "Yeah..."
 - @no_date: It's over. "No, sorry..."
@@ -183,7 +177,6 @@ on-arrival: miri_date = 1
 
 "Really? Hmm. Then why didn't you keep in touch? It didn't use to be this bad."
 
-[? if anxiety >= 5: **< Miri will probably remember this. >** ?]
 
 - @anxiety: "I have anxiety..."
 - @busy: "I've been busy..."
@@ -197,7 +190,6 @@ on-arrival: miri_date = -1; despair += 1
 
 "That's what I thought." She sighs. "Well, at least that confirms it. You could have given me some warning, you know? Instead of ghosting?"
 
-[? if anxiety >= 7: **< Miri will remember this? >** ?]
 
 - @sorry: "Sorry..."
 - @you_too: "You could have talked to me first..."
@@ -215,7 +207,6 @@ on-arrival: miri_date = -1; despair += 1
 
 She sighs. "That's what I thought. You could have given me some warning, you know? Instead of ghosting on me? God."
 
-[? if anxiety >= 7: **< Miri will remember this? >** ?]
 
 - @sorry: "Sorry..."
 - @you_too: "You could have talked to me first..."
@@ -235,8 +226,9 @@ on-arrival: miri_int += 1
 
 "Sure." She hands one from her plate. You eat it.
 
-There is a quiet moment. Miri looks as if she's about to get up.
+There is a quiet moment. Miri looks as if she's about to leave.
 
+- @romanticize: Romanticize.
 - @talk_more: Just say something?
 - @leave: Leave, before she does.
 - @quiet_2: Wait around.
@@ -270,8 +262,9 @@ Miri laughs. "Are you doing that on purpose now?"
 
 "Yeah..."
 
-There is a quiet moment. Miri looks as if she's about to get up.
+There is a quiet moment. Miri looks as if she's about to leave.
 
+- @romanticize: Romanticize.
 - @talk_more: Just say something?
 - @leave: Leave, before she does.
 - @quiet_2: Wait around.
@@ -283,7 +276,6 @@ There is a quiet moment. Miri looks as if she's about to get up.
 
 "Still what?"
 
-**< Miri will obviously remember this. >**
 
 - @still_like: "I still like you."
 - @still_want_friends: "I still want to be friends."
@@ -324,8 +316,9 @@ No. You aren't going to say it.
 
 Miri sighs.
 
-There is a quiet moment. Miri looks as if she's about to get up.
+There is a quiet moment. Miri looks as if she's about to leave.
 
+- @romanticize: Romanticize.
 - @talk_more: Just say something?
 - @leave: Leave, before she does.
 - @quiet_2: Wait around.
@@ -339,8 +332,9 @@ There is a quiet moment. Miri looks as if she's about to get up.
 
 "Yeah. Thanks..."
 
-There is a quiet moment. Miri looks as if she's about to get up.
+There is a quiet moment. Miri looks as if she's about to leave.
 
+- @romanticize: Romanticize.
 - @talk_more: Just say something?
 - @leave: Leave, before she does.
 - @quiet_2: Wait around.
@@ -354,11 +348,51 @@ You reach over to hug her. It feels nice, her arms wrapped around your body. You
 
 She lets go before you do. "Anyway, let's go sit over here. Catch up."
 
-[? if anxiety >= 7: **< This seemingly minor action will have consequences. >** ?]
 
 - @sit_down: Follow her.
 - @leave: Leave and do something else.
 
+
+@romanticize
+on-arrival: miri_romanticize += 1; miri_rom += 1
+
+It's a quiet moment. You can't help but stare at her. You've missed her so much. Her face, her smile, her kindness.
+
+You regret not having appreciated her earlier.
+
+"Hey, are you staring at me?"
+
+"Oh. Sorry."
+
+"No, don't be. It's okay for us to look at each other, you know."
+
+"Oh..."
+
+You gaze into each other's eyes for a moment that stretches until...
+
+- @look_away_first: You look away first.
+- @miri_looks_away: Miri looks away.
+
+
+@look_away_first
+go-to: so_um_end
+
+You look away before Miri does.
+
+
+@miri_looks_away
+go-to: so_um_end
+
+Miri looks away, before you do.
+
+
+@so_um_end
+
+"So, um, I'm gonna walk around the party more," she says.
+
+"Um, okay. Yeah."
+
+With that, the two of you separate.
 
 
 ####################################################
@@ -377,7 +411,6 @@ She lets go before you do. "Anyway, let's go sit over here. Catch up."
 
 "Yeah, I mean, I wasn't like, the best either." She makes a brief smile at you.
 
-[? if anxiety >= 7: **< Your words (or lack of thereof) will have consequences. >** ?]
 
 - @sorry_again_bad: "Sorry again..."
 - @why_me: "Why did you contact me and not anyone else?"
@@ -439,7 +472,6 @@ You follow her to an empty couch, away from the circle of adults.
 
 Miri eats more snacks. A silence falls between you, a silence that desires to be filled.
 
-[? if anxiety >= 7: **< Your words (or lack of thereof) will have consequences. >** ?]
 
 - @still_like_me: "Do you still like me?"
 - @still_friends: "Can we still be friends?"
@@ -456,7 +488,7 @@ Can you ask that? Are you really just allowed to say something like that? You de
 
 
 @still_friends
-view-if: miri_date = 0
+view-if: miri_date <= 0
 on-arrival: anxiety += 1
 go-to: post_grad
 
@@ -587,7 +619,6 @@ What would you ever talk about? You can't think of anything to say. It's as if y
 
 "So, the party's just getting started. I'm going to wander around a bit more." Miri gets up. "See you later?"
 
-[? if anxiety >= 10 : **< Your actions had consequences. >** ?]
 
 - @root: Bye...
 
@@ -597,7 +628,6 @@ on-arrival: time += 1; anxiety += 1
 
 "So, the party's just getting started. I'm going to wander around a bit more." Miri gets up. "See you later?"
 
-[? if anxiety >= 10 : **< Your actions had consequences. >** ?]
 
 - @root: Bye...
 

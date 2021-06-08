@@ -1,0 +1,62 @@
+title: Mom
+subtitle: She's sitting with a bunch of other women...
+view-if: phase = 2 and time < p2_time
+new-page: true
+max-visits: 1
+on-arrival: mom_int += 1; time += 1
+tags: phase2, top
+
+Mom is sitting at one of the tables, this one filled with most of the women of the group. She notices you approaching, and waves.
+
+"秋怡，怎么了？怎么不跟朋友在一起？ *Qiuyi, what's going on? Why aren't you with your friends?*"
+
+- @no_idea: You have no idea what to say.
+
+
+@no_idea
+
+"Um... 我吃完了。*I'm done eating*", you say.
+
+"真的吗？可以再跟我们坐。 *Really? You can sit with us.*"
+
+- @sit: Sit here.
+- @go: Do something else.
+
+@sit
+
+You sit at an empty chair next to mom. She pats your back. You try to stay still.
+
+- @listen: Listen.
+
+
+@listen
+
+"秋怡，吃得怎么样？ *Qiuyi, how has the food been?*", mom asks.
+
+"Um, 还行。*It's okay.*"
+
+Mom asks you about various foot items. Did you try the baozi? Did you try the dumplings? Did you try the soup that she made? Is it good?
+
+Yeah. It was good.
+
+- @scripts: You each follow your scripts...
+
+
+@scripts
+
+The thing about Chinese social interactions is that there are scripts to follow. Well, American social interactions have their own scripts, but you've always found the Chinese scripts easier to follow. Given the generational gap, there is a proscribed set of social interaction styles between you and mom's friends, a limited list of topics to discuss.
+
+And so you follow your scripts, and they follow theirs.
+
+TODO
+
+# trans bathrooms subplot...
+
+
+@go
+
+"Sorry, 我想...um, 再走一些。 *I want to walk a bit.*"
+
+"好吧。"
+
+With that, you turn away from mom's table.

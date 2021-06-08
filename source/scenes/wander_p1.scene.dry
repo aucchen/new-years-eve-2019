@@ -1,0 +1,87 @@
+title: Wander around aimlessly
+subtitle: Keeping your head down...
+view-if: phase = 1 and time < p1_time
+on-arrival: time += 1
+tags: phase1
+new-page: true
+
+You wander for a few minutes from room to room, trying to avoid becoming a subject of attention. You keep your head down, tossing your cell phone back and forth.
+
+No one speaks to you. Everyone is so enraptured by their conversations that no one notices the awkward-looking girl/woman/person walking around.
+
+- @keep_wandering: Keep wandering?
+- @root: Do something else.
+
+@keep_wandering
+view-if: time < p1_time
+on-arrival: time += 1
+go-to: w1; w2 if wander_p1_w2_seen = 0; w3 if wander_p1_w3_seen = 0
+
+
+@w1
+go-to: options
+
+You keep walking around in a big circle. No one speaks to you.
+
+@w2
+on-arrival: wander_p1_w2_seen = 1
+go-to: options
+
+An adult (wait, you're an adult, but not like that) speaks to you. "哎呀，秋怡，好久没见了。你长得这么大了。 *Aiya, Qiuyi, long time no see. You've grown so big.*"
+
+You smile and nod. He goes away, distracted by more conversation.
+
+
+@w3
+view-if: mom_int = 0
+on-arrival: wander_p1_w3_seen = 1
+
+As you are wandering, mom notices you. "秋怡，怎么样啊？ 怎么没有跟朋友在一块儿？ *Qiuyi, how is it going? Why aren't you with your friends?*"
+
+"Um..." You look away.
+
+"跟我们聊一下，好吧？ *Talk with us for a moment, okay?*"
+
+- @mom_p1.stand: "Okay..."
+- @w3_else: "Um, 我不想..."
+
+@w3_else
+go-to: options
+
+"Um, 我不想... 我想do something else."
+
+"好吧。" Mom waves you off.
+
+
+@w4
+go-to: options
+max-visits: 2
+
+A few toddlers are running around. Their parents shout after them. You barely avoid a collision. But you can't help but smile a little at the kids. Kids are... good? Yeah, probably, or something like that.
+
+
+@w5
+go-to: options
+max-visits: 1
+on-arrival: song_chen_int = 1
+view-if: em_int > 0
+
+You see Song Chen, Emily's dad. He doesn't seem to have noticed you.
+
+- @interact_song_chen: Interact with him somehow?
+- @options: Ignore him, and hope he ignores you.
+
+
+@interact_song_chen
+go-to: options
+
+You walk nearer to his proximity. He seems to be engrossed in conversation.
+
+# TODO: interact with Song Chen... eventually
+
+
+@options
+
+- @keep_wandering: Keep wandering?
+- @root: Do something else.
+

@@ -1,40 +1,9 @@
 title: Stats
 new-page: true
 is-special: true
-go-to: stats_main
-on-arrival: {! Q['display_hours'] = 6 + Math.floor((5*(Q['time'] || 0))/60);
-Q['display_minutes'] = ((5*(Q['time'] || 0)) % 60);
-if(Q['display_minutes'] < 10) { Q['display_minutes'] = '0' + Q['display_minutes']};
-Q['phase_2_start'] = ((Q['time'] || 0) == 20 && (Q['phase'] || 0) <= 1);
+go-to: utils if recalculated_stats = 0; stats_main if recalculated_stats = 1
+on-departure: recalculated_stats = 0
 
-// mood calculator: based on despair & anxiety
-Q['mood'] = 'wistful';
-Q['mood2'] = 'cautious';
-if ((Q['despair'] < Q['minus_despair']) && (Q['anxiety'] <= Q['despair'])) {
-    Q['mood'] = 'hopeful';
-    Q['mood2'] = 'calm';
-} else if (Q['despair'] >= 7 && Q['despair'] > Q['anxiety']) {
-    if (Q['despair'] >= 11) {
-        Q['mood'] = 'hopeless';
-    } else if (Q['despair'] >= 9) {
-        Q['mood'] = 'depressed';
-    } else if (Q['despair'] >= 7) {
-        Q['mood'] = 'sad, somewhat moreso than usual';
-    }
-} 
-// mood2 is based on anxiety
-if (Q['anxiety'] >= 11) {
-    Q['mood2'] = 'messed up';
-} else if (Q['anxiety'] >= 9) {
-    Q['mood2'] = 'on edge';
-} else if (Q['anxiety'] >= 7) {
-    Q['mood2'] = 'nervous';
-} else if (Q['anxiety'] >= 5) {
-    Q['mood2'] = 'a little bit nervous';
-} else {
-    Q['mood2'] = 'mostly calm';
-}
-!}
 
 @stats_main
 new-page: true
@@ -42,6 +11,8 @@ new-page: true
 = Status
 
 Time: [+ display_hours : +]:[+ display_minutes : +]
+
+# TODO: the story so far?
 
 [? if hunger >= 9 : You are quite hungry. ?][? if hunger < 9 and hunger >= 7 : You are somewhat hungry. ?][? if hunger < 7 and hunger >= 5 : You are a little hungry. ?][? if hunger < 5 and hunger >= 3 : You are not really hungry. ?][? if hunger < 3 : You are feeling full. ?]
 
@@ -59,44 +30,49 @@ new-page: true
 = People
 
 **[+ first_name : +] (Qiuyi 秋怡) Zhao**:
-That's you, unfortunately.
+That's you, unfortunately. You're 22 years old and a senior in college. Born in Changchun, Jilin Province, PRC, thus your name. Came to America at age 8. Gay loser (the two are only tentatively related). Or something like that.
 
-**Aubrey Gao**:
+**Aubrey (Liyun (You don't know the Chinese)) Gao**:
 Her family lives in this house. Back in school she was your family friend, and something of an academic rival (she always won your imagined contests). At one point you might have had a crush on her.
 [? if prev_aub = "date" : You confessed to her, and went on at least one date. She is straight, so these were "friend dates". Or something like that. ?]
-[? if prev_aub = "friend" :  You worked together in Science Olympiad, which was perhaps the primary route to your friendship. ?]
+[? if prev_aub = "friends" :  You worked together in Science Olympiad, which was perhaps the primary route to your friendship. ?]
 [? if prev_aub = "none" :  At some point you ignored her, acted as if she didn't exist. ?]
 
-Relationship status: [+ aub_relationship : +]/5 [? if aub_relationship < 0 : (bad???) ?][? if aub_relationship = 0 : (you haven't spoken in couple of years) ?][? if aub_relationship = 1 : (???) ?][? if aub_relationship = 2 : (okay???) ?][? if aub_relationship >= 3 : (better???) ?]
+Relationship status: [+ aub_relationship : +]/5 [? if aub_relationship < 0 : (this is bad) ?][? if aub_relationship = 0 : (you haven't spoken in couple of years) ?][? if aub_relationship = 1 : (you've spoken to her...) ?][? if aub_relationship = 2 : (she's probably okay with you...) ?][? if aub_relationship >= 3 : (this is good, right?) ?]
 
 
 **Emily Chen**: [? if prev_em = 0 : An acquaintance? ?]
 [? if prev_em = "date" : Emily was... a friend, of sorts. She helped you with the pageant back in high school, and you grew rather close. At one time, you confessed that you liked her, and she said that you could start dating after graduating from high school. ?]
-[? if prev_em = "friend" :  Emily was... a friend, of sorts. She helped you with the pageant back in high school, and you grew rather close. ?]
+[? if prev_em = "friends" :  Emily was... a friend, of sorts. She helped you with the pageant back in high school, and you grew rather close. ?]
 [? if prev_em = "none" :  Emily was... an acquaintance, of sorts. Not much more, besides a few intense moments in which you revealed your dearest secrets to each other. ?]
 
-Relationship status: [+ em_relationship : +]/5 [? if em_relationship < 0 : (bad???) ?][? if em_relationship = 0 : (you haven't spoken in at least a year) ?][? if em_relationship = 1 : (???) ?][? if em_relationship = 2 : (okay???) ?][? if em_relationship >= 3 : (better???) ?]
+Relationship status: [+ em_relationship : +]/5 [? if em_relationship < 0 : (this is bad) ?][? if em_relationship = 0 : (you haven't spoken in at least a year) ?][? if em_relationship = 1 : (you've spoken a little here at the party...) ?][? if em_relationship = 2 : (you might be friends, or acquaintances...) ?][? if em_relationship >= 3 : (you're probably friends, right?) ?]
 
 
 **Miri (Miriam) Brooks**:
-She was your friend back in high school.
+She was your friend back in high school...
 [? if prev_miri = "date" : You started dating Miri your junior year. But now... you're not sure what your relationship is like. ?]
-[? if prev_miri = "friend" :  You were good friends, perhaps best friends. But now, you're not sure what you have. ?]
+[? if prev_miri = "broken" : You dated Miri for a while, starting in high school, but you broke up due to your spatial separation. ?]
+[? if prev_miri = "friends" :  You were good friends, perhaps best friends. But now, you're not sure what you have. ?]
 [? if prev_miri = "none" :  But now, you aren't sure if you're still friends. ?]
+[? if miri_best_friend = 1 : She said that you were best friends in high school. ?]
 
-Relationship status: [+ miri_relationship : +]/5 [? if miri_relationship < 0 : (bad???) ?][? if miri_relationship = 0 : (you haven't spoken in a while) ?][? if miri_relationship = 1 : (???) ?][? if miri_relationship = 2 : (okay???) ?][? if miri_relationship >= 3 : (better???) ?]
+Relationship status: [+ miri_relationship : +]/5 [? if miri_relationship < 0 : (this is bad) ?][? if miri_relationship = 0 : (you haven't spoken in a while...) ?][? if miri_relationship = 1 : (she seems to at least tolerate your presence...) ?][? if miri_relationship = 2 : (she seems to be okay with you...) ?][? if miri_relationship >= 3 : (you can still be friends, right???) ?]
 
 **Kevin (Chunyi 春艺) Zhao**:
-Your younger brother, now 11 years old. Has a predilection for Minecraft and such. He's never needed you.
+Your younger brother, now 11 years old. Has a predilection for Minecraft and youtubers and such. He's never needed you.
 
 **Mom**:
-She's still working at the old job. Lives alone with Kevin after dad moved back to China (they're finally officially divorced after a few years of informal separation).
+She's still working at the old research associate/technician job. Lives alone with Kevin after dad moved back to China (they're finally officially divorced after a few years of informal separation).
 
 **William Du**:
 Aubrey's boyfriend, here on break from their university.
 
 **Rose Gao**:
-Aubrey's younger sister.
+Aubrey's younger sister. You've never talked to her but your brother has.
+
+**Professor Song Chen**:
+Emily's dad, who wasn't on speaking terms with her, last you heard.
 
 - @stats_main: Main
 - @backSpecialScene: Back

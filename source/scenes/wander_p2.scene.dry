@@ -1,0 +1,113 @@
+title: Wander around aimlessly
+subtitle: Daydreaming of another world...
+view-if: phase = 2 and time < p3_time and anxiety < 15
+on-arrival: time += 1
+tags: phase2
+new-page: true
+go-to: options
+
+You wander for a few minutes from room to room, trying to avoid becoming a subject of attention. You keep your head down, tossing your cell phone back and forth.
+
+It's easy to avoid notice; most people are buried in their food or their conversations, with no spare attention left for you.
+
+
+@options
+
+- @imagine: Daydream.
+- @root: Do something else.
+
+
+@imagine
+on-arrival: has_imagine = 1
+
+You imagine a world in your mind. What are you imagining?
+
+- @imagine_em: Your future life with Emily.
+- @imagine_miri: Your future life with Miri.
+- @imagine_future: A future, a better place than today.
+- @imagine_hs: The end of the world.
+- @imagine_nothing: Nothing. You have nothing to imagine anymore.
+
+
+@imagine_em
+view-if: em_rom > 0 or prev_em = "date"
+max-visits: 1
+
+You imagine your future life with Emily, ten years in the future. You would be married, living together in a major urban area. You would be a tenure-track faculty member at an R01 university. She would either work at the same university as you, or she would work from home. You would have two kids, twins you hope. Maybe they're already walking or speaking by this time. Your apartment would be filled with love and happiness and the delicious odors of your cuisine.
+
+- @imagine_em_snap: Snap out of it.
+
+
+@imagine_em_snap
+on-arrival: anxiety -= 1; despair += 1; em_fantasy_callback = 1
+
+You snap out of it. This is an extremely unrealistic scenario and you can enumerate the reasons why:
+
+- @tenure: You'll never be a tenure-track faculty.
+- @em_like: Emily won't marry you or even date you.
+- @children: You're never going to have children.
+
+
+@tenure
+
+The ratio of PhD graduates to tenure track jobs in the life sciences is extremely unfavorable, and it's only getting worse. Will you be in the top 5% of PhD graduates? Top 10%? You aren't even in the top half of your college class right now. So what chance do you have?
+
+
+@em_like
+
+Emily has given no indication that she likes you. And even if she did, you would have to ask her out somehow. And even if you did that, you're supposed to date before marrying (insert lesbian stereotype about UHauls). And even if you dated, you might find out that you're deeply incompatible with each other in some fundamental way. So no. Your fantasy scenario is highly unlikely.
+
+
+@children
+
+You've read about the costs and success rates of IUI and IVF, about sperm banks and open and closed donors and the painstaking processes by which lesbian couples can have children. You'll never afford it, even if it could work for you. Maybe Emily could have sperm banked before transition, but you're not counting on it. Adoption is not really easier in practice; it's just as financially costly, and the discrimination might be even worse.
+
+Besides, can you imagine yourself pregnant?
+
+
+@imagine_miri
+max-visits: 1
+view-if: prev_miri = "date" and miri_date = 1
+
+You imagine your future life with Miri, ten years in the future. You would be married (if she wants to), living together in a major urban area. You would be a tenure-track faculty member at an R01 university. She would be a teacher, like she always wanted. You would have two kids, twins you hope. Maybe they're already walking or speaking by this time. Your apartment would be filled with love and happiness and the delicious odors of your cuisine.
+
+- @imagine_miri_snap: Snap out of it.
+
+@imagine_miri_snap
+on-arrival: anxiety -= 1; despair += 1; miri_fantasy_callback = 1
+
+You snap out of it. This is an extremely unrealistic scenario and you can enumerate the reasons why:
+
+- @tenure: You'll never be a tenure-track faculty.
+- @children_miri: You're never going to have children.
+
+
+@children_miri
+
+You've read about the costs and success rates of IUI and IVF, about sperm banks and open and closed donors and the painstaking processes by which lesbian couples can have children. You'll never afford it, even if it could work for you. Adoption is not really easier in practice; it's just as financially costly, and the discrimination might be even worse.
+
+Besides, does Miri even want children? You've never talked about that. You haven't talked about a lot of things.
+
+
+
+@imagine_future
+max-visits: 1
+on-arrival: future_fantasy_callback = 1
+
+You imagine a science fictional future. You imagine a world where diseases are all cured, where peace and prosperity reigns for all humans throughout the solar system. It is not a perfect world, but it is a world without so much needless suffering. You imagine wandering space in your own spaceship, an itinerant elder statesman and scientist, solving problems wherever you go.
+
+Ugh. You need to stop with these embarrassing scenarios.
+
+
+@imagine_hs
+max-visits: 1
+on-arrival: hs_fantasy_callback = 1
+
+You imagine the end of the world, months in the future, but not many. The meteors were coming, and everything would be destroyed save the homes where you and your friends were stuck. You would play a game to ascend to another dimension, another universe. You would each be shunted to separate worlds, built from your persona and given highly relevant challenges that somehow relate to your own personal development. This culminates in the birth of a new world, created by your friends who have all become...
+
+Ugh. You need to stop with these embarrassing scenarios.
+
+
+@imagine_nothing
+
+Your thoughts form a bird's nest of tangles and knots, with nothing coherent to untangle, no thread to pull upon. Just jumbles of words and images and phrases.

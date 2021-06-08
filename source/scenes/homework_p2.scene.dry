@@ -1,0 +1,59 @@
+title: Do your homework.
+subtitle: Well, technically it's not homework...
+view-if: phase = 2 and time < p3_time and anxiety < 15
+new-page: true
+max-visits: 2
+tags: phase2, alone
+
+Technically it's not homework. It's just a bunch of readings for your research project, some books your supervisor suggested that might or might not be actually helpful, to help fill in the background knowledge not covered in coursework, before the next part of the project. In this interest he told you to purchase a book on statistical methods for biological sequence analysis, or something like that.
+
+- @read: Read?
+
+
+@read
+on-arrival: time += 1
+
+Your task here is to fill your mind with statistical methods for biological sequence analysis. Of course, when you attempt to read, it does not work. Your mind is filled with anything but that. Maybe the sounds of the party are too distracting. Maybe you would rather do something else.
+
+- @root: Stop reading.
+- @read_2: Keep trying to read.
+
+@read_2
+on-arrival: time += 1
+
+You could just keep trying to read.
+
+The book is a strange mix of very basic probability and statistics with mind-boggling algorithms and applications. The section you're supposed to read is about the statistical significance testing of sequence motifs, repeated patterns in DNA (or RNA or proteins). Some of these sequences in DNA have a function as binding sites for certain proteins.
+
+Are you learning anything? It's hard to tell.
+
+- @read_3: Keep reading this chapter.
+- @read_else: Read something else?
+- @root: Stop reading.
+
+
+@read_3
+on-arrival: time += 1
+
+You learn something about hidden Markov models. Or rather, you learn that they are a thing that exists and is really scientific-sounding. The equations are hard to follow.
+
+- @read_4: Just read as much as you can.
+- @read_else: Read something else?
+- @root: Stop reading.
+
+@read_4
+on-arrival: time += 1
+
+You skim through the chapter a couple of times. It doesn't exactly work. You try to take notes in your notebook. Okay. You won't read your notes again but it does help with knowledge retention.
+
+- @read_else: Read something else?
+- @root: Stop reading.
+
+
+@read_else
+on-arrival: time += 1
+
+You didn't bring your computer, and your phone is almost out of battery. You did bring another book, a basic immunology textbook. It's a bit easier to read; more colorful pictures, fewer equations.
+
+- @root: Stop reading.
+

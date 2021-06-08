@@ -1,0 +1,39 @@
+title: utils
+new-page: false
+go-to: prevScene
+on-arrival: {! Q['display_hours'] = 6 + Math.floor((5*(Q['time'] || 0))/60);
+Q['display_minutes'] = ((5*(Q['time'] || 0)) % 60);
+if(Q['display_minutes'] < 10) { Q['display_minutes'] = '0' + Q['display_minutes']};
+Q['phase_2_start'] = ((Q['time'] || 0) >= (Q['p1_time'] || 12)) && ((Q['phase'] || 0) <= 1);
+
+Q['recalculated_stats'] = 1;
+
+// mood calculator: based on despair & anxiety
+Q['mood'] = 'wistful';
+Q['mood2'] = 'cautious';
+if ((Q['despair'] < Q['minus_despair']) && (Q['anxiety'] <= Q['despair'])) {
+    Q['mood'] = 'hopeful';
+    Q['mood2'] = 'calm';
+} else if (Q['despair'] >= 7 && Q['despair'] > Q['anxiety']) {
+    if (Q['despair'] >= 11) {
+        Q['mood'] = 'hopeless';
+    } else if (Q['despair'] >= 9) {
+        Q['mood'] = 'depressed';
+    } else if (Q['despair'] >= 7) {
+        Q['mood'] = 'sad, somewhat moreso than usual';
+    }
+}
+// mood2 is based on anxiety
+if (Q['anxiety'] >= 11) {
+    Q['mood2'] = 'messed up';
+} else if (Q['anxiety'] >= 9) {
+    Q['mood2'] = 'on edge';
+} else if (Q['anxiety'] >= 7) {
+    Q['mood2'] = 'nervous';
+} else if (Q['anxiety'] >= 5) {
+    Q['mood2'] = 'a little bit nervous';
+} else {
+    Q['mood2'] = 'mostly calm';
+}
+!}
+

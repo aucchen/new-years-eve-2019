@@ -1,5 +1,5 @@
 title: init stats
-on-arrival: first_name = "Karen"; time = 0; courage = 8; energy = 10; despair = 5; minus_despair = 0; hunger = 10; thirst = 10; bathroom_need = 2; p1_time = 18; p2_time = 36; initialized = 1; anxiety = 5
+on-arrival: first_name = "Karen"; time = 0; courage = 8; energy = 10; despair = 5; minus_despair = 0; hunger = 10; thirst = 10; bathroom_need = 2; p1_time = 18; p2_time = 36; initialized = 1; p3_time = 66; anxiety = 5
 new-page: false
 go-to: root
 

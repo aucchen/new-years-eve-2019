@@ -1,0 +1,68 @@
+title: Emily
+new-page: true
+set-bg: backgrounds/room_1_filtered.jpg
+
+You walk to the kitchen. Emily hovers in your vicinity.
+
+- @what: What is she doing?
+- @what_you: What are you doing?
+- @what_everyone: What is everyone else doing?
+
+
+@what
+go-to: throw_away
+
+She throws the disposable plates in the garbage, and looks over the dessert table.
+
+
+@what_you
+go-to: throw_away
+
+You have no idea what you're doing, but that isn't news. Someone bumps against you. You move back against the wall.
+
+
+@what_everyone
+go-to: throw_away
+
+People everywhere. Talking. Walking. Eating. Washing. A movie is playing on the living room TV. Someone is playing church songs on the piano. Someone bumps against you. You move back against the wall.
+
+
+@throw_away
+go-to: em_party_2
+
+Oh yeah, you should probably throw away the plates you currently hold in your hand. You almost throw away your non-disposable chopsticks. But you do correctly leave them in the sink.
+
+
+@em_party_2
+
+"So what do you want to do?", Emily asks.
+
+That question fucks you up everytime.
+
+- @em_dessert
+- @em_homework
+- @em_wallow
+- @em_final
+
+@em_dessert
+title: Get dessert?
+choose-if: anxiety < 15
+unavailable-subtitle: You're not hungry.
+go-to: dessert_p2
+
+
+@em_homework
+title: Do homework?
+choose-if: anxiety < 15
+unavailable-subtitle: You can't focus anyway.
+go-to: homework_p2
+
+
+@em_wallow
+title: Wallow in despair?
+choose-if: despair > 15
+unavailable-subtitle: That would be supremely unhelpful right now.
+go-to: wallow_p2
+
+
+

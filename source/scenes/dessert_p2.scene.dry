@@ -1,0 +1,102 @@
+title: Dessert
+subtitle: More foods laid out...
+unavailable-subtitle: There's something else going on...
+new-page: true
+on-arrival: dessert_seen += 1; time += 1
+view-if: phase = 2 and dessert_seen <= 3 and time < p3_time and anxiety < 15
+choose-if: has_interruption = 0
+go-to: food_choices
+tags: phase1, food
+set-bg: backgrounds/food_2_filtered.jpg
+
+Dessert is not a part of a traditional Chinese meal, but this is not a traditional Chinese meal. The food area has been reconfigured, with more placements of sweets and desserts and drinks, mostly alcoholic.
+
+[? if with_emily = 1 : Emily walks around the dessert table, looking but not touching. ?]
+
+
+@food_choices
+
+- @snacks: Check out the desserts.
+- @drinks: Look at the drinks.
+- @root: On second though, you don't want to eat or drink anything.
+
+
+@snacks
+unavailable-subtitle: You're really full
+view-if: dessert_consumption_count <= 5
+choose-if: hunger > 0
+go-to: snack_choice
+
+There are plenty of desserts for you to consume, replacing the snacks on the same table.
+
+
+@snack_choice
+choose-if: dessert_consumption_count <= 5 and hunger > 0
+unavailable-subtitle: You're stuffed.
+on-arrival: {!
+if (Q['dessert_consumption_count'] >= 2) {
+    Q['time'] += 1;
+}
+!}
+
+
+- @fruit: Assorted fruits.
+- @pumpkin_pie: Pumpkin pie.
+- @nian_gao: Nian gao (年糕).
+- @egg_tarts: Egg tarts (蛋挞).
+- @doushabao: Red bean bun (豆沙包).
+
+
+@snack_choices_end
+
+- @snack_choice: Look for more desserts.
+- @drinks: Look at the drinks.
+- @root: Do something else.
+
+
+@fruit
+go-to: snack_choices_end
+on-arrival: hunger -= 0.5; dessert_consumption_count += 1
+
+There is a cornucopia of fresh fruits. A platter filled with strawberries, blueberries, and rapberries. Clementines and kiwis in a bowl. Cut-up pieces of pineapple and even some dragonfruit and starfruit. It is the dead of winter, and thanks to modern logistics you are able to consume fresh tropical fruits sourced from all over the world. A miracle, or a horror, or both.
+
+Anyway, you eat some berries. They're pretty good.
+
+
+@pumpkin_pie
+go-to: snack_choices_end
+on-arrival: hunger -= 0.5; dessert_consumption_count += 1
+
+This is not the correct festive occasion for pumpkin pie, but someone purchased a grocery store pumpkin pie and brought it here. You take a thin slice. It tastes exactly as pumpkin pie should.
+
+
+@nian_gao
+go-to: snack_choices_end
+on-arrival: hunger -= 0.5; dessert_consumption_count += 1
+
+This is technically not the correct occasion for nian gao; it's supposed to be a dish of the Chinese Lunar New Year. But someone made and brought a dish anyhow. You take a small piece. It tastes exactly as nian gao would be expected to taste; very sticky and only slightly sweet.
+
+
+@egg_tarts
+go-to: snack_choices_end
+on-arrival: hunger -= 0.5; dessert_consumption_count += 1
+
+Apparently making egg tarts is the new fashionable thing among the moms of this social circle. Some popular Chinese blogger has been propagating these recipes, and they're complicated enough that they allow people to show off their skills.
+
+You take one of the tarts. The taste is... egg-y. And tart-y. Or something like that.
+
+
+@doushabao
+go-to: snack_choices_end
+on-arrival: hunger -= 0.5; dessert_consumption_count += 1
+
+Red bean buns are steamed white buns with a filling of red bean paste. They were your favorites from ever since you lived in China.
+
+These particular ones are homemade, by Aubrey's mom apparently. They're quite delectable.
+
+
+
+@drinks
+go-to: food_choices
+
+TODO: drinks

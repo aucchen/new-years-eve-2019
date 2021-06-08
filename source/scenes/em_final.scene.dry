@@ -1,0 +1,232 @@
+title: Leave the house.
+new-page: true
+on-arrival: cold = 1
+tags: final
+
+You don't say a word. You walk to the front of the house. Emily follows. You put on your jacket and your shoes. You leave. You're free.
+
+It's quiet. Snowflakes glisten in the air, shining under the streetlights. Your footprints defile the fresh snow.
+
+Out of the corner of your eyes you glance Emily's shape. You stand still. She catches up, until she is beside you. You start walking. She follows.
+
+"It feels nice, doesn't it?"
+
+- @yeah_1: "Yeah..."
+
+@yeah_1
+
+"Yeah..."
+
+"It's too warm back in the house. It's nice to be cooler here."
+
+- @yeah_2: "Yeah..."
+
+
+@yeah_2
+
+"Yeah..."
+
+"Do you want to wander aimlessly?"
+
+- @yeah_3: "Yeah..."
+
+
+@yeah_3
+go-to: snowflakes
+
+"Yeah..."
+
+
+@snowflakes
+
+It's quiet. Snowflakes glisten in the air, shining under the streetlights. You regret making footprints in the fresh snow.
+
+- @talk_1: Talk?
+- @silent_1: Just walk?
+
+
+################################################
+# Conversation threads:
+# - relationships as optimization. love. liking.
+
+# TODO: have multiple conversation threads, same as in the scene.
+# TODO: option to go back inside.
+
+@talk_1
+go-to: talk_options
+
+What do you want to say? What can you say?
+
+
+@talk_options
+
+- #talk_em_final
+- @silent_1: Just walk, silently.
+
+
+@converse_1
+title: "I have no idea how conversations work but I still want to talk..."
+tags: talk_em_final 
+on-arrival: cold += 1
+view-if: cold = 1
+go-to: wonder_1
+
+That's kind of a weird thing to say, but whatever.
+
+"Um, I don't really know how to talk, but like... I still want to talk."
+
+"Yeah, same here," she says. "How do conversations work, anyway? How do normal people decide what to talk about?"
+
+
+@thanks_1
+title: "Thanks..."
+on-arrival: cold += 1
+view-if: cold = 1
+tags: talk_em_final 
+go-to: talk_options
+
+"Um, thanks... thanks for following me. Out here."
+
+"Thanks for letting me follow you."
+
+"Oh. Um. Thanks for your, um, thanks."
+
+Emily produces a soft laugh.
+
+
+@silent_1
+on-arrival: cold += 1
+view-if: cold = 1
+go-to: wonder_1
+
+TODO: set up emily's conversation topics...
+
+"So how does conversation work, anyway?", Emily says. "How do normal people decide what to talk about?"
+
+
+@wonder_1
+
+"Um, I've wondered that, too..."
+
+# - @random_1: "Maybe it's random?"
+- @optimization_1: "Human interaction is just an optimization problem..."
+
+
+@random_1
+
+"Maybe it's just random. Like, just, do you want to talk about something random?"
+
+TODO
+
+
+@optimization_1
+
+Perhaps all human interactions are an optimization problem.
+
+"I sometimes see this as like, a whole optimization problem." You start to talk, and for once you don't know how to stop. "It's like the whole basis of human interaction is just an optimization problem where you have to identify the correct sequence of actions, but like, I'm always picking the wrong actions, and it's like a game and it's a game that I suck at. Sorry, God, this sounds so cringe..." 
+
+"No, I get this too," Emily says. "Like there's a correct sequence of things to say, or do, and you just have to know it. But sometimes, even if you do the right things..."
+
+"Even if you do the right things, it still doesn't work."
+
+"Sometimes you'll mess up no matter what you do."
+
+# how would this work? they have to segue to
+
+
+
+################################################
+# topic: wmds
+
+@em_wmd
+tags: em_speak_final
+view-if: time < p3_time
+
+"So I've been reading about 20th century scientific history lately," Emily says. "Nuclear weapons are really fascinating, aren't they? Like, just technologically. And sociologically."
+
+- @em_wmd_yes: "Yeah, they are..."
+- @em_wmd_um: "Um..."
+- @em_wmd_bio: "I'm actually more into biological weapons."
+
+@em_wmd_bio
+
+TODO
+
+@em_wmd_yes
+
+TODO
+
+@em_wmd_um
+
+"Um..."
+
+"Have you ever thought about nuclear weapons recently? I thought everyone had a WMD phase."
+
+"Um, no?"
+
+"Well, then I guess I'm weird. I'm a weirdo. I don't... fit in. And I'm not gonna finish that quote."
+
+
+
+#################################################
+# confession?
+
+@confess_1
+title: Confess your love to her.
+tags: talk_em_final
+view-if: prev_em = "date" or em_rom > 0
+
+How will you confess? What are you going to say?
+
+- @c_1: "I..."
+- @talk_options: Just shut up.
+
+@c_1
+
+You have no idea what you're doing here.
+
+- @c_2: "I..."
+
+@c_2
+
+She doesn't like you. She doesn't want you to do this. This will ruin your relationship forever.
+
+- @c_3: "I..."
+
+@c_3
+
+Why do you continue to commit to the illusion that your bizarre statements in a particularly emotionally fraught moment five years ago still mean anything today?
+
+- @c_4: "I..."
+
+@c_4
+
+You can't even vocalize a coherent sentence. Instead you live inside your imaginary worlds where all your needs are catered to.
+
+- @c_5: "I..."
+
+@c_5
+
+You choose to live in an alternate reality to escape from this world. You chose to live in a fantasy where everything would work out, without your intervention, that somehow, you were the protagonist of your own story, someone chosen by fate for future greatness and glory and love and happiness. That your future would work itself out. That it would all be good.
+
+- @c_6: "I..."
+
+@c_6
+
+In truth, there is nothing fundamentally likeable or even *interesting* about you. You're not even good at school anymore. Why the fuck did you think you were going to win the Nobel Prize?
+
+- @c_7: "I..."
+
+@c_7
+
+You can't fucking stand yourself. Why do you think she would stand you?
+
+- @c_8: Cry.
+
+@c_8
+
+You're such a failure that you can't even produce tears anymore.
+
+TODO
+
+- @early_ending: An ending?

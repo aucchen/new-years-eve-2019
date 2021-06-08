@@ -4,7 +4,7 @@ on-arrival: miri_seen = 1
 
 # IN THIS SCENE: set your previous relationship with Miri!
 
-Miri was probably your best friend in high school. But until today, it had been at least one year since your last perfunctory messages. She contacted you out of the blue , saying that there was trouble in her household and she had to get away. Of course you accepted her request. She is the only person here who is not Chinese in any way (she's half Black, half Vietnamese).
+Miri was probably your best friend in high school. But until today, it had been at least one year since your last perfunctory messages. She contacted you out of the blue, saying that there was trouble in her household and she had to get away. Of course you accepted her request. She is the only person here who is not Chinese in any way (she's half Black, half Vietnamese).
 
 #- @remember: Remember Miri...
 - @miri_dating: We dated for a while, but...
@@ -29,7 +29,7 @@ on-arrival: prev_miri = "broken"
 
 It was an extremely amicable breakup, as far as these things go (you don't have other experiences with breakups but compared to media representation of such events, it seemed rather amicable). 
 
-In fact, it hardly entitled a change in your de fact relationship at all. You had never experienced anything overtly *sexual* with her (probably?), even after two years of officially dating, and she rarely discussed such matters with you. The two of you were friends still, even as the frequency of your interactions decreased, and eventually stopped altogether.
+In fact, it hardly entitled a change in your de facto relationship at all. You had never experienced anything overtly *sexual* with her (probably?), even after two years of officially dating, and she rarely discussed such matters with you. The two of you were friends still, even as the frequency of your interactions decreased, and eventually stopped altogether.
 
 You *are* still friends, right?
 
