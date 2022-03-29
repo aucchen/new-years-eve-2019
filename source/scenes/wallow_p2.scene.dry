@@ -3,7 +3,7 @@ subtitle: Within a suitable alcove...
 view-if: phase = 2 and time < p3_time and (despair >= 10 and anxiety >= 10)
 tags: phase2
 max-visits: 1
-on-arrival: despair += 1; anxiety += 1
+on-arrival: despair += 1; anxiety += 1; time += 1; is_alone = 1
 
 This is your natural habitat, an uninhabited alcove in the basement of an acquaintance's house during a social gathering. This is your pigsty, your pool of mud. And you are going to roll in it like... well, whatever a pig is like when it rolls in a pool of mud.
 
@@ -21,7 +21,7 @@ Your friends should be looking for you, right?
 
 No. Of course they won't be looking for you. Why would they deliberately seek you out? Why would anyone deliberately seek you out when all you've done is push them away and abandon them? Moreover, how would they know that you want them right now, when all the signs that you've exhibited have been hostile. 
 
-Why would anyone want to be friends with you when you're such a terrible friend yourself? You're exactly the toxic friend that all the blogs are telling people to excise.
+Why would anyone want to be friends with you when you're such a terrible friend yourself? You are exactly the toxic friend that all the blogs are telling people to excise. You are a vampire who only takes and never gives. You are nothing but a tarpit of despair, and your acquaintances are objectively correct to move on from you.
 
 - @interesting: You're not even interesting.
 - @loneliness: You'll always be alone.
@@ -52,9 +52,9 @@ God, you're so boring and cliched that you can't even make your angst sound inte
 max-visits: 1
 on-arrival: despair += 1
 
-It would be nice if you could cry. But tears don't even come out (what a fucking loser). Probably a result of a hormone imbalance.
+It would be nice if you could cry. But tears don't even come out (what a fucking loser, that you can't even bring yourself to cry). Probably a result of a hormone imbalance.
 
-Yes. You would probably not be feeling this way if you had just kept up with your vitamin D and iron supplements. Your angst is not the product of some deep existential quandary, but a product of your neural chemistry.
+Yes. Are you deficient in iron or vitamin D? Have you been eating properly? Have you been sleeping? Have you been staring at screens for too long? Is one of your biochemical cycles malfunctioning? Your angst is not the product of some deep existential quandary, but a product of your neural chemistry.
 
 You are not a disembodied being of pure thought, or a narrative construction. You are a creature of biochemistry. You are a sac of flesh moving through a physical world.
 
@@ -65,7 +65,7 @@ For some reason, that does not make you feel any better.
 
 
 @wallowing
-
+max-choices: 3
 
 - #wallow
 
@@ -74,48 +74,133 @@ For some reason, that does not make you feel any better.
 title: "Hypocrite that you are..."
 view-if: time < p3_time
 tags: wallow
-on-arrival: wallow_count += 1
+on-arrival: wallow_count += 1; time += 1
 priority: 3
 max-visits: 1
 
-You remember that one meme with Goofy and Mickey talking, and you almost smile to yourself. Is there intrinsic value in the universe? "Will you fight? Or will you perish like a dog?"
+You remember that one meme with Goofy and Mickey talking, and you almost smile to yourself. Is there intrinsic value in the universe, when love is nothing more than the product of chemical reactions in the brain. "Will you fight? Or will you perish like a dog?"
 
 - @get_up: Fight.
 - @sit_more: Perish like a dog.
 
 
 @get_up
+title: Get up.
+tags: wallow
+view-if: wallow_count <= 4 and is_down = 0
+on-arrival: wallow_count += 1
 go-to: get_up_real if wallow_count >= 3; get_up_fake if wallow_count < 3
+
+
+@get_up_down
+title: Get up.
+tags: wallow
+view-if: is_down = 0
+
+You should really get up right now.
+
+- @get_up_real_2: Get up for real.
+- @wallowing: You're too tired.
 
 
 @get_up_fake
 on-arrival: time += 1
-go-to: wallowing
 
 You try to get up. It shouldn't be so difficult. Just command your muscles. Just move.
 
 What is it that you feel? Is it a psychosomatic paralysis? Unreconstructed laziness? How are you supposed to help yourself? How are you supposed to pull yourself up? 
+
+- @wallowing: You can't move.
 
 
 @get_up_real
 
 You're tired of sitting. Your legs hurt. You're uncomfortable. Your phone battery is dead.
 
-There's nothing to do but get up and walk around.
+- @get_up_real_2: Get up.
+- @lie_down: Lie down.
+
+
+@lie_down
+view-if: is_down = 0
+on-arrival: is_down = 1
+
+You lie down on the carpet. The rough surface scratches your neck. Your bones ache.
+
+- @wallowing: But what else are you going to do?
+
+
+@try_to_relax
+tags: wallow
+title: Try to relax.
+on-arrival: time += 1
+view-if: is_down = 1
+
+Take long breaths. Close your eyes. Block out the sounds. Imagine you're far away from here. Imagine you're someone else.
+
+- @relax_works: It... kind of works?
+- @relax_doesnt_work: It doesn't work.
+
+
+@relax_works
+on-arrival: anxiety -= 1; despair -= 1
+
+It... kind of works? For a moment you can forget about your present situation. For a moment you imagine that you're living in your fantasy world. Just for a moment.
+
+- @wallowing: But in the end, nothing ever changes...
+
+
+@relax_doesnt_work
+
+It doesn't work. You open your eyes. Reality creeps in, or rather, it never left.
+
+- @wallowing: Nothing ever changes.
+
+
+@get_up_real_2
+unavailable-subtitle: You're too tired to get up.
+choose-if: anxiety < 10 and despair < 10
+
+There's nothing to do but get up and walk around. You finally maneuver your body into an upright position. You can move. You're fine.
+
+What the heck are you supposed to do now?
 
 - @root
 
 
 @time_out
+title: Someone approaches you.
+tags: wallow
 view-if: time >= p3_time
+go-to: time_out_not if lie_down = 0; time_out_wallowing if is_down = 1
 
 Someone approaches you. It's your brother, Kevin.
 
+
+@time_out_wallowing
+go-to: time_out_end
+
+"Hey jiejie, what are you doing?"
+
+"Oh. Um." You've been on the floor for a while now. It's embarrassing that you would be seen like this, so you manuever to a sitting position.
+
+"Yeah. What?", you manage to say. It must have sounded harsher than it should have.
+
+"Mom said we're going to take pictures now."
+
+
+
+@time_out_not
+go-to: time_out_end
+
 "Hey jiejie, mom said we're going to take pictures now."
 
-"Oh. Okay."
 
-TODO: go to a new ending scene
+@time_out_end
+
+"Oh. Okay." You brush your face. Try to hide the tear tracks, except there were no tear tracks because you were unable to cry.
+
+- @ending_alone.goto_from_basement: Get out of here.
 
 
 @sit_more
@@ -131,7 +216,7 @@ title: What's wrong with you?
 view-if: time < p3_time
 max-visits: 1
 tags: wallow
-on-arrival: wallow_count += 1; whats_wrong_seen = 1
+on-arrival: wallow_count += 1; whats_wrong_seen = 1; time += 1
 
 What the hell is wrong with you?
 
@@ -140,17 +225,31 @@ What the hell is wrong with you?
 
 
 @mentally_ill
-go-to: wallowing 
 
-Yes. That you are.
+You're mentally ill. Yes. That you are.
 
-TODO
+- @diagnosed: Why haven't you been diagnosed yet?
+
+
+@diagnosed
+
+You've never seen any kind of therapist.
+
+- @why_therapist: Why haven't you seen a therapist?
+
+
+@why_therapist
+go-to: wallowing
+
+You... you don't have a good reason. Do you have a good reason for why you do anything?
 
 
 @nothing_wrong
 go-to: wallowing
 
-TODO
+Your problem is that you are far too normal. All of your behaviors and thought patterns are just normal thought patterns, stuff that everyone does. Everyone worries about loneliness. Everyone is nervous around new people, is worried about their self-image, sometimes forgets to message their friends.
+
+But that doesn't make you feel any better.
 
 
 @why_are_you
@@ -164,7 +263,7 @@ Why are you like this? What happened to make you so messed up?
 
 Is it your Chinese Confucian upbringing? Your immigrant Asian-American upbringing? Growing up poor? Growing up gay? Growing up in an unstable household?
 
-Or is there no reason, just the stochastic factors that happened to align in just the right way to activate your neural circuits in such a way that you ended up here?
+Or is there no reason, just the stochastic biological factors that happened to align in just the right way to activate your neural circuits in such a way that you ended up here?
 
 - @there_is_no_reason: There is no reason.
 
@@ -174,4 +273,16 @@ go-to: wallowing
 
 There really isn't a reason for anything, is there?
 
-That's hardly an original thought. Just warmed-over existentialism filtered through a wikipedia-level understanding of philosophy. You've never really had an original thought, have you? They were right when they said that you people were all academic machines.
+That's hardly an original thought. Just warmed-over existentialism filtered through a wikipedia-level understanding of philosophy. You've never really had an original thought, have you? They were right when they said that you people were all academic machines only capable of regurgitating memorized information.
+
+
+@nothing_interesting
+title: There is nothing interesting about sadness.
+view-if: whats_wrong_seen = 1 and time < p3_time
+max-visits: 1
+on-arrival: wallow_count += 1; time += 1
+tags: wallow
+
+Weren't all the great artists depressed, at least sometimes? Couldn't they draw inspiration from their ennui, let creativity spring from their sadness? Or is that not how it works? Maybe for you there's nothing interesting about being sad. Maybe contrary to Tolstoy all unhappiness is basically the same, all just one constant mush of gray (see? it's always gray).
+
+You have literally never created a single piece of art in your life, so it's a moot point anyhow.

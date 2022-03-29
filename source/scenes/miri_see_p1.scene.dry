@@ -3,7 +3,7 @@ subtitle: Standing amidst a circle of adults...
 unavailable-subtitle: There's something else going on...
 new-page: true
 on-arrival: time += 1; energy -= 1; miri_int += 1; miri_relationship += 1
-view-if: phase = 1 and miri_seen = 0 and energy > 0 and time < p1_time
+view-if: phase = 1 and miri_seen = 0 and energy > 0 and time < p1_time and em_seen > 0
 choose-if: has_interruption = 0
 tags: phase1, miri, initiation
 

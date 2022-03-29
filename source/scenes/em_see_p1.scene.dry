@@ -16,7 +16,7 @@ Emily is sitting by herself on a couch in a darkened alcove, her face faintly il
 go-to: em_set_prev
 set-jump: em_see_p1.em_talk
 
-She somehow seems softer than when you last met. Her hair is tied up in a ponytail, her face framed by bangs with thick black-framed glasses. She's wearing a black and white striped sweater, like a zebra trying to blend in among horses. Or something like that.
+She somehow seems softer than when you last met. Her hair is tied up in a ponytail, her face framed by bangs with thick black-framed glasses. She's wearing a black and white striped sweater, like a zebra trying to blend in. Or something like that.
 
 ############################################
 
@@ -46,8 +46,7 @@ You sit down on the couch next to her.
 
 @sit_silence
 
-You just sit there. Emily scrolls through a long article on her computer, eyes seemingly focused on the screen.
-
+You just sit there. Emily switches between a few different windows on her computer, each one containing a wall of text and figures. Her eyes are seemingly focused on the screen.
 
 - @what_reading: "What are you reading?"
 - @how_are_you: "How have you been?"
@@ -60,7 +59,6 @@ You just sit there. Emily scrolls through a long article on her computer, eyes s
 "Um, I'll stand here awkwardly..."
 
 Emily shrugs. "Okay. Suit yourself."
-
 
 - @what_reading: "What are you reading?"
 - @how_are_you: "How have you been?"
@@ -85,12 +83,12 @@ You stand there next to Emily, who is silent as her eyes are focused on the arti
 
 "Um, what are you reading?"
 
-"Oh, um, this is a short article by Karl Marx. Relatively short anyway. It's called The 18th Brumaire of Louis Bonaparte."
+"Oh, um, I'm reading a few different things. Papers for my research mostly. And some, um, other things."
 
 [? if anxiety >= 6 : Silence. She isn't going to talk if you aren't. ?]
 
 
-- @what_about: "What is it about?"
+# - @what_about: "What is it about?"
 - @how_are_you: "How have you been?"
 - @stay_silent: Don't say anything.
 - @leave_emily: Just leave.
@@ -122,12 +120,12 @@ You're going to have to initiate this conversation. You hate initiating conversa
 
 
 @just_say_it
-on-arrival: time += 1; anxiety += 1
+on-arrival: time += 1; anxiety += 1; em_how_are_you = 1
 go-to: em_not_okay if (prev_em = "date" or prev_em = "friends"); em_dodging if prev_em = "none"
 
 "So, um, how have you been?"
 
-She gives you a quick glance. "I'm doing fine."
+"I'm doing fine," she says.
 
 
 @em_not_okay
@@ -137,7 +135,7 @@ on-arrival: em_int += 1
 
 "Oh... really?"
 
-She sighs, and closes her laptop. "No. Of course not."
+She sighs, and finally looks up from her laptop her laptop. "No. Of course not."
 
 - @how_so: "How so?"
 - @sorry_about_everything: "Sorry about everything..."
@@ -198,7 +196,7 @@ You don't know what to say, and apparently Emily isn't in the mood for casual in
 # tell me about yourself...
 
 @em_asks
-on-arrival: em_int += 1; time += 1
+on-arrival: em_int += 1; time += 1; em_how_are_you = 1
 
 # if you were friends with em, she starts conversation with you
 
@@ -351,10 +349,9 @@ on-arrival: em_int += 1; energy -= 1; em_relationship += 1
 
 "Um, I've missed you a lot... sorry..."
 
-"No, it's my fault too." Emily glances at you. "I've missed you too."
+"No, it's my fault too." Emily glances at you. "I've missed you too. It's been such a long time..."
 
 Okay. Was your statement supposed to have *romantic* undertones?
-
 
 - @yes_romantic: Yes...
 - @hope_romantic: Hopefully?...
@@ -370,7 +367,6 @@ on-arrival: em_rom += 1
 
 In a movie, this would be the moment where you hugged, kissed, or something like that. But that will never happen. The conversation has suddenly acquired an awkward quality. 
 
-
 - @romanticize: Romanticize.
 - @exit_moment: You're going to have to exit this moment.
 - @stay_with_emily: Actually, you'd rather stay here.
@@ -385,11 +381,11 @@ There's something about her you can't ignore. Something that makes you want to i
 
 # You like Emily because she has never asked anything of you. Because she has never told you to do anything.
 
-"Are you staring at me?", she says, glancing at you. You turn away.
+"What are you staring at?", she says, glancing at you. You turn away.
 
 "No, I mean... sorry."
 
-"It's fine."
+"It's fine. There's nothing wrong with staring."
 
 - @exit_moment: You're going to have to exit this moment.
 - @stay_with_emily: Actually, you'd rather stay here.
@@ -544,7 +540,7 @@ Emily is not going to initiate the conversation. Do you want to say something, o
 
 
 @leave_emily
-on-arrival: energy -= 1; despair += 1
+on-arrival: energy -= 1; despair += 1; time += 1
 
 Somehow, you sense that you are a little unwelcome here, as if you have overstayed the bounds of acceptable social discourse given your previous relationship or lack of thereof.
 

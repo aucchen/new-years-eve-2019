@@ -1,7 +1,7 @@
 title: Aubrey Gao
 subtitle: Talking around a table...
 on-arrival: aub_int += 1; time += 1; energy -= 1; aubrey_relationship += 1
-view-if: aub_int = 0 and phase = 1 and energy > 0 and time < p1_time
+view-if: aub_int = 0 and phase = 1 and energy > 0 and time < p1_time and em_seen > 0
 new-page: true
 tags: phase1, aub
 
@@ -143,7 +143,7 @@ Aubrey laughs. "Hey, it's an important question! It's your entire future! The re
 
 @idk_2
 
-Before you can say anything, someone approaches, an adult. An older adult; you keep forgetting that you're technically an adult too. He greets Aubrey.
+Before you can say anything, someone approaches, an adult. An older adult; you keep forgetting that you're technically an adult too. He greets Aubrey, interrupting the thread of conversation. No one is looking at you anymore.
 
 - @hang_around: Just hang around?
 - @leave: Exit this area.

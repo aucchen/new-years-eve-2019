@@ -1,10 +1,10 @@
 title: Dessert
 subtitle: More foods laid out...
-unavailable-subtitle: There's something else going on...
+unavailable-subtitle: You don't feel like eating...
 new-page: true
 on-arrival: dessert_seen += 1; time += 1
-view-if: phase = 2 and dessert_seen <= 3 and time < p3_time and anxiety < 15
-choose-if: has_interruption = 0
+view-if: phase = 2 and dessert_seen <= 3 and time < p3_time
+choose-if: anxiety < 15
 go-to: food_choices
 tags: phase1, food
 set-bg: backgrounds/food_2_filtered.jpg
@@ -23,7 +23,7 @@ Dessert is not a part of a traditional Chinese meal, but this is not a tradition
 
 @snacks
 unavailable-subtitle: You're really full
-view-if: dessert_consumption_count <= 5
+view-if: dessert_consumption_count <= 5 and time < p3_time
 choose-if: hunger > 0
 go-to: snack_choice
 
@@ -31,6 +31,7 @@ There are plenty of desserts for you to consume, replacing the snacks on the sam
 
 
 @snack_choice
+view-if: time < p3_time
 choose-if: dessert_consumption_count <= 5 and hunger > 0
 unavailable-subtitle: You're stuffed.
 on-arrival: {!
@@ -45,6 +46,7 @@ if (Q['dessert_consumption_count'] >= 2) {
 - @nian_gao: Nian gao (年糕).
 - @egg_tarts: Egg tarts (蛋挞).
 - @doushabao: Red bean bun (豆沙包).
+- @yuebing: Moon cakes (月饼).
 
 
 @snack_choices_end
@@ -95,8 +97,74 @@ Red bean buns are steamed white buns with a filling of red bean paste. They were
 These particular ones are homemade, by Aubrey's mom apparently. They're quite delectable.
 
 
+@yuebing
+go-to: snack_choices_end
+on-arrival: hunger -= 0.5; dessert_consumption_count += 1
+
+This is not the correct season for mooncakes, not by far. But someone must have had leftovers from 中秋节 (Mid-Autumn festival). These ones are storebought, the size of your palm, cut into quarters.
+
+You take a slice. It has a lotus seed paste filling with a solid egg yolk inside. The taste is very sweet.
+
 
 @drinks
-go-to: food_choices
+view-if: time < p3_time
+go-to: drinks_choice
 
-TODO: drinks
+There are some more drinks displayed.
+
+
+@drinks_choice
+view-if: has_alcohol = 0 and time < p3_time
+choose-if: dessert_consumption_count <= 5 and thirst > 0
+unavailable-subtitle: No drinks, for now.
+on-arrival: {!
+if (Q['dessert_consumption_count'] >= 2) {
+    Q['time'] += 1;
+}
+!}
+
+- @water: Water.
+- @juice: Fruit juices.
+- @alcohol: Alcoholic beverages.
+
+
+@drinks_choice_end
+
+- @snacks: Look for desserts.
+- @drinks_choice: Look at the drinks.
+- @root: Do something else.
+
+
+@water
+go-to: drinks_choice_end
+on-arrival: thirst -= 1
+
+You can never have enough water.
+
+
+@juice
+go-to: drinks_choice_end
+on-arrival: thirst -= 0.5; dessert_consumption_count += 1
+
+You consume a miniature bottle of mango nectar. It's pretty good, but very sweet.
+
+@alcohol
+view-if: has_alcohol = 0
+
+Right. You're over 21 now. You can consume alcoholic beverages without fear of the weight of the law, or something like that.
+
+- @beer: Beer.
+- @wine: Wine.
+- @fruity: Some fruity beverage.
+
+
+@beer
+go-to: drinks_choice_end
+
+
+@wine
+go-to: drinks_choice_end
+
+
+@fruity
+go-to: drinks_choice_end

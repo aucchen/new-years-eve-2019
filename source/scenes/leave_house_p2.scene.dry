@@ -17,7 +17,36 @@ max-choices: 3
 
 - #alone_thought
 
-# TODO: be analytical for once - train your hyper-analytical eye upon your situation.
+
+@hungry_thought
+tags: alone_thought
+title: You're hungry.
+view-if: time < p3_time and hunger >= 7
+on-arrival: cold += 1; time += 1
+max-visits: 2
+
+You feel the emptiness in your stomach, waiting to be filled. You feel the hunger ripple throughout your body, up to your head. Your body is crying for calories and you are refusing it. [? if intro_flag = "pessimistic" : You had one job today, to maintain homeostasis, and you are failing at it. Literally the easiest job in the world. ?]
+
+- @hungry_its_fine: But it's fine.
+
+@hungry_its_fine
+go-to: thoughts
+
+But it's fine. It's not too bad. You can still walk. For now.
+
+
+@thirsty_thought
+tags: alone_thought
+title: You're thirsty.
+view-if: time < p3_time and thirst >= 7
+on-arrival: cold += 1; time += 1
+max-visits: 2
+
+You feel the drought in your throat. You feel the onset of a slight headache. The cause of a headache is multifactorial, but dehydration is one among them. [? if intro_flag = "pessimistic" : You had one job today, to maintain homeostasis, and you are failing at it. Literally the easiest job in the world. ?]
+
+You haven't had enough fluids to drink, it was so easy to do, so why didn't you do it?
+
+- @hungry_its_fine: But it's fine.
 
 
 @walking_thought
@@ -45,9 +74,10 @@ It's nice out here, in the cold. Better than the warm and stuffy house, with so 
 @empty_thought
 tags: alone_thought
 title: It's empty.
-view-if: cold <= 6 and time < p3_time and has_loneliness_segue = 0
+view-if: cold <= 8 and time < p3_time and has_loneliness_segue = 0
 on-arrival: cold += 1; time += 1; anxiety -= 0.5; has_loneliness_segue = 1
-max-visits: 2
+max-visits: 1
+priority: 2
 go-to: thoughts
 
 The sidewalks are empty. You're alone. Does it make you feel better? Do you feel better if you're alone?
@@ -60,7 +90,7 @@ tags: alone_thought
 title: What's the chance that you'll get murdered?
 view-if: cold <= 6 and time < p3_time
 on-arrival: cold += 1; time += 1; anxiety -= 0.5
-max-visits: 2
+max-visits: 1
 go-to: thoughts
 
 This is not the kind of suburb where people randomly get assaulted on the streets at night. Not like your old neighborhood. Actually, statistically that didn't really happen in your old neighborhood either, not that it ever assuaged your parents.
@@ -263,7 +293,7 @@ tags: alone_thought
 title: Mom is probably worried sick. 
 view-if: cold > 4 and time < p3_time
 on-arrival: cold += 1; time += 1; has_mom_segue = 1
-max-visits: 2
+max-visits: 1
 go-to: thoughts
 
 How long has it been? Has mom noticed that you've been gone, that you've disappeared, vanished without a trace? Is she worried right now?
@@ -367,7 +397,7 @@ But it's not so bad being an alien observer.
 @no_one_will_save_you_thought
 tags: alone_thought
 title: No one will save you.
-view-if: cold > 4 and time < p3_time and has_loneliness_segue = 1 and has_imagine = 1
+view-if: cold > 4 and time < p3_time and has_loneliness_segue = 1
 on-arrival: cold += 1; time += 1
 max-visits: 1
 
@@ -456,7 +486,7 @@ You had stopped. You start walking again.
 @alone_thought_3
 tags: alone_thought
 title: You wish you could be the protagonist of your own story.
-view-if: cold > 4 and time < p3_time and has_loneliness_segue = 2
+view-if: cold > 4 and time < p3_time and has_loneliness_segue > 1
 on-arrival: cold += 1; time += 1
 max-visits: 1
 
@@ -491,7 +521,9 @@ on-arrival: cold += 1; time += 1
 max-visits: 1
 go-to: thoughts
 
-Global warming has resulted in a mean global temperature increase of somwhere between 0.5 and 1 degree celsius up to today since pre-industrial times, last you heard. But of course there are local fluctuations; climate and weather describe different phenomena. Under some projections, events such as the one you're currently experiencing would become even more likely in the Northeastern US.
+Global warming has resulted in a mean global temperature increase of around 1 degree celsius up to today since pre-industrial times, last you heard. But of course there are local fluctuations; climate and weather describe different phenomena. Under some projections, events such as the one you're currently experiencing would become even more likely in the Northeastern US.
+
+This is bad.
 
 
 @analytical_thought

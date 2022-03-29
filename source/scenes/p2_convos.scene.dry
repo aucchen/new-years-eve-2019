@@ -361,10 +361,11 @@ Q['food_desc'] = descs[food_desc_id];
 var adds = Q['food_additional'][food_item];
 var food_add_id = Math.floor(Math.random()*(adds.length));
 Q['food_add'] = adds[food_add_id];
+Q['food_eat'] = Q['food_eating'][food_item][0];
 !}
 go-to: jumpScene
 
-You take a bite of the [+ food_item +]. It tastes [+ food_desc +]. [+ food_add +]
+[+ food_eat +] It tastes [+ food_desc +]. [+ food_add +]
 
 [? if food_remaining = 0 : There's no more food left on your plate. ?]
 
@@ -401,6 +402,8 @@ You can't deal with this anymore. You have to get away.
 
 
 @anxiety_attack_stay
+unavailable-subtitle: You can't do this anymore.
+choose-if: anxiety <= 14
 go-to: listen
 
 {!<span class="zq">!}YOU: Alright, I'll stay here...{!</span>!}
@@ -409,7 +412,9 @@ go-to: listen
 
 
 @anxiety_attack_go
-go-to: anxiety_attack_go_em if em_int >= 2 or em_rom > 0 or prev_em = "date"; anxiety_attack_go_miri if miri_int >= 2 and em_rom = 0; anxiety_attack_go_aub if aub_int >= 2 and em_rom = 0; anxiety_attack_go_2 if em_int < 2 and miri_int < 2 and aub_int < 2 and em_rom = 0
+go-to: anxiety_attack_go_em if em_int >= 2 or em_rom > 0 or prev_em = "date"; anxiety_attack_go_2 if em_int < 2 and em_rom = 0 
+#and miri_int < 2 and aub_int < 2 and em_rom = 0
+#anxiety_attack_go_miri if miri_int >= 2 and em_rom = 0; anxiety_attack_go_aub if aub_int >= 2 and em_rom = 0; 
 
 {!<span class="zq">!}YOU: Um, I have to go..."{!</span>!}
 
@@ -447,6 +452,7 @@ You leave, and she follows.
 
 
 @anxiety_attack_go_em_no
+on-arrival: is_alone = 1
 
 {!<span class="zq">!}YOU: Oh, um... no, sorry. I want to be alone.{!</span>!}
 
@@ -455,7 +461,6 @@ You leave, and she follows.
 She seems a little hurt. And you're alone now.
 
 - @root: Go...
-
 
 @anxiety_attack_go_miri
 on-arrival: anxiety += 1; with_miri = 1
@@ -473,10 +478,11 @@ on-arrival: with_miri = 1
 
 {!<span class="bm">!}MIRI: Alright, let's go.{!</span>!}
 
-- @miri_p2: Go...
+- @miri_final: Go...
 
 
 @anxiety_attack_go_miri_no
+on-arrival: is_alone = 1
 
 {!<span class="zq">!}YOU: Oh, um... no, sorry. I want to be alone.{!</span>!}
 
@@ -507,9 +513,26 @@ The dinner is over. Emily gets up first.
 
 {!<span class="dw">!}WILLIAM: Yeah, I need to stretch after eating so much...{!</span>!}
 
-Aubrey and William get up and leave. And so do Emily and Miri.
+Everyone gets up to leave.
 
-- @root: Go.
+- @break_up_2: Go.
+
+@break_up_2
+go-to: break_up_em if em_int >= 2 or em_rom > 0 or prev_em = "date"; go_root if em_int < 2 and miri_int < 2 and aub_int < 2 and em_rom = 0
+
+
+@break_up_em
+
+{!<span class="ce">!}EMILY: Hey, Karen, are you alright? Do you want to, um, how do you say it, hang out for a bit?{!</span>!}
+
+- @anxiety_attack_go_em_okay: "Okay..."
+- @anxiety_attack_go_em_no: "I want to be alone..."
+
+
+@go_root
+
+You leave to rejoin the rest of the party.
+
 
 # TODO: let 
 
@@ -602,6 +625,7 @@ go-to: college_2_feelings
 
 
 @college_2_feelings
+on-arrival: anxiety += 1
 
 - @college_3_idk: "I don't know?"
 - @college_3_sucks: "Everything sucks."
@@ -628,7 +652,6 @@ go-to: college_2_feelings
 {!<span class="ga">!}AUBREY: It's okay! Everyone feels that way sometimes.{!</span>!}
 
 - @college_4_aub: "You seem to be doing well..."
-
 
 
 @college_3_waste
@@ -857,7 +880,7 @@ go-to: next_topic
 
 
 @hs_3_miri
-on-arrival: miri_int += 1
+on-arrival: miri_int += 1; anxiety += 1
 go-to: next_topic
 
 {!<span class="zq">!}YOU: Um, Miri? What do you think?{!</span>!}
@@ -1064,7 +1087,7 @@ Nods all around. Everyone seems content.
 title: William talks about politics.
 tags: topic_start, topic_politics
 view-if: phase = 2 and topic_politics = 0 and anxiety <= 14
-on-arrival: time += 1; topic_politics = 1; anxiety += 1
+on-arrival: time += 1; topic_politics = 1; anxiety += 2
 set-jump: politics_2
 
 {!<span class="dw">!}WILLIAM: So, how about that election?{!</span>!}
@@ -1364,7 +1387,7 @@ The conversation dies.
 title: William asks about popular media.
 tags: topic_start
 view-if: phase = 2 and topic_media = 0 and anxiety <= 14
-on-arrival: time += 1; topic_media = 1
+on-arrival: time += 1; topic_media = 1; anxiety += 1
 set-jump: media_2
 
 {!<span class="dw">!}WILLIAM: So, have you guys seen any good movies lately? How about that star war?{!</span>!} 
@@ -1441,6 +1464,7 @@ You've been playing that one mobile text-based dating sim, but can you really ad
 
 
 @media_3
+on-arrival: anxiety += 1
 
 {!<span class="ce">!}EMILY (to Miri): Did you ever read Homestuck?{!</span>!}
 
@@ -1471,7 +1495,7 @@ Thus, you can connect with Emily and Miri by virtue of your shared interests, wh
 
 
 @media_3_interject
-on-arrival: hs_callback = 1; talk_count += 1
+on-arrival: hs_callback = 1; talk_count += 1; anxiety += 1
 go-to: media_3_hs_em_friends if prev_em != "none"; media_3_hs_em_none if prev_em = "none"
 
 {!<span class="zq">!}YOU: Um, I've read it too...{!</span>!}
@@ -1553,6 +1577,7 @@ But that's an awfully self-centered line of thinking. Why would she be obligated
 
 
 @no_talk_say
+on-arrival: anxiety += 1
 
 - @no_talk_always: "I'm always like this..."
 - @no_talk_fine: "I'm fine..."
@@ -1590,7 +1615,7 @@ But that's an awfully self-centered line of thinking. Why would she be obligated
 
 @no_talk_stare
 
-You imagine that your glare contains a hidden power, a commanding force, or else that it is capable of telepathically communicating your innermost thoughts and finally getting them to understand. Obviously, it is neither of these things.
+You imagine that your gaze contains a hidden power, a commanding force, or else that it is capable of telepathically communicating your innermost thoughts and finally getting them to understand. Obviously, it is neither of these things.
 
 {!<span class="ga">!}AUBREY: Um, [+ first_name +], are you okay? Is something wrong?{!</span>!}
 
@@ -1598,6 +1623,7 @@ You imagine that your glare contains a hidden power, a commanding force, or else
 
 
 @no_talk_im_okay
+on-arrival: anxiety += 1
 go-to: next_topic
 
 {!<span class="zq">!}YOU: Um, I'm okay. There's probably nothing wrong with me.
@@ -1606,4 +1632,4 @@ go-to: next_topic
 
 {!<span class="zq">!}YOU: Yeah...{!</span>!}
 
-You manage a few breaths. You are fine, right?
+You manage a few breaths. You are fine, right? Or at least capable of pretending to be?

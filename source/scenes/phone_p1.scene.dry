@@ -113,6 +113,8 @@ on-arrival: time += 1
 
 You've been playing this game for a while without getting very far. It's an old-fashioned text adventure about a spy infiltrating a research base, and it is very difficult. You stop playing after dying a few times.
 
+# TODO: add some more parser options - stuff based on shade, galatea, bronze, aisle, etc.
+
 - @games: Play more games.
 - @options: Keep using your phone.
 - @root: Do something else.
@@ -150,7 +152,7 @@ Ugh. Maybe it's time to do something else.
 
 @net
 on-arrival: time += 2
-go-to: wiki_1; wiki_2; wiki_3
+go-to: wiki_1; wiki_2; wiki_3; wiki_4
 view-if: time < p1_time
 
 In practice, "browsing the web" usually means Wikipedia for you. Why not go on Wikipedia for an hour or two, when you have work to do?
@@ -158,7 +160,7 @@ In practice, "browsing the web" usually means Wikipedia for you. Why not go on W
 
 @wiki_1
 
-You end up at the Wikipedia pages for various suburban localities of major metropolitan areas in the United States. Did you know about the population density of Overland Park, KS before? Yes, you did in fact. You've read all of these things before.
+You end up at the Wikipedia pages for various suburban localities of major metropolitan areas in the United States. Did you know about the population density of Overland Park, KS before? Yes, you did in fact. Have you memorized every municipality of San Mateo, Santa Clara, Contra Costa, and Alameda counties with a population over 50,000, along with their demographic patterns? Yes, you have. You've read all of these things before.
 
 - @options: Keep using your phone.
 - @root: Do something else.
@@ -167,7 +169,7 @@ You end up at the Wikipedia pages for various suburban localities of major metro
 @wiki_2
 on-arrival: despair += 1
 
-From the front page, you somehow navigate to pages for various life-threatening diseases. *Are you* having a pulmonary thromboembolism or an intracranial hemmorage right now? How do you know you're not? You have a headache. Is it cancer? It's probably not something *that* bad, but what do you know? There are so many ways to die. That's why you're studying biology, to help people not die as much, right? Right?
+From the front page, you somehow navigate to pages for various life-threatening diseases. *Are you* having a pulmonary thromboembolism or an intracranial hemmorage right now? How do you know you're not? You have a headache. Is it cancer? It's probably not something *that* bad, but what do you know? There are often no symptoms until it's too late. Did you know that chronic sinusitis is correlated to increased incidence of depression and anxiety? Your nose is feeling stuffy right now. There are so many ways to die. That's why you're studying biology, to help people not die as much, right? Right?
 
 - @options: Keep using your phone.
 - @root: Do something else.
@@ -181,4 +183,12 @@ You quasi-randomly navigate to the pages for various small geographical localiti
 - @options: Keep using your phone.
 - @root: Do something else.
 
+
+@wiki_4
+on-arrival: despair += 1
+
+You read about various biomedical topics, which sould be relevant to your research and academic interests. Do you still remember every amino acid structure? Of course not. How many cellular processes can you name? How many key signaling pathways do you still recognize? How much did you ever know in the first place?
+
+- @options: Keep using your phone.
+- @root: Do something else.
 

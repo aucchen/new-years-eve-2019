@@ -15,13 +15,13 @@ No one speaks to you. Everyone is so enraptured by their conversations that no o
 @keep_wandering
 view-if: time < p1_time
 on-arrival: time += 1
-go-to: w1; w2 if wander_p1_w2_seen = 0; w3 if wander_p1_w3_seen = 0
+go-to: w1; w2 if wander_p1_w2_seen = 0; w3 if wander_p1_w3_seen = 0 and mom_int = 0; w4 if wander_p1_w4_seen <= 1; w5 if em_int > 0 and song_chen_int = 0
 
 
 @w1
 go-to: options
 
-You keep walking around in a big circle. No one speaks to you.
+You walk in a large circle through the main floor of the house, pretending that you have a purpose. Thus, no one speaks to you.
 
 @w2
 on-arrival: wander_p1_w2_seen = 1
@@ -45,6 +45,7 @@ As you are wandering, mom notices you. "秋怡，怎么样啊？ 怎么没有跟
 - @mom_p1.stand: "Okay..."
 - @w3_else: "Um, 我不想..."
 
+
 @w3_else
 go-to: options
 
@@ -55,7 +56,7 @@ go-to: options
 
 @w4
 go-to: options
-max-visits: 2
+on-arrival: wander_p1_w4_seen += 1
 
 A few toddlers are running around. Their parents shout after them. You barely avoid a collision. But you can't help but smile a little at the kids. Kids are... good? Yeah, probably, or something like that.
 
@@ -63,21 +64,70 @@ A few toddlers are running around. Their parents shout after them. You barely av
 @w5
 go-to: options
 max-visits: 1
-on-arrival: song_chen_int = 1
 view-if: em_int > 0
 
-You see Song Chen, Emily's dad. He doesn't seem to have noticed you.
+You see Song Chen, Professor Chen, Emily's dad and mom's sort-of boss. You worked at his lab in high school, doing a research project involving data analysis for his genomics experiments. He doesn't seem to have noticed you.
 
 - @interact_song_chen: Interact with him somehow?
-- @options: Ignore him, and hope he ignores you.
+- @ignore_song_chen: Ignore him, and hope he ignores you.
 
 
 @interact_song_chen
+on-arrival: song_chen_int = 1; time += 1
+
+You walk nearer to his proximity. He seems to be engrossed in conversation, but suddenly he becomes aware of your presence. He turns to you with a wide smile.
+
+"赵秋怡！你长大了！大学怎么样？ *Qiuyi! You've grown! How's university?*"
+
+- @chen_uni_good: "Um, good?"
+
+
+@chen_uni_good
+
+"Um, 还好。 *It's fine.*"
+
+"你跟我儿子见面了吗？ *Did you meet my son?*"
+
+- @chen_get_out: Get out of here.
+- @chen_yes: "Um, yeah..."
+- @chen_no: "Um, no..."
+
+
+@chen_get_out
 go-to: options
 
-You walk nearer to his proximity. He seems to be engrossed in conversation.
+"Um, 对不起，我要... *Sorry, I have to...*"
 
-# TODO: interact with Song Chen... eventually
+He smiles at you. "没事，没事 *No problem.*"
+
+You are free.
+
+@chen_yes
+go-to: chen_talk_2
+
+"Um, 见了... *"I did.*"
+
+
+@chen_no
+go-to: chen_talk_2
+
+"Um, 我没有... *I didn't.*"
+
+
+@chen_talk_2
+go-to: options
+
+"你上大学怎么样？ *How is your university?*"
+
+"Oh..."
+
+The conversation is generic. He asks questions, and you answer them. You say the least you can. It continues until he is called somewhere else, and you are left alone.
+
+
+@ignore_song_chen
+go-to: options
+
+You ignore him, and he continues to not notice you. This works for all involved.
 
 
 @options

@@ -1,11 +1,18 @@
 title: Do your homework.
 subtitle: Well, technically it's not homework...
-view-if: phase = 2 and time < p3_time and anxiety < 15
+unavailable-subtitle: You don't feel like doing homework...
+view-if: phase = 2 and time < p3_time
+choose-if: anxiety < 15
 new-page: true
-max-visits: 2
+max-visits: 1
 tags: phase2, alone
 
+[? if with_em = 1 : "Um, I'm going to, uh, read some stuff," you say. ?]
+
+[? if with_em = 1 : Emily shrugs. "Sure. I have some stuff to read too." ?]
+
 Technically it's not homework. It's just a bunch of readings for your research project, some books your supervisor suggested that might or might not be actually helpful, to help fill in the background knowledge not covered in coursework, before the next part of the project. In this interest he told you to purchase a book on statistical methods for biological sequence analysis, or something like that.
+
 
 - @read: Read?
 
@@ -17,6 +24,7 @@ Your task here is to fill your mind with statistical methods for biological sequ
 
 - @root: Stop reading.
 - @read_2: Keep trying to read.
+- #em_hw
 
 @read_2
 on-arrival: time += 1
@@ -30,6 +38,7 @@ Are you learning anything? It's hard to tell.
 - @read_3: Keep reading this chapter.
 - @read_else: Read something else?
 - @root: Stop reading.
+- #em_hw
 
 
 @read_3
@@ -40,6 +49,7 @@ You learn something about hidden Markov models. Or rather, you learn that they a
 - @read_4: Just read as much as you can.
 - @read_else: Read something else?
 - @root: Stop reading.
+- #em_hw
 
 @read_4
 on-arrival: time += 1
@@ -48,6 +58,7 @@ You skim through the chapter a couple of times. It doesn't exactly work. You try
 
 - @read_else: Read something else?
 - @root: Stop reading.
+- #em_hw
 
 
 @read_else
@@ -57,3 +68,15 @@ You didn't bring your computer, and your phone is almost out of battery. You did
 
 - @root: Stop reading.
 
+
+@em_read_1
+title: Ask Emily about what she's reading.
+view-if: with_em = 1 and check_em_read = 0
+on-arrival: time += 1; check_em_read = 1
+tags: em_hw
+
+"Um, what are you reading?", you ask.
+
+She shows you her computer.
+
+TODO

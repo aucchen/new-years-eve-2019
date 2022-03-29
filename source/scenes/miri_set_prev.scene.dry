@@ -13,6 +13,8 @@ Miri was probably your best friend in high school. But until today, it had been 
 
 
 @miri_dating
+unavailable-subtitle: No, that's not what happened.
+choose-if: miri_implemented = 1
 on-arrival: prev_miri = "date"
 
 It was junior year of high school when she admitted that she had feelings for you. And you *liked* her too. She was cute, and nice, and all that you ever wanted.

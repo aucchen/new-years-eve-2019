@@ -60,7 +60,7 @@ go-to: homework_p2
 
 @em_wallow
 title: Wallow in despair?
-choose-if: despair > 15
+choose-if: despair > 20 and anxiety < 15
 unavailable-subtitle: That would be supremely unhelpful right now.
 go-to: wallow_p2
 

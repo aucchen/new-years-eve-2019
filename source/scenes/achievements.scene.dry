@@ -1,3 +1,40 @@
 title: Achievements
 is-special: true
 new-page: true
+
+= Achievements
+
+[? if achievement_ending_alone_1 > 0 : Ending: Disappear into the sun - Alone 1 ?]
+
+[? if achievement_ending_mom_1 > 0 : Ending: I am my mother's child - Mom 1 ?]
+
+[? if achievement_ending_em_1 > 0 : Ending: Emily 1 ?]
+
+[? if achievement_ending_aub_1 > 0 : Ending: In my head I do everything right - Aubrey 1 ?]
+
+[? if achievement_ending_miri_1 > 0 : Ending: All the love we had and lost - Miri 1 ?]
+
+[? if achievement_anxiety_1 > 0 : Just a thing that my mind does - anxiety reaches a dangerous level. ?]
+
+
+= Locked Achievements
+
+[? if achievement_ending_alone_1 = 0 : Ending: Disappear into the sun ?]
+
+[? if achievement_ending_mom_1 = 0 : Ending: I am my mother's child ?]
+
+[? if achievement_ending_em_1 = 0 : Ending: We stumbled upon a secret power ?]
+
+[? if achievement_ending_aub_1 = 0 : Ending: In my head I do everything right ?]
+
+[? if achievement_ending_miri_1 = 0 : Ending: All the love we had and lost ?]
+
+[? if achievement_anxiety_1 = 0 : Just a thing that my mind does ?]
+
+
+- @credits: Credits
+- @back: Back
+
+@back
+view-if: is_ended = 0
+go-to: backSpecialScene

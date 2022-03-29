@@ -1,8 +1,0 @@
-title: The new year is soon.
-subtitle: Happy 2020?
-view-if: time >= p3_time and time > p3_time + 1 and is_alone = 1
-tags: phase3
-
-"你去哪儿了？ *Where did you go?*", mom asks.
-
-The party is assembling.

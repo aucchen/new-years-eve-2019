@@ -1,15 +1,17 @@
 body {
   font-family: "Minion Pro", Georgia, serif;
+  /*font-family: Helvetica, Arial, sans-serif;*/
   /*font-size: 1.125em;*/
   /* TODO: change background color to something holidays? maroon? */
   /*background-color: #f3f3e3;*/
   background-color: #f3f3e3;
   padding: 0;
-  line-height: 155%;
+  line-height: 175%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   overflow: scroll;
+  opacity: 1;
 }
 header, #content, footer {
   color: #431;
@@ -56,6 +58,27 @@ header h2:before {
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   border-radius: 1em;
 }
+.content_hidden {
+  opacity: 0;
+}
+.content_visible {
+  opacity: 1;
+  transition: opacity 0.05s ease-in;
+}
+.content_hidden.disable_animate {
+  opacity: 1;
+}
+.content_visible.disable_animate {
+  opacity: 1;
+}
+.content_fade_in {
+  /* TODO: animate? */
+  opacity: 1;
+  transition: opacity 0.5s linear;
+  /*-webkit-animation: fadeIn ease-in 500ms;*/
+  /*animation: fadeIn ease-in 500ms;*/
+}
+
 #content #read-marker {
   border: none;
   border-top: 1px solid #000;

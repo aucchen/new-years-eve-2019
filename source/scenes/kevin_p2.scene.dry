@@ -1,7 +1,7 @@
 title: Kevin
 subtitle: The kids are still in the basement...
 unavailable-subtitle: You can't do this.
-view-if: phase = 2 and time < p2_time
+view-if: phase = 2 and time < p3_time and (with_em = 0 and with_miri = 0 and with_aubrey = 0)
 choose-if: anxiety <= 15
 max-visits: 1
 new-page: true
@@ -17,21 +17,18 @@ The basement is cool and damp. The kids have brought their food down, eating slo
 title: Talk to Kevin?
 tags: kevin2
 view-if: kevin_p2_prog = 0
-on-arrival: kevin_p2_prog += 1
 max-visits: 1
 
 Kevin is playing some game on the ipad with Rose. He's so engrossed in the game, he isn't watching the movie, and he certainly has not noticed you.
 
 Do you really want to talk to him?
 
-- #kevin2
+- @kevin_talk_2
 - #movie2
 
 
 @kevin_talk_2
 title: Yes, disturb Kevin.
-tags: kevin2
-view-if: kevin_p2_prog = 1
 on-arrival: kevin_p2_prog += 1
 max-visits: 1
 
@@ -39,13 +36,28 @@ Okay. Here goes.
 
 "Um, hi, Zhao Chunyi."
 
+"Hi, Qiuyi jiejie."
+
+What are you supposed to say now?
+
+- @how_day: How's your day?
+- @how_movie: How's the movie?
+
+
+@how_day
+
+TODO
+
+
+@how_movie
+
 TODO
 
 
 @movie_1
 title: Watch the movie.
 view-if: movie_p2_prog = 0
-on-arrival: movie_p2_prog += 1; time += 1
+on-arrival: movie_p2_prog += 1; time += 1; anxiety -= 0.5
 tags: movie2
 
 The movie is another Marvel superhero film, probably. It's got to be the latest one, right? You have no idea what's going on except that there are some people fighting some other people and some people are copies or clones? Or maybe it's time travel or something.
@@ -59,12 +71,58 @@ You recall a meme that says the MCU ripped off Homestuck. This excerpt does not 
 @movie_2
 title: Keep watching the movie.
 view-if: movie_p2_prog = 1
-on-arrival: movie_p2_prog += 1; time += 1
+on-arrival: movie_p2_prog += 1; time += 1; anxiety -= 0.5
 tags: movie2
 
-So the movie is about going back in time to the settings of the previous movies in order to acquire the set of chaos emeralds which are necessary in order to undo the villain's actions at the end of the previous movie. There are a lot of moments that seem like references to previous movies in the series, references that you do not understand. Nevertheless, you can appreciate the spectacle. The hand lasers going pew-pew. The fistfights that inflict no long-term damage on any of the participants. The villanous monologues.
+So the movie is about going back in time to the settings of the previous movies in order to acquire the set of chaos emeralds which are necessary in order to undo the villain's actions at the end of the previous movie. There are a lot of moments that seem like references to previous movies in the series, references that you do not understand. Nevertheless, you can appreciate the spectacle. The hand lasers going pew-pew. The fistfights that inflict no long-term damage on any of the participants. The villain unnecesarily monologues.
 
 In fact, you're almost enjoying it.
 
 - #kevin2
 - #movie2
+
+
+@movie_3
+title: Watch the movie until the end.
+view-if: movie_p2_prog = 1
+on-arrival: {!
+Q['movie_p2_prog'] += 1;
+if (Q['time'] >= Q['p3_time'] - 10) {
+    Q['time'] = Q['p3_time'];
+} else {
+    Q['time'] += 10;
+}
+Q['anxiety'] -= 1;
+Q['despair'] -= 1;
+!}
+tags: movie2
+
+
+Why not just sit here until the very end of the film? Do you have anything better to do?
+
+Anyway, there are more fights and stuff as the main "heroes" look for the chaos emeralds. Some people shoot other people but no blood seems to ever be spilled, and no one seems to die, until one of the heroes dies in a self-sacrificial moment (of course it's the woman). Eventually they manage to assemble all the chaos emeralds, but Lord English is already here, invading the timeline with his army of evil dudes. There's a huge battle with a lot of pew pew and lasers and energy beams and giant alien evil dudes. None of the heroes die, until the very end, when one of the good dudes sacrifices himself to destroy Lord English with the chaos emeralds and undo the evil timeline. Just like Vriska or something like that.
+
+- @movie_over: It was entertaining at least...
+
+
+@movie_over
+go-to: movie_end_2 if time >= p3_time; movie_end_1 if time < p3_time
+
+The movie is over. It's the future and there are sequel hooks. Some of the kids in the basement seem entranced by the movie; others are entranced by their ipads and Minecraft or whatever it is kids play these days.
+
+
+@movie_end_1
+
+Anyway, the movie is over.
+
+- #kevin2
+- @root: Go do something else.
+
+
+@movie_end_2
+
+It's close enough to midnight. Mom comes down to the basement.
+
+"Kevin, Karen, 快到半夜了。咱们要照相了。"
+
+- @ending_alone.goto_from_basement: Follow mom.

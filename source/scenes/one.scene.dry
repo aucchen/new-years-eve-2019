@@ -25,15 +25,15 @@ Your name is not Karen. It was never Karen. Why would you think that was your na
 You go back in time to 15 years ago, to that fateful day in elementary school English class in Changchun, Jilin Province, PRC. You take a peek at the box from which you drew your assigned English names. Which name was involuntarily assigned to you on that day?
 
 - @still_karen: It is Karen, actually.
-- @amy: Amy
-- @christina: Christina
-- @erica: Erica
-- @grace: Grace
-- @jenny: Jenny
-- @rachel: Rachel
-- @sarah: Sarah
-- @stephanie: Stephanie
-- @vivian: Vivian
+#- @amy: Amy
+#- @christina: Christina
+#- @erica: Erica
+#- @grace: Grace
+#- @jenny: Jenny
+#- @rachel: Rachel
+#- @sarah: Sarah
+#- @stephanie: Stephanie
+#- @vivian: Vivian
 
 @still_karen
 go-to: name
@@ -167,3 +167,7 @@ on-arrival: optimizing_callback = 1; game_count += 1
 You can approach these gatherings mechanistically, orchestrating a series of events that will achieve all of your goals in an optimal fashion, while minimizing your exposure to awkwardness and food poisoning.
 
 That's totally something you can do, right?
+
+@end
+
+Anyway, you get up off the toilet. You're done moping.

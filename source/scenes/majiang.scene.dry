@@ -1,0 +1,97 @@
+title: Mahjong
+subtitle: Mom is playing...
+unavailable-subtitle: No, not right now.
+view-if: phase = 2 and time < p3_time - 6
+choose-if: anxiety < 15
+new-page: true
+max-visits: 1
+tags: phase2
+
+There are multiple mahjong tables laid out. Mom is at one of them. She sees you.
+
+"秋怡！过来吧！ *Qiuyi! Come here!*"
+
+- @table: Join the table.
+
+
+@table
+on-arrival: time += 1
+
+You join her table, which has three players. You're the fourth, making it complete.
+
+"多好的姑娘，跟她老娘玩 *What a good daughter, playing with her mother*", one of the others, someone you don't recognize, says. Mom just laughs.
+
+"你会玩吗？*Do you know how to play?*"
+
+"她会 *She knows*", mom says.
+
+- @wash: Wash the cards.
+
+
+@wash
+
+It should be "shuffle" the tiles, but in Chinese it translates to "wash". It's kind of like making a washing motion with the tiles on the table, though, so "wash" does make sense more than "shuffle" which is for a deck of cards and is not really applicable in this situation, but "shuffling" is also applicable because the tiles are being physically shuffled around the table...
+
+- @wall: Arrange the tiles.
+
+
+@wall
+
+The players arrange the tiles into four walls, 17 tiles across and 2 high.
+
+- @game: Start playing?
+
+@game
+view-if: time < p3_time
+on-arrival: time += 1
+
+# no I am not making a full majiang simulation here
+
+Okay. How do you want to play?
+
+- @play_to_win: Play to win.
+- @play_to_not_lose: Play to not lose.
+- @play_how: Play however it feels right.
+
+
+@play_to_win
+
+You're playing to win. Your tactic is an aggressive play, where you try to maximize your chance of winning any set, calling everything and so on.
+
+It's not like you're a particularly adept player, so it's unlikely to win.
+
+@play_to_not_lose
+on-arrival: {!
+Q['win_prob'] = 0.6;
+!}
+
+You're playing to not lose. This defensive play involves watching the other players' discards carefully, trying to predict which tiles they need to win.
+
+@play_how
+go-to: win_1; lose_1; mom_wins; lose_bad
+
+You're playing however it feels right at the moment. Sometimes staring at the discards and trying to figure out a pattern, sometimes trying to optimize your own hand no matter the consequences.
+
+@mom_wins
+go-to: new_game
+
+
+@win_1
+go-to: new_game
+
+Surprisingly enough, you manage to win this round!
+
+@lose_1
+go-to: new_game
+
+@lose_bad
+go-to: new_game
+
+@new_game
+
+- @game: Play again?
+- @stop_playing: Stop playing.
+
+@stop_playing
+
+

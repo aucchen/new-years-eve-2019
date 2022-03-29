@@ -117,7 +117,6 @@ def test_with_script(script_path, output_path='script_output.txt', dump_stats=0,
             break
         link_choice = random.choice(links)
         # if the link text is not in the script, then just continue randomly.
-        has_link_text = False
         for link in links:
             if script_data and link.text == script_data[0]:
             #    print('\nSCRIPT LINE #' + str(script_location) + ' ' + link.text + '\n')
@@ -125,7 +124,6 @@ def test_with_script(script_path, output_path='script_output.txt', dump_stats=0,
                 script_location += 1
                 script_data = script_data[1:]
                 link_choice = link
-                has_link_text = True
                 break
         #if not has_link_text and len(links) > 1:
             #print('WARNING: link not found in script')

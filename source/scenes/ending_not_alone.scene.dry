@@ -1,0 +1,252 @@
+title: The new year is soon.
+subtitle: Happy 2020?
+view-if: time >= p3_time and (with_em = 1 or with_miri = 1 or with_aub = 1)
+go-to: em_ny if with_em = 1; miri_ny if with_miri = 1; aub_ny if with_aub = 1
+on-arrival: phase = 3
+max-visits: 1
+new-page: true
+set-bg: backgrounds/party_1_filtered.jpg
+tags: phase3
+
+The house is in a state of rauccous commotion.
+
+"快点！快过年了！ *Quickly! New Year's is soon!*"
+
+Shouts in Chinese. Footsteps reverberating through the halls, gathering at the living room TV. The kids are forced up from the basement. Mom reunites with Kevin and they wave at you.
+
+@em_ny
+view-if: with_em = 1
+
+Emily is with you. [? if emily_date = 1 : You're not holding hands anymore. You try to not stand too close, and it's fairly obvious that she is attempting the same. ?]
+
+"赵秋怡！快点过来！ *Zhao Qiuyi! Come quickly!*" You hear mom's shouts, and soon see her with Kevin. With an apologetic glance and wave at Emily, you join them.
+
+- @pictures: They're taking pictures. You're expected.
+
+
+@miri_ny
+view-if: with_miri = 1
+
+[not implemented for now]
+
+@aub_ny
+view-if: with_aub = 1
+
+[not implemented for now]
+
+
+@pictures
+
+The living room has a photo studio, with a tripod and big DSLR camera. Families take their turns next to the Christmas tree. Times Square is playing on one of the big TVs. Some musicians you've never heard of are playing. To be fair you haven't heard of most musicians.
+
+Soon it's your turn for photos. Mom grabs your hand. She's in the center, sitting down on a chair, with you and Kevin standing to either side of her. Flashes. "你闭眼睛了 *You closed your eyes*," the photographer says. More photos. You force your eyes open. "你怎么没有笑？ *Why aren't you smiling?*" He's talking about you. "1, 2, 3, 茄子！"
+
+- @smile: Smile.
+
+
+@smile
+
+You attempt to sculpt your face into what is hopefully perceived as a genuine smile. But then your eyes are closed again and you have to redo the photo. More shutter clicks. Flashes are seared into your retina.
+
+Finally, it's done. Mom gets into a conversation. She lets you go free.
+
+- @find_em: Find Emily?
+- @wait: Just wait?
+
+
+@find_em
+view-if: with_em = 1
+go-to: em_end
+
+You find Emily soon enough.
+
+@wait
+go-to: em_finds_you if with_em = 1
+
+@em_finds_you
+go-to: em_end
+
+Emily finds you soon enough.
+
+
+@em_end
+
+"Did you finish taking photos?", she asks.
+
+"Yeah."
+
+"Yeah. Me too."
+
+- @em_hold_hands: Hold hands?
+- @em_miri_aubrey: Miri and Aubrey approach.
+
+
+@em_hold_hands
+view-if: em_date = 1
+
+You have a vague desire to hold hands, but you abandon that feeling as soon as you realize that there are other humans in the general vicinity.
+
+- @em_miri_aubrey: Miri and Aubrey approach.
+
+
+@em_miri_aubrey
+
+"Hey! Where were you guys?", Miri asks. "Did you really walk around for two hours?"
+
+"Yeah," Emily replies.
+
+"Wow," says Aubrey. "It must've been cold, huh?"
+
+Miri is smiling widely. "I wonder if something interesting occurred?"
+
+"No," says Emily. "It wasn't very interesting at all." She has a very impassive facial appearance.
+
+"Oh. I see," says Miri. "Karen, why *did* you stay outside all this time?"
+
+- @em_no_reason: "No reason."
+- @em_talked: "We talked a lot."
+- @em_on_date: "Emily and I have entered into a relationship as of approximately thirty minutes ago."
+
+
+@em_no_reason
+
+"Um, no reason."
+
+"Oh? Really?", asks Miri.
+
+- @ball_drop: You're saved by the countdown.
+
+
+@em_talked
+
+"Um, we talked a lot."
+
+"Oh? What did you talk about?", Miri asks.
+
+"Um, stuff. Things."
+
+- @ball_drop: You're saved by the countdown.
+
+@em_on_date
+view-if: em_date = 1
+
+"Um, Emily and I..." A part of you wants to reveal your relationship to the world, but another part of you wants to disappear right this instant. The latter part wins out.
+
+"We just... talked a lot," you end up saying.
+
+- @ball_drop: You're saved by the countdown.
+
+@ball_drop
+on-arrival: ending = "alone_1"; time = 70
+achievement: ending_alone_1
+
+The countdown starts. 10... 9... People watch. Some kids count along. 7... 6... "快点来！快点>来！" 3... 2... 1...
+
+The ball drops.
+
+- @kiss_em: Kiss Emily.
+- @hug_em: Hug Emily. 
+- @group_hug: Get pulled by Miri into a group hug.
+- @mom_hug: Mom finds you first.
+
+@kiss_em
+view-if: em_date = 1
+
+The desire to utilize this moment to partake in a New Year's tradition overcomes you. So you put your arms around Emily's waist and pull her in and oh God you're really doing this...
+
+- @kiss_em_cheek: Kiss her on the cheek.
+- @kiss_em_mouth: Kiss her on the mouth.
+- @hug_em: Just hug?
+
+@kiss_em_cheek
+go-to: em_after_kiss
+
+You give her a quick peck on the cheek before pulling away.
+
+@kiss_em_mouth
+go-to: em_after_kiss
+
+Oh God. You're really doing this. You really kiss her, of your own volition. You're surprised that you are physically capable of such a thing.
+
+@em_after_kiss
+
+"Eeeaargh!" she makes a weird noise.
+
+"Oh, sorry!"
+
+"No, it's okay! I just didn't expect it, that's all. I don't mind..."
+
+Thankfully Aubrey is preoccupied with William, and mom and Kevin are nowhere in sight, but Miri is staring hard with a twisted grin on her face. "Congratulations!", she says. "I thought something like that might have happened."
+
+"Oh, it's..." Emily seems to want to deny everything, but shakes her head. "Yeah. Stuff happened. I guess it's like that now." She's smiling too. She takes a glance around, and kisses you on the cheek.
+
+"Oh wow," Miri remarks. "Oh wow. That's great. That's awesome that you two are like, doing stuff."
+
+- @mom_notices: Soon, mom notices you.
+
+
+@hug_em
+view-if: em_date = 1
+
+You're not quite ready to partake in the New Year's tradition, but you could approximate it by engaging in physical contact in a manner that does not quite rise to the level of a kiss. So, you take her by the waist and pull her close. She seems confused at first, but then reciprocates by putting her arms around you.
+
+You stay together like this for a long time before finally letting go.
+
+Thankfully Aubrey is preoccupied with William, and mom and Kevin are nowhere in sight, but Miri is staring hard with a twisted grin on her face. "Congratulations!", she says. "I thought something like that might have happened."
+
+"Oh, it's... it's no big deal," Emily says, but she's smiling, and holds on to your hand for too long before realizing that there are other people in the vicinity.
+
+- @mom_notices: Soon, mom notices you.
+
+
+@group_hug
+
+"Group hug time!"
+
+Miri pulls the four, no, five of you including William into a group hug. Your arms are stuck. You can't move. It's hot. [? if em_date = 1 : At least Emily is next to you, which makes this almost tolerable. ?]
+
+Thankfully, you are released soon enough.
+
+"That was nice, wasn't it?", Miri says. Aubrey only shakes her head.
+
+- @mom_notices: Soon, mom notices you.
+
+
+@mom_notices
+
+@mom_hug
+
+Mom kisses you on the cheek. You don't know what to do so you flail your arms about in an attempt at a hug. Somehow it connects and you're pulled into a group hug with mom and Kevin. You stay like this for a minute. It's warm. Kevin pulls away first.
+
+Other people are already preparing to leave. Goodbyes and farewells are being said. Noises. Blurs. Miri puts on her jacket. [? if em_date = 1 : ?]
+
+"Can we go home now?", Kevin asks.
+
+- @time_to_leave: Mom nods.
+
+
+@time_to_leave
+
+But it's not time yet. More goodbyes. More painful conversation between mom and the others. Your shoes and coat are on. Everyone is fully bundled up. But there are still more goodbyes. Still more words.
+
+- @time_to_leave_2: It's finally time.
+
+
+@time_to_leave_2
+
+It's finally time. Miri comes with you, and the four of you trudge your way to the car. "Shotgun!" Miri calls, and she laughs.
+
+You don't talk much on the ride, or at all, really. She is dropped off at her house. You say goodbye. Then you end at your apartment.
+
+# TODO: miri might talk to you about the party's events
+
+"你今天怎么样？ *How was your day?*", mom asks.
+
+- @it_was_fine: "It was fine."
+
+
+@it_was_fine
+
+"还行。 *It was fine,*" you say.
+
+- @credits: End.

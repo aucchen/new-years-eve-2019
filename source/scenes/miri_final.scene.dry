@@ -1,0 +1,13 @@
+title: Miri
+new-page: true
+set-bg: backgrounds/room_1_filtered.jpg
+
+"Hey, [+ first_name +]?", Miri asks. "Are you alright?"
+
+- @outside: Go outside.
+
+@outside
+
+TODO
+
+# TODO: go with miri...?

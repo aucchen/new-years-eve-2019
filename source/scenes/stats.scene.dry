@@ -18,7 +18,7 @@ Time: [+ display_hours : +]:[+ display_minutes : +]
 
 [? if thirst >= 9 : You are quite thirsty. ?][? if thirst < 9 and thirst >= 7 : You are somewhat thirsty. ?][? if thirst < 7 and thirst >= 5 : You are a little thirsty. ?][? if thirst < 5 and thirst >= 3 : You are not really thirsty. ?][? if thirst < 3 : You are not thirsty at all. ?]
 
-You are currently feeling [+ mood : +]. You are also feeling [+ mood2 : +].
+You are currently feeling [+ mood : +].
 
 - @chars: People
 - @backSpecialScene: Back
@@ -63,7 +63,7 @@ Relationship status: [+ miri_relationship : +]/5 [? if miri_relationship < 0 : (
 Your younger brother, now 11 years old. Has a predilection for Minecraft and youtubers and such. He's never needed you.
 
 **Mom**:
-She's still working at the old research associate/technician job. Lives alone with Kevin after dad moved back to China (they're finally officially divorced after a few years of informal separation).
+She's still working at the old research associate/lab technician job. Lives alone with Kevin after dad moved back to China (they're finally officially divorced after a few years of informal separation).
 
 **William Du**:
 Aubrey's boyfriend, here on break from their university.

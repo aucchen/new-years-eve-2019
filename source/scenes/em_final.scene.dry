@@ -1,6 +1,13 @@
 title: Leave the house.
 new-page: true
-on-arrival: cold = 1
+on-arrival: {!
+if (Q['time'] <= Q['p2_time']) {
+    Q['time'] = Q['p2_time'] + 2;
+} else {
+    Q['time'] += 2;
+}
+!}
+set-bg: backgrounds/outdoors_1_filtered.jpg
 tags: final
 
 You don't say a word. You walk to the front of the house. Emily follows. You put on your jacket and your shoes. You leave. You're free.
@@ -26,7 +33,7 @@ Out of the corner of your eyes you glance Emily's shape. You stand still. She ca
 
 "Yeah..."
 
-"Do you want to wander aimlessly?"
+"Would you like to wander aimlessly?"
 
 - @yeah_3: "Yeah..."
 
@@ -38,6 +45,7 @@ go-to: snowflakes
 
 
 @snowflakes
+on-arrival: anxiety -= 1
 
 It's quiet. Snowflakes glisten in the air, shining under the streetlights. You regret making footprints in the fresh snow.
 
@@ -49,9 +57,6 @@ It's quiet. Snowflakes glisten in the air, shining under the streetlights. You r
 # Conversation threads:
 # - relationships as optimization. love. liking.
 
-# TODO: have multiple conversation threads, same as in the scene.
-# TODO: option to go back inside.
-
 @talk_1
 go-to: talk_options
 
@@ -61,14 +66,13 @@ What do you want to say? What can you say?
 @talk_options
 
 - #talk_em_final
-- @silent_1: Just walk, silently.
 
 
 @converse_1
 title: "I have no idea how conversations work but I still want to talk..."
 tags: talk_em_final 
-on-arrival: cold += 1
-view-if: cold = 1
+on-arrival: cold += 1; time += 2
+view-if: optim_seen = 0 and em_comfort <= 2 and em_date = 0
 go-to: wonder_1
 
 That's kind of a weird thing to say, but whatever.
@@ -80,7 +84,7 @@ That's kind of a weird thing to say, but whatever.
 
 @thanks_1
 title: "Thanks..."
-on-arrival: cold += 1
+on-arrival: cold += 1; time += 1
 view-if: cold = 1
 tags: talk_em_final 
 go-to: talk_options
@@ -95,77 +99,473 @@ Emily produces a soft laugh.
 
 
 @silent_1
-on-arrival: cold += 1
 view-if: cold = 1
+go-to: emily_asks_how_people_talk if optim_seen = 0; talk_options if optim_seen != 0
+
+You walk in silence, trudging through the snow by moving your feet forward one at a time.
+
+
+@emily_asks_how_people_talk
+on-arrival: cold += 1; time += 1
 go-to: wonder_1
 
-TODO: set up emily's conversation topics...
-
-"So how does conversation work, anyway?", Emily says. "How do normal people decide what to talk about?"
+"So how does conversation work, anyway?", Emily says, interrupting the silence. "How do normal people decide what to talk about?"
 
 
 @wonder_1
+on-arrival: optim_seen = 1
 
 "Um, I've wondered that, too..."
 
-# - @random_1: "Maybe it's random?"
 - @optimization_1: "Human interaction is just an optimization problem..."
 
 
-@random_1
-
-"Maybe it's just random. Like, just, do you want to talk about something random?"
-
-TODO
-
-
 @optimization_1
+on-arrival: anxiety -= 1; time += 1
 
 Perhaps all human interactions are an optimization problem.
 
-"I sometimes see this as like, a whole optimization problem." You start to talk, and for once you don't know how to stop. "It's like the whole basis of human interaction is just an optimization problem where you have to identify the correct sequence of actions, but like, I'm always picking the wrong actions, and it's like a game and it's a game that I suck at. Sorry, God, this sounds so cringe..." 
+"I sometimes see this as like, an optimization problem. Or, um, something like that..."
 
-"No, I get this too," Emily says. "Like there's a correct sequence of things to say, or do, and you just have to know it. But sometimes, even if you do the right things..."
+You start to talk, and for once you don't know how to stop. "It's like the whole basis of human interaction is just an optimization problem where you have to identify the correct sequence of actions, but like, I'm always picking the wrong actions, and it's like a game and it's a game that I suck at. Sorry, God, this sounds so cringe..." 
 
-"Even if you do the right things, it still doesn't work."
+"No, I get this too," Emily says. "Like, how it feels as if there's a correct sequence of things to say, or do. But sometimes, even if you do the right things..."
 
-"Sometimes you'll mess up no matter what you do."
-
-# how would this work? they have to segue to
+- @optimization_2: "Even if you do the right things, you still mess up..."
 
 
+@optimization_2
 
-################################################
-# topic: wmds
+"Even if you think you do the right things, you still mess up. But then how do you know those were the right things? Is it that you made the wrong choice, or is the universe just conspiring against you, or are the systems of the world just rigged..."
 
-@em_wmd
-tags: em_speak_final
-view-if: time < p3_time
+- @optimization_3: God, you're so cringe.
 
-"So I've been reading about 20th century scientific history lately," Emily says. "Nuclear weapons are really fascinating, aren't they? Like, just technologically. And sociologically."
 
-- @em_wmd_yes: "Yeah, they are..."
-- @em_wmd_um: "Um..."
-- @em_wmd_bio: "I'm actually more into biological weapons."
+@optimization_3
+on-arrival: time += 1
 
-@em_wmd_bio
+You shut up because you don't know what you're talking about. You're just spewing out words now.
 
-TODO
+Silence. The two of you are still walking, your breaths forming white clouds under the streetlights. You stop to wipe your glasses. She stops beside you.
 
-@em_wmd_yes
+"Maybe that's the wrong question," Emily says. "Do you think that human relationships are purely transactional?"
 
-TODO
+- @optimization_3_yes: "Yeah...?"
+- @optimization_3_no: "No...?"
+- @optimization_3_what: "What kind of a question is that?"
 
-@em_wmd_um
+
+@optimization_3_yes
+
+"Um... yeah? I guess..."
+
+"You really think so? Why?"
+
+- @optimization_3_idk: I don't know...
+- @optimization_3_no_reason: No reason...
+- @optimization_3_instrumental: All human actions are instrumental...
+
+
+@optimization_3_idk
+go-to: optimization_3_cynical
+
+"Um, I don't know..."
+
+
+@optimization_3_no_reason
+go-to: optimization_3_cynical
+
+"Um, no reason..."
+
+
+@optimization_3_instrumental
+go-to: optimization_3_cynical
+
+"Um, I think all human actions are instrumental, kind of..."
+
+
+@optimization_3_cynical
+
+"That's kind of a cynical view, isn't it?"
+
+You don't know what to say. Emily doesn't elaborate.
+
+- @optimization_3: Did you fail the conversation?
+
+
+@optimization_3_fail
+
+Did you fail the conversation?
+
+Yes, you must have. You picked the wrong options, as you are wont to do. Your utterances were the exact phrases that would turn Emily silent; your decisions or lack thereof only lead to failure.
+
+- @optimization_4: But then, as you approach a turn in the street, Emily starts speaking.
+
+
+@optimization_3_no
+
+"Um, no? At least I hope not?"
+
+"I don't know..." She stares off into the distance and stops speaking.
+
+- @optimization_3_fail: Did you fail the conversation?
+
+
+@optimization_3_what
+go-to: optimization_4
+
+"What kind of a question is that?"
+
+Emily shrugs. "It's just something I've been thinking about, I guess."
+
+A pause. 
+
+- @optimization_3_fail: You don't know what to say.
+
+
+@optimization_4
+on-arrival: time += 1
+
+But then, as you approach a turn in the street, Emily starts speaking.
+
+"You know that quote that's like, women aren't like vending machines that you put kindness coins in? Well, I need some kindness coins right now."
+
+- @optimization_4_um: "Um..."
+
+
+@optimization_4_um
+
+"Oh, um..."
+
+"Sorry, never mind. That was a dumb comment. What I meant was..." She trails off. "So how are you doing?"
+
+- @optimization_5_coins: "Wait, what was that about the coins?"
+- @optimization_5: "I'm doing... good?"
+- @optimization_5_asked_before: "You've asked that before."
+- @optimization_5_wait: Don't say anything.
+
+
+@optimization_5_coins
+on-arrival: anxiety -= 1; time += 1
+
+"Wait, what was that about the coins?"
+
+She takes a deep breath and shakes her head. Her visage is in some sort of grimace.
+
+"It's... a thing from video games. Dating sims and stuff, like how you increase relationship stats by picking the nice dialogue options or sending gifts, until you eventually get a date, and then..."
+
+- @optimization_6_i_know: "Yeah. I know."
+
+
+@optimization_6_i_know
+on-arrival: time += 1
+
+"Yeah. I know."
+
+"Oh. Well. It's just... it doesn't seem that bad. Being the target of affection-raising dialogue options."
+
+"Oh..."
+
+"It's preferable to being alone, right? Isn't everything?"
+
+"Yeah..."
+
+"I could really use some kindness coins right now..."
+
+- @optimization_no_affection: "Maybe you don't really want that kind of affection."
+- @optimization_what_mean: "What do you mean?"
+
+
+@optimization_no_affection
+go-to: optimization_sighs
+
+"Um, maybe you don't actually want that kind of affection. It's... kind of nasty?"
+
+
+@optimization_what_mean
+go-to: optimization_sighs
+
+"Um, what do you mean?"
+
+
+@optimization_sighs
+on-arrival: time += 2
+
+She sighs, and waves her arms.
+
+"I mean I'm not going to like... you know, but fuck it I'm a sad and depressed trans girl and, well, honestly both of us are probably kind of fucked up right now. Therefore, we should validate each other in order to improve our mental health. How does that sound?"
+
+"Um... good?"
+
+Are you supposed to be saying something nice right now? Oh God, what can you say?
+
+- @opt_company: "I enjoy your company..."
+- @opt_care: "I care about you..."
+- @opt_like: "I like you..."
+- @opt_you_first: "You first..."
+
+
+@opt_company
+go-to: opt_why
+
+"Um, I enjoy your company..."
+
+
+@opt_care
+go-to: opt_why
+
+"Um, I really care about you..."
+
+@opt_like
+
+"Um, I really like you..."
+
+"Oh. I mean, me too..."
+
+Wait. Did you mean in *that* way?
+
+- @opt_like_yes: Yes???
+- @opt_like_no: Um, no???
+- @opt_like_idk: I have no idea.
+
+
+@opt_like_yes
+go-to: opt_like_idk
+
+@opt_like_no
+go-to: opt_like_idk
+
+@opt_like_idk
+
+"Wait, um... do you mean it like..."
+
+"I mean it exactly like how you mean it, I guess."
+
+There is an awkward pause, perhaps more awkward than usual.
+
+- @opt_hold_hand: Take Emily's hand.
+- @opt_pause: Wait...
+
+
+@opt_hold_hand
+
+For a reason that you cannot discern, this seems to be the correct time and place for such an awkward gesture. Thus, you reach your gloved hand towards Emily's. She notices, and...
+
+- @touch_hands: Your hands make contact.
+
+
+
+@opt_you_first
+
+"Um, you first..."
+
+Emily sighs. "I think you're..."
+
+There is an awkward pause, perhaps more awkward than usual.
+
+- @opt_pause: Wait...
+
+
+@opt_why
+
+"Oh, I mean, me too..."
+
+"Thanks..."
+
+There is an awkward pause, perhaps more awkward than usual.
+
+- @opt_pause: Wait...
+
+
+@opt_pause
+
+"I have a sudden urge to say something extremely awkward," Emily says.
+
+- @opt_pause_prev_none: "Go ahead?"
+- @opt_pause_prev_friends: "Go ahead?"
+- @opt_pause_prev_date: "Go ahead?"
+
+
+@opt_pause_prev_none
+view-if: prev_em = "none"
+
+"Oh, um... go ahead?"
+
+She takes a deep breath. "Okay, so, remember back in high school when we were at that one party? The party that was kind of like this one except only more awkward?"
+
+"That's like, at least two different parties," you say.
+
+"Well, one of them anyway. I just... I really admired you back then, and I still do. I really wish we could have been better friends," she says.
+
+- @dont_deserve: "I don't deserve that..."
+- @opt_prev_friends_disappoint: You're a little disappointed?
+
+
+@opt_pause_prev_friends
+view-if: prev_em = "friends"
+
+"Oh, um... go ahead?"
+
+She takes a deep breath. "Okay, so, remember back in high school when we were doing the pageant? Or rather, when you were doing the pageant and I was attempting to help or whatever?"
+
+"Yeah, I remember."
+
+"I just... I guess I really admired you back then, and I still do. I wish we could have been better friends," she says. "I wish we had stayed in touch better, not like... what happened with all this."
+
+- @dont_deserve: "I don't deserve that..."
+- @opt_prev_friends_disappoint: You're a little disappointed?
+
+
+@dont_deserve
+
+"I don't deserve that..."
+
+"What don't you deserve?"
+
+"...That. What you just said."
+
+"No one deserves anything," Emily says. "I guess I just don't really believe in the idea that some people deserve more than others."
+
+"Oh."
+
+# TODO?
+
+- #talk_em_final
+
+
+@opt_prev_friends_disappoint
+
+Why? Were you expecting her to say "I love you" or something like that? Or hoping for such a thing? You should know better than to expect good things to happen to you.
+
+Instead of vocalizing your harmful feelings, you say, "Oh. Thanks."
+
+"Oh."
+
+There is a lull, about as awkward as usual.
+
+- #talk_em_final
+
+
+
+@opt_pause_prev_date
+on-arrival: em_asked_out = 1; time += 1
+view-if: prev_em = "date"
+
+"Oh, um... go ahead?"
+
+She takes a deep breath. "Okay, so, remember back in high school when we were practicing for the pageant and you made that offer where we could, um... date, once we were independent?"
+
+"Yeah, I remember."
+
+"Would you still be interested?"
+
+- @opt_prev_date_2: ...
+- @opt_prev_date_what: What.
+- @opt_prev_date_yes: Yes, I'd be interested???
+
+
+@opt_prev_date_2
+go-to: opt_prev_date_what
+
+
+@opt_prev_date_what
 
 "Um..."
 
-"Have you ever thought about nuclear weapons recently? I thought everyone had a WMD phase."
+"Sorry. This was sudden. If you want, we can forget I said anything."
 
-"Um, no?"
+- @opt_prev_date_why: "Why?"
+- @opt_prev_date_yes: "Yes, I'd be interested???"
+- @opt_prev_date_no: "No, forget this."
 
-"Well, then I guess I'm weird. I'm a weirdo. I don't... fit in. And I'm not gonna finish that quote."
 
+@opt_prev_date_why
+
+"Why?", you ask.
+
+Emily sighs, and waves her arms. "I don't know. Why is anything? Why is the sky blue? Why is one plus one two?"
+
+
+@opt_prev_date_yes
+go-to: hold_hand
+
+Your brain is processing what just happened. It takes about one second before you are able to formulate a coherent response, which is shorter than most of your decisions.
+
+"Um... yeah. Yes. I'd be interested."
+
+@opt_prev_date_no
+on-arrival: em_date = -1; time += 2
+
+"Um... sorry, but..."
+
+"Sorry," Emily says. "I'm really sorry. Forget I said anything."
+
+The air feels colder. Emily is standing further away from you.
+
+- @opt_change_mind: "Actually, I change my mind..."
+- #talk_em_final
+
+
+@opt_change_mind
+
+"Um, actually, I meant that... Yes. I'd be interested. Sorry."
+
+"Sorry. Oh. Really?"
+
+"Yeah. Really."
+
+- @hold_hand: ...
+
+
+
+@optimization_5
+
+"Um, I'm doing... good?"
+
+"Are you sure? Because..."
+
+- @optimization_5_sure: "Yeah, I'm sure..."
+- @optimization_5_coins: "Wait, what was that about the coins?"
+- @optimization_5_wait: Don't say anything.
+
+
+@optimization_5_asked_before
+view-if: em_how_are_you = 1
+
+"You've asked that before, today."
+
+"Oh. Sorry. I mean, like, now, in the immediate present, now that we're out of the party..."
+
+"Um, I'm doing fine?"
+
+"Yeah. Okay. Good."
+
+
+- @optimization_5_coins: "Wait, what was that about the coins?"
+
+
+@optimization_5_sure
+
+"Yeah, I'm sure."
+
+"Oh, well...
+
+- @optimization_5_coins: "Wait, what was that about the coins?"
+- @optimization_5_wait: Don't say anything.
+
+
+@optimization_5_wait
+
+Emily is silent for a while. It's getting colder.
+
+- @optimization_5_coins: "Wait, what was that about the coins?"
+- @optimization_6_em_continues: Stay quiet; wait for Emily to talk.
+
+
+@optimization_6_em_continues
+go-to: optimization_sighs
+
+Emily is the one to break the silence. "So what I wanted to say was..."
 
 
 #################################################
@@ -174,7 +574,8 @@ TODO
 @confess_1
 title: Confess your love to her.
 tags: talk_em_final
-view-if: prev_em = "date" or em_rom > 0
+max-visits: 1
+view-if: (prev_em = "date" or em_rom > 0) and (em_date = 0)
 
 How will you confess? What are you going to say?
 
@@ -227,6 +628,978 @@ You can't fucking stand yourself. Why do you think she would stand you?
 
 You're such a failure that you can't even produce tears anymore.
 
+"Hey, [+ first_name +]? Is something wrong?"
+
+You're standing still. You must have stopped moving.
+
+- @c_9: Unclench your teeth.
+
+
+@c_9
+on-arrival: cold += 1; time += 2
+
+Your teeth are now unclenched. It takes physical effort to do so.
+
+- @c_everything_wrong: "Everything's wrong."
+- @c_nothing_wrong: "Nothing's wrong.
+
+
+@c_everything_wrong
+
+"Everything."
+
+"What?"
+
+"Everything's wrong."
+
+"Oh. I'm sorry." Her voice comes out soft and flat, as usual. She walks closer to you, or does she? The silence is crystalline.
+
+- @c_what_to_say: What the fuck are you even supposed to say here?
+- @c_why: Why are you doing this?
+- @c_i_like_you_1: "I like you."
+- @c_i_love_you_1: "I love you."
+
+
+@c_what_to_say
+max-visits: 1
+
+Are you going to proceed with your plan of confessing your feelings for Emily? Or will you forget about it?
+
+- @c_i_like_you_yes: Yes.
+- @c_i_like_you_no: No.
+- @c_why: Maybe?
+
+@c_why
+max-visits: 1
+
+Why are you doing this?
+
+- @c_what_to_say: What the fuck are you even supposed to say here?
+- @c_i_like_you_1: "I like you."
+- @c_i_love_you_1: "I love you."
+- @c_i_like_you_no: Never mind.
+
+
+@c_i_like_you_1
+
+'I like you?' Is that something you are physically capable of saying?
+
+- @c_i_like_you_yes: Yes.
+- @c_i_like_you_no: No.
+
+
+@c_i_like_you_yes
+
+Are you sure?
+
+- @c_i_like_you_yes_2: Yes?
+- @c_i_like_you_no: Of course not.
+
+
+@c_i_like_you_yes_2
+
+No, you're not sure. You walk. The scene is unchanging, streetlamps and snow, strings of lights strewn over indistinguishable houses. Nothing changes.
+
+- @c_what_you_say: You're sure.
+- @c_cant_feel: You can't feel a thing.
+
+
+@c_what_you_say
+
+"Hey, [+ first_name +]? Were you going to say something?"
+
+"Uh..."
+
+- @c_deep_breaths_1: Deep breaths.
+
+
+@c_deep_breaths_1
+on-arrival: anxiety -= 0.5; time += 1
+
+"You know you can tell me anything, right? Anything at all. It's fine."
+
+That makes you feel a little better.
+
+- @i_like_you: Deep breaths.
+
+
+@c_cant_feel
+on-arrival: anxiety -= 1; despair -= 1; time += 1
+go-to: c_what_you_say
+
+You can't feel your extremities. You flail your arms, kick your feet, spin around. It would be awkward, if more than one person were watching at this particular moment.
+
+Emily... chuckles? Is that what she does?
+
+
+@never_mind
+on-arrival: anxiety -= 2; despair -= 2; time += 2
+
+"Never mind," you manage to say. "I, um, don't really want to talk about it right now."
+
+"Oh." A pause. She pulls on some strands of hair. "That's okay. We can talk about it later, if you want."
+
+"Yeah. It's okay. Thanks."
+
+- @youre_not: You're not going to do it today.
+
+
+@i_like_you
+on-arrival: anxiety -= 0.5
+
+"Um, I..."
+
+"You don't have to worry," she says, and does she inch closer to you? You can't tell.
+
+- @i_like_you_2: Deep breaths.
+- @never_mind: Never mind.
+
+
+@i_like_you_2
+on-arrival: anxiety -= 0.5
+
+"Whatever you say, it's going to be fine," she says. "I won't... hate you or anything like that. No matter what you want to say." Your hands are almost touching.
+
+- @i_like_you_3: Say it.
+- @never_mind: Never mind.
+
+
+@i_like_you_3
+
+"Um, I like you." It's barely a whisper.
+
+"What?"
+
+- @i_like_you_4: "...ilikeyou"
+- @never_mind_2: "Never mind."
+
+@i_like_you_4
+
+"Um, I..."
+
+"No, I heard... yeah. Me too."
+
+- @wtf: What the fuck.
+
+
+@never_mind_2
+
+"Um, never mind..."
+
+"No, I heard... yeah. Me too."
+
+- @wtf: What the fuck.
+
+
+@wtf
+
+What the fuck.
+
+"I like you too," she continues. It doesn't feel less surreal.
+
+- @not_surprised: Um.
+- @a_little_surprised: Um.
+
+
+@not_surprised
+view-if: prev_em = "date"
+
+"I'm surprised you still feel this way after all this time," Emily says. "You couldn't have forgotten the, um, incident in high school, right?"
+
+- @teeth: Unclench your teeth.
+
+
+@a_little_surprised
+view-if: prev_em != "date"
+
+"Um, this is a little surprising," Emily says. "But like..."
+
+- @teeth: Unclench your teeth.
+
+@teeth
+
+Your teeth somehow became clenched again. You force them apart.
+
+"But like, you know I'm trans, right? Yeah of course you know. You know I'm like, kind of a terrible person, right? Not necessarily related to the previous."
+
+- @im_terrible: "I'm the real terrible person..."
+- @not_terrible: "You're not a terrible person..."
+
+
+@im_terrible
+
+"What if I'm a terrible person too?", you say.
+
+She laughs.
+
+"I mean, I was just thinking..." you continue. "I keep thinking about how I've..."
+
+- @anything_worthwhile: "...how I've never done anything worthwhile in my life."
+- @waiting_for: "...how I'm so bad at social interactions."
+- @self_centered: "...how I'm so self-centered."
+
+
+@anything_worthwhile
+go-to: hold_hand
+
+"...how I've never done anything worthwhile in my life."
+
+@waiting_for
+go-to: hold_hand
+
+"...how I'm so bad at social interactions. And just like, being a human being."
+
+@self_centered
+go-to: hold_hand
+
+"...how I've always been so self-centered."
+
+
+@not_terrible
+
+"You're not a terrible person..."
+
+She laughs.
+
+"I mean, I was just thinking..." you continue. "I keep thinking about how I've..."
+
+- @anything_worthwhile: "...how I've never done anything worthwhile in my life."
+- @waiting_for: "...how I'm so bad at social interactions."
+- @self_centered: "...how I'm so self-centered."
+
+
+@hold_hand
+on-arrival: time += 2
+
+"Oh." A pause. "Can I hold your hand?"
+
+Her side is almost touching you. She gently extends her gloved hand...
+
+- @touch_hands: Touch her hand.
+- @ignore_hand: Move away.
+
+
+@touch_hands
+on-arrival: em_date = 1
+
+Your hands make contact.
+
+- @touch_hands_2: ...
+
+
+@touch_hands_2
+on-arrival: anxiety -= 2
+
+Oh God Oh God Oh God you are experiencing a moment of human connection right now and it's really overwhelming.
+
+- @touch_hands_3: You're about to collapse.
+
+
+@touch_hands_3
+go-to: what_now_2
+
+You're about to collapse of a heart attack. You're about to jump up and down and spin around. You're about to run into the middle of the road. You're about to burst and explode.
+
+"So, what now?", Emily whispers. You are brought back to reality. You are standing here in the snow. You are cold. You and Emily have just, possibly, entered into some kind of thing. And you are utterly unprepared.
+
+
+@ignore_hand
+go-to: what_now
+
+You leave your hands in your coat pockets. Emily looks a little disappointed. She puts her hands in her own coat pockets.
+
+
+@what_now
+go-to: what_now_2
+
+"So, what now?", she whispers.
+
+
+@what_now_2
+
+- @are_we_dating: "So, like, are we..."
+
+
+@are_we_dating
+on-arrival: em_date = 1
+
+"So, like, are we, um..."
+
+"Like, dating?"
+
+- @are_we_dating_2: "Um..."
+
+
+@are_we_dating_2
+
+"Um..."
+
+"Do you want to be?"
+
+- @are_we_dating_3: "Yeah..."
+
+
+@are_we_dating_3
+
+"Yeah..."
+
+"Oh. Okay. So this is happening, I guess." A pause. "I mean, I've never done anything like this before, so..."
+
+- @neither_have_i: "Neither have I..."
+- @kind_of_date: "Well, I kind of have..."
+
+
+@neither_have_i
+view-if: prev_miri != "date"
+
+"I mean, neither have I."
+
+Emily laughs, shaking her head. "Well, I guess that means we'll have to navigate this, um, labyrinth together."
+
+"Yeah. Exactly. The labyrinth of social interactions. The labyrinth of our future lives. Or something like that."
+
+"Yeah..."
+
+- @kiss: "Are we supposed to kiss?"
+- @walk_after_date: "Are we supposed to hold hands and walk aimlessly?"
+
+
+@kind_of_date
+view-if: prev_miri = "date"
+
+"Well, I kind of have..."
+
+"Wait, what?... Oh, right, with Miri?"
+
+"Yeah, um... sorry, I guess that didn't turn out too well."
+
+"It's fine."
+
+- @kiss: "Are we supposed to kiss?"
+- @walk_after_date: Hold hands and walk aimlessly?
+
+
+@kiss
+
+"Um, are we supposed to kiss right now?"
+
+"I'm sorry but our relationship status isn't high enough. You need to insert like five more kindness coins."
+
+"Oh, um, oh God,..."
+
+"That was a joke."
+
+"Oh."
+
+"Are you sure that's what you want?"
+
+- @kiss_2: "Yes, I'm sure."
+- @kiss_no: "Wait, haha. Nevermind."
+
+
+@kiss_2
+
+"Yes, I'm sure."
+
+"Okay, um, I've never done this before, so..."
+
+- @kiss_3: Close your eyes.
+
+
+@kiss_3
+
+You close your eyes. Hold her hands. You aim your face in her general direction. Your glasses hit against hers and she laughs and pulls back. On the second try, you finally manage to...
+
+- @kiss_4: ...
+
+
+@kiss_4
+
+It feels... good? Maybe? You can't think properly; the cognition circuits of your brain might be improperly calibrated to parse an experience such as this one. Your emotions seem to be mostly positive. And Emily is smiling, you think. That's good.
+
+Whatever the case, something happened, and you are as yet unsure of the long-term consequences but they must be positive because why else would you be feeling so unnecessarily happy right now?
+
+"So what are we supposed to do now?", Emily asks. "I have no idea how any of this works."
+
+"I don't either, but..."
+
+- @walk_after_date: Hold hands and walk aimlessly for a while?
+
+
+@kiss_no
+
+"Wait, I mean, nevermind... I don't, um..."
+
+"That's okay." A pause, as she turns her gaze to the road. You hope you didn't do anything wrong, anything horribly offensive or anything that will be construed as offensive. But, these emotions feel distant, more so than usual. Right now, nothing feels wrong. 
+
+"What are we supposed to do now?," she asks. "I have no idea how any of this works."
+
+"I don't either, but..."
+
+- @walk_after_date: Hold hands and walk aimlessly for a while?
+
+
+@walk_after_date
+
+"Um, are we supposed to just hold hands and walk aimlessly right now?"
+
+Emily shrugs. "Sure. Why not?"
+
+- @hold_hands_and_walk: And you do exactly that.
+
+
+@hold_hands_and_walk
+on-arrival: {!
+Q['time'] += 6;
+Q['anxiety'] -= 4;
+Q['despair'] -= 4;
+if (Q['time'] < p3_time - 5) {
+    Q['time'] = p3_time - 5;
+}
+!}
+
+The snow falls harder. The air grows colder. Emily is close to you, so that you're almost leaning against each other, sharing precious body heat or something like that, not that you feel much warmth through your coats. The two of you walk aimlessly through seemingly endless swaths of suburbia, past huge houses strewn with lights and balloons and winter sculptures.
+
+You don't talk much. Your heart isn't pounding quite as fast anymore, and the cold doesn't feel so bad.
+
+- #talk_em_final
+
+
+@c_i_like_you_no
+
+No, you're not sure. You're not sure of anything. You're not capable of anything besides maintaining homeostasis, and sometimes not even then. You walk. The scene is unchanging, streetlamps and snow, strings of lights strewn over indistinguishable houses. Nothing changes.
+
+"Hey, [+ first_name +]? Were you going to say something?"
+
+- @c_deep_breaths_1: Deep breaths.
+
+
+@c_i_love_you_1
+
+No, you're not going to say anything like that.
+
+- @c_what_to_say: What the fuck are you even supposed to say here?
+- @c_i_like_you_1: "I like you?"
+
+
+@c_nothing_wrong
+
+"Nothing's wrong."
+
+"Really? Are you sure?"
+
+"Yeah."
+
+"Oh."
+
+The silence is crystalline.
+
+- @c_what_to_say: What the fuck are you even supposed to say here?
+- @c_why: Why are you doing this?
+- @c_i_like_you_1: "I like you."
+- @c_i_love_you_1: "I love you."
+
+
+@youre_not
+
+You take a deep breath. You're not going to say it today. You shove such thoughts into the recesses of your mind.
+
+You smile, because that's one decision made, one burden thrown out of your very large knapsack of burdens.
+
+- #talk_em_final
+
+
+#########################################################################
+# quietly walk? What's been going on?
+
+@walk_2
+title: Just walk.
+tags: talk_em_final 
+on-arrival: cold += 1; time += 1; walk_2_seen = 1
+view-if: walk_2_seen = 0 and time < p3_time and em_date = 0
+
+You walk, side-by-side with Emily, truding through the newly fallen snow on the too-narrow sidewalk. It's her who breaks the silence first.
+
+"Hey, Karen, how are you feeling right now?", she asks.
+
+- @feeling_okay: Um, okay?
+- @feeling_bad: Bad.
+- @feeling_shit: Like shit.
+
+
+@feeling_okay
+
+"Um, I'm feeling okay?"
+
+"Oh. You can be honest with me, you know."
+
+- @feeling_bad: Bad.
+- @feeling_shit: Like shit.
+- @feeling_rotten: Rotten. Rancid. Some other word that starts with R.
+
+
+@feeling_bad
+go-to: feeling_bad_2
+
+"Bad."
+
+
+@feeling_shit
+go-to: feeling_bad_2
+
+"Like shit."
+
+
+@feeling_rotten
+go-to: feeling_bad_2
+
+"I'm feeling... um, rotten. Or rancid."
+
+
+@feeling_bad_2
+
+"Oh. I'm sorry. That's what I thought. Is there anything I could do to, um, ameliorate the situation? I mean, help?"
+
+- @just_talk_to_me: Talk to me?
+- @just_walk: Keep on walking?
+- @nothing_to_help: Nothing will help me.
+
+
+@just_talk_to_me
+go-to: how_do_normal_people_talk if optim_seen = 0; dont_know_what_to_say if optim_seen = 1
+
+"Um, you can just talk to me?"
+
+"Sure. I don't know what to talk about, though."
+
+"Me neither."
+
+
+@how_do_normal_people_talk
+go-to: wonder_1
+
+"How does conversation work, anyway?", she asks. "What do normal people talk about?"
+
+
+@dont_know_what_to_say
+
+"How about let's just walk without trying to force a conversation, then?" She pauses. "Not that I don't want to talk but..."
+
+"Yeah. That'd be fine."
+
+- @walk_in_silence: So you walk in silence for a while.
+
+
+@just_walk
+
+"Um, we can just walk?"
+
+"Sure."
+
+- @walk_in_silence: So you walk in silence for a while.
+
+
+@walk_in_silence
+on-arrival: time += 5; cold += 1; anxiety -= 2
+
+So you walk in silence for a while. It's getting colder. But somehow you feel comfortable, as if the haze around your mind is dissipating, just for a little bit.
+
+- #talk_em_final
+
+
+@nothing_to_help
+
+"Um, nothing. There's nothing that can help me right now."
+
+"Oh, really? Are you sure?"
+
+"I... um, I don't know."
+
+"Do you want to talk about it?"
+
+- @we_can_talk: "Maybe we can talk about it?"
+- @just_walk: Just walk?
+
+
+@we_can_talk
+go-to: how_do_normal_people_talk if optim_seen = 0; dont_know_what_to_say if optim_seen = 1
+
+"Yeah. Maybe we can talk about it..." A pause. You don't know what to say. You never do.
+
+
+
+
+############################################################################
+
+@life
+title: Ask: "Tell me about your life."
+view-if: life_seen = 0 and time < p3_time
+on-arrival: life_seen = 1; time += 1
+
+"So, um, tell me about your life," you ask.
+
+Emily shrugs. "What is there to say? It's mostly pretty boring."
+
+- @life_grad_school: Ask about grad school.
+- @life_science: Ask about science or research or stuff like that.
+- @life_college: Ask about... college life?
+
+
+@life_grad_school
+
+"Um, you're applying for grad school too, right?"
+
+"Yeah, hopefully."
+
+
+@life_science
+
+"Um, you're doing science... stuff, right?"
+
+
+@life_college
+
+"Um, how has college been?"
+
 TODO
 
-- @early_ending: An ending?
+
+
+##############################################################################
+
+@home
+title: It's late. Go home.
+view-if: time >= p3_time - 5
+on-arrival: time = p3_time
+tags: talk_em_final
+
+Emily checks her phone. "It's getting late. We should get back."
+
+"Yeah..."
+
+[? if em_date = 1 : You hold hands on the way back. ?]
+[? if em_date = 0 : You walk in silence on the way back. ?]
+
+- @ending_not_alone: Back at the party.
+
+
+
+############################################################################
+
+@kids
+title: Ask: "Do you want to have children?"
+tags: talk_em_final
+view-if: ((em_rom > 0) or (em_date = 1)) and (em_date >= 0) and (optim_seen = 1)
+on-arrival: time += 2
+
+"Um, do you want to have children?" 
+
+What kind of question was that? Why would you ask her such a thing?
+
+"Well, that's a complicated question." A pause. "Do you?"
+
+- @kids_2: "Yeah, I do."
+- @kids_idk: "I don't know."
+
+@kids_idk
+go-to: kids_3
+
+"I don't know. Maybe," you say.
+
+"Oh."
+
+"Probably. I mean, it's more than 50%. The probability that I want children."
+
+
+@kids_2
+go-to: kids_3
+
+"Yeah, I do."
+
+
+@kids_3
+
+"Do you want to have kids, or do you like the idea of having kids?"
+
+"I want to have kids. I seriously do."
+
+"Why?", asks Emily.
+
+- @kids_better: "I want to be better than my parents were."
+- @kids_not_alone: "I want to not be alone."
+- @kids_idk_2: "I don't know."
+
+
+@kids_better
+
+"I want to be a better parent than my parents were, I guess."
+
+"Yeah, that's fair, I guess."
+
+- @kids_what_about_you: "And what about you?"
+
+
+@kids_not_alone
+
+"I don't want to grow old alone, I guess."
+
+"Yeah, that's fair, I guess."
+
+- @kids_what_about_you: "And what about you?"
+
+
+@kids_what_about_you
+
+"And what about you?", you ask.
+
+"I mean, it's... I don't know. I want to say no, because I don't want to give my parents the satisfaction of having descendants. But there's another part of me that's like, I don't know, it's complicated."
+
+"Oh..."
+
+- @kids_adopt: "What about adoption?"
+- @kids_ask: "Could you, um, save some gametes or whatever?"
+
+
+@kids_idk_2
+
+"I mean, I don't know. Why does anyone want anything? Like, maybe it's a biological imperative or something like that?"
+
+"Yeah. I guess I have to apologize to biology for fucking up its imperative."
+
+"Sorry..."
+
+"No, I should be sorry."
+
+- @kids_adopt: "What about adoption?"
+- @kids_ask: "Could you, um, save some gametes or whatever?"
+
+
+@kids_adopt
+
+"Um, what about adoption?"
+
+"Adoption is much harder than most people think, especially for people like me. Maybe people like us, too. But, if [? if em_date = 1 : we ?][? if em_date = 0: I ?] had the opportunity, maybe? I don't know."
+
+- @kids_willing_adopt: "Would you be willing to adopt kids with me?"
+- @kids_ask: "Could you, um, save some gametes or whatever?"
+- @danger_zone: This is a dangerous line of conversation. Retreat.
+
+
+@kids_willing_adopt
+view-if: em_date = 1
+
+"Would you be willing to adopt kids with me?"
+
+Emily glances at you. This is awkward. Why did you start this line of conversation in the first place? Are you already anticipating being married to Emily, mere minutes after it has been established that you are indeed dating? Is this what your fantasy has come to?
+
+"I mean, if that's what you wanted, sure, in a hypothetical world where we had the means. Are you already thinking that far into the future?"
+
+- @far_future: "Of course I'm thinking about our future life together."
+- @future_sorry: "Sorry..."
+
+
+@kids_ask
+
+"Um, could you, um, save some, you know?" You are not going to say it.
+
+"Well, I haven't had surgery, so based on the studies there's like a 50-50 chance that I could still produce sperm if I stopped hormones. Probably IVF would be necessary."
+
+"So you didn't... um, do that before starting hormones?"
+
+"No."
+
+- @kids_willing: "Would you be willing to?"
+- @danger_zone: This is a dangerous line of conversation. Retreat.
+
+@danger_zone
+
+This is a dangerous line of conversation. You shouldn't be talking about such things at this point. Is there anything, anything at all that you could be talking about?
+
+- #talk_em_final
+
+
+@kids_willing
+go-to: kids_willing_date if em_date = 1; kids_willing_hypothetical if em_date < 1
+
+"Oh, um, would you be willing to...?"
+
+
+@kids_willing_date
+
+Emily glances at you. This is awkward. Why did you start this line of conversation in the first place? Are you already anticipating being married to Emily, mere minutes after it has been established that you are indeed dating? Is this what your fantasy has come to?
+
+"I mean, hypothetically, if you wanted, I guess. Insurance doesn't cover any of this, so we'd need to be financially independent."
+
+"Yeah..."
+
+"Are you already thinking that far into the future?"
+
+- @far_future: "Of course I'm thinking about our future life together."
+- @future_sorry: "Sorry..."
+
+
+@far_future
+
+"Of course. It's something I thought about for a long time."
+
+"Really?"
+
+"Yeah."
+
+"Do you think we'd make decent parents?"
+
+- @parents_not_sure: "I don't know..."
+- @parents_better: "Better than our parents, at least..."
+- @parents_no: "What if I'm a terrible parent?"
+
+
+@future_sorry
+
+"Sorry..."
+
+"No, it's fine. Do you want to talk about your hypothetical far future? Do you think we'd make decent parents?"
+
+- @parents_not_sure: "I don't know..."
+- @parents_better: "Better than our parents, at least..."
+- @parents_no: "What if I turn out to be a terrible parent?"
+
+
+@parents_not_sure
+
+"I don't know. Maybe? I guess... I hope so."
+
+"I think you'd be a good parent at least," Emily says. "On the other hand maybe I'd be a tiger mom."
+
+- @parents_why: "Really? Why?"
+- @parents_tiger_mom: "A tiger mom? Really?"
+
+
+@parents_why
+
+"Really? Why?"
+
+"You have a lot of, um, positive attributes. You're really kind and patient."
+
+"Um, I don't think I'm any of these things, but thanks..."
+
+- @future_plans: Talk about your future plans?
+- @talk_options: Talk about something else.
+
+@parents_tiger_mom
+
+"A tiger mom? Really? That's hard to imagine."
+
+"I don't know. I'd be disappointed if our hypothetical children weren't at least semi-competent at STEM."
+
+"Oh God no."
+
+Emily laughs.
+
+- @future_plans: Talk about your future plans?
+- @talk_options: Talk about something else.
+
+
+@parents_better
+
+"I mean, we'd be better than our parents, at least..."
+
+"Are you sure? What if I turned out to be a tiger mom?"
+
+You can't help but laugh. "God, I can't imagine that at all."
+
+"I don't know. I'd be disappointed if our hypothetical children weren't at least semi-competent at STEM."
+
+"Oh God no."
+
+Emily laughs.
+
+- @future_plans: Talk about your future plans?
+- @talk_options: Talk about something else.
+
+
+@parents_no
+
+"What if I turn out to be a terrible parent?"
+
+"Why would you be a terrible parent?"
+
+"I mean, just look at me."
+
+"I'm looking."
+
+"I'm a massively anxious mess? I don't know how to talk to people? I can't do anything at all without having a nervous breakdown?"
+
+"But you're talking to me just fine right now, so it can't be all that bad. And I guess it would be different for someone you know since their birth. Besides, you're patient, and kind, and, well, you have a lot of positive attributes."
+
+"I don't think I'm any of those things but maybe..."
+
+- @future_plans: Talk about your future plans?
+- @talk_options: Talk about something else.
+
+
+@future_plans
+
+"So, um, how about our future plans?"
+
+"What, after we start cohabilitating?"
+
+TODO
+
+
+@kids_willing_hypothetical
+
+"Maybe. I guess if my hypothetical partner wanted that, I'd do it."
+
+Oh man. This is awkward. Why did you start this line of conversation? Are you implying that you are potentially Emily's hypothetical partner? Is *she* making that implication?
+
+- @kids_stare: Stare at Emily.
+- @kids_what_if: "What if I were the hypothetical partner?"
+- @danger_zone: This is a danger zone. Change the conversation.
+
+
+@kids_stare
+
+You stare at Emily. Why? Are you implying something here?
+
+"Are you going to say something, or should I guess what you're going to say?"
+
+- @say_it: "You should say it."
+- @i_say_it: "I'll say it."
+
+@say_it
+
+"You should say it."
+
+TODO
+
+@i_say_it
+
+TODO
+
+@kids_what_if
+
+"What if I were the hypothetical partner?"
+
+"Oh." A pause. "Yeah, I guess. Do you want to be the hypothetical partner?"
+
+- @hypothetical_wait: "Wait, are you asking in a non-hypothetical way?"
+- @hypothetical_yes: "Yes, hypothetically."
+
+@hypothetical_wait
+
+"Wait, are you asking that in a non-hypothetical way?"
+
+"I don't know what I'm asking."
+
+@hypothetical_yes
+
+TODO
+
+you should say it.
+I'll say it.
+stay silent.
+
+You: Maybe we could be friend-married. We could be co-parents.
+
+
+##############################################################################

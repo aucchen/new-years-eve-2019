@@ -31,6 +31,8 @@ It has been approximately two years since your previous conversation.
 
 
 @aub_dated
+unavailable-subtitle: No, that's not what happened.
+choose-if: aub_implemented = 1
 on-arrival: prev_aub = "dated"
 
 Alas, she is totally straight, as far as you know. However, you confessed to her in a moment of weakness, and for some strange reason, she wanted to go on a date with you. You accepted and went on the date. Even more surprisingly, it was not to be your last. Your "friend dates" became a thing, for a while, until it stopped without a final resolution.

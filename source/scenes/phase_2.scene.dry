@@ -4,6 +4,7 @@ go-to: late if time >= p1_time + 2
 on-arrival: {! Q['phase'] = 2; Q['food_left'] = 6; Q['food'] = [];
 Q['phase_2_start'] = 0;
 // TODO: add more food descriptions.
+// food_descs - how the food tastes
 Q['food_descs'] = {
 'rice': ['fine', 'perfectly ordinary', 'exactly as it should'],
 'dumplings': ['fine', 'a bit salty', 'kind of delicious'],
@@ -18,6 +19,22 @@ Q['food_descs'] = {
 'soup': ['fine', 'flavorful', 'savory', 'nostalgic'],
 'porridge': ['fine', 'plain', 'familiar']
 };
+// food_eating - what to say when eating the food
+Q['food_eating'] = {
+'rice': ['You take a bite of the rice.'],
+'dumplings': ['You eat a single dumpling.'],
+'baozi': ['You manage to eat half of a baozi.'],
+'string beans': ['You take a bite of the string bean stir fry.'],
+'tofu': ['You take a bite of the tofu stir fry.'],
+'chicken and cauliflower': ['You try some of the chicken and cauliflower stir fry.'],
+'shrimp and bok choy': ['You eat some of the shrimp and bok choy stir fry.'],
+'lotus root': ['You eat some of the lotus root stir fry, taking bites of the vegetable and the meat.'],
+'tomato and eggs': ['You take a bite of the tomato and egg stir fry.'],
+'lamb noodles': ['You eat a few chopstick-fuls of the lamb noobles.'],
+'soup': ['You consume a few spoonfuls of soup.'],
+'porridge': ['You eat a few spoonfuls of porridge.']
+};
+// food_additional - additional food descriptions
 Q['food_additional'] = {
 'rice': [' ', "It's white rice. It's what you expect from white rice."],
 'dumplings': [' ', "These dumplings are pretty good, with homemade wrappers and fillings."],

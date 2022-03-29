@@ -1,9 +1,10 @@
 title: The new year is soon.
 subtitle: Happy 2020?
-view-if: time >= p3_time and time <= p3_time + 1 and is_alone = 1
+view-if: time >= p3_time and time <= p3_time + 5 and is_alone = 1
 on-arrival: phase = 3
 max-visits: 1
 new-page: true
+set-bg: backgrounds/party_1_filtered.jpg 
 tags: phase3
 
 "快点！快过年了！ *Quickly! New Year's is soon!*"
@@ -13,9 +14,20 @@ Shouts in Chinese. Footsteps reverberating through the halls, gathering at the l
 - @youre_there: And you're there too.
 
 
+@goto_from_basement
+set-bg: backgrounds/party_1_filtered.jpg 
+new-page: true
+
+# this is what happens if you were wallowing
+
+Mom greets you as you emerge from the basement. She gives you a hug. You can't move. She says something that you don't hear amidst all the noise and commotion.
+
+- @photo: The living room is a photo studio now.
+
+
 @youre_there
 
-And you're there, too. Mom waves at you, pulls you over along with Kevin. She gives you a hug. You can't move. There's shouting. Some confusion; it's still 30 minutes to midnight so why are people being gathered here.
+And you're there, too. Mom waves at you, pulls you over along with Kevin. She gives you a hug. You can't move. There's shouting. Some confusion; it's still a while to midnight so why are people being gathered here.
 
 "咱们照相吧！ *Let's take pictures!*" Someone shouts. People assent. Movement, the shuffle of footsteps. You're pulled along in some direction. Someone brings out a tripod. Someone cleans up the plates. Tables are moved. Chairs are rearranged.
 
@@ -32,17 +44,19 @@ Soon it's your turn for photos. Mom grabs your hand. She's in the center, sittin
 
 @smile
 
-You smile. But then your eyes are closed again and you have to redo the photo. Then it's over. Flashes are seared into your retina. You move away.
+You attempt to sculpt your face into what is hopefully seen as a genuine smile. But then your eyes are closed again and you have to redo the photo. More shutter clicks. Flashes are seared into your retina.
 
-# TODO
+Finally, it's done. You move away.
 
 - @wait: Keep waiting.
+
 
 @wait
 
 Someone takes a picture of Emily and Miri, smiling and hugging. You didn't know they got along but somehow it makes you a little sad. Emily stops smiling for the photo with her parents. They don't force her to smile. [? if meet_chen = 0 : Come to think of it, you haven't spoken to her dad all night, even though you worked with him before. Oh well. ?]
 
 - @miri_talk: Miri approaches you to talk.
+
 
 @miri_talk
 view-if: with_em = 0 and with_miri = 0
@@ -51,15 +65,57 @@ view-if: with_em = 0 and with_miri = 0
 
 - @not_much: "Not much..."
 - @a_lot: "A lot, actually..."
+- @messed_up: "Um, wallowing in despair..."
+
+@messed_up
+view-if: wallow_count > 0
+
+- @ball_drop: The ball is about to drop.
 
 
 @not_much
 
 "Um, not much..."
 
-"Oh, well, "
+"Oh, well, okay. I wondered why I didn't see you after dinner..."
 
-TODO
+- @miri_pause: A pause.
+
+
+@miri_pause
+
+A pause.
+
+"Uh, thanks for bringing me over," Miri says. "I had a good time here."
+
+- @thats_nice: "That's nice..."
+- @oh_okay: "Oh. Okay."
+- @i_didnt: "I didn't."
+
+
+@thats_nice
+go-to: miri_end
+
+"Um, that's nice..."
+
+@oh_okay
+go-to: miri_end
+
+"Oh. Okay."
+
+
+@miri_end
+
+"Yeah..."
+
+She turns around. Emily waves at you. You give a small wave back.
+
+- @ball_drop: The ball is about to drop.
+
+
+@i_didnt
+
+"I didn't," part of you wants to say, but you're not that much of a jerk. So you don't say anything at all. Miri turns around. Emily waves at you. You give a small wave back.
 
 - @ball_drop: The ball is about to drop.
 
@@ -68,21 +124,44 @@ TODO
 
 "Um, a lot, actually..."
 
-TODO
+"Oh, that's good, I guess. I didn't see you after dinner..."
 
-- @ball_drop: The ball is about to drop.
+- @miri_pause: A pause.
+
 
 @ball_drop
-on-arrival: ending = "alone_1"
+on-arrival: ending = "alone_1"; time = 70
+achievement: ending_alone_1
 
 The countdown starts. 10... 9... People watch. Some kids count along. 7... 6... "快点来！快点来！" 3... 2... 1...
 
-The ball drops. Mom kisses you on the cheek. You don't know what to do so you flail your arms about in an attempt at a hug. Somehow it connects and you're pulled into a group hug with mom and Kevin.
+The ball drops. Mom kisses you on the cheek. You don't know what to do so you flail your arms about in an attempt at a hug. Somehow it connects and you're pulled into a group hug with mom and Kevin. You stay like this for a minute. It's warm. Kevin pulls away first.
 
-Other people are already preparing to leave.
+Other people are already preparing to leave. Goodbyes and farewells are being said. Noises. Blurs. Miri puts on her jacket. She waves goodbye to Emily who's with her parents right now. Emily waves back, and glances at you, smiling? You wave back. You smile, but you're not sure if it works.
 
-"Can we go home now?", Kevin says.
+"Can we go home now?", Kevin asks.
 
-# TODO: go to an ending
+- @time_to_leave: Mom nods.
 
-- @early_ending: An ending?
+
+@time_to_leave
+
+But it's not time yet. More goodbyes. More painful conversation between mom and the others. Your shoes and coat are on. Everyone is fully bundled up. But there are still more goodbyes. Still more words.
+
+- @time_to_leave_2: It's finally time.
+
+@time_to_leave_2
+
+It's finally time. Miri comes with you, and the four of you trudge your way to the car. "Shotgun!" Miri calls, and she laughs.
+
+You don't talk much on the ride, or at all, really. She is dropped off at her house. You say goodbye. Then you end at your apartment.
+
+"你今天怎么样？ *How was your day?*", mom asks.
+
+- @it_was_fine: "It was fine."
+
+@it_was_fine
+
+"还行。 *It was fine,*" you say.
+
+- @credits: End.
