@@ -6,7 +6,7 @@ on-arrival: phase = 3
 max-visits: 1
 new-page: true
 set-bg: backgrounds/party_1_filtered.jpg
-tags: phase3
+# tags: phase3
 
 The house is in a state of rauccous commotion.
 
@@ -137,8 +137,7 @@ view-if: em_date = 1
 - @ball_drop: You're saved by the countdown.
 
 @ball_drop
-on-arrival: ending = "alone_1"; time = 70
-achievement: ending_alone_1
+on-arrival: time = 70
 
 The countdown starts. 10... 9... People watch. Some kids count along. 7... 6... "快点来！快点>来！" 3... 2... 1...
 
@@ -213,6 +212,33 @@ Thankfully, you are released soon enough.
 
 
 @mom_notices
+
+"赵秋怡！我们快要走了！ *Zhao Qiuyi! We're leaving soon!*"
+
+[? if with_em = 1 : "I guess this is it for now," Emily says. "Can we keep in touch better than before?" ?] 
+
+[? if em_date = 1 : "Yeah, we will," you say. And the two of you briefly hug. ?]
+[? if (with_em = 1) and (em_date < 1) : "I hope so," you say, as she waves goodbye, and you do the same. ?]
+
+Other people are already preparing to leave. Goodbyes and farewells are being said. Noises. Blurs. Miri puts on her jacket. [? if em_date = 1 : ?]
+
+"Can we go home now?", Kevin asks.
+
+- @last_em_date: Mom nods.
+- @last_em_no_date: Mom nods.
+
+@last_em_date
+view-if: em_date = 1
+on-arrival: ending = "em_2"
+achievement: ending_emily_2
+go-to: time_to_leave
+
+
+@last_em_no_date
+view-if: with_em = 1 and em_date < 1
+on-arrival: ending = "em_1"
+achievement: ending_emily_1
+go-to: time_to_leave
 
 @mom_hug
 

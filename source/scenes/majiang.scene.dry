@@ -1,7 +1,7 @@
-title: Mahjong
+title: Majiang (Mahjong?)
 subtitle: Mom is playing...
 unavailable-subtitle: No, not right now.
-view-if: phase = 2 and time < p3_time - 6
+view-if: phase = 2 and time < p3_time
 choose-if: anxiety < 15
 new-page: true
 max-visits: 1
@@ -15,7 +15,7 @@ There are multiple mahjong tables laid out. Mom is at one of them. She sees you.
 
 
 @table
-on-arrival: time += 1
+on-arrival: time += 1; mom_int += 1
 
 You join her table, which has three players. You're the fourth, making it complete.
 
@@ -23,7 +23,7 @@ You join her table, which has three players. You're the fourth, making it comple
 
 "你会玩吗？*Do you know how to play?*"
 
-"她会 *She knows*", mom says.
+"她会 *She knows*", mom says. Years ago, the four of you used to play together.
 
 - @wash: Wash the cards.
 
@@ -42,10 +42,14 @@ The players arrange the tiles into four walls, 17 tiles across and 2 high.
 - @game: Start playing?
 
 @game
+title: Play a new game?
+unavailable-subtitle: You've played enough games.
 view-if: time < p3_time
-on-arrival: time += 1
+on-arrival: time += 1; game_count += 1
 
 # no I am not making a full majiang simulation here
+
+[? if game_count > 0 : The tiles are washed, and then arranged into walls. The hands are dealt. ?]
 
 Okay. How do you want to play?
 
@@ -55,17 +59,16 @@ Okay. How do you want to play?
 
 
 @play_to_win
+go-to: win_1; lose_1; mom_wins; lose_bad
 
 You're playing to win. Your tactic is an aggressive play, where you try to maximize your chance of winning any set, calling everything and so on.
 
-It's not like you're a particularly adept player, so it's unlikely to win.
+It's not like you're a particularly adept player, so your strategy is unlikely to lead to a victory.
 
 @play_to_not_lose
-on-arrival: {!
-Q['win_prob'] = 0.6;
-!}
+go-to: win_1; lose_1; mom_wins; lose_bad
 
-You're playing to not lose. This defensive play involves watching the other players' discards carefully, trying to predict which tiles they need to win.
+You're playing to not lose. This defensive play involves watching the other players' discards carefully, trying to predict which tiles they need to win. But since you're not exactly a good player, it doesn't mean much how you play.
 
 @play_how
 go-to: win_1; lose_1; mom_wins; lose_bad
@@ -75,17 +78,25 @@ You're playing however it feels right at the moment. Sometimes staring at the di
 @mom_wins
 go-to: new_game
 
+Mom wins this game. "在玩一次，好吧？*Play another game, okay*?", she says with a laugh. She looks happy here.
+
+# TODO
 
 @win_1
 go-to: new_game
 
 Surprisingly enough, you manage to win this round!
 
+@win_2
+go-to: new_game
+
 @lose_1
 go-to: new_game
 
 @lose_bad
 go-to: new_game
+
+TODO
 
 @new_game
 

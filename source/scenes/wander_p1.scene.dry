@@ -14,7 +14,7 @@ No one speaks to you. Everyone is so enraptured by their conversations that no o
 
 @keep_wandering
 view-if: time < p1_time
-on-arrival: time += 1
+on-arrival: time += 1; wander_count += 1
 go-to: w1; w2 if wander_p1_w2_seen = 0; w3 if wander_p1_w3_seen = 0 and mom_int = 0; w4 if wander_p1_w4_seen <= 1; w5 if em_int > 0 and song_chen_int = 0
 
 
@@ -22,6 +22,8 @@ go-to: w1; w2 if wander_p1_w2_seen = 0; w3 if wander_p1_w3_seen = 0 and mom_int 
 go-to: options
 
 You walk in a large circle through the main floor of the house, pretending that you have a purpose. Thus, no one speaks to you.
+
+[? if wander_count = 3 : You've been wandering aimlessly for a while now, passing by the same people, the same places. ?][? if wander_count = 4 : Maybe it's time to do something else? ?][? if wander_count = 5 : Are you hoping to see something here? By wandering around aimlessly in circles, are you anticipating a random encounter? ?][? if wander_count = 6 : There are no random encounters here. ?]
 
 @w2
 on-arrival: wander_p1_w2_seen = 1
@@ -64,6 +66,7 @@ A few toddlers are running around. Their parents shout after them. You barely av
 @w5
 go-to: options
 max-visits: 1
+on-arrival: song_chen_int = 1
 view-if: em_int > 0
 
 You see Song Chen, Professor Chen, Emily's dad and mom's sort-of boss. You worked at his lab in high school, doing a research project involving data analysis for his genomics experiments. He doesn't seem to have noticed you.

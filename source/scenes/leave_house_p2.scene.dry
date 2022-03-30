@@ -1,7 +1,7 @@
 title: Leave the house.
 subtitle: It's feeling bad in here.
 tags: phase2
-view-if: (despair >= 10 or anxiety >= 10) and (with_em = 0 and with_aub = 0 and with_miri = 0) and time < p3_time
+view-if: (despair >= 10 or anxiety >= 10) and (with_em = 0 and with_aub = 0 and with_miri = 0) and time < p3_time and inebriated = 0
 new-page: true
 on-arrival: cold = 0; segue = " "; is_alone = 1
 max-visits: 1
@@ -64,7 +64,7 @@ Just keep on walking. Place one foot in front of the other. Look down carefully.
 tags: alone_thought
 title: It's nice and cool.
 view-if: cold <= 2 and time < p3_time
-on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5
+on-arrival: cold += 1; time += 1; anxiety -= 1; despair -= 1
 max-visits: 2
 go-to: thoughts
 
@@ -75,7 +75,7 @@ It's nice out here, in the cold. Better than the warm and stuffy house, with so 
 tags: alone_thought
 title: It's empty.
 view-if: cold <= 8 and time < p3_time and has_loneliness_segue = 0
-on-arrival: cold += 1; time += 1; anxiety -= 0.5; has_loneliness_segue = 1
+on-arrival: cold += 1; time += 1; anxiety -= 1; has_loneliness_segue = 1
 max-visits: 1
 priority: 2
 go-to: thoughts
@@ -89,7 +89,7 @@ A little bit better, it seems.
 tags: alone_thought
 title: What's the chance that you'll get murdered?
 view-if: cold <= 6 and time < p3_time
-on-arrival: cold += 1; time += 1; anxiety -= 0.5
+on-arrival: cold += 1; time += 1
 max-visits: 1
 go-to: thoughts
 
@@ -140,7 +140,7 @@ The snow seems to be getting heavier by the minute. Your footprints are getting 
 tags: alone_thought
 title: The Christmas lights are nice.
 view-if: cold > 2 and time < p3_time
-on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5
+on-arrival: cold += 1; time += 1; anxiety -= 1; despair -= 1
 max-visits: 1
 go-to: thoughts
 
@@ -248,7 +248,7 @@ Well, you're somewhat good at science. Not extraordinary, but decent. Sort of.
 max-visits: 1
 go-to: thoughts
 
-You imagine a scenario in which you and your acquaintances are the heroes of a science fantasy epic. The world is ending. Asteroids are falling. And a few people scattered throughout the world have the power to rebuild the world by entering a video game world and restructuring the nature of universal reproduction...
+You imagine a scenario in which you and your acquaintances are the heroes of a science fantasy epic. The world is ending. Asteroids are falling. And a few people scattered throughout the world have the power to rebuild the universe by entering a video game world and restructuring the nature of universal reproduction...
 
 This is embarrassing to even think about.
 
@@ -257,7 +257,7 @@ This is embarrassing to even think about.
 max-visits: 1
 go-to: thoughts
 
-You imagine a scenario in which you are an itinerant cosmonaut in a far future where space travel is ubiquitous. Somehow you're still alive then, and you look exactly the same; technology had really advanced. Your job is an agent for the futuristic Commonwealth that administers the cosmos, and you travel around the planets and space stations, helping people with science. You see an image of yourself floating in zero gravity, holding the one you love...
+You imagine a scenario in which you are an itinerant cosmonaut in a far future where space travel is ubiquitous. Somehow you're still alive then, and you look exactly the same; technology has really advanced. Your job is an agent for the futuristic Commonwealth that administers the cosmos, and you travel around the planets and space stations, helping people with science. You see an image of yourself floating in zero gravity, holding the one you love...
 
 This is embarrassing to even think about.
 
@@ -265,9 +265,9 @@ This is embarrassing to even think about.
 @go_back_thought
 tags: alone_thought
 title: Maybe you should go back home?
-view-if: cold > 4 and time < p3_time
+view-if: cold > 4 and ((time >= p3_time) or (anxiety <= 10))
 on-arrival: cold += 1; time += 1
-max-visits: 3
+max-visits: 10
 
 Should you go back home right now?
 
@@ -305,7 +305,7 @@ She probably hasn't noticed. It's fine.
 tags: alone_thought
 title: You've had dreams like this. 
 view-if: cold > 2 and time < p3_time
-on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5
+on-arrival: cold += 1; time += 1; anxiety -= 1; despair -= 1
 max-visits: 1
 go-to: thoughts
 
@@ -361,14 +361,14 @@ go-to: thoughts
 
 It's a major road. Cars and trucks barrel down the slushy road, too fast and too close to the sidewalk for comfort, their headlights blinding you as they approach.
 
-You turn back. Is it dangerous? Potentially. Chances of dismemberment are slightly elevated if you walk too close to the highway at night on a night when drunk driving levels are likely elevated. Or something like that.
+You turn back. Is it dangerous? Potentially. Chances of dismemberment are slightly elevated if you walk too close to the highway on a night when drunk driving levels are likely elevated. Or something like that.
 
 
 @immediate_future_thought
 tags: alone_thought
 title: Think about the immediate future.
 view-if: time < p3_time and has_imagine_segue = 1
-on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5; has_imagine_segue = 2
+on-arrival: cold += 1; time += 1; anxiety -= 1; despair -= 1; has_imagine_segue = 2
 max-visits: 1
 go-to: thoughts
 
@@ -385,7 +385,7 @@ Of course, you're a terrible person for moping and hating yourself so much when 
 tags: alone_thought
 title: You really are alone, aren't you?
 view-if: cold > 2 and time < p3_time and has_loneliness_segue = 1
-on-arrival: cold += 1; time += 1; anxiety -= 0.5; despair -= 0.5
+on-arrival: cold += 1; time += 1; anxiety -= 1; despair -= 1
 max-visits: 1
 go-to: thoughts
 

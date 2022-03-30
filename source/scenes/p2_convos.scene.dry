@@ -53,7 +53,7 @@ Aubrey and her boyfriend are dressed in matching colors, her wearing a green dre
 go-to: stare_aubrey if aub_seen = 0; intros_3 if aub_seen > 0
 set-jump: intros_3
 
-{!<span class="ga">!}AUBREY: So should we go around in a circle and talk about ourselves?{!</span>!}
+{!<span class="ga">!}AUBREY: So should we go around in a circle and introduce ourselves?{!</span>!}
 
 {!<span class="bm">!}MIRI: Can we please talk like normal people? Instead of doing team building exercises?{!</span>!}
 
@@ -518,7 +518,7 @@ Everyone gets up to leave.
 - @break_up_2: Go.
 
 @break_up_2
-go-to: break_up_em if em_int >= 2 or em_rom > 0 or prev_em = "date"; go_root if em_int < 2 and miri_int < 2 and aub_int < 2 and em_rom = 0
+go-to: break_up_em if em_int >= 2 or em_rom > 0 or prev_em = "date"; go_root if em_int < 2 and em_rom = 0
 
 
 @break_up_em
@@ -530,6 +530,7 @@ go-to: break_up_em if em_int >= 2 or em_rom > 0 or prev_em = "date"; go_root if 
 
 
 @go_root
+on-arrival: is_alone = 1
 
 You leave to rejoin the rest of the party.
 
@@ -1485,10 +1486,9 @@ on-arrival: anxiety += 1
 
 @media_3_think
 
-
 You also have read the entirety of said webcomic. It dominated your life for a time and was part of your process of self-discovery, or something like that.
 
-Thus, you can connect with Emily and Miri by virtue of your shared interests, which is how human bonds oft form. Right? You're allowed to talk about it now, right?
+Thus, you can connect with Emily and Miri by virtue of your shared interests, which is how human bonds oft form. Right? You're allowed to mention it now, right?
 
 - @next_topic: The conversation moves on.
 - @media_3_interject: Interject: I have also read said webcomic.

@@ -46,21 +46,23 @@ That question fucks you up everytime.
 
 @em_dessert
 title: Get dessert?
-choose-if: anxiety < 15
+choose-if: anxiety < 10
 unavailable-subtitle: You're not hungry.
 go-to: dessert_p2
+
+# you shouldn't be here anyway
 
 
 @em_homework
 title: Do homework?
-choose-if: anxiety < 15
+choose-if: anxiety < 10
 unavailable-subtitle: You can't focus anyway.
 go-to: homework_p2
 
 
 @em_wallow
 title: Wallow in despair?
-choose-if: despair > 20 and anxiety < 15
+choose-if: despair > 20 and anxiety < 10
 unavailable-subtitle: That would be supremely unhelpful right now.
 go-to: wallow_p2
 

@@ -40,18 +40,38 @@ Okay. Here goes.
 
 What are you supposed to say now?
 
-- @how_day: How's your day?
-- @how_movie: How's the movie?
+- @how_day: "How's your day?"
+- @how_movie: "How's the movie?"
 
 
 @how_day
+on-arrival: anxiety += 1
+max-visits: 1
 
-TODO
+"Um, how was your day?"
+
+"Good."
+
+Okay. What the heck are you supposed to say now?
+
+- #kevin2
+- #movie2
 
 
 @how_movie
+max-visits: 1
 
-TODO
+"Um, how was the movie?"
+
+"It was okay."
+
+Ugh. So much for conversation.
+
+- #kevin2
+- #movie2
+
+
+# TODO
 
 
 @movie_1

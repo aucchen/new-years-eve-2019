@@ -92,7 +92,7 @@ on-arrival: pageant_seen = 1; time += 1; anxiety += 1; game_count += 1
 view-if: pageant_seen = 0
 go-to: game_opts
 
-This game is a lesbian beauty pageant simulator, which is surprisingly resonant with your past experiences. At is heart is a time management game; you have to decide how you spend your time preparing for the pageant, whether to focus on outfits or makeup or talent or the interview. There are multiple endings, most of which are abject failures.
+This game is a lesbian beauty pageant simulator, which is surprisingly resonant with your past experiences. At its heart is a time management game; you have to decide how you spend your time preparing for the pageant, whether to focus on outfits or makeup or talent or the interview. There are multiple endings, most of which are abject failures.
 
 And then there's the social optimization component, which takes the outward form of a dating sim but is actually a ruthless puzzle, where selecting the wrong dialogue choices or weekly activities could destroy your relationships forever.
 

@@ -8,7 +8,7 @@ set-bg: backgrounds/basement_3_filtered_cropped.jpg
 max-visits: 1
 
 
-The children are sitting around the unfinished basement, some hunched over their tablets, others watching the TV. There's a Marvel movie playing, one of the recent ones that you've never seen. You actually haven't seen any of the Marvel movies save snippets in parties such as these.
+The children are sitting around the unfinished basement, some hunched over their tablets, others watching the TV. There's a Marvel movie playing, one of the recent ones that you've never seen. You actually haven't seen any of the Marvel movies, save snippets in parties such as these.
 
 Kevin is on a couch, watching Aubrey's sister Rose play some game on the ipad. He doesn't notice you.
 
@@ -111,7 +111,7 @@ view-if: tv_prog = 1 and phase = 1
 on-arrival: time += 1; tv_prog += 1
 tags: tv
 
-The fights in the movie have grown bigger. There's this giant fight on Earth between a human army and an alien army, and a smaller fight on another planet. Thanos (that's Thanos, right?) smashes some dudes around. There's fancy light effects.
+The fights in the movie have grown bigger. There's this giant fight on Earth between a human army and an alien army, and a smaller fight on another planet. Thanos (that's Thanos, right?) smashes some dudes around. There are fancy light effects.
 
 - #tv
 - @greet: Approach Kevin.

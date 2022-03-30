@@ -144,27 +144,79 @@ You can never have enough water.
 
 @juice
 go-to: drinks_choice_end
-on-arrival: thirst -= 0.5; dessert_consumption_count += 1
+on-arrival: thirst -= 1; dessert_consumption_count += 1
 
 You consume a miniature bottle of mango nectar. It's pretty good, but very sweet.
 
 @alcohol
-view-if: has_alcohol = 0
+choose-if: alcohol_consumption <= 6
+unavailable-subtitle: No more. Please.
 
 Right. You're over 21 now. You can consume alcoholic beverages without fear of the weight of the law, or something like that.
 
 - @beer: Beer.
 - @wine: Wine.
 - @fruity: Some fruity beverage.
+- @baijiu: Baijiu.
+- @inebriated: You are feeling inebriated.
+- @no_alcohol: On second thought, no alcohol for now.
+
+@no_alcohol
+go-to: drinks_choice_end
+view-if: alcohol_consumption < 6
 
 
 @beer
+unavailable-subtitle: You aren't messed up enough to drink right now.
 go-to: drinks_choice_end
+choose-if: anxiety >= 10 and alcohol_consumption <= 6
+on-arrival: alcohol_consumption += 1; time += 1
+
+Fine. Beer tastes bad, but it probably doesn't taste as bad as you feel right now. Is this what people call "self-medicating"?
+
+You drink some quantity of Harbin beer, poured from a bottle. Not a lot, because you do not enjoy the visceral sensation of alcohol consumption.
 
 
 @wine
+unavailable-subtitle: You aren't messed up enough to drink right now.
 go-to: drinks_choice_end
+choose-if: anxiety >= 10 and alcohol_consumption <= 6
+on-arrival: alcohol_consumption += 1; time += 1
+
+Wine is supposed to taste good. It does not. Nevertheless, you are on a self-destructive path, and drinking is not going to make your present condition worse, probably, you think. At least there are supposed to be antioxidants, or something like that.
+
+You don't end up drinking much, because it doesn't taste very good. Unfortunately, you are still a pain-averse creature.
 
 
 @fruity
+unavailable-subtitle: You aren't messed up enough to drink right now.
 go-to: drinks_choice_end
+choose-if: anxiety >= 10 and alcohol_consumption <= 6
+on-arrival: alcohol_consumption += 3; time += 1
+
+There is a bottle of Kirkland margarita here. It's probably the only alcoholic beverage here that is somewhat palatable right now, with its sweet and sour citrus flavors masking the bitterness lurking inside. So you drink a lot of it. Maybe too much. 
+
+
+@baijiu
+unavailable-subtitle: You DO NOT want to drink baijiu right now.
+go-to: drinks_choice_end
+choose-if: anxiety >= 12 and alcohol_consumption <= 6
+on-arrival: alcohol_consumption += 2; time += 1
+
+There is no way consuming baijiu would make anything worse. So you dump half a thimble-full into a cup of orange juice. Is this what they call a "cocktail"?
+
+The juice drowns out the bitterness of the jiu. It almost tastes good.
+
+
+@inebriated
+view-if: alcohol_consumption >= 6
+on-arrival: inebriated = 1
+
+Lightheadedness. Dizziness. The world is spinning. You want to collapse. Or to laugh.
+
+Is this what being drunk feels like?
+
+Unfortunately, your anxiety levels still seem to be about the same. So this self-therapy was a waste of time, and you don't want to push your luck any further with increasing inebriation. At least your cognition does not seem to be impaired, although you wouldn't know if it were.
+
+- @drinks_choice_end: Drink some other beverage.
+- @root: Do something else.

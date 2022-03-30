@@ -6,7 +6,7 @@ on-arrival: phase = 1;
 tags: start, top
 signal: {! console.log("introspect"); !}
 
-Every social gathering is horrific in its own way. Over the years you have learned to adapt, to cope, to survive. The one in which you are currently attending, however, threatens to ruin you.
+Every social gathering is horrific in its own way. Over the years you have learned to adapt, to cope, to survive. The one which you are currently attending, however, threatens to ruin you.
 
 - @back_up: Back up for a minute...
 

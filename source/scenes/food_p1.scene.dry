@@ -151,19 +151,19 @@ They have some beer, wine, 白酒 (baijiu, Chinese liquor). At least one man has
 
 
 @beer
-unavailable-subtitle: You're already carrying something.
-view-if: carrying_beer = 0 and carrying_wine = 0 and carrying_baijiu = 0
+unavailable-subtitle: You've already drunk something.
+choose-if: carrying_beer = 0 and carrying_wine = 0 and carrying_baijiu = 0
 on-arrival: carrying_beer = 1; thirst -= 1; alcohol_consumption += 1
 
-You open a bottle of Harbin beer and take a sip. It tastes... bad. You don't know how people can unironically enjoy drinking this stuff. You aren't going to finish this, but you take the bottle with you.
+You open a bottle of Harbin beer and pour some into a cup. It tastes... bad. You don't know how people can unironically enjoy drinking this stuff.
 
 - @food_choices: Look at other snacks or drinks.
 - @root: Do something else.
 
 
 @wine
-unavailable-subtitle: You're already carrying something.
-view-if: carrying_beer = 0 and carrying_wine = 0 and carrying_baijiu = 0
+unavailable-subtitle: You've already drunk something.
+choose-if: carrying_beer = 0 and carrying_wine = 0 and carrying_baijiu = 0
 on-arrival: carrying_wine = 1; thirst -= 1; alcohol_consumption += 1
 
 Red wine is supposed to be healthy, right? You pour a small bit. It tastes...bad. Isn't wine supposed to taste good? You aren't going to finish this, but you take the glass with you.

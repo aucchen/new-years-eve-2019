@@ -45,7 +45,7 @@ go-to: snowflakes
 
 
 @snowflakes
-on-arrival: anxiety -= 1
+on-arrival: anxiety -= 2
 
 It's quiet. Snowflakes glisten in the air, shining under the streetlights. You regret making footprints in the fresh snow.
 
@@ -109,7 +109,7 @@ You walk in silence, trudging through the snow by moving your feet forward one a
 on-arrival: cold += 1; time += 1
 go-to: wonder_1
 
-"So how does conversation work, anyway?", Emily says, interrupting the silence. "How do normal people decide what to talk about?"
+"So how does conversation work, anyway?," Emily says, interrupting the silence. "How do normal people decide what to talk about?"
 
 
 @wonder_1
@@ -417,6 +417,7 @@ She takes a deep breath. "Okay, so, remember back in high school when we were do
 
 
 @dont_deserve
+go-to: opt_prev_friends_nothing
 
 "I don't deserve that..."
 
@@ -424,24 +425,30 @@ She takes a deep breath. "Okay, so, remember back in high school when we were do
 
 "...That. What you just said."
 
-"No one deserves anything," Emily says. "I guess I just don't really believe in the idea that some people deserve more than others."
+"No one deserves anything," Emily says. "I guess I just don't really believe in the idea that some people deserve more or less than others."
 
 "Oh."
 
-# TODO?
-
-- #talk_em_final
+THere is a lull, about as awkward as usual.
 
 
 @opt_prev_friends_disappoint
+go-to: opt_prev_friends_nothing
 
 Why? Were you expecting her to say "I love you" or something like that? Or hoping for such a thing? You should know better than to expect good things to happen to you.
 
 Instead of vocalizing your harmful feelings, you say, "Oh. Thanks."
 
+There is a lull, about as awkward as usual.
+
+
+@opt_prev_friends_nothing
+
+"I don't know anything," she says. "We're all just... lowly, lonely organisms trying to grasp at a chance for transcendence. I don't know what that means. I'm just saying words now."
+
 "Oh."
 
-There is a lull, about as awkward as usual.
+# TODO: It's like we're trapped...
 
 - #talk_em_final
 
@@ -461,14 +468,18 @@ She takes a deep breath. "Okay, so, remember back in high school when we were pr
 
 - @opt_prev_date_2: ...
 - @opt_prev_date_what: What.
-- @opt_prev_date_yes: Yes, I'd be interested???
+- @opt_prev_date_q: ???
 
+@opt_prev_date_q
+go-to: opt_prev_date_what
 
 @opt_prev_date_2
 go-to: opt_prev_date_what
 
 
 @opt_prev_date_what
+
+It takes a moment to fully comprehend Emily's implication.
 
 "Um..."
 
@@ -480,10 +491,57 @@ go-to: opt_prev_date_what
 
 
 @opt_prev_date_why
+on-arrival: time += 1
 
-"Why?", you ask.
+"Why?," you ask.
 
-Emily sighs, and waves her arms. "I don't know. Why is anything? Why is the sky blue? Why is one plus one two?"
+Emily sighs, and waves her arms. "I don't know. Why is anything? Why is the sky blue? Why is one plus one two? Actually, never mind, I know why the sky is blue but that's not the point. I don't know what the point was. Maybe I'm irrational for wanting this, but, I don't really care."
+
+- @opt_prev_date_want: "Actually, I want this too..."
+- @opt_prev_date_irrational: "It is kind of irrational..." (but???)
+
+
+@opt_prev_date_want
+go-to: hold_hand
+
+"Actually, I want this too."
+
+"Oh. Really?"
+
+"Yeah."
+
+
+@opt_prev_date_irrational
+
+"It is kind of irrational..."
+
+"That's what I thought."
+
+- @opt_prev_date_irrational_want: "But I'm irrational too, so, I want this too."
+- @opt_prev_date_irrational_no: "Let's stop being irrational, then."
+
+
+@opt_prev_date_irrational_want
+go-to: hold_hand
+
+"But I'm irrational too, so, um, I guess I want this too."
+
+"Oh. Really?"
+
+"Yeah."
+
+
+@opt_prev_date_irrational_no
+on-arrival: em_date = -1; time += 2
+
+"Let's stop being irrational, then."
+
+"Yeah. That's probably a good idea," Emily says. "I'm really sorry. Forget I said anything."
+
+The air feels colder. Emily is standing further away from you.
+
+- @opt_change_mind: "Actually, I change my mind..."
+- #talk_em_final
 
 
 @opt_prev_date_yes
@@ -508,7 +566,7 @@ The air feels colder. Emily is standing further away from you.
 
 @opt_change_mind
 
-"Um, actually, I meant that... Yes. I'd be interested. Sorry."
+"Um, actually, I meant that... I like you too. Yes. I'd be interested. Sorry."
 
 "Sorry. Oh. Really?"
 
@@ -714,7 +772,7 @@ No, you're not sure. You walk. The scene is unchanging, streetlamps and snow, st
 
 
 @c_deep_breaths_1
-on-arrival: anxiety -= 0.5; time += 1
+on-arrival: anxiety -= 1; time += 1
 
 "You know you can tell me anything, right? Anything at all. It's fine."
 
@@ -745,7 +803,7 @@ on-arrival: anxiety -= 2; despair -= 2; time += 2
 
 
 @i_like_you
-on-arrival: anxiety -= 0.5
+on-arrival: anxiety -= 1
 
 "Um, I..."
 
@@ -756,7 +814,7 @@ on-arrival: anxiety -= 0.5
 
 
 @i_like_you_2
-on-arrival: anxiety -= 0.5
+on-arrival: anxiety -= 1
 
 "Whatever you say, it's going to be fine," she says. "I won't... hate you or anything like that. No matter what you want to say." Your hands are almost touching.
 
@@ -828,7 +886,7 @@ Your teeth somehow became clenched again. You force them apart.
 
 @im_terrible
 
-"What if I'm a terrible person too?", you say.
+"What if I'm a terrible person too?," you say.
 
 She laughs.
 
@@ -890,7 +948,7 @@ Your hands make contact.
 @touch_hands_2
 on-arrival: anxiety -= 2
 
-Oh God Oh God Oh God you are experiencing a moment of human connection right now and it's really overwhelming.
+Oh God Oh God Oh God you are experiencing a moment of unprecedented human connection right now and it's really overwhelming...
 
 - @touch_hands_3: You're about to collapse.
 
@@ -900,7 +958,7 @@ go-to: what_now_2
 
 You're about to collapse of a heart attack. You're about to jump up and down and spin around. You're about to run into the middle of the road. You're about to burst and explode.
 
-"So, what now?", Emily whispers. You are brought back to reality. You are standing here in the snow. You are cold. You and Emily have just, possibly, entered into some kind of thing. And you are utterly unprepared.
+"So, what now?," Emily whispers. You are brought back to reality. You are standing here in the snow. You are cold. You and Emily have just, possibly, entered into some kind of thing. And you are utterly unprepared.
 
 
 @ignore_hand
@@ -912,7 +970,7 @@ You leave your hands in your coat pockets. Emily looks a little disappointed. Sh
 @what_now
 go-to: what_now_2
 
-"So, what now?", she whispers.
+"So, what now?," she whispers.
 
 
 @what_now_2
@@ -921,7 +979,7 @@ go-to: what_now_2
 
 
 @are_we_dating
-on-arrival: em_date = 1
+on-arrival: em_date = 1; anxiety -= 1
 
 "So, like, are we, um..."
 
@@ -1019,7 +1077,7 @@ It feels... good? Maybe? You can't think properly; the cognition circuits of you
 
 Whatever the case, something happened, and you are as yet unsure of the long-term consequences but they must be positive because why else would you be feeling so unnecessarily happy right now?
 
-"So what are we supposed to do now?", Emily asks. "I have no idea how any of this works."
+"So what are we supposed to do now?," Emily asks. "I have no idea how any of this works."
 
 "I don't either, but..."
 
@@ -1053,8 +1111,8 @@ on-arrival: {!
 Q['time'] += 6;
 Q['anxiety'] -= 4;
 Q['despair'] -= 4;
-if (Q['time'] < p3_time - 5) {
-    Q['time'] = p3_time - 5;
+if (Q['time'] < Q['p3_time'] - 5) {
+    Q['time'] = Q['p3_time'] - 6;
 }
 !}
 
@@ -1116,11 +1174,11 @@ You smile, because that's one decision made, one burden thrown out of your very 
 title: Just walk.
 tags: talk_em_final 
 on-arrival: cold += 1; time += 1; walk_2_seen = 1
-view-if: walk_2_seen = 0 and time < p3_time and em_date = 0
+view-if: walk_2_seen = 0 and time < p3_time and em_date = 0 and optim_seen = 0
 
 You walk, side-by-side with Emily, truding through the newly fallen snow on the too-narrow sidewalk. It's her who breaks the silence first.
 
-"Hey, Karen, how are you feeling right now?", she asks.
+"Hey, Karen, how are you feeling right now?," she asks.
 
 - @feeling_okay: Um, okay?
 - @feeling_bad: Bad.
@@ -1178,7 +1236,7 @@ go-to: how_do_normal_people_talk if optim_seen = 0; dont_know_what_to_say if opt
 @how_do_normal_people_talk
 go-to: wonder_1
 
-"How does conversation work, anyway?", she asks. "What do normal people talk about?"
+"How does conversation work, anyway?," she asks. "What do normal people talk about?"
 
 
 @dont_know_what_to_say
@@ -1226,15 +1284,49 @@ go-to: how_do_normal_people_talk if optim_seen = 0; dont_know_what_to_say if opt
 
 "Yeah. Maybe we can talk about it..." A pause. You don't know what to say. You never do.
 
+###########################################################################
+
+
+@walk_3
+title: Just walk.
+view-if: walk_2_seen >= 1 and time < p3_time
+on-arrival: time += 2; walk_3_seen += 1
+tags: talk_em_final
+go-to: walk_3_1; walk_3_2 if walk_3_seen >= 1; walk_3_date if em_date = 1
+
+
+@walk_3_1
+
+You walk for a few minutes, side-by-side with Emily. Neither of you utters a single word. The snow continues to fall all around you. The linear progression of time marches on.
+
+- #talk_em_final
+
+
+@walk_3_2
+
+Time continues to pass. You're not sure what you're doing here, outside, walking, but it's probably better than being back in the stuffy house. At least you're not alone right now.
+
+- #talk_em_final
+
+
+@walk_3_date
+
+It's comforting, being in close proximity to Emily Chen who is now officially(?) your girlfriend, or something like that. It increases your levels of endorphins or something like that, which makes your emotional state more positive, or something like that. Wow.
+
+- #talk_em_final
+
 
 
 
 ############################################################################
 
+# TODO: should it be required that this takes place after the "optim" convo?
+
 @life
 title: Ask: "Tell me about your life."
-view-if: life_seen = 0 and time < p3_time
-on-arrival: life_seen = 1; time += 1
+tags: talk_em_final
+view-if: life_seen = 0 and time < p3_time and optim_seen = 1
+on-arrival: life_seen = 1; time += 2
 
 "So, um, tell me about your life," you ask.
 
@@ -1246,22 +1338,149 @@ Emily shrugs. "What is there to say? It's mostly pretty boring."
 
 
 @life_grad_school
+view-if: em_life_grad_school_seen = 0
+on-arrival: em_life_grad_school_seen = 1
 
 "Um, you're applying for grad school too, right?"
 
-"Yeah, hopefully."
+"Yes. Hopefully I can get in."
+
+She doesn't say much more. Maybe you should prompt her?
+
+- @life_grad_school_both: "I wonder if we're applying to some of the same places?"
+- @life_science: Ask about science or research or stuff like that.
+- @life_college: Ask about... college life?
+- @life_something_else
 
 
 @life_science
+view-if: em_life_science_seen = 0
+on-arrival: em_life_science_seen = 1
 
 "Um, you're doing science... stuff, right?"
 
+"Yes, I'm working on climate science stuff, seeing how local weather patterns in places like the Northeast are likely to change in response to global climate change. What about you? What are you working on? Or have we talked about that already?"
+
+- @life_science_already_asked: "You've already asked about that..."
+- @life_science_respond: "I'm working on gene regulation..."
+
+
+@life_science_already_asked
+
+"Um, you've already asked about that..."
+
+"Oh. Sorry."
+
+- @life_grad_school: Ask about grad school?
+- @life_college: Ask about... college life?
+- @life_something_else
+
+
+@life_science_respond
+
+"Um, I'm working on gene regulation for cellular development pathways..."
+
+"Cool! Can you tell me more?"
+
+And thus, you embark on the long, prepared explanation of your research project.
+
+"...so, like, if we can build dynamical models of the regulatory pathways, then we can, like, use CRISPR or whatever to forward engineer them, and then, like,... yeah."
+
+"Hmm, I'm just wondering how it can be useful for transitioning." Emily laughs. "I mean, it's easy to synthesize estrogen, but ideally we'd be able to do better than just bioidentical estrogen, if we have precise control over gene regulation..." She shakes her head. "Sorry, I'm just making stuff up here."
+
+"No, that's very interesting!"
+
+- @life_grad_school: Ask about grad school?
+- @life_college: Ask about... college life?
+- @life_something_else
+
 
 @life_college
+view-if: em_life_college_seen = 0
+on-arrival: em_life_college_seen = 1
 
 "Um, how has college been?"
 
-TODO
+She shrugs. "It's been okay, as long as one thinks of school as a machine where the input is work and the outputs are grades. Like there's that one meme about a triangle with grades, social life, and sleep on the three corners, and I'm only getting one of the corners. What about you? Or have I asked that already?"
+
+- @life_college_already_asked: "You've already asked about that..."
+- @life_college_respond: "It's about the same here."
+
+
+@life_college_already_asked
+
+"You've already asked about that..."
+
+"Oh. Okay. Sorry."
+
+- @life_grad_school: Ask about grad school?
+- @life_science: Ask about science or research or stuff like that.
+- @life_something_else
+
+
+@life_college_respond
+
+"It's about the same here. It's not like I have any social life. Or have any sleep."
+
+"That's just how it is."
+
+- @life_grad_school: Ask about grad school?
+- @life_science: Ask about science or research or stuff like that.
+- @life_something_else
+
+
+@life_grad_school_both
+view-if: em_life_grad_school_seen = 1
+
+"I wonder if we're applying to some of the same places?"
+
+"Which places are you applying to?"
+
+You share your respective grad school lists.
+
+"Huh. There's a bunch of overlaps there."
+
+- @life_grad_school_good: "That's great! Maybe we'll see each other?"
+- @life_grad_school_live_together: "Maybe we could room together?"
+
+
+@life_grad_school_good
+
+"Um, that's great! Maybe we'll see each other at grad school?"
+
+"Yeah, maybe."
+
+- @life_science: Ask about science or research or stuff like that.
+- @life_college: Ask about... college life?
+- @life_something_else
+
+
+@life_grad_school_live_together
+
+"Um, maybe we could room together?," you ask. [? if em_date = 0 : You wonder if this is going too far, if your relationship status is too low for this. ?]
+
+"Well, assuming that we do end up going to the same place, sure."
+
+"We could be roommates."
+
+[? if em_date = 1 : "Oh my god, we could be roommates," Emily says. You laugh. ?]
+[? if em_date != 1 : "Yeah, maybe we could," Emily says. ?]
+
+"That would make things a lot easier..."
+
+[? if em_date = 1 : Emily smiles at you. "Yeah, it would." ?][? if em_date != 1 : "Yeah, it might." ?]
+
+- @life_science: Ask about science or research or stuff like that.
+- @life_college: Ask about... college life?
+- @life_something_else
+
+
+@life_something_else
+view-if: em_life_science_seen = 1 and em_life_grad_school_seen = 1
+title: Talk about something else?
+
+- #talk_em_final
+
 
 
 
@@ -1269,11 +1488,11 @@ TODO
 
 @home
 title: It's late. Go home.
-view-if: time >= p3_time - 5
+view-if: time >= p3_time - 6
 on-arrival: time = p3_time
 tags: talk_em_final
 
-Emily checks her phone. "It's getting late. We should get back."
+Emily checks her phone. "It's getting late. We should go back home."
 
 "Yeah..."
 
@@ -1289,8 +1508,8 @@ Emily checks her phone. "It's getting late. We should get back."
 @kids
 title: Ask: "Do you want to have children?"
 tags: talk_em_final
-view-if: ((em_rom > 0) or (em_date = 1)) and (em_date >= 0) and (optim_seen = 1)
-on-arrival: time += 2
+view-if: ((em_rom > 0) or (em_date = 1)) and (em_date >= 0) and (optim_seen = 1) and (kids_seen = 0)
+on-arrival: time += 2; kids_seen = 1
 
 "Um, do you want to have children?" 
 
@@ -1323,7 +1542,7 @@ go-to: kids_3
 
 "I want to have kids. I seriously do."
 
-"Why?", asks Emily.
+"Why?," asks Emily.
 
 - @kids_better: "I want to be better than my parents were."
 - @kids_not_alone: "I want to not be alone."
@@ -1350,7 +1569,7 @@ go-to: kids_3
 
 @kids_what_about_you
 
-"And what about you?", you ask.
+"And what about you?," you ask.
 
 "I mean, it's... I don't know. I want to say no, because I don't want to give my parents the satisfaction of having descendants. But there's another part of me that's like, I don't know, it's complicated."
 
@@ -1402,7 +1621,7 @@ Emily glances at you. This is awkward. Why did you start this line of conversati
 
 "Um, could you, um, save some, you know?" You are not going to say it.
 
-"Well, I haven't had surgery, so based on the studies there's like a 50-50 chance that I could still produce sperm if I stopped hormones. Probably IVF would be necessary."
+"Well, I haven't had bottom surgery, so based on the studies there's like a 50-50 chance that I could still produce sperm if I stopped hormones. Probably IVF would be necessary."
 
 "So you didn't... um, do that before starting hormones?"
 
@@ -1485,6 +1704,7 @@ Emily glances at you. This is awkward. Why did you start this line of conversati
 - @future_plans: Talk about your future plans?
 - @talk_options: Talk about something else.
 
+
 @parents_tiger_mom
 
 "A tiger mom? Really? That's hard to imagine."
@@ -1519,13 +1739,13 @@ Emily laughs.
 
 @parents_no
 
-"What if I turn out to be a terrible parent?"
+"What if I turn out to be a terrible parent?," you ask.
 
-"Why would you be a terrible parent?"
+"Why would you be a terrible parent?," Emily replies
 
 "I mean, just look at me."
 
-"I'm looking."
+"Yes, I'm looking."
 
 "I'm a massively anxious mess? I don't know how to talk to people? I can't do anything at all without having a nervous breakdown?"
 
@@ -1538,12 +1758,177 @@ Emily laughs.
 
 
 @future_plans
+view-if: em_date = 1 and em_future_plans_seen = 0
+on-arrival: em_future_plans_seen = 1
+go-to: future_plans_choices
 
-"So, um, how about our future plans?"
+"So, um, can we discuss our future plans?," you ask.
 
-"What, after we start cohabilitating?"
+"Like, after we start cohabilitating?"
 
-TODO
+"Maybe..."
+
+"Sure. What do you want to discuss?"
+
+@future_plans_choices
+
+- @where_live: "Where do you want to live?"
+- @where_work: "What kind of job do you want?"
+- @where_food: "What if our life habits clash?"
+- @the_same: "Wow, we are like literally the same person."
+
+
+@where_live
+on-arrival: where_live_seen = 1
+view-if: where_live_seen = 0
+
+"Where do you want to live?," you ask.
+
+"Preferably a metropolitan area with good public transportation," she says. "But not Boston. Or do you mean something else?"
+
+- @where_live_city: "I want to live in a city too."
+- @where_live_house: "Apartment or house?"
+- @where_live_places: "Which areas in particular?"
+
+@where_live_city
+go-to: future_plans_choices
+
+"I want to live in a city too," you say.
+
+"Congratulations. I suppose we're in agreement there."
+
+
+@where_live_house
+go-to: future_plans_choices
+
+"Um, apartment or house?"
+
+"I don't know. Probably an apartment? Or maybe a condo or townhouse. Somewhere that's not in the middle of nowhere, like here."
+
+"Yeah, same..."
+
+
+@where_live_places
+go-to: future_plans_choices
+
+"Which areas in particular?"
+
+She makes a noncommital gesture. "I think the West Coast is nice."
+
+"Earthquakes, though."
+
+"Eh. Anyway, if you're going into academia, I'll follow you wherever you need to go for you r job."
+
+"Um, thanks."
+
+
+@where_work
+on-arrival: where_work_seen = 1
+view-if: where_work_seen = 0
+
+"What kind of job do you want to have?," you ask.
+
+"Honestly, I don't know anymore." She shakes her head. "Part of me wants to stay in science, but that's a difficult path, and I honestly don't know if I can keep up. What about you?"
+
+- @where_work_professor: "I want to become a professor."
+
+
+@where_work_professor
+go-to: future_plans_choices
+
+"Um, I want to become a professor."
+
+"Really? That's awesome! I really hope you can make it. Tenure track is hard, or so I've heard."
+
+"Yeah, it is." Even though it's been your dream for years, you know that you do not have the temperment to do anything adjacent to teaching. At one point you dreamed of winning the Nobel Prize in either Chemistry or Physiology or Medicine, but that is more and more fantastical with each passing day of laziness. Whatever.
+
+
+@where_food
+on-arrival: where_food_seen = 1
+view-if: where_food_seen = 0
+
+"Um, what if we end up clashing because of, um, our different lifestyles?"
+
+"What do you mean? Like if I stayed up late and you went to bed early?"
+
+"Well, um, I go to bed late too."
+
+She shrugs. "Well, that's one potential conflict down."
+
+- @where_food_food: "What if we want to eat different foods?"
+- @where_food_messy: "What if I'm messy and you're neat?"
+- @where_food_argument: "What if we get into some random argument over washing the dishes?"
+
+
+@where_food_food
+go-to: future_plans_choices
+
+"What if we want to eat different foods? You're a vegetarian, right?"
+
+"I mean, I'm not hardcore about vegetarianism. I saw you eat today and I think we can get along with Chinese food?"
+
+"Yeah..."
+
+
+@where_food_messy
+go-to: future_plans_choices
+
+"Um, what if I'm messy and you're neat?"
+
+"Have you seen my room? Wait, of course you haven't. Where did you get the impression that I'd be neat?"
+
+
+@where_food_argument
+go-to: future_plans_choices
+
+"Um, what if we get into some random argument? Like, what if you didn't want to do the dishes and I get upset?"
+
+"Oh my God." Emily laughs. "I'll always do the dishes if you ask."
+
+"But you won't! See, that's the thing, everyone thinks everything is going to turn out perfectly and it never does! Entropy is the only constant in life, including in relationships! Entropy and decay! And inevitably... inevitably there will be conflict!"
+
+She smiles, and puts her arm around your shoulder. You lean against her. "Is this based on personal experience?"
+
+"My parents are divorced."
+
+"Well, I guess we'll just have to try better. That's all anyone can do."
+
+
+@the_same
+view-if: where_food_seen + where_work_seen + where_live_seen >= 2
+
+"Wow, we are like... literally the same person," you say.
+
+"Well, we're probably metaphysically adjacent in some higher-dimensional space."
+
+"Yeah. That totally makes sense. I don't know what that means but it makes sense."
+
+Emily chuckles, and you grab ahold of her hand again. "Man, we're acting like we're already planning on getting married or something."
+
+- @are_we_not: "Are we not?"
+- @haha_yeah: "Haha, yeah..."
+
+
+@are_we_not
+
+"Are we not?"
+
+She laughs, and pulls you into a hug. "We are literally on the first date. As much as I'd like to plan out our entire lives, that's not realistic at the moment."
+
+"Oh..."
+
+- @talk_options: ...
+
+
+@haha_yeah
+
+"Haha, yeah..." Nervous chuckle.
+
+She laughs, and pulls you into a hug. "We are literally on the first date. As much as I'd like to plan out our entire lives, that's not realistic at the moment."
+
+"Oh..."
+
+- @talk_options: ...
 
 
 @kids_willing_hypothetical
@@ -1568,13 +1953,30 @@ You stare at Emily. Why? Are you implying something here?
 
 @say_it
 
-"You should say it."
+"You should say it," you say.
 
-TODO
+She sighs. "Okay. Do you, like, have... God I can't say it!" She throws her arms up. "Can you say what I think you're suggesting? I have a guess but I really want to hear you say it..."
+
+- @i_like_you: "I like you."
+- @say_never_mind: "Never mind."
+
 
 @i_say_it
 
-TODO
+"I'll say it. I..."
+
+- @i_like_you: "I like you."
+- @say_never_mind: "Never mind."
+
+
+@say_never_mind
+
+"Never mind."
+
+"Oh. Okay." Emily seems content to let the topic drop. It's as if you jumped out of the way of an incoming train.
+
+- @talk_options: ...
+
 
 @kids_what_if
 
@@ -1589,17 +1991,21 @@ TODO
 
 "Wait, are you asking that in a non-hypothetical way?"
 
-"I don't know what I'm asking."
+"I don't know what I'm asking. All I'm asking is, are you saying what I think you're implying? Should I say it or should you?"
+
+- @say_it: "You should say it."
+- @i_say_it: "I'll say it."
+
 
 @hypothetical_yes
 
-TODO
+"Yes. Hypothetically."
 
-you should say it.
-I'll say it.
-stay silent.
+Emily is staring at you now. "Are you saying what I think you're implying? Should I say it or should you?"
 
-You: Maybe we could be friend-married. We could be co-parents.
+- @say_it: "You should say it."
+- @i_say_it: "I'll say it."
+
 
 
 ##############################################################################
