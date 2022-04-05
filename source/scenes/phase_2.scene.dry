@@ -94,9 +94,9 @@ Wang Laoshi finishes the prayer. Now it's time for dinner to start. The children
 
 @late
 
-Upon your entrance to the dining room, mom greets you. She already has a plate of food.
+Upon your entrance to the dining room, Mom greets you. She already has a plate of food.
 
-"我们没有等你吃。饭都要凉了。*We didn't wait for you. The food is almost cold now.*" Mom says.
+"我们没有等你吃。饭都要凉了。*We didn't wait for you. The food is almost cold now,*" Mom says.
 
 - @get_food
 
@@ -121,11 +121,11 @@ go-to: end_food if food_left = 0; get_food_2 if food_left > 0
 You can still get [+ food_left : +] thing[? if food_left > 1 : s?].
 
 - @rice: 米饭 - Steamed rice.
-- @jiaozi: 饺子 - dumplings, filled with pork and cabbage.
-- @baozi: 包子 - steamed baozi, filled with pork and various vegetables.
+- @jiaozi: 饺子 - Dumplings, filled with pork and cabbage.
+- @baozi: 包子 - Steamed baozi, filled with pork and various vegetables.
 - @stir: Various meat and vegetable stir fries.
-- @tomato: 西红柿炒鸡蛋 - tomato stir-fried with eggs.
-- @lamb: 孜然羊肉面 - cumin lamb noodles.
+- @tomato: 西红柿炒鸡蛋 - Tomato stir-fried with eggs.
+- @lamb: 孜然羊肉面 - Cumin lamb noodles.
 - @donggua: 冬瓜汤 - Winter melon and meatball soup.
 - @porridge: 米饭粥 - Rice porridge.
 
@@ -203,7 +203,7 @@ One of the most common Chinese dishes. You spoon some of the tomato-egg stir fry
 on-arrival: {! Q['food'].push('lamb noodles'); Q['food_left'] -= 1; !}
 go-to: foods
 
-This was mom's dish, a specialty of her home province of Shaanxi. The spicy noodes with fried lamb are always popular.
+This was Mom's dish, a specialty of her home province of Shaanxi. The spicy noodes with fried lamb are always popular.
 
 
 @donggua
@@ -226,6 +226,6 @@ You spoon some of the porridge into a bowl.
 
 Your plate is filled. You see Emily, Miri, Aubrey, and William sit together in one of the dining tables. There's an open seat for you.
 
-"你跟你朋友们坐吧 *You should sit with your friends*," mom says, pointing you in the direction of their table. Kevin has already gone into the basement with some of the younger kids.
+"你跟你朋友们坐吧 *You should sit with your friends*," Mom says, pointing you in the direction of their table. Kevin has already gone into the basement with some of the younger kids.
 
 - @p2_convos: Join the table.

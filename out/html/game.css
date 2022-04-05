@@ -17,11 +17,13 @@ header, #content, footer {
   color: #431;
   max-width: 540px;
   margin: 0 auto;
+  z-index: 0;
 }
 footer {
   margin-top: 1em;
   font-size: 0.8em;
   /*color: #f3f3f3;*/
+  z-index: 0;
 }
 footer a {
   padding-right: 1em;
@@ -57,13 +59,15 @@ header h2:before {
   padding: 1em 1.5em 1.5em 1.5em;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   border-radius: 1em;
+  z-index: 0;
 }
 .content_hidden {
   opacity: 0;
+  transition: opacity 0.3s ease-out;
 }
 .content_visible {
   opacity: 1;
-  transition: opacity 0.05s ease-in;
+  transition: opacity 0.3s ease-in;
 }
 .content_hidden.disable_animate {
   opacity: 1;
@@ -193,7 +197,7 @@ span.ga {
 span.dw {
     color: #008000;
 }
-#save {
+.overlay {
     background: rgba(0,0,0,0.7);
     display: none;
     position: fixed;
@@ -205,7 +209,7 @@ span.dw {
     left: 0;
     z-index: 2;
 }
-#saves_table {
+.overlay_top {
     position: relative;
     max-width: 540px;
     margin: 100px auto;
@@ -215,6 +219,30 @@ span.dw {
 }
 .save_info {
     min-width: 10em;
+}
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #f3f3e3;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+/*
+ * This is used for overlaying transparencies
+ * TODO: only transition on fade-in
+ * */
+#bg2 {
+    z-index: -100;
+}
+#bg1 {
+    z-index: -99;
 }
 .b {
 }

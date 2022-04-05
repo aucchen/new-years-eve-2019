@@ -1,6 +1,6 @@
 title: The new year is soon.
 subtitle: Happy 2020?
-view-if: time >= p3_time and time <= p3_time + 5 and is_alone = 1
+view-if: time >= p3_time and is_alone = 1
 on-arrival: phase = 3
 max-visits: 1
 new-page: true
@@ -135,7 +135,7 @@ achievement: ending_alone_1
 
 The countdown starts. 10... 9... People watch. Some kids count along. 7... 6... "快点来！快点来！" 3... 2... 1...
 
-The ball drops. Mom kisses you on the cheek. You don't know what to do so you flail your arms about in an attempt at a hug. Somehow it connects and you're pulled into a group hug with mom and Kevin. You stay like this for a minute. It's warm. Kevin pulls away first.
+The ball drops. Mom kisses you on the cheek. You don't know what to do so you flail your arms about in an attempt at a hug. Somehow it connects and you're pulled into a group hug with Mom and Kevin. You stay like this for a minute. It's warm. Kevin pulls away first.
 
 Other people are already preparing to leave. Goodbyes and farewells are being said. Noises. Blurs. Miri puts on her jacket. She waves goodbye to Emily who's with her parents right now. Emily waves back, and glances at you, smiling? You wave back. You smile, but you're not sure if it works.
 
@@ -146,7 +146,7 @@ Other people are already preparing to leave. Goodbyes and farewells are being sa
 
 @time_to_leave
 
-But it's not time yet. More goodbyes. More painful conversation between mom and the others. Your shoes and coat are on. Everyone is fully bundled up. But there are still more goodbyes. Still more words.
+But it's not time yet. More goodbyes. More painful conversation between Mom and the others. Your shoes and coat are on. Everyone is fully bundled up. But there are still more goodbyes. Still more words.
 
 - @time_to_leave_2: It's finally time.
 
@@ -156,7 +156,7 @@ It's finally time. Miri comes with you, and the four of you trudge your way to t
 
 You don't talk much on the ride, or at all, really. She is dropped off at her house. You say goodbye. Then you end at your apartment.
 
-"你今天怎么样？ *How was your day?*", mom asks.
+"你今天怎么样？ *How was your day?*", Mom asks.
 
 - @it_was_fine: "It was fine."
 

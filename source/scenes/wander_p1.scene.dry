@@ -38,7 +38,7 @@ You smile and nod. He goes away, distracted by more conversation.
 view-if: mom_int = 0
 on-arrival: wander_p1_w3_seen = 1
 
-As you are wandering, mom notices you. "秋怡，怎么样啊？ 怎么没有跟朋友在一块儿？ *Qiuyi, how is it going? Why aren't you with your friends?*"
+As you are wandering, Mom notices you. "秋怡，怎么样啊？ 怎么没有跟朋友在一块儿？ *Qiuyi, how is it going? Why aren't you with your friends?*"
 
 "Um..." You look away.
 

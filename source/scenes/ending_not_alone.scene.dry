@@ -1,12 +1,15 @@
 title: The new year is soon.
 subtitle: Happy 2020?
-view-if: time >= p3_time and (with_em = 1 or with_miri = 1 or with_aub = 1)
+view-if: time >= p3_time and with_em = 1
 go-to: em_ny if with_em = 1; miri_ny if with_miri = 1; aub_ny if with_aub = 1
 on-arrival: phase = 3
 max-visits: 1
 new-page: true
 set-bg: backgrounds/party_1_filtered.jpg
-# tags: phase3
+tags: phase3
+
+# if/when miri/aub routes are implemented
+# view-if: time >= p3_time and (with_em = 1 or with_miri = 1 or with_aub = 1)
 
 The house is in a state of rauccous commotion.
 
@@ -16,10 +19,11 @@ Shouts in Chinese. Footsteps reverberating through the halls, gathering at the l
 
 @em_ny
 view-if: with_em = 1
+on-arrival: ending = "em_1"
 
 Emily is with you. [? if emily_date = 1 : You're not holding hands anymore. You try to not stand too close, and it's fairly obvious that she is attempting the same. ?]
 
-"赵秋怡！快点过来！ *Zhao Qiuyi! Come quickly!*" You hear mom's shouts, and soon see her with Kevin. With an apologetic glance and wave at Emily, you join them.
+"赵秋怡！快点过来！ *Zhao Qiuyi! Come quickly!*" You hear Mom's shouts, and soon see her with Kevin. With an apologetic glance and wave at Emily, you join them.
 
 - @pictures: They're taking pictures. You're expected.
 
@@ -175,13 +179,13 @@ Oh God. You're really doing this. You really kiss her, of your own volition. You
 
 "No, it's okay! I just didn't expect it, that's all. I don't mind..."
 
-Thankfully Aubrey is preoccupied with William, and mom and Kevin are nowhere in sight, but Miri is staring hard with a twisted grin on her face. "Congratulations!", she says. "I thought something like that might have happened."
+Thankfully Aubrey is preoccupied with William, and Mom and Kevin are nowhere in sight, but Miri is staring hard with a twisted grin on her face. "Congratulations!", she says. "I thought something like that might have happened."
 
 "Oh, it's..." Emily seems to want to deny everything, but shakes her head. "Yeah. Stuff happened. I guess it's like that now." She's smiling too. She takes a glance around, and kisses you on the cheek.
 
 "Oh wow," Miri remarks. "Oh wow. That's great. That's awesome that you two are like, doing stuff."
 
-- @mom_notices: Soon, mom notices you.
+- @mom_notices: Soon, Mom notices you.
 
 
 @hug_em
@@ -191,11 +195,11 @@ You're not quite ready to partake in the New Year's tradition, but you could app
 
 You stay together like this for a long time before finally letting go.
 
-Thankfully Aubrey is preoccupied with William, and mom and Kevin are nowhere in sight, but Miri is staring hard with a twisted grin on her face. "Congratulations!", she says. "I thought something like that might have happened."
+Thankfully Aubrey is preoccupied with William, and Mom and Kevin are nowhere in sight, but Miri is staring hard with a twisted grin on her face. "Congratulations!", she says. "I thought something like that might have happened."
 
 "Oh, it's... it's no big deal," Emily says, but she's smiling, and holds on to your hand for too long before realizing that there are other people in the vicinity.
 
-- @mom_notices: Soon, mom notices you.
+- @mom_notices: Soon, Mom notices you.
 
 
 @group_hug
@@ -208,7 +212,7 @@ Thankfully, you are released soon enough.
 
 "That was nice, wasn't it?", Miri says. Aubrey only shakes her head.
 
-- @mom_notices: Soon, mom notices you.
+- @mom_notices: Soon, Mom notices you.
 
 
 @mom_notices
@@ -242,7 +246,7 @@ go-to: time_to_leave
 
 @mom_hug
 
-Mom kisses you on the cheek. You don't know what to do so you flail your arms about in an attempt at a hug. Somehow it connects and you're pulled into a group hug with mom and Kevin. You stay like this for a minute. It's warm. Kevin pulls away first.
+Mom kisses you on the cheek. You don't know what to do so you flail your arms about in an attempt at a hug. Somehow it connects and you're pulled into a group hug with Mom and Kevin. You stay like this for a minute. It's warm. Kevin pulls away first.
 
 Other people are already preparing to leave. Goodbyes and farewells are being said. Noises. Blurs. Miri puts on her jacket. [? if em_date = 1 : ?]
 
@@ -253,7 +257,7 @@ Other people are already preparing to leave. Goodbyes and farewells are being sa
 
 @time_to_leave
 
-But it's not time yet. More goodbyes. More painful conversation between mom and the others. Your shoes and coat are on. Everyone is fully bundled up. But there are still more goodbyes. Still more words.
+But it's not time yet. More goodbyes. More painful conversation between Mom and the others. Your shoes and coat are on. Everyone is fully bundled up. But there are still more goodbyes. Still more words.
 
 - @time_to_leave_2: It's finally time.
 
@@ -266,7 +270,7 @@ You don't talk much on the ride, or at all, really. She is dropped off at her ho
 
 # TODO: miri might talk to you about the party's events
 
-"你今天怎么样？ *How was your day?*", mom asks.
+"你今天怎么样？ *How was your day?*", Mom asks.
 
 - @it_was_fine: "It was fine."
 

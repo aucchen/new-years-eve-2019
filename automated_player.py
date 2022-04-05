@@ -174,6 +174,5 @@ def random_n_script_tests(n, script_path, dump_stats=0, starting_index=0):
 
 if __name__ == '__main__':
     print(file_path)
-    #random_n_tests(20, starting_index=51)
+    random_n_tests(20)
     #test_with_script('standard_runs/emily.txt', output_path='standard_runs/emily_output.txt', data_path='standard_runs/emily_data.txt')
-    random_n_tests(10)

@@ -1,8 +1,0 @@
-title: Miri and Emily
-subtitle: They're hanging out together in an alcove...
-tags: top, phase3
-view-if: phase = 3 and is_alone = 1
-max-visits: 1
-new-page: true
-
-Miri and Emily seem to be getting along quite well. They're having an animated conversation.

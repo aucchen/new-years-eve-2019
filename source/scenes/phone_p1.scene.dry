@@ -1,5 +1,5 @@
 title: Use your cellphone
-subtitle: First finding a safe alcove.
+subtitle: First finding a safe location.
 view-if: phase = 1 and time < p1_time
 new-page: true
 go-to: options
@@ -113,7 +113,7 @@ on-arrival: time += 1
 
 You've been playing this game for a while without getting very far. It's an old-fashioned text adventure about a spy infiltrating a research base, and it is very difficult. You stop playing after dying a few times.
 
-# TODO: add some more parser options - stuff based on shade, galatea, bronze, aisle, etc.
+# TODO: add some more parser options
 
 - @games: Play more games.
 - @options: Keep using your phone.

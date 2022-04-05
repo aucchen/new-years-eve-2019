@@ -15,7 +15,7 @@ There are multiple mahjong tables laid out. Mom is at one of them. She sees you.
 
 
 @table
-on-arrival: time += 1; mom_int += 1
+on-arrival: time += 1; mom_int += 1; game_count = 0
 
 You join her table, which has three players. You're the fourth, making it complete.
 
@@ -23,7 +23,7 @@ You join her table, which has three players. You're the fourth, making it comple
 
 "你会玩吗？*Do you know how to play?*"
 
-"她会 *She knows*", mom says. Years ago, the four of you used to play together.
+"她会 *She knows*", Mom says. Years ago, the four of you used to play together.
 
 - @wash: Wash the cards.
 
@@ -45,7 +45,11 @@ The players arrange the tiles into four walls, 17 tiles across and 2 high.
 title: Play a new game?
 unavailable-subtitle: You've played enough games.
 view-if: time < p3_time
-on-arrival: time += 1; game_count += 1
+on-arrival: {!
+Q['time'] += 1;
+Q['game_count'] += 1;
+Q['dice_roll'] = parseInt(Math.random()*6 + 1);
+!}
 
 # no I am not making a full majiang simulation here
 
@@ -78,25 +82,25 @@ You're playing however it feels right at the moment. Sometimes staring at the di
 @mom_wins
 go-to: new_game
 
-Mom wins this game. "在玩一次，好吧？*Play another game, okay*?", she says with a laugh. She looks happy here.
+Mom wins this game. [? if dice_roll <= 2 : And she won with a *hu* off you! ?]
 
-# TODO
+"在玩一次，好吧？*Play another game, okay*?", she says with a laugh. She looks happy here.
 
 @win_1
 go-to: new_game
 
-Surprisingly enough, you manage to win this round!
-
-@win_2
-go-to: new_game
+Surprisingly enough, you manage to win this round! [? if dice_roll <= 3 : It's a small victory, a *hu* over one of the people you don't know. ?][? if dice_roll = 4 : You won with a *hu* against Mom. She laughs and says something you don't quite understand. ?][? if dice_roll >= 5 : You won with a 自摸 *zimo* or self-draw. If you were counting money, that would be a bigger victory probably? Mom pats you on the arm in congratulations. ?]
 
 @lose_1
 go-to: new_game
 
+You lost, unsurprisingly. [? if dice_roll <= 2 : Someone won with a self-draw. ?][? if dice_roll >= 3 : Someone won with a *hu* off someone else.  ?]
+
 @lose_bad
 go-to: new_game
 
-TODO
+You lost, really badly. [? if dice_roll <= 3 : Someone had a *hu* off you. That would've meant a big loss, if you were counting money. ?][? if dice_roll >= 4 : Someone won with a self-draw as dealer. That would mean a big penalty for everyone if you were counting money. ?]
+
 
 @new_game
 

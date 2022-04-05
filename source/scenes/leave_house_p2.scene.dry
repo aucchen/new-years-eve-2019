@@ -13,6 +13,8 @@ You put on your jacket and your shoes. No one is watching you open the door. You
 It's quiet. Snowflakes glisten in the air, shining under the streetlights. Your footprints defile the fresh snow.
 
 @thoughts
+unavailable-subtitle: It's getting too late.
+choose-if: time < p3_time + 4
 max-choices: 3
 
 - #alone_thought
@@ -296,7 +298,7 @@ on-arrival: cold += 1; time += 1; has_mom_segue = 1
 max-visits: 1
 go-to: thoughts
 
-How long has it been? Has mom noticed that you've been gone, that you've disappeared, vanished without a trace? Is she worried right now?
+How long has it been? Has Mom noticed that you've been gone, that you've disappeared, vanished without a trace? Is she worried right now?
 
 She probably hasn't noticed. It's fine.
 
@@ -316,13 +318,13 @@ It wasn't a very interesting dream, but it does make you want to walk faster.
 
 @mom_terrible_thought
 tags: alone_thought
-title: You've been terrible to mom. 
+title: You've been terrible to Mom. 
 view-if: time < p3_time and has_mom_segue = 1
 on-arrival: cold += 1; time += 1; segue = " "
 max-visits: 1
 go-to: thoughts
 
-You've really treated mom terribly, haven't you? Every time she calls you, she asks why you haven't called in so long. You don't have a good answer. Why do you ignore her? When she asks you what's wrong, why do you say that you're fine? When she asks you if you have any friends, why do you say that you do? Why do you lie to her so?
+You've really treated Mom terribly, haven't you? Every time she calls you, she asks why you haven't called in so long. You don't have a good answer. Why do you ignore her? When she asks you what's wrong, why do you say that you're fine? When she asks you if you have any friends, why do you say that you do? Why do you lie to her so?
 
 But it doesn't matter now, does it? It's already a thing of the past.
 
@@ -442,7 +444,7 @@ You imagine her running towards you, like some romantic movie scene except witho
 @mom_save
 go-to: thoughts
 
-Yes, mom might actually come. Maybe she's noticed that you're gone. There's a nonzero probability that she's worried about you right now.
+Yes, Mom might actually come. Maybe she's noticed that you're gone. There's a nonzero probability that she's worried about you right now.
 
 But is she worried about *you*, or is she worried about her daughter?
 

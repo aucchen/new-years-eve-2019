@@ -6,6 +6,7 @@ if (Q['time'] <= Q['p2_time']) {
 } else {
     Q['time'] += 2;
 }
+Q['with_em'] = 1;
 !}
 set-bg: backgrounds/outdoors_1_filtered.jpg
 tags: final
@@ -1384,7 +1385,7 @@ on-arrival: em_life_science_seen = 1
 
 And thus, you embark on the long, prepared explanation of your research project.
 
-"...so, like, if we can build dynamical models of the regulatory pathways, then we can, like, use CRISPR or whatever to forward engineer them, and then, like,... yeah."
+"...so, like, if we can build dynamical models of the regulatory pathways, then we can, like, use CRISPR or whatever to forward engineer them, and then, like... yeah."
 
 "Hmm, I'm just wondering how it can be useful for transitioning." Emily laughs. "I mean, it's easy to synthesize estrogen, but ideally we'd be able to do better than just bioidentical estrogen, if we have precise control over gene regulation..." She shakes her head. "Sorry, I'm just making stuff up here."
 

@@ -389,7 +389,7 @@ view-if: 0 = 1
 
 @anxiety_attack
 title: Leave and walk around.
-view-if: anxiety >= 10 and time < p2_time
+view-if: anxiety >= 11 and time < p2_time
 
 You can't deal with this anymore. You have to get away.
 

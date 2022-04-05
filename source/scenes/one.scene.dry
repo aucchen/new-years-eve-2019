@@ -115,7 +115,7 @@ What are you even going to do here?
 @stand
 on-arrival: intro_flag = "pessimistic"
 
-You didn't want to come here. But it was necessary, mom said. Why didn't you want to meet your friends, mom said. You don't have many opportunities to visit anymore, mom said. So, now you're here. And you're supposed to... hang out? Or something like that. Perhaps the best you can do is maintain homeostasis.
+You didn't want to come here. But it was necessary, Mom said. Why didn't you want to meet your friends, Mom said. You don't have many opportunities to visit anymore, Mom said. So, now you're here. And you're supposed to... hang out? Or something like that. Perhaps the best you can do is maintain homeostasis.
 
 - @non_opt_1
 - @non_opt_2
