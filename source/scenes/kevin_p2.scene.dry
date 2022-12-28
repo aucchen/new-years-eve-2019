@@ -45,7 +45,10 @@ What are you supposed to say now?
 
 
 @how_day
-on-arrival: anxiety += 1
+title: Ask Kevin: "How was your day?"
+tags: kevin2
+view-if: kevin_p2_prog >= 1 and kevin_p2_prog <= 3
+on-arrival: anxiety += 1; kevin_p2_prog += 1
 max-visits: 1
 
 "Um, how was your day?"
@@ -59,6 +62,10 @@ Okay. What the heck are you supposed to say now?
 
 
 @how_movie
+title: Ask Kevin: "How's the movie?"
+tags: kevin2
+view-if: kevin_p2_prog >= 1 and kevin_p2_prog <= 3
+on-arrival: kevin_p2_prog += 1
 max-visits: 1
 
 "Um, how was the movie?"
@@ -70,8 +77,126 @@ Ugh. So much for conversation.
 - #kevin2
 - #movie2
 
+@why_avoid
+title: Ask Kevin: "Why are you avoiding me?"
+tags: kevin2
+on-arrival: kevin_p2_prog += 1; time += 1
+view-if: kevin_p2_prog = 3 and time <= p3_time
+max-visits: 1
 
-# TODO
+"Um, why are you avoiding me?"
+
+"Why are *you* avoiding *me*?", he replies.
+
+- @what: "Wait, what?"
+- @not_avoid: "I'm not avoiding you..."
+- @root: Avoid him right now by going back to rejoin the rest of the party.
+
+@what
+go-to: not_avoid_2
+
+"Wait, what?"
+
+@not_avoid
+go-to: not_avoid_2
+
+"I'm not avoiding you..."
+
+
+@not_avoid_2
+
+"You never talk to me," Kevin says. "You never called us when you were at college. At home you're always on your computer. Whenever anyone tries to talk to you, you just like say a few words and run away."
+
+- @sorry: "Sorry..."
+- @root: Run away.
+
+@sorry
+
+"Sorry..."
+
+Kevin shrugs. "Go say sorry to mom. Or Emily or Miri or any of your other adult friends. You like girls, right? And you know that Emily and Miri both liked you, right? If you didn't avoid them you could have had a girlfriend by now."
+
+[? if em_rom > 0 or prev_em = "date" : "Mom said that since Emily is a girl now, and you obviously got along well before, you could date," Kevin continues. ?]
+
+- @wtf: What the fuck?
+- @short_circuit: Have a mental breakdown.
+- @too_young: "You're too young to know these things..."
+
+
+@wtf
+choose-if: anxiety <= 12
+
+What the fuck is happening in this world. What did you do to deserve this?
+
+It feels like you wandered into a trap. Everything you thought you believed, every once-steadfast piece of your worldview, crumbled. All you can do is leave your mouth agape.
+
+- @i_thought: "I thought..."
+
+
+@short_circuit
+
+It feels like your mind is twisting into itself, every strand of thought coiling into each other like a pile of snakes. Venomous snakes or something like that. You can't think. It feels as if you wandered into a trap. Everything you thought you believed, every once-steadfast piece of your worldview, crumbled. All you can do is leave your mouth agape, your eyes open, receiving sensory information but not processing any of it.
+
+You want to disappear, somewhat more so than usual.
+
+"Hey Qiuyi-jiejie, are you okay?"
+
+- @the_f: What the fuck do you think?
+
+
+@the_f
+go-to: whatever
+
+"What the fuck do you think?", you say without thinking.
+
+"Hey, don't swear."
+
+"Oh God I'm so sorry I'm such a bad example..."
+
+
+@i_thought
+
+"Um, I thought... I thought no one knew about... that..."
+
+"Literally everyone knows," says Kevin. "Everyone knows that you like girls."
+
+- @oh_no: "Oh no..."
+
+
+@how_did
+
+"Um, how did you know I was... you know..."
+
+"Literally everyone knows," says Kevin. "Everyone knows that you like girls."
+
+- @oh_no: "Oh no..."
+
+
+@too_young
+choose-if: anxiety <= 10
+
+"Um... you're too young. You shouldn't know anything about that."
+
+"That's homophobic," says Kevin. "Literally everyone knows that you like girls."
+
+- @oh_no: "Oh no..."
+
+
+@oh_no
+go-to: whatever
+
+"Oh no... Oh God no..."
+
+"What's wrong?"
+
+# Kevin: literally everyone knows that you like girls.
+
+@whatever
+
+"Whatever. Go say hi to your friends. Or just keep watching the movie."
+
+- #kevin2
+- #movie2
 
 
 @movie_1

@@ -23,12 +23,11 @@
         <a id="stats-link" onclick="window.showStats();" href="#">Status</a>
         <a onclick="window.showSaveSlots();" href="#">Save/Load</a>
         <a onclick="window.showOptions();" href="#">Options</a>
-
       </div>
     </header>
 
     <div id="options" class="overlay" style="display: none;">
-        <!-- TODO: check current option -->
+
         <div class="overlay_top">
             <table>
                 <tr>
@@ -83,6 +82,33 @@
                     </td>
                     <td>
                         <input type="radio" id="animate_bg_no" name="animate_bg" value="0" onclick="window.disableAnimateBg();">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <hr> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="use_line_art">Use line art</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="use_line_art" name="character_art" value="1" onclick="window.useLineArt();">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="use_color_art">Use color art</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="use_color_art" name="character_art" value="0" onclick="window.useColorArt();">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="no_art">No character art</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="no_art" name="character_art" value="0" onclick="window.noArt();">
                     </td>
                 </tr>
                 <tr>
@@ -182,6 +208,14 @@
                 </td>
             </tr>
         </table>
+    </div>
+
+    <div id="contentSpriteContainer">
+        <div class="sprite" id="topLeftSprite"></div>
+        <div class="sprite" id="topRightSprite"></div>
+
+        <div class="sprite" id="bottomLeftSprite"></div>
+        <div class="sprite" id="bottomRightSprite"></div>
     </div>
 
     <div id='content'></div>

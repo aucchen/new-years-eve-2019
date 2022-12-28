@@ -23,7 +23,7 @@ You join her table, which has three players. You're the fourth, making it comple
 
 "你会玩吗？*Do you know how to play?*"
 
-"她会 *She knows*", Mom says. Years ago, the four of you used to play together.
+"她会 *She knows*", Mom says. Years ago, the four of you used to play together. Now, it's only the three of you, or more accurately just Mom and Kevin.
 
 - @wash: Wash the cards.
 
@@ -49,6 +49,7 @@ on-arrival: {!
 Q['time'] += 1;
 Q['game_count'] += 1;
 Q['dice_roll'] = parseInt(Math.random()*6 + 1);
+Q['mom_int'] += 1;
 !}
 
 # no I am not making a full majiang simulation here
@@ -106,6 +107,15 @@ You lost, really badly. [? if dice_roll <= 3 : Someone had a *hu* off you. That 
 
 - @game: Play again?
 - @stop_playing: Stop playing.
+
+@mom_pat
+view-if: mom_food_ask = 0
+
+# TODO: here, mom interacts with you. she pats you on the back. calls you a good girl.
+
+Mom pats you on the back. "你真的是一个好姑娘。没有几个孩子爱跟老娘玩麻将。 今天吃得怎么样啊？ *You're really a good daughter. Not a lot of kids live to play majiang with their old mother. How was the food today?*"
+
+
 
 @stop_playing
 

@@ -4,6 +4,7 @@ on-departure: recalculated_stats = 0; cold = 0
 new-page: true
 max-choices: 10
 set-bg: backgrounds/room_1_filtered.jpg
+set-sprites: none
 
 @start
 

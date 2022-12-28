@@ -170,6 +170,33 @@
       window.dendryUI.saveSettings();
   };
 
+  window.useLineArt = function() {
+      localStorage['nye2019_useLineArt'] = true;
+      localStorage['nye2019_useColorArt'] = false;
+      localStorage['nye2019_noArt'] = false;
+      window.dendryUI.show_portraits = true;
+      window.dendryUI.saveSettings();
+      window.dendryUI.setSprites(window.dendryUI.dendryEngine.state.sprites);
+  };
+
+  window.useColorArt = function() {
+      localStorage['nye2019_useLineArt'] = false;
+      localStorage['nye2019_useColorArt'] = true;
+      localStorage['nye2019_noArt'] = false;
+      window.dendryUI.show_portraits = true;
+      window.dendryUI.saveSettings();
+      window.dendryUI.setSprites(window.dendryUI.dendryEngine.state.sprites);
+  };
+
+  window.noArt = function() {
+      localStorage['nye2019_useLineArt'] = false;
+      localStorage['nye2019_useColorArt'] = false;
+      localStorage['nye2019_noArt'] = true;
+      window.dendryUI.show_portraits = false;
+      window.dendryUI.saveSettings();
+      window.dendryUI.setSprites(window.dendryUI.dendryEngine.state.sprites);
+  };
+
   // populates the checkboxes in the options view
   window.populateOptions = function() {
     var disable_bg = window.dendryUI.disable_bg;
@@ -190,7 +217,53 @@
     } else {
         $('#animate_bg_no')[0].checked = true;
     }
+    if (localStorage['nye2019_useLineArt'] == 'true') {
+        $('#use_line_art')[0].checked = true;
+    } else if (localStorage['nye2019_useColorArt'] == 'true') {
+        $('#use_color_art')[0].checked = true;
+    } else if (localStorage['nye2019_noArt'] == 'true') {
+        $('#no_art')[0].checked = true;
+    } else {
+        localStorage['nye2019_useLineArt'] = true;
+        $('#use_line_art')[0].checked = true;
+    }
   };
+
+  // override of function...
+  window.setSprite = function(loc, img) {
+      loc = loc.toLowerCase();
+      var targetSprite;
+      if (loc == 'topleft') {
+          targetSprite = $('#topLeftSprite');
+      } else if (loc == 'topright') {
+          targetSprite = $('#topRightSprite');
+      } else if (loc == 'bottomleft') {
+          targetSprite = $('#bottomLeftSprite');
+      } else if (loc == 'bottomright') {
+          targetSprite = $('#bottomRightSprite');
+      }
+      targetSprite.children().fadeOut(this.fade_time);
+      targetSprite.empty();
+      if (img == 'none' || img == 'clear') {
+          targetSprite.children().fadeOut(this.fade_time);
+          targetSprite.empty();
+      } else {
+          if (localStorage['nye2019_useLineArt'] &&
+              localStorage['nye2019_useLineArt'] == 'true') {
+              if (!img.includes('_lineart')) {
+                  img = img.replace('.png', '_lineart.png');
+              }
+          } else if (localStorage['nye2019_useColorArt'] &&
+                     localStorage['nye2019_useColorArt'] == 'true') {
+              img = img.replace('_lineart', '');
+          }
+          var image = new Image();
+          image.src = img;
+          targetSprite.fadeIn(this.fade_time);
+          targetSprite.append(image);
+      }
+  };
+
 
   window.dendryModifyUI = main;
   console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");

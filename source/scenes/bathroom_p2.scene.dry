@@ -5,9 +5,9 @@ on-arrival: time += 1
 tags: phase2
 new-page: true
 max-visits: 1
+set-bg: backgrounds/bathroom_1_filtered_cropped.jpg
 
 # TODO: the background image is weirdly cropped.
-#set-bg: backgrounds/bathroom_1_filtered.jpg
 
 Okay. Yeah. You complete your biologically necessary functions and all that. But maybe you could stay in here for longer.
 
@@ -17,7 +17,7 @@ Okay. Yeah. You complete your biologically necessary functions and all that. But
 
 
 @selfie
-set-bg: backgrounds/bathroom_1_filtered_cropped.jpg
+set-bg: backgrounds/bathroom_selfie.jpg
 max-visits: 1
 on-arrival: anxiety += 1
 

@@ -1,6 +1,8 @@
 title: Emily
 new-page: true
 set-bg: backgrounds/room_1_filtered.jpg
+set-sprites: topleft: art/bust_karen_glasses_lineart.png, topright: art/bust_emily_glasses_lineart.png, bottomleft: none, bottomright: none
+
 
 You walk to the kitchen. Emily hovers in your vicinity.
 

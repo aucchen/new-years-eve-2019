@@ -56,7 +56,7 @@ if (Q['snack_consumption_count'] >= 2) {
 on-arrival: hunger -= 0.5; snack_consumption_count += 1
 go-to: snack_choices_end
 
-Haw flakes are crumbly reddish discs about the diameter of your thumb, made from the "haw", or 山楂, which is some kind of tree fruit. You've never actually found out what a "haw" is, or even if these things contain actual fruit (there's no ingredients list). But it tastes good. Sweet, a little tart.
+Haw flakes are crumbly reddish discs about the diameter of your thumb, made from the "haw", or 山楂, which is some kind of tree fruit. They are always packaged in a distinctive foil-wrapped cylindrical stack of little discs. You've never actually found out what a "haw" is, or even if these things contain actual fruit (there's no ingredients list). But it tastes good. Sweet, a little tart.
 
 
 @shrimp_chips
@@ -72,7 +72,7 @@ Anyway, you eat some shrimp chips. They're good.
 on-arrival: hunger -= 0.5; snack_consumption_count += 1
 go-to: snack_choices_end
 
-Dried squid pieces chewy, salty, white stringy things. They're hard to chew, but infused with the salty and savory flavors of the sea. You eat some. Bits get stuck to your teeth.
+Dried squid pieces are chewy, salty, white stringy things. They're hard to chew, but infused with the salty and savory flavors of the sea. You eat some. Bits get stuck to your teeth.
 
 
 @seeds

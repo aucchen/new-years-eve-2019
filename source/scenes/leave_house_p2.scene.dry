@@ -7,6 +7,7 @@ on-arrival: cold = 0; segue = " "; is_alone = 1
 max-visits: 1
 set-bg: backgrounds/outdoors_1_filtered.jpg
 go-to: thoughts
+set-sprites: topleft: art/bust_karen_glasses.png, topright: none, bottomleft: none, bottomright: none
 
 You put on your jacket and your shoes. No one is watching you open the door. You leave. You're free.
 

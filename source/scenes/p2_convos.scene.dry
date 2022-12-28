@@ -4,6 +4,7 @@ view-if: phase = 2 and time >= p1_time and time < p2_time
 new-page: true
 set-bg: backgrounds/food_1_filtered.jpg
 set-jump: p2_convos.intros_2
+set-sprites: topleft: art/bust_karen_glasses.png, topright: art/bust_emily_glasses.png, bottomleft: art/bust_miri_nohand_lineart.png, bottomright: art/bust_aubrey_lineart.png 
 
 
 # list of existing topics: introduction, topic_college, topic_hs, topic_miri (Aubrey asks Miri why she's here), topic_food, topic_politics, topic_weather, topic_em (William asks about Em's name), topic_em_veg, topic_party (you ask how the party's going), topic_media,
@@ -493,12 +494,6 @@ She shrugs. And you're alone now.
 - @root: Go...
 
 
-@anxiety_attack_go_aub
-on-arrival: anxiety += 1; with_aub = 1
-
-TODO
-
-
 @break_up
 title: Dinner is over.
 view-if: time >= p2_time
@@ -534,8 +529,6 @@ on-arrival: is_alone = 1
 
 You leave to rejoin the rest of the party.
 
-
-# TODO: let 
 
 
 ###############################################################

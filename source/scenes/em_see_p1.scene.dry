@@ -6,6 +6,7 @@ on-arrival: em_seen += 1; time += 1; energy -= 1; em_int += 1;
 view-if: phase = 1 and em_seen = 0 and energy > 0 and time < p1_time
 choose-if: has_interruption = 0
 tags: phase1, emily, initiation
+set-sprites: topleft: art/bust_karen_glasses.png, topright: art/bust_emily_glasses.png 
 
 Emily is sitting by herself on a couch in a darkened alcove, her face faintly illuminated by the glow of the laptop screen. 
 
@@ -135,7 +136,7 @@ on-arrival: em_int += 1
 
 "Oh... really?"
 
-She sighs, and finally looks up from her laptop her laptop. "No. Of course not."
+She sighs, and finally looks up from her laptop. "No. Of course not."
 
 - @how_so: "How so?"
 - @sorry_about_everything: "Sorry about everything..."

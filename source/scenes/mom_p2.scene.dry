@@ -30,6 +30,7 @@ You sit at an empty chair next to Mom. She pats your back. You try to stay still
 
 
 @listen
+on-arrival: mom_food_ask = 1
 
 "秋怡，吃得怎么样？ *Qiuyi, how has the food been?*", Mom asks.
 
@@ -40,18 +41,21 @@ Mom asks you about various foot items. Did you try the baozi? Did you try the du
 Yeah. It was good.
 
 - @scripts: You each follow your scripts...
+- @but_more: But you want to talk about something else...
 
 
 @scripts
 
 The thing about Chinese social interactions is that there are scripts to follow. Well, American social interactions have their own scripts, but you've always found the Chinese scripts easier to follow. Given the generational gap, there is a prescribed set of social interaction styles between you and Mom's friends, a limited list of topics to discuss.
 
-And so you follow your scripts, and they follow theirs.
+And so you follow your scripts, and they follow theirs, like an algorithm. Simple. Easy. If only all social interactions could be as such.
 
 
-# TODO: you want to talk about more than that, though...
+@but_more
 
-# trans bathrooms subplot...
+The thing about Chinese social interactions is that there are scripts to follow. Well, American social interactions have their own scripts, but you've always found the Chinese scripts easier to follow. Given the generational gap, there is a prescribed set of social interaction styles between you and Mom's friends, a limited list of topics to discuss.
+
+You want to talk about more than that, but you do not know how to move beyond the algorithm social interaction. Do you even know how to form the words in your former native language? What can you do, but follow the scripts?
 
 
 @go

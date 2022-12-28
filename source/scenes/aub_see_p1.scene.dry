@@ -4,6 +4,7 @@ on-arrival: aub_int += 1; time += 1; energy -= 1; aubrey_relationship += 1
 view-if: aub_int = 0 and phase = 1 and energy > 0 and time < p1_time and em_seen > 0
 new-page: true
 tags: phase1, aub
+set-sprites: topleft: art/bust_karen_glasses.png, topright: art/bust_aubrey.png
 
 
 Aubrey stands around a table with her boyfriend and a few other adults, talking and smiling.

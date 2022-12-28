@@ -6,6 +6,7 @@ on-arrival: time += 1; energy -= 1; miri_int += 1; miri_relationship += 1
 view-if: phase = 1 and miri_seen = 0 and energy > 0 and time < p1_time and em_seen > 0
 choose-if: has_interruption = 0
 tags: phase1, miri, initiation
+set-sprites: topleft: art/bust_karen_glasses.png, topright: art/bust_miri_nohand.png
 
 
 Miri stands in the living room in the center of a small semicircle of moms, beaming as she converses in fluent Mandarin and basking in the adulation of the adults.   

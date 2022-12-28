@@ -3,7 +3,6 @@ view-if: time >= p1_time
 go-to: late if time >= p1_time + 2
 on-arrival: {! Q['phase'] = 2; Q['food_left'] = 6; Q['food'] = [];
 Q['phase_2_start'] = 0;
-// TODO: add more food descriptions.
 // food_descs - how the food tastes
 Q['food_descs'] = {
 'rice': ['fine', 'perfectly ordinary', 'exactly as it should'],

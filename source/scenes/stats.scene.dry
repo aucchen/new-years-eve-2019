@@ -12,8 +12,6 @@ new-page: true
 
 Time: [+ display_hours : +]:[+ display_minutes : +]
 
-# TODO: the story so far?
-
 [? if hunger >= 9 : You are quite hungry. ?][? if hunger < 9 and hunger >= 7 : You are somewhat hungry. ?][? if hunger < 7 and hunger >= 5 : You are a little hungry. ?][? if hunger < 5 and hunger >= 3 : You are not really hungry. ?][? if hunger < 3 : You are feeling full. ?]
 
 [? if thirst >= 9 : You are quite thirsty. ?][? if thirst < 9 and thirst >= 7 : You are somewhat thirsty. ?][? if thirst < 7 and thirst >= 5 : You are a little thirsty. ?][? if thirst < 5 and thirst >= 3 : You are not really thirsty. ?][? if thirst < 3 : You are not thirsty at all. ?]
@@ -38,7 +36,7 @@ Her family lives in this house. Back in school she was your family friend, and s
 [? if prev_aub = "friends" :  You worked together in Science Olympiad, which was perhaps the primary route to your friendship. ?]
 [? if prev_aub = "none" :  At some point you ignored her, acted as if she didn't exist. ?]
 
-Relationship status: [+ aub_relationship : +]/5 [? if aub_relationship < 0 : (this is bad) ?][? if aub_relationship = 0 : (you haven't spoken in couple of years) ?][? if aub_relationship = 1 : (you've spoken to her...) ?][? if aub_relationship = 2 : (she's probably okay with you...) ?][? if aub_relationship >= 3 : (this is good, right?) ?]
+# Relationship status: [+ aub_relationship : +]/5 [? if aub_relationship < 0 : (this is bad) ?][? if aub_relationship = 0 : (you haven't spoken in couple of years) ?][? if aub_relationship = 1 : (you've spoken to her...) ?][? if aub_relationship = 2 : (she's probably okay with you...) ?][? if aub_relationship >= 3 : (this is good, right?) ?]
 
 
 **Emily Chen**: [? if prev_em = 0 : An acquaintance? ?]
@@ -46,7 +44,7 @@ Relationship status: [+ aub_relationship : +]/5 [? if aub_relationship < 0 : (th
 [? if prev_em = "friends" :  Emily was... a friend, of sorts. She helped you with the pageant back in high school, and you grew rather close. ?]
 [? if prev_em = "none" :  Emily was... an acquaintance, of sorts. Not much more, besides a few intense moments in which you revealed your dearest secrets to each other. ?]
 
-Relationship status: [+ em_relationship : +]/5 [? if em_relationship < 0 : (this is bad) ?][? if em_relationship = 0 : (you haven't spoken in at least a year) ?][? if em_relationship = 1 : (you've spoken a little here at the party...) ?][? if em_relationship = 2 : (you might be friends, or acquaintances...) ?][? if em_relationship >= 3 : (you're probably friends, right?) ?]
+# Relationship status: [+ em_relationship : +]/5 [? if em_relationship < 0 : (this is bad) ?][? if em_relationship = 0 : (you haven't spoken in at least a year) ?][? if em_relationship = 1 : (you've spoken a little here at the party...) ?][? if em_relationship = 2 : (you might be friends, or acquaintances...) ?][? if em_relationship >= 3 : (you're probably friends, right?) ?]
 
 
 **Miri (Miriam) Brooks**:
@@ -57,7 +55,7 @@ She was your friend back in high school...
 [? if prev_miri = "none" :  But now, you aren't sure if you're still friends. ?]
 [? if miri_best_friend = 1 : She said that you were best friends in high school. ?]
 
-Relationship status: [+ miri_relationship : +]/5 [? if miri_relationship < 0 : (this is bad) ?][? if miri_relationship = 0 : (you haven't spoken in a while...) ?][? if miri_relationship = 1 : (she seems to at least tolerate your presence...) ?][? if miri_relationship = 2 : (she seems to be okay with you...) ?][? if miri_relationship >= 3 : (you can still be friends, right???) ?]
+# Relationship status: [+ miri_relationship : +]/5 [? if miri_relationship < 0 : (this is bad) ?][? if miri_relationship = 0 : (you haven't spoken in a while...) ?][? if miri_relationship = 1 : (she seems to at least tolerate your presence...) ?][? if miri_relationship = 2 : (she seems to be okay with you...) ?][? if miri_relationship >= 3 : (you can still be friends, right???) ?]
 
 **Kevin (Chunyi 春艺) Zhao**:
 Your younger brother, now 11 years old. Has a predilection for Minecraft and youtubers and such. He's never needed you.

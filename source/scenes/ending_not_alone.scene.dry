@@ -94,6 +94,7 @@ You have a vague desire to hold hands, but you abandon that feeling as soon as y
 
 
 @em_miri_aubrey
+set-sprites: bottomleft: art/bust_miri_nohand_lineart.png, bottomright: art/bust_aubrey_lineart.png
 
 "Hey! Where were you guys?", Miri asks. "Did you really walk around for two hours?"
 
@@ -224,7 +225,7 @@ Thankfully, you are released soon enough.
 [? if em_date = 1 : "Yeah, we will," you say. And the two of you briefly hug. ?]
 [? if (with_em = 1) and (em_date < 1) : "I hope so," you say, as she waves goodbye, and you do the same. ?]
 
-Other people are already preparing to leave. Goodbyes and farewells are being said. Noises. Blurs. Miri puts on her jacket. [? if em_date = 1 : ?]
+Other people are already preparing to leave. Goodbyes and farewells are being said. Voices become noise, and the stream of faces blur into an indistinguishable mass. Miri puts on her jacket. [? if em_date = 1 : ?]
 
 "Can we go home now?", Kevin asks.
 
@@ -263,6 +264,7 @@ But it's not time yet. More goodbyes. More painful conversation between Mom and 
 
 
 @time_to_leave_2
+set-sprites: none
 
 It's finally time. Miri comes with you, and the four of you trudge your way to the car. "Shotgun!" Miri calls, and she laughs.
 

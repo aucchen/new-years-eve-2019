@@ -4,6 +4,7 @@ view-if: phase = 1 and time < p1_time
 on-arrival: time += 1
 tags: phase1
 new-page: true
+set-sprites: topleft: art/bust_karen_glasses.png
 
 You wander for a few minutes from room to room, trying to avoid becoming a subject of attention. You keep your head down, tossing your cell phone back and forth.
 

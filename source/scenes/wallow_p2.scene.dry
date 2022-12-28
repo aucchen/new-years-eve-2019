@@ -1,6 +1,6 @@
 title: Wallow in your despair.
 subtitle: Within a suitable alcove...
-view-if: phase = 2 and time < p3_time and (despair >= 10 and anxiety >= 10)
+view-if: phase = 2 and time < p3_time and ((despair >= 10 and anxiety >= 10) or anxiety >= 15)
 tags: phase2
 max-visits: 1
 on-arrival: despair += 1; anxiety += 1; time += 1; is_alone = 1
